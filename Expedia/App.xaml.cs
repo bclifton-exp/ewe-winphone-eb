@@ -14,6 +14,9 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Expedia.Injection;
+using Expedia.Services.Interfaces;
+using Ninject;
 
 namespace Expedia
 {
@@ -30,6 +33,8 @@ namespace Expedia
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+            ExpediaKernel.Instance();
         }
 
         /// <summary>

@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>1eec713d-11e6-4127-8ffb-724a50084f34</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Expedia.Entities</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Coordinate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ErrorCodes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExpediaClientException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExpediaFaultResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExpediaTokenExpiredException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\BooleanApiExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\StringCleaner.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\AmbiguousCityMatch.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\AmbiguousCityMatches.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\Amenities.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\AmenityFilterOption.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\AvailabilityCancelPolicyInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\BaseRateInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\BedType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\GetOfferQueryParameters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\GetOfferResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\GetProductResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\Hotel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\HotelDetailTile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\HotelInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\HotelInformationResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\HotelOffer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\HotelOfferErrorType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\HotelRateInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\HotelSearchErrorType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\HotelSearchQueryParameters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\HotelSearchResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\HotelSearchTile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\Neighborhood.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\NightlyRate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\OpaqueGetProductResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\OpaqueHotel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\OpaqueHotelSearchResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\OpaqueNeighborhood.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\Photo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\PriceAdjustment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\PriceOption.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\PriceType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\Region.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\RegionActivity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\RegionActivityResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\RoomOccupant.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\SortHotelsByType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\StarOption.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\SupplierType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\Surcharge.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\TaxStatusType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\TextSection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\UserPriceType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\ValueAdd.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IQueryParameters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)KnownFileExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ProfileType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ResponseBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ResponseError.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ResponseHeader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ResponseStatus.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ShareItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TileInfoBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UserProfile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VoiceCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VoiceCommandType.cs" />
+  </ItemGroup>
+</Project>

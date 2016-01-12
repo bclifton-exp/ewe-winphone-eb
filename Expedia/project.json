@@ -1,6 +1,9 @@
 ﻿{
   "dependencies": {
-    "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0"
+    "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
+    "Newtonsoft.Json": "8.0.1",
+    "Portable.Ninject": "3.3.1",
+    "Rx-Linq": "2.3.0-beta2"
   },
   "frameworks": {
     "uap10.0": {}

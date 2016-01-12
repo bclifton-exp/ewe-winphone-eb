@@ -95,6 +95,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Injection\ExpediaKernel.cs" />
+    <Compile Include="Injection\ServiceModule.cs" />
+    <Compile Include="Injection\ViewModelModule.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -126,6 +129,9 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
+  <Import Project="..\Expedia.Services\Expedia.Services.projitems" Label="Shared" />
+  <Import Project="..\Expedia.Entities\Expedia.Entities.projitems" Label="Shared" />
+  <Import Project="..\Expedia.Client\Expedia.Client.projitems" Label="Shared" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

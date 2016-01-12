@@ -5,7 +5,21 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Expedia", "Expedia\Expedia.csproj", "{103BB3B1-5384-41BE-BF36-EE3C739770F5}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Expedia.Services", "Expedia.Services\Expedia.Services.shproj", "{B7ADBB84-74BE-4553-91F3-4C486F40F628}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Expedia.Entities", "Expedia.Entities\Expedia.Entities.shproj", "{1EEC713D-11E6-4127-8FFB-724A50084F34}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Expedia.Client", "Expedia.Client\Expedia.Client.shproj", "{7913D527-4DA4-413B-808F-E179BBB0E60D}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Expedia.Services\Expedia.Services.projitems*{b7adbb84-74be-4553-91f3-4c486f40f628}*SharedItemsImports = 13
+		Expedia.Client\Expedia.Client.projitems*{103bb3b1-5384-41be-bf36-ee3c739770f5}*SharedItemsImports = 4
+		Expedia.Services\Expedia.Services.projitems*{103bb3b1-5384-41be-bf36-ee3c739770f5}*SharedItemsImports = 4
+		Expedia.Entities\Expedia.Entities.projitems*{103bb3b1-5384-41be-bf36-ee3c739770f5}*SharedItemsImports = 4
+		Expedia.Client\Expedia.Client.projitems*{7913d527-4da4-413b-808f-e179bbb0e60d}*SharedItemsImports = 13
+		Expedia.Entities\Expedia.Entities.projitems*{1eec713d-11e6-4127-8ffb-724a50084f34}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
 		Debug|x64 = Debug|x64
