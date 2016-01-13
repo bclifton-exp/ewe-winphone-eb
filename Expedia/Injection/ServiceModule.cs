@@ -15,6 +15,7 @@ namespace Expedia.Injection
         {
             Bind<IHotelService>().To<HotelService>();
             Bind<ISettingsService>().To<SettingsService>();
+            Bind<ISuggestionService>().To<SuggestionService>();
         }
     }
 }

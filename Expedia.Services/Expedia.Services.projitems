@@ -15,8 +15,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IHotelService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IQueryBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISettingsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISuggestionService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Query\QueryBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Query\ApiRequest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SettingsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SuggestionService.cs" />
   </ItemGroup>
 </Project>

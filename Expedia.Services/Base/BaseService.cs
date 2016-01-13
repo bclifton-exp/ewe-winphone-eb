@@ -28,7 +28,7 @@ namespace Expedia.Services.Base
                 }
                 catch (OperationCanceledException)
                 {
-                    return null; //more todo
+                    return null; //TODO handle the cancellations
                 }
             }
         }

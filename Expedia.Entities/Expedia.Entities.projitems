@@ -16,6 +16,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ExpediaTokenExpiredException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\BooleanApiExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\StringCleaner.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\StringExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Hotels\AmbiguousCityMatch.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Hotels\AmbiguousCityMatches.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Hotels\Amenities.cs" />
@@ -67,6 +68,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)ResponseHeader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ResponseStatus.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ShareItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Suggestions\SuggestionClass.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Suggestions\SuggestionKind.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Suggestions\SuggestionLob.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Suggestions\SuggestionResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Suggestions\SuggestionsResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TileInfoBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserProfile.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VoiceCommand.cs" />

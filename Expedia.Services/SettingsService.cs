@@ -28,5 +28,10 @@ namespace Expedia.Services
             //todo
             return "expedia.com";
         }
+
+        public string GetCurrentLocale()
+        {
+            return LocalSettings.Values[Settings.PointOfSale].ToString();
+        }
     }
 }

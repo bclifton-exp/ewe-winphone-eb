@@ -7,5 +7,6 @@ namespace Expedia.Services.Interfaces
     public interface ISettingsService
     {
         string GetCurrentDomain();
+        string GetCurrentLocale();
     }
 }

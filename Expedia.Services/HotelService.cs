@@ -27,11 +27,14 @@ namespace Expedia.Services
 
         public async Task<HotelSearchResponse> GetHotels(HotelSearchQueryParameters parameters, CancellationToken ct)
         {
-                var urlBase = string.Format(Constants.Urls.BaseUrlFormat, _settingsService.GetCurrentDomain());
-                var query = new QueryBuilder(parameters).ReturnQueryUri();
+            var urlBase = string.Format(Constants.Urls.BaseUrlFormat, _settingsService.GetCurrentDomain());
+            var query = new QueryBuilder(parameters).ReturnQueryUri();
 
-                var request = new Uri(urlBase + Constants.Urls.MobileHotelsApiRoot + Constants.UrlActions.HotelSearch + query);
-                var result = await Execute(request,ct);
+            var request = new ApiRequest(urlBase);
+            request.AppendPath(Constants.Urls.MobileHotelsApiRoot);
+            request.AppendPath(Constants.UrlActions.HotelSearch);
+            request.AppendPath(query);
+            var result = await Execute(request.Get(),ct);
 
             return result != null ? JsonConvert.DeserializeObject<HotelSearchResponse>(result) : null;
         }
