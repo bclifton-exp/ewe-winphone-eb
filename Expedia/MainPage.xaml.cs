@@ -18,6 +18,7 @@ using Expedia.Client.Interfaces;
 using Expedia.Client.ViewModels;
 using Expedia.Entities.Hotels;
 using Expedia.Entities.Suggestions;
+using Expedia.Entities.User;
 using Expedia.Injection;
 using Expedia.Services;
 using Expedia.Services.Interfaces;
@@ -60,7 +61,11 @@ namespace Expedia
 
             //auth testing
             var authservice = ExpediaKernel.Instance().Get<IAuthenticationService>();
-            var authResult = authservice.SignIn(new CancellationToken(false), "baclifton@gmail.com", "soapdish");
+            var authResult = await authservice.SignIn(new CancellationToken(false), "baclifton@gmail.com", "soapdish"); //kill this
+
+           //account creation
+            var createResult = await authservice.CreateAccount(new CancellationToken(false), new AccountCreationParams("baclifton@gmail.com","apassword","Test","Test",false));
+            var createResult2 = createResult;
 
         }
 

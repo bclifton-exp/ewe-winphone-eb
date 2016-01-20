@@ -1,4 +1,6 @@
-﻿namespace Expedia.Client
+﻿using System.Text.RegularExpressions;
+
+namespace Expedia.Client
 {
 	public static class Constants
 	{
@@ -49,5 +51,19 @@
 	    {
 	        public const string HotelSearch = "search?";
 	    }
-	}
+
+        public static class Facebook
+        {
+            //public const string ConnectUrl = "fbconnect://authorize?client_id={0}&scope=basic_info&redirect_uri={1}";
+            public const string ConnectUrl = "https://www.facebook.com/dialog/oauth?client_id={0}&redirect_uri={1}&response_type={2}&scope={3}&display=popup";
+            public const string Scope = "user_about_me,email";
+            public const string ResponseType = "token";
+            public const string ExpediaClientAppId = "131538103586818";
+            public const string RedirectUrl = "https://www.facebook.com/connect/login_success.html";
+            public const string ResponsePattern = "http.+#access_token=(?<token>.+)&expires_in=(?<expiry>.+)";
+            public const string ResponsePatternTokenGroup = "token";
+            public const string ResponsePatternExpiryGroup = "expiry";
+            public static readonly Regex ResponseRegex = new Regex(ResponsePattern);
+        }
+    }
 }

@@ -11,24 +11,29 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Expedia.Entities", "Expedia
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Expedia.Client", "Expedia.Client\Expedia.Client.shproj", "{7913D527-4DA4-413B-808F-E179BBB0E60D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Expedia.UnitTesting", "Expedia.UnitTesting\Expedia.UnitTesting.csproj", "{67EE3452-D80C-4370-8BF6-1C4D23A9074C}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Expedia.Services\Expedia.Services.projitems*{b7adbb84-74be-4553-91f3-4c486f40f628}*SharedItemsImports = 13
-		Expedia.Client\Expedia.Client.projitems*{103bb3b1-5384-41be-bf36-ee3c739770f5}*SharedItemsImports = 4
-		Expedia.Services\Expedia.Services.projitems*{103bb3b1-5384-41be-bf36-ee3c739770f5}*SharedItemsImports = 4
 		Expedia.Entities\Expedia.Entities.projitems*{103bb3b1-5384-41be-bf36-ee3c739770f5}*SharedItemsImports = 4
+		Expedia.Services\Expedia.Services.projitems*{103bb3b1-5384-41be-bf36-ee3c739770f5}*SharedItemsImports = 4
+		Expedia.Client\Expedia.Client.projitems*{103bb3b1-5384-41be-bf36-ee3c739770f5}*SharedItemsImports = 4
 		Expedia.Client\Expedia.Client.projitems*{7913d527-4da4-413b-808f-e179bbb0e60d}*SharedItemsImports = 13
 		Expedia.Entities\Expedia.Entities.projitems*{1eec713d-11e6-4127-8ffb-724a50084f34}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
 		Debug|ARM = Debug|ARM
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
 		Release|ARM = Release|ARM
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{103BB3B1-5384-41BE-BF36-EE3C739770F5}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{103BB3B1-5384-41BE-BF36-EE3C739770F5}.Debug|ARM.ActiveCfg = Debug|ARM
 		{103BB3B1-5384-41BE-BF36-EE3C739770F5}.Debug|ARM.Build.0 = Debug|ARM
 		{103BB3B1-5384-41BE-BF36-EE3C739770F5}.Debug|ARM.Deploy.0 = Debug|ARM
@@ -38,6 +43,7 @@ Global
 		{103BB3B1-5384-41BE-BF36-EE3C739770F5}.Debug|x86.ActiveCfg = Debug|x86
 		{103BB3B1-5384-41BE-BF36-EE3C739770F5}.Debug|x86.Build.0 = Debug|x86
 		{103BB3B1-5384-41BE-BF36-EE3C739770F5}.Debug|x86.Deploy.0 = Debug|x86
+		{103BB3B1-5384-41BE-BF36-EE3C739770F5}.Release|Any CPU.ActiveCfg = Release|x86
 		{103BB3B1-5384-41BE-BF36-EE3C739770F5}.Release|ARM.ActiveCfg = Release|ARM
 		{103BB3B1-5384-41BE-BF36-EE3C739770F5}.Release|ARM.Build.0 = Release|ARM
 		{103BB3B1-5384-41BE-BF36-EE3C739770F5}.Release|ARM.Deploy.0 = Release|ARM
@@ -47,6 +53,26 @@ Global
 		{103BB3B1-5384-41BE-BF36-EE3C739770F5}.Release|x86.ActiveCfg = Release|x86
 		{103BB3B1-5384-41BE-BF36-EE3C739770F5}.Release|x86.Build.0 = Release|x86
 		{103BB3B1-5384-41BE-BF36-EE3C739770F5}.Release|x86.Deploy.0 = Release|x86
+		{67EE3452-D80C-4370-8BF6-1C4D23A9074C}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{67EE3452-D80C-4370-8BF6-1C4D23A9074C}.Debug|ARM.ActiveCfg = Debug|ARM
+		{67EE3452-D80C-4370-8BF6-1C4D23A9074C}.Debug|ARM.Build.0 = Debug|ARM
+		{67EE3452-D80C-4370-8BF6-1C4D23A9074C}.Debug|ARM.Deploy.0 = Debug|ARM
+		{67EE3452-D80C-4370-8BF6-1C4D23A9074C}.Debug|x64.ActiveCfg = Debug|x64
+		{67EE3452-D80C-4370-8BF6-1C4D23A9074C}.Debug|x64.Build.0 = Debug|x64
+		{67EE3452-D80C-4370-8BF6-1C4D23A9074C}.Debug|x64.Deploy.0 = Debug|x64
+		{67EE3452-D80C-4370-8BF6-1C4D23A9074C}.Debug|x86.ActiveCfg = Debug|x86
+		{67EE3452-D80C-4370-8BF6-1C4D23A9074C}.Debug|x86.Build.0 = Debug|x86
+		{67EE3452-D80C-4370-8BF6-1C4D23A9074C}.Debug|x86.Deploy.0 = Debug|x86
+		{67EE3452-D80C-4370-8BF6-1C4D23A9074C}.Release|Any CPU.ActiveCfg = Release|x86
+		{67EE3452-D80C-4370-8BF6-1C4D23A9074C}.Release|ARM.ActiveCfg = Release|ARM
+		{67EE3452-D80C-4370-8BF6-1C4D23A9074C}.Release|ARM.Build.0 = Release|ARM
+		{67EE3452-D80C-4370-8BF6-1C4D23A9074C}.Release|ARM.Deploy.0 = Release|ARM
+		{67EE3452-D80C-4370-8BF6-1C4D23A9074C}.Release|x64.ActiveCfg = Release|x64
+		{67EE3452-D80C-4370-8BF6-1C4D23A9074C}.Release|x64.Build.0 = Release|x64
+		{67EE3452-D80C-4370-8BF6-1C4D23A9074C}.Release|x64.Deploy.0 = Release|x64
+		{67EE3452-D80C-4370-8BF6-1C4D23A9074C}.Release|x86.ActiveCfg = Release|x86
+		{67EE3452-D80C-4370-8BF6-1C4D23A9074C}.Release|x86.Build.0 = Release|x86
+		{67EE3452-D80C-4370-8BF6-1C4D23A9074C}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

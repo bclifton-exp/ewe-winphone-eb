@@ -77,6 +77,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Suggestions\SuggestionsResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TileInfoBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserProfile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)User\AccountCreationParams.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)User\AccountCreationResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)User\AutoLoginResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)User\LinkAccountResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)User\MobileError.cs" />

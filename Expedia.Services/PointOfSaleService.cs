@@ -23,14 +23,14 @@ namespace Expedia.Services
             _pointsOfSale = new Lazy<PointOfSale[]>(CreatePointsOfSale);
         }
 
-        public Task<PointOfSale[]> GetPointsOfSale()
+        public async Task<PointOfSale[]> GetPointsOfSale()
         {
-            return Task.FromResult(_pointsOfSale.Value);
+            return await Task.FromResult(_pointsOfSale.Value);
         }
 
-        public Task<PointOfSale> GetCurrentPointOfSale()
+        public async Task<PointOfSale> GetCurrentPointOfSale()
         {
-            return FindPointOfSale(_settingsService.GetCurrentCountryId());
+           return await FindPointOfSale(_settingsService.GetCurrentCountryId());
         }
 
         public async Task SetCurrentPointOfSale(string countryId)
@@ -56,9 +56,9 @@ namespace Expedia.Services
             return country.Cultures;
         }
 
-        public Task<PointOfSaleCulture> GetCurrentCulture()
+        public async Task<PointOfSaleCulture> GetCurrentCulture()
         {
-            return FindCulture(_settingsService.GetCurrentCultureCode());
+            return await FindCulture(_settingsService.GetCurrentCultureCode());
         }
 
         public void SetCurrentCulture(string cultureCode)
@@ -175,24 +175,24 @@ namespace Expedia.Services
                 //        }
                 //    }
                 //},
-                //new PointOfSale
-                //{
-                //    CountryId = "GB",
-                //    DisplayName = _resourceLoader.GetString("CountryName_GB"),
-                //    HostName = _resourceLoader.GetString("HostName_GB"),
-                //    HelpUri = _resourceLoader.GetString("PosHelpPageUrl_GB"),
-                //    AboutUri = _resourceLoader.GetString("PosAboutPageUrl_GB"),
-                //    PrivacyUri = _resourceLoader.GetString("PosPrivacyPageUrl_GB"),
-                //    TermsOfUseUri = _resourceLoader.GetString("PosTermsOfUsePageUrl_GB"),
-                //    DateFormatHotel = _resourceLoader.GetString(" PosDateFormatHotel_GB"),
-                //    Cultures = new[]
-                //    {
-                //        new PointOfSaleCulture
-                //        {
-                //            CultureCode = "en-GB",
-                //        }
-                //    }
-                //},
+                new PointOfSale
+                {
+                    CountryId = "GB",
+                    DisplayName = _resourceLoader.GetString("CountryName_GB"),
+                    HostName = _resourceLoader.GetString("HostName_GB"),
+                    HelpUri = _resourceLoader.GetString("PosHelpPageUrl_GB"),
+                    AboutUri = _resourceLoader.GetString("PosAboutPageUrl_GB"),
+                    PrivacyUri = _resourceLoader.GetString("PosPrivacyPageUrl_GB"),
+                    TermsOfUseUri = _resourceLoader.GetString("PosTermsOfUsePageUrl_GB"),
+                    DateFormatHotel = _resourceLoader.GetString(" PosDateFormatHotel_GB"),
+                    Cultures = new[]
+                    {
+                        new PointOfSaleCulture
+                        {
+                            CultureCode = "en-GB",
+                        }
+                    }
+                },
                 new PointOfSale
                 {
                     CountryId = "US",
