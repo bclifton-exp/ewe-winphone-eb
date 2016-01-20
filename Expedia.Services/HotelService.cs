@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Reactive.Linq;
-using System.Text;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using Expedia.Client;
-using Expedia.Entities;
 using Expedia.Entities.Hotels;
 using Expedia.Services.Base;
 using Expedia.Services.Interfaces;
@@ -34,7 +27,7 @@ namespace Expedia.Services
             request.AppendPath(Constants.Urls.MobileHotelsApiRoot);
             request.AppendPath(Constants.UrlActions.HotelSearch);
             request.AppendPath(query);
-            var result = await Execute(request.Get(),ct);
+            var result = await ExecuteGet(request.GetFullUri(),ct);
 
             return result != null ? JsonConvert.DeserializeObject<HotelSearchResponse>(result) : null;
         }

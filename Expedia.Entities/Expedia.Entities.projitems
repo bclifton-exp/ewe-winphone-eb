@@ -9,6 +9,8 @@
     <Import_RootNamespace>Expedia.Entities</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AppEnvContext\PointOfSale.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AppEnvContext\PointOfSaleCulture.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Coordinate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ErrorCodes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExpediaClientException.cs" />
@@ -75,6 +77,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Suggestions\SuggestionsResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TileInfoBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserProfile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)User\AutoLoginResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)User\LinkAccountResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)User\MobileError.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)User\Phone.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)User\SignInResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VoiceCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VoiceCommandType.cs" />
   </ItemGroup>

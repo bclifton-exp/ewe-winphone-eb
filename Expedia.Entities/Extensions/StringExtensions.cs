@@ -149,5 +149,12 @@ namespace Expedia.Entites
 		{
 			return _newLineRegex.Replace(text, new String('\t', indentCount));
 		}
-	}
+
+        public static string ToTitleCase(this string input)
+        {
+            if (String.IsNullOrEmpty(input))
+                return input;
+            return input.First().ToString().ToUpper() + input.Substring(1).ToLower();
+        }
+    }
 }

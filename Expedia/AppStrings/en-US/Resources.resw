@@ -1,0 +1,727 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- ==== IGNORE BELOW SECTION FOR TRANSLATION ==== -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <!-- ==== CONTINUE IGNORING, THESE DON'T NEED TO BE LOCALIZED ==== -->
+  <data name="HostName_AR" xml:space="preserve">
+    <value>expedia.com.ar</value>
+  </data>
+  <data name="HostName_AT" xml:space="preserve">
+    <value>expedia.at</value>
+  </data>
+  <data name="HostName_AU" xml:space="preserve">
+    <value>expedia.com.au</value>
+  </data>
+  <data name="HostName_BE" xml:space="preserve">
+    <value>expedia.be</value>
+  </data>
+  <data name="HostName_BR" xml:space="preserve">
+    <value>expedia.com.br</value>
+  </data>
+  <data name="HostName_CA" xml:space="preserve">
+    <value>expedia.ca</value>
+  </data>
+  <data name="HostName_DE" xml:space="preserve">
+    <value>expedia.de</value>
+  </data>
+  <data name="HostName_DK" xml:space="preserve">
+    <value>expedia.dk</value>
+  </data>
+  <data name="HostName_ES" xml:space="preserve">
+    <value>expedia.es</value>
+  </data>
+  <data name="HostName_FR" xml:space="preserve">
+    <value>expedia.fr</value>
+  </data>
+  <data name="HostName_GB" xml:space="preserve">
+    <value>expedia.co.uk</value>
+  </data>
+  <data name="HostName_HK" xml:space="preserve">
+    <value>expedia.com.hk</value>
+  </data>
+  <data name="HostName_ID" xml:space="preserve">
+    <value>expedia.co.id</value>
+  </data>
+  <data name="HostName_IE" xml:space="preserve">
+    <value>expedia.ie</value>
+  </data>
+  <data name="HostName_IN" xml:space="preserve">
+    <value>expedia.co.in</value>
+  </data>
+  <data name="HostName_IT" xml:space="preserve">
+    <value>expedia.it</value>
+  </data>
+  <data name="HostName_JP" xml:space="preserve">
+    <value>expedia.co.jp</value>
+  </data>
+  <data name="HostName_KR" xml:space="preserve">
+    <value>expedia.co.kr</value>
+  </data>
+  <data name="HostName_MX" xml:space="preserve">
+    <value>expedia.mx</value>
+  </data>
+  <data name="HostName_MY" xml:space="preserve">
+    <value>expedia.com.my</value>
+  </data>
+  <data name="HostName_NL" xml:space="preserve">
+    <value>expedia.nl</value>
+  </data>
+  <data name="HostName_NO" xml:space="preserve">
+    <value>expedia.no</value>
+  </data>
+  <data name="HostName_NZ" xml:space="preserve">
+    <value>expedia.co.nz</value>
+  </data>
+  <data name="HostName_PH" xml:space="preserve">
+    <value>expedia.com.ph</value>
+  </data>
+  <data name="HostName_SE" xml:space="preserve">
+    <value>expedia.se</value>
+  </data>
+  <data name="HostName_SG" xml:space="preserve">
+    <value>expedia.com.sg</value>
+  </data>
+  <data name="HostName_TH" xml:space="preserve">
+    <value>expedia.co.th</value>
+  </data>
+  <data name="HostName_TW" xml:space="preserve">
+    <value>expedia.com.tw</value>
+  </data>
+  <data name="HostName_US" xml:space="preserve">
+    <value>expedia.com</value>
+  </data>
+  <data name="HostName_VN" xml:space="preserve">
+    <value>expedia.com.vn</value>
+  </data>
+  <data name="CountryName_AR" xml:space="preserve">
+    <value>Argentina</value>
+  </data>
+  <data name="CountryName_AT" xml:space="preserve">
+    <value>Österreich</value>
+  </data>
+  <data name="CountryName_AU" xml:space="preserve">
+    <value>Australia</value>
+  </data>
+  <data name="CountryName_BE" xml:space="preserve">
+    <value>Belgique / België</value>
+  </data>
+  <data name="CountryName_BR" xml:space="preserve">
+    <value>Brasil</value>
+  </data>
+  <data name="CountryName_CA" xml:space="preserve">
+    <value>Canada</value>
+  </data>
+  <data name="CountryName_DE" xml:space="preserve">
+    <value>Deutschland</value>
+  </data>
+  <data name="CountryName_DK" xml:space="preserve">
+    <value>Danmark</value>
+  </data>
+  <data name="CountryName_ES" xml:space="preserve">
+    <value>España</value>
+  </data>
+  <data name="CountryName_FR" xml:space="preserve">
+    <value>France</value>
+  </data>
+  <data name="CountryName_GB" xml:space="preserve">
+    <value>United Kingdom</value>
+  </data>
+  <data name="CountryName_HK" xml:space="preserve">
+    <value>香港 / Hong Kong</value>
+  </data>
+  <data name="CountryName_ID" xml:space="preserve">
+    <value>Indonesia</value>
+  </data>
+  <data name="CountryName_IE" xml:space="preserve">
+    <value>Ireland</value>
+  </data>
+  <data name="CountryName_IN" xml:space="preserve">
+    <value>India</value>
+  </data>
+  <data name="CountryName_IT" xml:space="preserve">
+    <value>Italia</value>
+  </data>
+  <data name="CountryName_JP" xml:space="preserve">
+    <value>日本</value>
+  </data>
+  <data name="CountryName_KR" xml:space="preserve">
+    <value>대한민국</value>
+  </data>
+  <data name="CountryName_MX" xml:space="preserve">
+    <value>México</value>
+  </data>
+  <data name="CountryName_MY" xml:space="preserve">
+    <value>Malaysia</value>
+  </data>
+  <data name="CountryName_NL" xml:space="preserve">
+    <value>Nederland</value>
+  </data>
+  <data name="CountryName_NO" xml:space="preserve">
+    <value>Norge</value>
+  </data>
+  <data name="CountryName_NZ" xml:space="preserve">
+    <value>New Zealand</value>
+  </data>
+  <data name="CountryName_PH" xml:space="preserve">
+    <value>Philippines</value>
+  </data>
+  <data name="CountryName_SE" xml:space="preserve">
+    <value>Sverige</value>
+  </data>
+  <data name="CountryName_SG" xml:space="preserve">
+    <value>Singapore</value>
+  </data>
+  <data name="CountryName_TH" xml:space="preserve">
+    <value>ประเทศไทย</value>
+  </data>
+  <data name="CountryName_TW" xml:space="preserve">
+    <value>台灣</value>
+  </data>
+  <data name="CountryName_US" xml:space="preserve">
+    <value>United States</value>
+  </data>
+  <data name="CountryName_VN" xml:space="preserve">
+    <value>Việt Nam</value>
+  </data>
+  <data name="LanguageName_English" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="LanguageName_French" xml:space="preserve">
+    <value>Français</value>
+  </data>
+  <data name="LanguageName_Indonesia" xml:space="preserve">
+    <value>Indonesia</value>
+  </data>
+  <data name="LanguageName_Japanese" xml:space="preserve">
+    <value>日本語</value>
+  </data>
+  <data name="LanguageName_Korean" xml:space="preserve">
+    <value>한국어</value>
+  </data>
+  <data name="LanguageName_Mandarin" xml:space="preserve">
+    <value>中文</value>
+  </data>
+  <data name="LanguageName_Nederlands" xml:space="preserve">
+    <value>Nederlands</value>
+  </data>
+  <data name="LanguageName_SimplifiedChinese" xml:space="preserve">
+    <value>简体中文</value>
+  </data>
+  <data name="LanguageName_Thai" xml:space="preserve">
+    <value>ภาษาไทย</value>
+  </data>
+  <data name="LanguageName_TraditionalChinese" xml:space="preserve">
+    <value>繁體中文</value>
+  </data>
+  <data name="ProjectVersion" xml:space="preserve">
+    <value>2.0</value>
+  </data>
+  <data name="StyleGuideVersion" xml:space="preserve">
+    <value>1.0</value>
+  </data>
+  
+  <data name="PosHelpPageUrl_BR" xml:space="preserve">
+    <value>http://support.expedia.com.br/</value>
+  </data>
+  <data name="PosAboutPageUrl_BR" xml:space="preserve">
+    <value>http://www.expedia.com.br/quem-somos.aspx</value>
+  </data>
+  <data name="PosPrivacyPageUrl_BR" xml:space="preserve">
+    <value>https://www.expedia.com.br/pub/agent.dll?qscr=hgen&amp;hfnm=PrivacyPol.htx</value>
+  </data>
+  <data name="PosTermsOfUsePageUrl_BR" xml:space="preserve">
+    <value>https://www.expedia.com.br/pub/agent.dll?qscr=hgen&amp;hfnm=TermsOfUse.htx</value>
+  </data>
+  <data name="PosDateFormatHotel_BR" xml:space="preserve">
+    <value>dd/MM/yyyy</value>
+  </data>
+  <data name="PosHelpPageUrl_DE" xml:space="preserve">
+    <value>http://support.expedia.de/</value>
+  </data>
+  <data name="PosAboutPageUrl_DE" xml:space="preserve">
+    <value>http://inside.expedia.de/</value>
+  </data>
+  <data name="PosPrivacyPageUrl_DE" xml:space="preserve">
+    <value>http://www.expedia.de/service/safecc.aspx</value>
+  </data>
+  <data name="PosTermsOfUsePageUrl_DE" xml:space="preserve">
+    <value>http://www.expedia.de/service/agb.aspx</value>
+  </data>
+  <data name="PosDateFormatHotel_DE" xml:space="preserve">
+    <value>dd.MM.yyyy</value>
+  </data>
+  <data name="PosHelpPageUrl_FR" xml:space="preserve">
+    <value>http://support.expedia.fr/</value>
+  </data>
+  <data name="PosAboutPageUrl_FR" xml:space="preserve">
+    <value>http://espace.expedia.fr/</value>
+  </data>
+  <data name="PosPrivacyPageUrl_FR" xml:space="preserve">
+    <value>http://www.expedia.fr/daily/services/legal/charte-conf.aspx</value>
+  </data>
+  <data name="PosTermsOfUsePageUrl_FR" xml:space="preserve">
+    <value>http://www.expedia.fr/daily/services/legal/cvg.aspx</value>
+  </data>
+  <data name="PosDateFormatHotel_FR" xml:space="preserve">
+    <value>dd/MM/yyyy</value>
+  </data>
+  <data name="PosHelpPageUrl_IT" xml:space="preserve">
+    <value>http://support.expedia.it/</value>
+  </data>
+  <data name="PosAboutPageUrl_IT" xml:space="preserve">
+    <value>http://www.expedia.it/p/support/chi-siamo</value>
+  </data>
+  <data name="PosPrivacyPageUrl_IT" xml:space="preserve">
+    <value>http://www.expedia.it/pub/agent.dll?qscr=hgen&amp;hfnm=PrivacyPol.htx</value>
+  </data>
+  <data name="PosTermsOfUsePageUrl_IT" xml:space="preserve">
+    <value>http://www.expedia.it/daily/informazioni_legali/condizioni_vendita.aspx</value>
+  </data>
+  <data name="PosDateFormatHotel_IT" xml:space="preserve">
+    <value>dd/MM/yyyy</value>
+  </data>
+  <data name="PosHelpPageUrl_MX" xml:space="preserve">
+    <value>http://support.expedia.mx/</value>
+  </data>
+  <data name="PosAboutPageUrl_MX" xml:space="preserve">
+    <value>http://www.expedia.mx/acerca-de-expedia.aspx</value>
+  </data>
+  <data name="PosPrivacyPageUrl_MX" xml:space="preserve">
+    <value>http://www.expedia.mx/politica-de-privacidad.aspx</value>
+  </data>
+  <data name="PosTermsOfUsePageUrl_MX" xml:space="preserve">
+    <value>http://www.expedia.mx/pub/agent.dll?qscr=hgen&amp;hfnm=TermsOfUse.htx</value>
+  </data>
+  <data name="PosDateFormatHotel_MX" xml:space="preserve">
+    <value>dd/MM/yyyy</value>
+  </data>
+  <data name="PosHelpPageUrl_GB" xml:space="preserve">
+    <value>https://support.expedia.co.uk/</value>
+  </data>
+  <data name="PosHelpPageUrl_US" xml:space="preserve">
+    <value>https://service.expedia.com/en-us/</value>
+  </data>
+  <data name="PosAboutPageUrl_US" xml:space="preserve">
+    <value>http://mediaroom.expedia.com/about-expediacom-180</value>
+  </data>
+  <data name="PosAboutPageUrl_GB" xml:space="preserve">
+    <value>http://www.expedia.co.uk/daily/press/about_us.asp</value>
+  </data>
+  <data name="PosPrivacyPageUrl_US" xml:space="preserve">
+    <value>http://www.expedia.com/p/info-other/privacy-policy.htm</value>
+  </data>
+  <data name="PosPrivacyPageUrl_GB" xml:space="preserve">
+    <value>http://www.expedia.co.uk/p/support/privacy</value>
+  </data>
+  <data name="PosTermsOfUsePageUrl_US" xml:space="preserve">
+    <value>http://www.expedia.com/p/info-other/legal.htm </value>
+  </data>
+  <data name="PosTermsOfUsePageUrl_GB" xml:space="preserve">
+    <value>http://www.expedia.co.uk/p/support/termsofuse</value>
+  </data>
+  <data name="PosDateFormatHotel_US" xml:space="preserve">
+    <value>d</value>
+  </data>
+  <data name="PosDateFormatHotel_GB" xml:space="preserve">
+    <value>dd/MM/yyyy</value>
+  </data>
+  <!-- IGNORE ABOVE CONTENT FOR TRANSLATION -->
+  
+  
+  <!-- TRANSLATE BELOW CONTENT  -->
+  
+  <!-- App Name/Description -->
+  <data name="Manifest_Publisher_DisplayName" xml:space="preserve">
+    <value>Expedia</value>
+  </data>
+  <data name="Manifest_ShortName" xml:space="preserve">
+    <value>Expedia</value>
+  </data>
+  <data name="Manifest_Description" xml:space="preserve">
+    <value>Expedia Hotels, Flights, Cars &amp; Activities app is an easy and convenient way to book your hotel or flight when you’re on the go. You can also save up to 40% with amazing Expedia Mobile Exclusive hotel deals and with Best Price Guarantee rest assured that you're always getting the best deal.</value>
+  </data>
+  <data name="Manifest_DisplayName" xml:space="preserve">
+    <value>Expedia Hotels, Flights, Cars &amp; Activities</value>
+  </data>
+  <data name="Manifest_Package_DisplayName" xml:space="preserve">
+    <value>Expedia Hotels, Flights, Cars &amp; Activities</value>
+  </data>
+
+  <!-- Error Messages -->
+  <data name="NavigationError_Body" xml:space="preserve">
+    <value>The navigation failed because of an internal error. ({0})</value>
+  </data>
+  <data name="NavigationError_Title" xml:space="preserve">
+    <value>Navigation Failed</value>
+  </data>
+  <data name="Navigated_Error_Body" xml:space="preserve">
+    <value>Unable to complete the navigation.</value>
+  </data>
+  <data name="Navigated_Error_Title" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Navigating_Error_Body" xml:space="preserve">
+    <value>Unable to navigate.</value>
+  </data>
+  <data name="Navigating_Error_Title" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ScriptNotify_Error_Body" xml:space="preserve">
+    <value>Unable to communicate with the webview.</value>
+  </data>
+  <data name="ScriptNotify_Error_Title" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Search_Error_Body" xml:space="preserve">
+    <value>Unable to search.</value>
+  </data>
+  <data name="Search_Error_Title" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ToAbout_Error_Body" xml:space="preserve">
+    <value>Unable to navigate to the About page.</value>
+  </data>
+  <data name="ToAbout_Error_Title" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ToCars_Error_Body" xml:space="preserve">
+    <value>Unable to navigate to the Cars page.</value>
+  </data>
+  <data name="ToCars_Error_Title" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ToFeedback_Error_Body" xml:space="preserve">
+    <value>Unable to navigate to the Feedback page.</value>
+  </data>
+  <data name="ToFeedback_Error_Title" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ToFullSite_Error_Body" xml:space="preserve">
+    <value>Unable to navigate to the full site.</value>
+  </data>
+  <data name="ToFullSite_Error_Title" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ToMyAccount_Error_Body" xml:space="preserve">
+    <value>Unable to navigate to the My Account page.</value>
+  </data>
+  <data name="ToMyAccount_Error_Title" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ToMyItinerary_Error_Body" xml:space="preserve">
+    <value>Unable to navigate to the My Itinerary page.</value>
+  </data>
+  <data name="ToMyItinerary_Error_Title" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ToPackages_Error_Body" xml:space="preserve">
+    <value>Unable to navigate to the Packages page.</value>
+  </data>
+  <data name="ToPackages_Error_Title" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ToSignIn_Error_Body" xml:space="preserve">
+    <value>Unable to navigate to the Sign-in page.</value>
+  </data>
+  <data name="ToSignIn_Error_Title" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ToSignOut_Error_Body" xml:space="preserve">
+    <value>Unable to navigate to the Sign-out page.</value>
+  </data>
+  <data name="ToSignOut_Error_Title" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ViewModel_Components_Search_SelectResult_Error_Body" xml:space="preserve">
+    <value>Unable to select result.</value>
+  </data>
+  <data name="ViewModel_Components_Search_SelectResult_Error_Title" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ViewModel_Components_Search_SelectSuggestion_Error_Body" xml:space="preserve">
+    <value>Unable to select the suggestion.</value>
+  </data>
+  <data name="ViewModel_Components_Search_SelectSuggestion_Error_Title" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ViewModel_Components_Search_Submit_Error_Body" xml:space="preserve">
+    <value>Unable to submit search.</value>
+  </data>
+  <data name="ViewModel_Components_Search_Submit_Error_Title" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Authentication_Error_Body" xml:space="preserve">
+    <value>Unable to sign you in. Verify your username/email and password and try again.</value>
+  </data>
+  <data name="Authentication_Error_Title" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="SignIn_Error_Body" xml:space="preserve">
+    <value>Unable to sign you in. Verify your username/email and password and try again.</value>
+  </data>
+  <data name="SignIn_Error_Title" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="GetLocations_Error_Body" xml:space="preserve">
+    <value>Unable to get locations.</value>
+  </data>
+  <data name="GetLocations_Error_Title" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ToHelp_Error_Body" xml:space="preserve">
+    <value>Unable to navigate to the Help page.</value>
+  </data>
+  <data name="ToHelp_Error_Title" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ToSettings_Error_Body" xml:space="preserve">
+    <value>Unable to navigate to the Settings page.</value>
+  </data>
+  <data name="ToSettings_Error_Title" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="WebViewNavigationError_Body" xml:space="preserve">
+    <value>Unable to navigate to the details page. Please verify your internet connection.</value>
+  </data>
+  <data name="WebViewNavigationError_Title" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="AVP_GeneralErrorMessage" xml:space="preserve">
+    <value>An error has occurred, please try again later.</value>
+  </data>
+  <data name="DefaultErrorMessage" xml:space="preserve">
+    <value>An error has occurred, please try again later.</value>
+  </data>
+  <data name="NoNetwork_Body" xml:space="preserve">
+    <value>This app requires a network connection, but no connection was detected.</value>
+  </data>
+  
+  <!-- MISC -->
+  <data name="LocationPickerPlaceholder_ArrivalAirport" xml:space="preserve">
+    <value>Destination City or Airport</value>
+  </data>
+  <data name="LocationPickerPlaceholder_DepartureAirport" xml:space="preserve">
+    <value>Origin City or Airport</value>
+  </data>
+  <data name="LocationPickerPlaceholder_HotelLocation" xml:space="preserve">
+    <value>Search city, address or landmark</value>
+  </data>
+  <data name="LocationPickerHeader_ArrivalAirport" xml:space="preserve">
+    <value>Flying to</value>
+  </data>
+  <data name="LocationPickerHeader_DepartureAirport" xml:space="preserve">
+    <value>Flying from</value>
+  </data>
+  <data name="LocationPickerHeader_HotelLocation" xml:space="preserve">
+    <value>Going to</value>
+  </data>
+  <data name="LocationPopup_Body" xml:space="preserve">
+    <value>Do you allow Expedia to use your current location?</value>
+  </data>
+  <data name="LocationPopup_Title" xml:space="preserve">
+    <value>LOCATION</value>
+  </data>
+  <data name="ConfirmNewFacebookAccount_Body" xml:space="preserve">
+    <value>Would you like to link your Expedia account with your Facebook account?</value>
+  </data>
+  <data name="ConfirmNewFacebookAccount_Title" xml:space="preserve">
+    <value>Please confirm</value>
+  </data>
+  <data name="LateNightBannerMessage" xml:space="preserve">
+    <value>Need a Late night check in?</value>
+  </data>
+  <!-- Flight stops filters -->
+  <data name="NonStop" xml:space="preserve">
+    <value>Nonstop</value>
+  </data>
+  <data name="OneStop" xml:space="preserve">
+    <value>1 Stop</value>
+  </data>
+  <data name="TwoStop" xml:space="preserve">
+    <value>2+ Stops</value>
+  </data>
+  <data name="CarsComingSoon" xml:space="preserve">
+    <value>Coming soon! We're working hard to add one way bookings in an upcoming version.</value>
+  </data>
+  <!-- Hotel stars filters -->
+  <data name="StarRating_Many" xml:space="preserve">
+    <value>{0} stars</value>
+  </data>
+  <data name="StarRating_One" xml:space="preserve">
+    <value>{0} star</value>
+  </data>
+  <data name="StarRating_Two" xml:space="preserve">
+    <value>{0} stars</value>
+  </data>
+  <data name="AVP_Loading.Text" xml:space="preserve">
+    <value>loading</value>
+  </data>
+
+  <!-- Hotel Price filters -->
+  <data name="LessThanPrice" xml:space="preserve">
+    <value>Less than {0}{1}{2}</value>
+    <comment>E.g. "Less than CAD$75". (The {0} is CAD (can be empty), the {1} is the $, the {2} is price number.</comment>
+  </data>
+  <data name="PriceToPrice" xml:space="preserve">
+    <value>{0}{1}{2} to {0}{1}{3}</value>
+    <comment>e.g. "CAD$75 to CAD$124 (27)"</comment>
+  </data>
+  <data name="GreaterThanPrice" xml:space="preserve">
+    <value>Greater than {0}{1}{2}</value>
+    <comment>e.g. "Greater than CAD$300 (1)"</comment>
+  </data>
+
+  <data name="NumberOfGuests.ZeroValue" xml:space="preserve">
+    <value>Guests</value>
+    <comment>0 guests</comment>
+  </data>
+  <data name="NumberOfGuests.SingularValue" xml:space="preserve">
+    <value>Guest</value>
+	<comment>e.g. 1 guest</comment>
+  </data>
+  <data name="NumberOfGuests.PluralValue" xml:space="preserve">
+    <value>Guests</value>
+    <comment>e.g. 2 guests</comment>
+  </data>
+
+  <data name="NumberOfTravelers.ZeroValue" xml:space="preserve">
+    <value>Travelers</value>
+    <comment>0 Travelers</comment>
+  </data>
+  <data name="NumberOfTravelers.SingularValue" xml:space="preserve">
+    <value>Traveler</value>
+    <comment>e.g. 1 Travelers</comment>
+  </data>
+  <data name="NumberOfTravelers.PluralValue" xml:space="preserve">
+    <value>Travelers</value>
+    <comment>e.g. 2 Travelers</comment>
+  </data>
+
+  <data name="ChildAgeHeader" xml:space="preserve">
+    <value>Child {0}</value>
+    <comment>Header above child age box. E.g. Child 1, Child 2, etc</comment>
+  </data>
+
+  <data name="CheckInDateFormat" xml:space="preserve">
+    <value>{0:MMM d}</value>
+    <comment>Date format for checkin/checkout. "MMM d" is jul. 8</comment>
+  </data>
+
+  <data name="PickupDropOffTimeFormat" xml:space="preserve">
+    <value>{0:MMM d, %h:mm tt}</value>
+    <comment>Date format for checkin/checkout. "MMM d" is jul. 8</comment>
+  </data>
+
+  <data name="TileDateFormat" xml:space="preserve">
+    <value>MM.dd</value>
+    <comment>Date format for live tile. "MM.dd" is 12.18</comment>
+  </data>
+
+  <data name="MessagingButton_Yes" xml:space="preserve">
+    <value>yes</value>
+    <comment>Positive answer to popup prompt. E.g. "allow app to use your location?"</comment>
+  </data>
+  <data name="MessagingButton_No" xml:space="preserve">
+    <value>no</value>
+    <comment>Negative answer to popup prompt. E.g. "allow app to use your location?"</comment>
+  </data>
+  <data name="MessagingButton_Ok" xml:space="preserve">
+    <value>ok</value>
+    <comment>Acknowledgement of prompt. E.g. "There was an error"</comment>
+  </data>
+
+  <!-- Homescreen pinned live tile -->
+  <data name="TileHotelsLabel" xml:space="preserve">
+    <value>Hotels</value>
+	  <comment>Homescreen LiveTile saved search Hotels label</comment> 
+  </data>
+  <data name="TileFlightsLabel" xml:space="preserve">
+    <value>Flights</value>
+	  <comment>Homescreen LiveTile saved search Hotels label</comment> 
+  </data>
+  <data name="TileGuest" xml:space="preserve">
+    <value>1 guest</value>
+  </data>
+  <data name="TileGuests" xml:space="preserve">
+    <value>{0} guests</value>
+  </data>
+  <data name="TileTraveler" xml:space="preserve">
+    <value>1 traveler</value>
+  </data>
+  <data name="TileTravelers" xml:space="preserve">
+    <value>{0} travelers</value>
+  </data>
+  <data name="TileHotelsAvailable" xml:space="preserve">
+    <value>{0} hotels available</value>
+  </data>
+  <data name="TileFromAirport" xml:space="preserve">
+    <value>From {0}</value>
+    <comment>e.g. From SFO</comment>
+  </data>
+  <data name="TileFromCar" xml:space="preserve">
+    <value>Rent from {0}</value>
+    <comment>e.g. Rent from SFO</comment>
+  </data>
+
+  <data name="HotelUrgencyMessage" xml:space="preserve">
+    <value>{0} people are shopping for {1} hotels on Expedia right now.</value>
+    <comment>Shown at bottom of hotel search results. E.g. 42 people are shopping for Seattle hotels on Expedia right now.</comment>
+  </data>
+</root>

@@ -27,20 +27,23 @@ namespace Expedia
     public sealed partial class MainPage : Page
     {
         public CancellationTokenSource CT { get; set; }
-        public IHotelService HotelService { get; set; }
 
         public MainPage()
         {
             this.InitializeComponent();
             CT = new CancellationTokenSource();
-            HotelService = ExpediaKernel.Instance().Get<IHotelService>();
         }
 
         private async void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-           //testing hotels
+            //pos testing
+            var posService = ExpediaKernel.Instance().Get<IPointOfSaleService>();
+            var posResults = posService.GetPointsOfSale();
+            var posResults2 = posService.SetCurrentPointOfSale(posResults.Result.First().CountryId); //PoS MUST be set before the other services can be called - have to get domain name for URI
 
-            var results = await HotelService.GetHotels(new HotelSearchQueryParameters
+            //testing hotels
+            var hotelService = ExpediaKernel.Instance().Get<IHotelService>();
+            var results = await hotelService.GetHotels(new HotelSearchQueryParameters
             { CheckInDate = DateTime.Today, CheckOutDate = DateTime.Today.AddDays(1), City = "SFO", Room = new[] { 1 } }, CT.Token);
 
             var hotelCheck = results;
@@ -54,6 +57,10 @@ namespace Expedia
             //nearby testing
             var results3 = await suggestion.Suggest(new CancellationToken(false), 40.440625, -79.995886, SuggestionLob.HOTELS);
             var nearbyCheck = results3;
+
+            //auth testing
+            var authservice = ExpediaKernel.Instance().Get<IAuthenticationService>();
+            var authResult = authservice.SignIn(new CancellationToken(false), "baclifton@gmail.com", "soapdish");
 
         }
 

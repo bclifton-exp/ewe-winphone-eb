@@ -38,7 +38,7 @@ namespace Expedia.Services
             request.AppendParam("regiontype",regionTypes);
             request.AppendParam("client","App.Windows.Native");//TODO probably will change   
 
-            var result = await Execute(request.Get(), ct);
+            var result = await ExecuteGet(request.GetFullUri(), ct);
 
             return result != null ? JsonConvert.DeserializeObject<SuggestionsResponse>(result) : null;
         }
@@ -67,7 +67,7 @@ namespace Expedia.Services
             request.AppendParam("lob", lob.ToString());
             request.AppendParam("client", "App.Windows.Native");//TODO probably will change   
 
-            var result = await Execute(request.Get(), ct);
+            var result = await ExecuteGet(request.GetFullUri(), ct);
 
             return result != null ? JsonConvert.DeserializeObject<SuggestionsResponse>(result) : null;
         }

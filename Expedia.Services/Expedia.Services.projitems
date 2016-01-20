@@ -9,13 +9,17 @@
     <Import_RootNamespace>Expedia.Services</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AuthenticationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Base\BaseService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Constants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HotelService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IAuthenticationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IHotelService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IPointOfSaleService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IQueryBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISettingsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISuggestionService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PointOfSaleService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Query\QueryBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Query\ApiRequest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings.cs" />
