@@ -131,6 +131,11 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="WindowsMobile, Version=10.0.10586.0">
+      <Name>Windows Mobile Extensions for the UWP</Name>
+    </SDKReference>
+  </ItemGroup>
   <Import Project="..\Expedia.Services\Expedia.Services.projitems" Label="Shared" />
   <Import Project="..\Expedia.Entities\Expedia.Entities.projitems" Label="Shared" />
   <Import Project="..\Expedia.Client\Expedia.Client.projitems" Label="Shared" />
