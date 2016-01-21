@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Expedia.Injection;
 using Expedia.Services.Interfaces;
@@ -22,13 +19,29 @@ namespace Expedia.UnitTesting.ServiceTests
 
 
         [TestMethod]
-        public async Task SetCurrentPointOfSale()
+        public async Task GetAndSetCurrentPointOfSale()
         {
-            var testCountryId = "GB";
+            var testCountryId = "US";
             await PointOfSaleService.SetCurrentPointOfSale(testCountryId);
             var currentlySetPos = await PointOfSaleService.GetCurrentPointOfSale();
 
             Assert.IsTrue(currentlySetPos.CountryId == testCountryId);
+        }
+
+        [TestMethod]
+        public async Task GetCurrentCulture()
+        {
+            var cultureCode = await PointOfSaleService.GetCurrentCulture();
+
+            Assert.IsNotNull(cultureCode);
+        }
+
+        [TestMethod]
+        public async Task GetCultures()
+        {
+            var cultures = await PointOfSaleService.GetCultures();
+
+            Assert.IsNotNull(cultures.First().CultureCode);
         }
     }
 }

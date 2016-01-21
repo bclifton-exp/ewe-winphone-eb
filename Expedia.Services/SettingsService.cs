@@ -26,12 +26,14 @@ namespace Expedia.Services
                     return "IT";
                 case "en-US":
                     return "US";
+                case "en-GB":
+                    return "GB";
                 case "es-MX":
                     return "MX";
                 case "pt-BR":
                     return "BR";
                 default:
-                    return "GB";
+                    return "US";
 
             }
         }

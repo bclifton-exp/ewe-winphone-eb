@@ -1,8 +1,5 @@
-﻿using System;
-using System.Net.NetworkInformation;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
-using Windows.Security.Authentication.Web;
 using Expedia.Client;
 using Expedia.Entites;
 using Expedia.Entities.User;

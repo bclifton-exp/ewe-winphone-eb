@@ -37,31 +37,31 @@ namespace Expedia
 
         private async void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            //pos testing
-            var posService = ExpediaKernel.Instance().Get<IPointOfSaleService>();
-            var posResults = posService.GetPointsOfSale();
-            var posResults2 = posService.SetCurrentPointOfSale(posResults.Result.First().CountryId); //PoS MUST be set before the other services can be called - have to get domain name for URI
+            ////pos testing
+            //var posService = ExpediaKernel.Instance().Get<IPointOfSaleService>();
+            //var posResults = posService.GetPointsOfSale();
+            //var posResults2 = posService.SetCurrentPointOfSale(posResults.Result.First().CountryId); //PoS MUST be set before the other services can be called - have to get domain name for URI
 
-            //testing hotels
-            var hotelService = ExpediaKernel.Instance().Get<IHotelService>();
-            var results = await hotelService.GetHotels(new HotelSearchQueryParameters
-            { CheckInDate = DateTime.Today, CheckOutDate = DateTime.Today.AddDays(1), City = "SFO", Room = new[] { 1 } }, CT.Token);
+            ////testing hotels
+            //var hotelService = ExpediaKernel.Instance().Get<IHotelService>();
+            //var results = await hotelService.GetHotels(new HotelSearchQueryParameters
+            //{ CheckInDate = DateTime.Today, CheckOutDate = DateTime.Today.AddDays(1), City = "SFO", Room = new[] { 1 } }, CT.Token);
 
-            var hotelCheck = results;
+            //var hotelCheck = results;
 
-            //suggestion testing
-            var suggestion = ExpediaKernel.Instance().Get<ISuggestionService>();
-            var results2 = await suggestion.Suggest(new CancellationToken(false), "Detroit", SuggestionLob.HOTELS);
+            ////suggestion testing
+            //var suggestion = ExpediaKernel.Instance().Get<ISuggestionService>();
+            //var results2 = await suggestion.Suggest(new CancellationToken(false), "Detroit", SuggestionLob.HOTELS);
 
-            var suggestCheck = results2;
+            //var suggestCheck = results2;
 
-            //nearby testing
-            var results3 = await suggestion.Suggest(new CancellationToken(false), 40.440625, -79.995886, SuggestionLob.HOTELS);
-            var nearbyCheck = results3;
+            ////nearby testing
+            //var results3 = await suggestion.Suggest(new CancellationToken(false), 40.440625, -79.995886, SuggestionLob.HOTELS);
+            //var nearbyCheck = results3;
 
             //auth testing
             var authservice = ExpediaKernel.Instance().Get<IAuthenticationService>();
-            var authResult = await authservice.SignIn(new CancellationToken(false), "baclifton@gmail.com", "soapdish"); //kill this
+         
 
            //account creation
             var createResult = await authservice.CreateAccount(new CancellationToken(false), new AccountCreationParams("baclifton@gmail.com","apassword","Test","Test",false));
