@@ -1,4 +1,5 @@
 ﻿using System;
+using Windows.Devices.Geolocation;
 using Windows.Storage;
 using Expedia.Services.Interfaces;
 
@@ -127,16 +128,20 @@ namespace Expedia.Services
             return result?.ToString();
         }
 
-        public bool GetUseLocationService()
+        public GeolocationAccessStatus GetUseLocationService()
         {
-            var isUsingLocationService = false;
-            Boolean.TryParse(LocalSettings.Values[Settings.UseLocationService].ToString(), out isUsingLocationService);
-            return isUsingLocationService;
+            GeolocationAccessStatus status;
+            var firstTime = LocalSettings.Values[Settings.UseLocationService];
+            if(firstTime == null)
+                return GeolocationAccessStatus.Unspecified;
+
+            Enum.TryParse(LocalSettings.Values[Settings.UseLocationService].ToString(), out status);
+            return status;
         }
 
-        public void SetUseLocationService(bool isUsingLocationSerivce)
+        public void SetUseLocationService(GeolocationAccessStatus accessStatus)
         {
-            LocalSettings.Values[Settings.UseLocationService] = isUsingLocationSerivce;
+            LocalSettings.Values[Settings.UseLocationService] = accessStatus.ToString();
         }
 
         public T GetSetting<T>(string setting)

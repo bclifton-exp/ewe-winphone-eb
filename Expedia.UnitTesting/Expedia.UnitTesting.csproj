@@ -98,6 +98,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceTests\AuthenticationServiceTests.cs" />
     <Compile Include="ServiceTests\HotelServiceTests.cs" />
+    <Compile Include="ServiceTests\LocationServiceTests.cs" />
     <Compile Include="ServiceTests\PointOfSaleServiceTest.cs" />
     <Compile Include="ServiceTests\SuggestionServiceTests.cs" />
     <Compile Include="UnitTestApp.xaml.cs">

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Windows.Devices.Geolocation;
 
 namespace Expedia.Services.Interfaces
 {
@@ -19,7 +20,7 @@ namespace Expedia.Services.Interfaces
         void ClearUserInfo();
         string GetRealName();
         string GetUserToken();
-        bool GetUseLocationService();
-        void SetUseLocationService(bool isUsingLocationSerivce);
+        GeolocationAccessStatus GetUseLocationService();
+        void SetUseLocationService(GeolocationAccessStatus isUsingLocationSerivce);
     }
 }
