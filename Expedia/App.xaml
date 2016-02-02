@@ -4,5 +4,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Expedia"
     RequestedTheme="Light">
+    
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/ExpediaResourceDictionary.xaml" />
+                <ResourceDictionary Source="Styles/Controls/_Controls.xaml"/>
+                <!--<ResourceDictionary Source="Styles/OrbitzResourceDictionary.xaml"/>-->
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
 
 </Application>

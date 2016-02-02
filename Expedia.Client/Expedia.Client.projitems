@@ -9,7 +9,11 @@
     <Import_RootNamespace>Expedia.Client</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IMainPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISearchHotelsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\GeoLocationMemory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SearchHotelsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\SearchHotelsView.xaml.cs">
       <DependentUpon>SearchHotelsView.xaml</DependentUpon>
@@ -20,5 +24,8 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Converters\" />
   </ItemGroup>
 </Project>

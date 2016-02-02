@@ -8,9 +8,10 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"  Orientation="Vertical">
-            <Button Content="Get Hotels" Click="ButtonBase_OnClick" Margin="0 0 0 10" HorizontalAlignment="Center"/>
-            <Button Content="Cancel" Click="ButtonBase_OnClick1" HorizontalAlignment="Center"/>
+
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom"  Orientation="Vertical">
+            <TextBlock Text="Wait a second or two..GPS call is slow"/>
+            <Button Content="Get Some Hotels" Click="ButtonBase_OnClick" Margin="0 0 0 10" HorizontalAlignment="Center"/>
         </StackPanel>
     </Grid>
 </Page>

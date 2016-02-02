@@ -35,6 +35,8 @@ namespace Expedia
             this.Suspending += OnSuspending;
 
             ExpediaKernel.Instance();
+            ExpediaKernel.Instance().Get<ILocationService>().GetSetCurrentLocation();
+            
         }
 
         /// <summary>

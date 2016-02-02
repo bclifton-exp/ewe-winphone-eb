@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Expedia.Client;
@@ -40,7 +42,12 @@ namespace Expedia.Services
 
             var result = await ExecuteGet(request.GetFullUri(), ct);
 
-            return result != null ? JsonConvert.DeserializeObject<SuggestionsResponse>(result) : null;
+            var deserializedResults = result != null ? JsonConvert.DeserializeObject<SuggestionsResponse>(result) : null;
+
+            if (deserializedResults == null) return null;
+            deserializedResults.SortedSuggestionsList = SortByMulticity(deserializedResults);
+
+            return deserializedResults;
         }
 
         public async Task<SuggestionsResponse> Suggest(CancellationToken ct, double latitude, double longitude, SuggestionLob lob)
@@ -69,7 +76,34 @@ namespace Expedia.Services
 
             var result = await ExecuteGet(request.GetFullUri(), ct);
 
-            return result != null ? JsonConvert.DeserializeObject<SuggestionsResponse>(result) : null;
+            var deserializedResults = result != null ? JsonConvert.DeserializeObject<SuggestionsResponse>(result) : null;
+
+            if (deserializedResults == null) return null;
+            deserializedResults.SortedSuggestionsList = SortByMulticity(deserializedResults);
+
+            return deserializedResults;
+        }
+
+        private List<List<SuggestionResult>> SortByMulticity(SuggestionsResponse deserializedResults)
+        {
+            var multiCityResults = deserializedResults.Suggestions.Where(suggestion => suggestion.Type == SuggestionType.Multicity).ToList();
+            var treeResults = deserializedResults.Suggestions.Where(suggestion => suggestion.Type == SuggestionType.Neighborhood).ToList();
+
+            var listOfMultiCityAndNodes = new List<List<SuggestionResult>>();
+
+            foreach (var multiCity in multiCityResults)
+            {
+                var multiCityAndNodes = new List<SuggestionResult> {multiCity};
+                multiCityAndNodes.AddRange(treeResults.Where(neighborhood => multiCity.Id == neighborhood.HierarchyInfo.Airport.MultiCity));
+
+                listOfMultiCityAndNodes.Add(multiCityAndNodes);
+            }
+
+            var otherResults = deserializedResults.Suggestions.Where(suggestion => suggestion.Type != SuggestionType.Multicity && suggestion.Type != SuggestionType.Neighborhood).ToList();
+            listOfMultiCityAndNodes.Add(otherResults);
+
+            return listOfMultiCityAndNodes;
+
         }
     }
 }

@@ -35,6 +35,8 @@ namespace Expedia
         public MainPage()
         {
             this.InitializeComponent();
+            this.DataContext = ExpediaKernel.Instance().Get<IMainPageViewModel>();
+
             var currentView = SystemNavigationManager.GetForCurrentView();
             currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
             currentView.BackRequested += CurrentViewOnBackRequested;

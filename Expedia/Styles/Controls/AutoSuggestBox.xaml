@@ -1,0 +1,114 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:templates="using:Expedia.Styles.Templates">
+
+    <Style TargetType="AutoSuggestBox">
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="TextBoxStyle" Value="{StaticResource AutoSuggestBoxTextBoxStyle}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="AutoSuggestBox">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="Orientation">
+                                <VisualState x:Name="Landscape"/>
+                                <VisualState x:Name="Portrait"/>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <TextBox x:Name="TextBox"
+                    Style="{TemplateBinding TextBoxStyle}"
+                    PlaceholderText="{TemplateBinding PlaceholderText}"
+                    Header="{TemplateBinding Header}"
+                    Width="{TemplateBinding Width}"
+                    ScrollViewer.BringIntoViewOnFocusChange="False"
+                    Canvas.ZIndex="0"
+                    Margin="0"
+                    DesiredCandidateWindowAlignment="BottomEdge"/>
+                        <Popup x:Name="SuggestionsPopup">
+                            <Border x:Name="SuggestionsContainer">
+                                <Border.RenderTransform>
+                                    <TranslateTransform x:Name="UpwardTransform"/>
+                                </Border.RenderTransform>
+                                <ListView
+                x:Name="SuggestionsList"
+                Background="{ThemeResource SystemControlBackgroundChromeMediumLowBrush}"
+                BorderThickness="{ThemeResource AutoSuggestListBorderThemeThickness}"
+                BorderBrush="{ThemeResource SystemControlForegroundChromeHighBrush}"
+                DisplayMemberPath="{TemplateBinding DisplayMemberPath}"
+                IsItemClickEnabled="True"
+                ItemTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                ItemContainerStyle="{TemplateBinding ItemContainerStyle}"
+                MaxHeight="{ThemeResource AutoSuggestListMaxHeight}"
+                Margin="{ThemeResource AutoSuggestListMargin}"
+                Padding="{ThemeResource AutoSuggestListPadding}">
+                                    <ListView.ItemContainerTransitions>
+                                        <TransitionCollection />
+                                    </ListView.ItemContainerTransitions>
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <templates:SuggestionIconTemplateSelector Content="{Binding}">
+                                                <templates:SuggestionIconTemplateSelector.Neighborhood>
+                                                    <DataTemplate>
+                                                        <Grid>
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <ContentControl Style="{StaticResource ReturnArrowIcon}"/>
+                                                                <TextBlock Text="{Binding Display}"/>
+                                                            </StackPanel>
+                                                        </Grid>
+                                                    </DataTemplate>
+                                                </templates:SuggestionIconTemplateSelector.Neighborhood>
+                                                <templates:SuggestionIconTemplateSelector.MultiCity>
+                                                    <DataTemplate>
+                                                        <Grid>
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <ContentControl Style="{StaticResource MapMarkerIcon}"/>
+                                                                <TextBlock Text="{Binding Display}"/>
+                                                            </StackPanel>
+                                                        </Grid>
+                                                    </DataTemplate>
+                                                </templates:SuggestionIconTemplateSelector.MultiCity>
+                                                <templates:SuggestionIconTemplateSelector.Default>
+                                                    <DataTemplate>
+                                                        <Grid>
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <ContentControl Style="{StaticResource MapMarkerIcon}"/>
+                                                                <TextBlock Text="{Binding Display}"/>
+                                                            </StackPanel>
+                                                        </Grid>
+                                                    </DataTemplate>
+                                                </templates:SuggestionIconTemplateSelector.Default>
+                                                <templates:SuggestionIconTemplateSelector.Hotel>
+                                                    <DataTemplate>
+                                                        <Grid>
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <ContentControl Style="{StaticResource HotelIcon}"/>
+                                                                <TextBlock Text="{Binding Display}"/>
+                                                            </StackPanel>
+                                                        </Grid>
+                                                    </DataTemplate>
+                                                </templates:SuggestionIconTemplateSelector.Hotel>
+                                                <templates:SuggestionIconTemplateSelector.Airport>
+                                                    <DataTemplate>
+                                                        <Grid>
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <ContentControl Style="{StaticResource PlaneIcon}"/>
+                                                                <TextBlock Text="{Binding Display}"/>
+                                                            </StackPanel>
+                                                        </Grid>
+                                                    </DataTemplate>
+                                                </templates:SuggestionIconTemplateSelector.Airport>
+                                            </templates:SuggestionIconTemplateSelector>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </Border>
+                        </Popup>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

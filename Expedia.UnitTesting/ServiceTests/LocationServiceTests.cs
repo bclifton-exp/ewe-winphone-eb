@@ -23,7 +23,7 @@ namespace Expedia.UnitTesting.ServiceTests
         [TestMethod]
         public async void GetCurrentCoords()
         {
-            var coords = await LocationService.GetCurrentLocation();
+            var coords = await LocationService.GetSetCurrentLocation();
             Assert.IsTrue(coords.Coordinate != null);
         }
     }

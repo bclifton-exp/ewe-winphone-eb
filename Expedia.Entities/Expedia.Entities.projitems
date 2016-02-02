@@ -75,6 +75,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Suggestions\SuggestionLob.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Suggestions\SuggestionResult.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Suggestions\SuggestionsResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Suggestions\SuggestionType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TileInfoBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserProfile.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)User\AccountCreationParams.cs" />

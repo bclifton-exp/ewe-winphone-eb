@@ -8,6 +8,6 @@ namespace Expedia.Services.Interfaces
 {
     public interface ILocationService
     {
-        Task<Geoposition> GetCurrentLocation();
+        Task<Geoposition> GetSetCurrentLocation();
     }
 }

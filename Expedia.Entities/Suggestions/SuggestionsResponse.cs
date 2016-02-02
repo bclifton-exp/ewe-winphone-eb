@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace Expedia.Entities.Suggestions
@@ -16,5 +17,7 @@ namespace Expedia.Entities.Suggestions
 
 		[JsonProperty("sr")]
 		public SuggestionResult[] Suggestions { get; set; }
+
+        public List<List<SuggestionResult>> SortedSuggestionsList { get; set; }
     }
 }
