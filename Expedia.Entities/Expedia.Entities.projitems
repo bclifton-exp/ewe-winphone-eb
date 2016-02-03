@@ -17,6 +17,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ExpediaFaultResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExpediaTokenExpiredException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\BooleanApiExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\EnumerableExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\StringCleaner.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\StringExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Hotels\AmbiguousCityMatch.cs" />

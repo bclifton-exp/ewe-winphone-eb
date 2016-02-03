@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using Windows.UI.Xaml.Controls;
 using Expedia.Client.Utilities;
+using Expedia.Entities.Extensions;
 using Expedia.Entities.Suggestions;
 using Expedia.Injection;
 using Expedia.Services.Interfaces;
@@ -60,37 +62,29 @@ namespace Expedia.Client.ViewModels
 
         public async void GetNearbySuggestions()
         {
-            //after 3rd character, start polling the suggestion service + every new character change after that
-
             var location = GeoLocationMemory.Instance().GetCurrentGeoposition();
-            var results = await SuggestionService.Suggest(new CancellationToken(false), location.Coordinate.Latitude, location.Coordinate.Longitude, Lob);
+            var results = await SuggestionService.Suggest(new CancellationToken(false), location.Coordinate.Point.Position.Latitude, location.Coordinate.Point.Position.Longitude, Lob);
 
-            var temp = new ObservableCollection<SuggestionResult>();
-            foreach (var suggestionList in results.SortedSuggestionsList) //make the To observable collection extension
+            var orderedSuggestions = new ObservableCollection<SuggestionResult>();
+            foreach (var suggestion in results.SortedSuggestionsList.SelectMany(suggestionList => suggestionList))
             {
-                foreach (var suggestion in suggestionList)
-                {
-                    temp.Add(suggestion);
-                }
+                orderedSuggestions.Add(suggestion);
             }
 
-            SearchSuggestions = temp;
+            SearchSuggestions = orderedSuggestions;
         }
 
         public async void GetTypeaheadSuggestions(string inputQuery)
         {
             var results = await SuggestionService.Suggest(new CancellationToken(false), inputQuery, Lob);
 
-            var temp = new ObservableCollection<SuggestionResult>();
-            foreach (var suggestionList in results.SortedSuggestionsList) //make the To observable collection extension
+            var orderedSuggestions = new ObservableCollection<SuggestionResult>();
+            foreach (var suggestion in results.SortedSuggestionsList.SelectMany(suggestionList => suggestionList))
             {
-                foreach (var suggestion in suggestionList)
-                {
-                    temp.Add(suggestion);
-                }
+                orderedSuggestions.Add(suggestion);
             }
 
-            SearchSuggestions = temp;
+            SearchSuggestions = orderedSuggestions;
         }
 
         public void SetSearchSuggestion(SuggestionResult suggestionResult)
@@ -107,10 +101,10 @@ namespace Expedia.Client.ViewModels
                     GetTypeaheadSuggestions(input);
             }
 
-            //if (string.IsNullOrEmpty(input))
-            //{
-            //    GetNearbySuggestions();
-            //}
+            if (string.IsNullOrEmpty(input))
+            {
+                GetNearbySuggestions();
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
