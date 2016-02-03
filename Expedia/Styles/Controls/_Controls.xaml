@@ -5,6 +5,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="AutoSuggestBox.xaml" />
         <ResourceDictionary Source="PathIcons.xaml" />
+        <ResourceDictionary Source="RadioButton.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

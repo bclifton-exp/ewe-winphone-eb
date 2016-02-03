@@ -33,10 +33,6 @@ namespace Expedia
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-
-            ExpediaKernel.Instance();
-            ExpediaKernel.Instance().Get<ILocationService>().GetSetCurrentLocation();
-            
         }
 
         /// <summary>
@@ -46,11 +42,11 @@ namespace Expedia
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-
+            ExpediaKernel.Instance().Get<ILocationService>().GetSetCurrentLocation();
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
             {
-                this.DebugSettings.EnableFrameRateCounter = true;
+                this.DebugSettings.EnableFrameRateCounter = false;
             }
 #endif
 

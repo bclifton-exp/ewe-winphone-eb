@@ -1,21 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
+using System.Windows.Input;
 using Windows.Devices.Geolocation;
 using Expedia.Client.Interfaces;
+using Expedia.Entities.Suggestions;
+using Expedia.Injection;
 using Expedia.Services.Interfaces;
+using Microsoft.Practices.Prism.Commands;
 
 namespace Expedia.Client.ViewModels
 {
-    public class MainPageViewModel : IMainPageViewModel
+    public class MainPageViewModel : BaseViewModel, IMainPageViewModel
     {
         private ISettingsService _settingsService { get; set; }
         private ILocationService _locationService { get; set; }
 
-        public MainPageViewModel(ISettingsService settingsService, ILocationService locationService)
+        private ICommand _hamburgerClick;
+        public ICommand HamburgerClick
+        {
+            get { return _hamburgerClick; }
+            set
+            {
+                _hamburgerClick = value;
+                OnPropertyChanged("HamburgerClick");
+            }
+        }
+
+        private bool _isFlyoutMenuOpen;
+        public bool IsFlyoutMenuOpen
+        {
+            get { return _isFlyoutMenuOpen; }
+            set
+            {
+                _isFlyoutMenuOpen = value;
+                OnPropertyChanged("IsFlyoutMenuOpen");
+            }
+        }
+
+
+
+        public MainPageViewModel(ISettingsService settingsService, ILocationService locationService) : base(SuggestionLob.NONE)
         {
             _settingsService = settingsService;
             _locationService = locationService;
+
+            HamburgerClick = new DelegateCommand(() =>
+            {
+                IsFlyoutMenuOpen = !IsFlyoutMenuOpen;
+            });
         }
 
     }

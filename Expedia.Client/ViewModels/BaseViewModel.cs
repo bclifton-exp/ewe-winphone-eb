@@ -63,15 +63,18 @@ namespace Expedia.Client.ViewModels
         public async void GetNearbySuggestions()
         {
             var location = GeoLocationMemory.Instance().GetCurrentGeoposition();
-            var results = await SuggestionService.Suggest(new CancellationToken(false), location.Coordinate.Point.Position.Latitude, location.Coordinate.Point.Position.Longitude, Lob);
-
-            var orderedSuggestions = new ObservableCollection<SuggestionResult>();
-            foreach (var suggestion in results.SortedSuggestionsList.SelectMany(suggestionList => suggestionList))
+            if (location != null)
             {
-                orderedSuggestions.Add(suggestion);
-            }
+                var results = await SuggestionService.Suggest(new CancellationToken(false), location.Coordinate.Point.Position.Latitude, location.Coordinate.Point.Position.Longitude, Lob);
 
-            SearchSuggestions = orderedSuggestions;
+                var orderedSuggestions = new ObservableCollection<SuggestionResult>();
+                foreach (var suggestion in results.SortedSuggestionsList.SelectMany(suggestionList => suggestionList))
+                {
+                    orderedSuggestions.Add(suggestion);
+                }
+
+                SearchSuggestions = orderedSuggestions;
+            }
         }
 
         public async void GetTypeaheadSuggestions(string inputQuery)

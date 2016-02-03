@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="Expedia.Client.Views.SearchHotelsView"
+    x:Class="Expedia.Client.Views.SearchFlightsView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Expedia.Client.Views"
@@ -8,10 +8,10 @@
     mc:Ignorable="d" NavigationCacheMode="Enabled">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-<TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Text="Search Hotels Page"/>
-        
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Text="Search Flights Page"/>
+
         <DatePicker x:Name="DPicker" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 -150 0 0"></DatePicker>
-        
+
         <AutoSuggestBox HorizontalAlignment="Center" VerticalAlignment="Center" Width="350" 
                         ItemsSource="{Binding SearchSuggestions}"
                         TextMemberPath="Display"
@@ -22,8 +22,8 @@
                         GotFocus="UIElement_OnGotFocus"
                          >
         </AutoSuggestBox>
-        
-       
+
+
 
     </Grid>
 </Page>

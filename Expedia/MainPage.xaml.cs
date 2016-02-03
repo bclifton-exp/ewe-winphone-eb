@@ -51,10 +51,10 @@ namespace Expedia
 
         private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
         {
-            if (Frame.CanGoBack)
+            if (ShellFrame.CanGoBack)
             {
                 e.Handled = true;
-                this.Frame.GoBack();
+                this.ShellFrame.GoBack();
             }
             else
             {
@@ -64,9 +64,9 @@ namespace Expedia
 
         private void CurrentViewOnBackRequested(object sender, BackRequestedEventArgs backRequestedEventArgs)
         {
-            if (Frame.CanGoBack)
+            if (ShellFrame.CanGoBack)
             {
-                this.Frame.GoBack();
+                this.ShellFrame.GoBack();
             }
             else
             {
@@ -74,14 +74,14 @@ namespace Expedia
             }
         }
 
-        private async void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        private void Hotels_OnClick(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof (SearchHotelsView));
+            ShellFrame.Navigate(typeof(SearchHotelsView));
         }
 
-        private void ButtonBase_OnClick1(object sender, RoutedEventArgs e)
+        private void Flights_OnClick(object sender, RoutedEventArgs e)
         {
-            
+            ShellFrame.Navigate(typeof(SearchFlightsView));
         }
     }
 }

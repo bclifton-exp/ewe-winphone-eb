@@ -9,6 +9,7 @@ namespace Expedia.Entities.Suggestions
         HOTELS,
         FLIGHTS,
         PACKAGES,
-        CARS
+        CARS,
+        NONE
     }
 }

@@ -10,16 +10,25 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IMainPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISearchFlightsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISearchHotelsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\GeoLocationMemory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SearchFlightsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SearchHotelsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SearchFlightsView.xaml.cs">
+      <DependentUpon>SearchFlightsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\SearchHotelsView.xaml.cs">
       <DependentUpon>SearchHotelsView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Views\SearchFlightsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\SearchHotelsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -15,6 +15,7 @@ namespace Expedia.Injection
         {
             Bind<IMainPageViewModel>().To<MainPageViewModel>();
             Bind<ISearchHotelsViewModel>().To<SearchHotelsViewModel>();
+            Bind<ISearchFlightsViewModel>().To<SearchFlightsViewModel>();
         }
     }
 }
