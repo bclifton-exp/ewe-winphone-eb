@@ -36,9 +36,7 @@
         </SplitView.Pane>
         
         <SplitView.Content>
-            <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-            
+                <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
                     <Frame x:Name="ShellFrame">
                         <Frame.ContentTransitions>
@@ -52,8 +50,6 @@
                         </Frame.ContentTransitions>
                     </Frame>
 
-                
-                
             </Grid>
         </SplitView.Content>
         

@@ -1,0 +1,569 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- ==== IGNORE BELOW SECTION FOR TRANSLATION ==== -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <!-- ==== IGNORE ABOVE SECTION FOR TRANSLATION ==== -->
+  
+  <!-- Main home screen search -->
+  <data name="FlightsTab.Text" xml:space="preserve">
+    <value>Flights</value>
+    <comment>Main Flights tab button</comment>
+  </data>
+  <data name="HotelsTab.Text" xml:space="preserve">
+    <value>Hotels</value>
+    <comment>Main Hotels tab button</comment>
+  </data>
+  <data name="CarsTab.Text" xml:space="preserve">
+    <value>Cars</value>
+    <comment>Main Cars tab button</comment>
+  </data>
+  <data name="ActivitiesTab.Text" xml:space="preserve">
+    <value>Activities</value>
+    <comment>Main Activities tab button</comment>
+  </data>
+
+  <!-- Hotels -->
+  <data name="SearchHotelsText.Text" xml:space="preserve">
+    <value>Search Hotels</value>
+  </data>
+  <data name="GoingTo.Text" xml:space="preserve">
+    <value>Going to</value>
+  </data>
+  <data name="AutoSuggest.PlaceholderText" xml:space="preserve">
+    <value>Search city, address, or landmark</value>
+  </data>
+  <data name="SearchHotelsPlaceholder.PlaceholderContent" xml:space="preserve">
+    <value>Search city, address or landmark</value>
+  </data>
+  <data name="Checkin.Header" xml:space="preserve">
+    <value>Check in</value>
+  </data>
+  <data name="CheckinLabel.Text" xml:space="preserve">
+    <value>Check in</value>
+	<comment>Same as above Checkin.Header</comment>
+  </data>
+  <data name="Checkout.Header" xml:space="preserve">
+    <value>Check out</value>
+  </data>
+  <data name="CheckoutLabel.Text" xml:space="preserve">
+    <value>Check out</value>
+	<comment>Same as above Checkout.Header</comment>
+  </data>
+  <data name="Adults.Header" xml:space="preserve">
+    <value>Adults (18+)</value>
+  </data>
+  <data name="Children.Header" xml:space="preserve">
+    <value>Children (0-17)</value>
+  </data>
+  <data name="Age.PlaceholderText" xml:space="preserve">
+    <value>Age</value>
+  </data>
+  <data name="SearchButton.Content" xml:space="preserve">
+    <value>Search</value>
+	<comment>Big yellow search button</comment>
+  </data>
+
+  <!-- Flights -->
+  <data name="SearchFlights.Text" xml:space="preserve">
+    <value>Search Flights</value>
+    <comment>Flight search header</comment>
+  </data>
+  <data name="RoundTripButton.Content" xml:space="preserve">
+    <value>Roundtrip</value>
+	<comment>Roundtrip button</comment>
+  </data>
+  <data name="OneWayButton.Content" xml:space="preserve">
+    <value>One way</value>
+	<comment>One way button</comment>
+  </data>
+  <data name="FlyingFrom.Text" xml:space="preserve">
+    <value>Flying from</value>
+  </data>
+  <data name="OriginLocation.PlaceholderContent" xml:space="preserve">
+    <value>Origin City or Airport</value>
+  </data>
+  <data name="FlyingTo.Text" xml:space="preserve">
+    <value>Flying to</value>
+  </data>
+  <data name="DestinationLocation.PlaceholderContent" xml:space="preserve">
+    <value>Destination City or Airport</value>
+  </data>
+  <data name="DepartingHeader.Header" xml:space="preserve">
+    <value>Departing</value>
+  </data>
+  <data name="DepartingText.Text" xml:space="preserve">
+    <value>Departing</value>
+	<comment>Same as above, used for error template</comment>
+  </data>
+  <data name="ReturningHeader.Header" xml:space="preserve">
+    <value>Returning</value>
+  </data>
+  <data name="ReturningText.Text" xml:space="preserve">
+    <value>Returning</value>
+	<comment>Same as above, used for error template</comment>
+  </data>
+  <data name="DatesErrorMessage.Text" xml:space="preserve">
+    <value>There are errors in your date(s). Please modify to continue.</value>
+  </data>
+  
+  <!--Search Cars-->
+  <data name="SearchCars.Text" xml:space="preserve">
+    <value>Search Cars</value>
+    <comment>Cars search header</comment>
+  </data>
+  <data name="Pickingup.Text" xml:space="preserve">
+    <value>Picking up</value>
+  </data>
+  <data name="Droppingoff.Text" xml:space="preserve">
+    <value>Dropping off</value>
+  </data>
+  <data name="Pickupdate.Header" xml:space="preserve">
+    <value>Pick up date</value>
+  </data>
+  <data name="Pickuptime.Header" xml:space="preserve">
+    <value>Pick up time</value>
+  </data>
+  <data name="Dropoffdate.Header" xml:space="preserve">
+    <value>Drop off date</value>
+  </data>
+  <data name="Dropofftime.Header" xml:space="preserve">
+    <value>Drop off time</value>
+  </data>
+  <data name="CarsOriginLocation.PlaceholderContent" xml:space="preserve">
+    <value>City, airport, or address</value>
+  </data>
+  <data name="CarsDestinationLocation.PlaceholderContent" xml:space="preserve">
+    <value>Same as Pick-Up</value>
+  </data>
+  
+  <!--Cars Results Screen-->
+  <data name="NoCarResults.Text" xml:space="preserve">
+    <value>No Results</value>
+  </data>
+    <data name="PassengersText.Text" xml:space="preserve">
+    <value>Passengers</value>
+  </data>
+   <data name="DoorsText.Text" xml:space="preserve">
+    <value>Doors</value>
+  </data>
+  <data name="BagsText.Text" xml:space="preserve">
+    <value>Bags</value>
+  </data>
+    <data name="MileageText.Text" xml:space="preserve">
+    <value>Unlimited Mileage</value>
+  </data>
+   <data name="PassengersRadio.Content" xml:space="preserve">
+    <value>Passengers</value>
+  </data>
+   <data name="DoorsRadio.Content" xml:space="preserve">
+    <value>Doors</value>
+  </data>
+  <data name="BagsRadio.Content" xml:space="preserve">
+    <value>Bags</value>
+  </data>
+  <data name="ReserveButton.Content" xml:space="preserve">
+    <value>Reserve</value>
+  </data>
+   <data name="CarsAvailable.Text" xml:space="preserve">
+    <value>cars available</value>
+  </data>
+  <data name="FilterCompanies.Text" xml:space="preserve">
+    <value>Companies</value>
+  </data>
+  <data name="FilterCarTransmission.Text" xml:space="preserve">
+    <value>Transmission</value>
+  </data>
+  <data name="AirConditioning.Text" xml:space="preserve">
+    <value>Air Conditioning</value>
+  </data>
+  <data name="UnlimitedMileage.Text" xml:space="preserve">
+    <value>Unlimited Mileage</value>
+  </data>
+  
+
+  <!-- Hotel Search Results Screen -->
+  <data name="AVP_Loading.Text" xml:space="preserve">
+    <value>loading</value>
+	<comment>Shown while waiting for search results</comment>
+  </data>
+  <data name="Refreshing.Text" xml:space="preserve">
+    <value>Refreshing...</value>
+  </data>
+  <data name="HotelsIn.ResultType" xml:space="preserve">
+    <value>Hotels in</value>
+	<comment>Hotels in CITY NAME</comment>
+  </data>
+  <data name="HotelsAvailable.Text" xml:space="preserve">
+    <value>hotels available</value>
+	<comment>x hotels available</comment>
+  </data>
+
+  <!-- Sorting -->
+  <data name="SortBy.Content" xml:space="preserve">
+    <value>Sort by</value>
+    <comment>Menu button to enable sorting</comment>
+  </data>
+  <data name="SortPrice.Content" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="SortGuestRating.Content" xml:space="preserve">
+    <value>Guest Rating</value>
+  </data>
+   <data name="SortStarRating.Content" xml:space="preserve">
+    <value>Star Rating</value>
+  </data> 
+  <data name="SortBestDeals.Content" xml:space="preserve">
+    <value>Best Deals</value>
+  </data>
+  <data name="SortMostPopular.Content" xml:space="preserve">
+    <value>Most Popular</value>
+  </data>
+
+  <!-- Filtering -->
+  <data name="FilterBy.Content" xml:space="preserve">
+    <value>Filter by</value>
+    <comment>Menu button to enable filtering</comment>
+  </data>
+  <data name="FilterHotelClass.Text" xml:space="preserve">
+    <value>Hotel Class</value>
+  </data>
+  <data name="FilterPrice.Text" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="FilterArea.Text" xml:space="preserve">
+    <value>Area</value>
+  </data>
+  <data name="FilterHotelPreferences.Text" xml:space="preserve">
+    <value>Hotel Preferences</value>
+  </data>
+  <data name="FilterAccessibility.Text" xml:space="preserve">
+    <value>Accessibility</value>
+  </data>
+  
+  <!--Cars-->
+    <data name="DailyText.Text" xml:space="preserve">
+    <value>Daily</value>
+  </data>
+  
+   <data name="DailyTextExpander.DailyText" xml:space="preserve">
+    <value>Daily</value>
+  </data>
+
+  <data name="DailyTextExpander.OrSimilarText" xml:space="preserve">
+    <value>or similar</value>
+  </data>
+  
+  <data name="TotalText.Text" xml:space="preserve">
+    <value>Total</value>
+  </data>
+    <data name="OrSimilarText.Text" xml:space="preserve">
+    <value>or similar</value>
+  </data>
+
+  <!-- Hotel List -->
+  <data name="AvgNight.Text" xml:space="preserve">
+    <value>avg/night</value>
+  </data>
+  <data name="Only.Text" xml:space="preserve">
+    <value>Only</value>
+    <comment>Usage: Only x room(s) left at this rate</comment>
+  </data>
+  <data name="RoomsLeft.Text" xml:space="preserve">
+    <value>room(s) left!</value>
+    <comment>Usage: Only x room(s) left at this rate</comment>
+  </data>
+  <data name="SoldOut.Text" xml:space="preserve">
+    <value>We are sold out!</value>
+  </data>
+  <data name="RoomsHeader.Content" xml:space="preserve">
+    <value>Rooms</value>
+    <comment>Might not be currently used</comment>
+  </data>
+  <data name="LateNightBannerMessage" xml:space="preserve">
+    <value>Need a Late night check in?</value>
+	<comment>Banner shows only late at night</comment>
+  </data>
+
+  <!-- Flight Search Results Screen-->
+  <data name="DeparturesTo.ResultType" xml:space="preserve">
+    <value>Departures to</value>
+	<comment>e.g. Departures to San Francisco</comment>
+  </data>
+  <data name="FlightsText.Text" xml:space="preserve">
+    <value>flights available</value>
+  </data>
+  <data name="SelectAFlightTo.Text" xml:space="preserve">
+    <value>Select a flight to</value>
+	<comment>e.g. Select a flight to San Francisco</comment>
+  </data>
+  
+  <!-- Sorting -->
+  <data name="SortDuration.Content" xml:space="preserve">
+    <value>Duration</value>
+  </data>
+  <data name="SortArrival.Content" xml:space="preserve">
+    <value>Arrival</value>
+  </data>
+  <data name="SortDeparture.Content" xml:space="preserve">
+    <value>Departure</value>
+  </data>
+
+  <!-- Filtering -->
+  <data name="FilterStops.Text" xml:space="preserve">
+    <value>Stops</value>
+  </data>
+  <data name="FilterAirlines.Text" xml:space="preserve">
+    <value>Airlines</value>
+  </data>
+  
+  <!-- Return flight selection -->
+  <data name="YourSelectedDeparture.Text" xml:space="preserve">
+    <value>Your selected departure</value>
+  </data>
+  <data name="Change.Content" xml:space="preserve">
+    <value>Change</value>
+    <comment>FlightResults change selection button</comment>
+  </data>
+  <data name="SelectYourReturnFlightTo.Text" xml:space="preserve">
+    <value>Select your return flight to</value>
+  </data>
+
+  <!-- Side navigation drawer -->
+  <data name="carsMenuButton.Content" xml:space="preserve">
+    <value>cars</value>
+  </data>
+  <data name="vacationsMenuButton.Content" xml:space="preserve">
+    <value>vacations</value>
+  </data>
+  <data name="activitiesMenuButton.Content" xml:space="preserve">
+    <value>things to do</value>
+  </data>
+  <data name="signInMenuButton.Content" xml:space="preserve">
+    <value>sign in</value>
+  </data>
+  <data name="myAccountMenuButton.Content" xml:space="preserve">
+    <value>my account</value>
+  </data>
+  <data name="myItineraryMenuButton.Content" xml:space="preserve">
+    <value>my itinerary</value>
+  </data> 
+  <data name="signOutMenuButton.Content" xml:space="preserve">
+    <value>sign out</value>
+  </data>
+  <data name="aboutMenuButton.Content" xml:space="preserve">
+    <value>about</value>
+  </data>
+  <data name="settingsMenuButton.Content" xml:space="preserve">
+    <value>settings</value>
+  </data>
+  <data name="feeedbackMenuButton.Content" xml:space="preserve">
+    <value>feedback</value>
+  </data>
+  <data name="fullSiteMenuButton.Content" xml:space="preserve">
+    <value>website</value>
+  </data>
+
+  <!-- Settings Screen -->
+  <data name="SettingsHeader.Text" xml:space="preserve">
+    <value>SETTINGS</value>
+    <comment>Header on settings page</comment>
+  </data>
+  <data name="SettingsLocationServicesLabel.Text" xml:space="preserve">
+    <value>Use location services</value>
+    <comment>Label for toggle switch</comment>
+  </data>
+  <data name="SettingsLocationServices.OffContent" xml:space="preserve">
+    <value>Off</value>
+  </data>
+  <data name="SettingsLocationServices.OnContent" xml:space="preserve">
+    <value>On</value>
+  </data>
+  <data name="CountryLabel.Text" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="SettingsHelp.Content" xml:space="preserve">
+    <value>Site Help</value>
+    <comment>Help button on settings page</comment>
+  </data>
+  <data name="SupportPhone.Content" xml:space="preserve">
+    <value>Call Support</value>
+    <comment>Call Support button on settings page</comment>
+  </data>
+  
+
+  <!-- About Screen -->
+  <data name="AboutHeader.Text" xml:space="preserve">
+    <value>ABOUT</value>
+    <comment>Label on about page</comment>
+  </data>
+  <data name="AppVersion.Text" xml:space="preserve">
+    <value>App Version</value>
+  </data>
+  <data name="AboutButton.Content" xml:space="preserve">
+    <value>About</value>
+	<comment>About button links to Expedia webpage</comment>
+  </data>
+  <data name="PrivacyButton.Content" xml:space="preserve">
+    <value>Privacy</value>
+  </data>
+  <data name="LegalButton.Content" xml:space="preserve">
+    <value>Legal</value>
+  </data>
+
+  <!-- Sign In Screen -->
+  <data name="SignIn.Text" xml:space="preserve">
+    <value>Sign In</value>
+  </data>
+  <data name="EmailorUserName.PlaceholderText" xml:space="preserve">
+    <value>Email or Username</value>
+  </data>
+  <data name="Password.PlaceholderText" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="EnterPassword.Text" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="ConfirmPassword.Text" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
+  <data name="PasswordMatchError.Text" xml:space="preserve">
+    <value>*Passwords do not match.</value>
+  </data>
+  <data name="PasswordLengthError.Text" xml:space="preserve">
+    <value>*Minimum password length not met.</value>
+  </data>
+  <data name="  EmailInvalidError.Text" xml:space="preserve">
+    <value>*Email format is invalid.</value>
+  </data>
+  <data name="SignInButton.Content" xml:space="preserve">
+    <value>Sign In</value>
+	<comment>Yellow Sign In button</comment>
+  </data>
+  <data name="CreateAccountButton.Content" xml:space="preserve">
+    <value>Create Account</value>
+	<comment>Yellow Account Creation button</comment>
+  </data>
+  <data name="CreateAnAccountButton.Content" xml:space="preserve">
+    <value>Create an Account</value>
+	<comment>Yellow Create An Account button</comment>
+  </data>
+  <data name="CreateAccount.Text" xml:space="preserve">
+    <value>Create an Account</value>
+  </data>
+  <data name="FirstName.Text" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="LastName.Text" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="EmailAddress.Text" xml:space="preserve">
+    <value>Email Address</value>
+  </data>
+  <data name="GuestButton.Content" xml:space="preserve">
+    <value>Continue as a Guest</value>
+  </data>
+  <data name="OrText.Text" xml:space="preserve">
+    <value>or</value>
+	<comment>'or' text between 'Continue as a Guest' button and 'Connect' buttons</comment>
+  </data>
+  <data name="ConnectButton.Content" xml:space="preserve">
+    <value>Connect</value>
+  </data>
+  <data name="ConfirmExpediaIdentity.Text" xml:space="preserve">
+    <value>Please confirm your Expedia identity</value>
+  </data>
+
+  <!-- Menu Bar buttons -->
+  <data name="AppBarHome.Label" xml:space="preserve">
+    <value>home</value>
+  </data>
+  <data name="AppBarRefresh.Label" xml:space="preserve">
+    <value>refresh</value>
+  </data>
+  <data name="AppBarShare.Label" xml:space="preserve">
+    <value>share</value>
+  </data>
+  <data name="AppBarPin.NullOrFalseValue" xml:space="preserve">
+    <value>pin to start</value>
+	<comment>Add shortcut (pin) to page on phone homescreen</comment>
+  </data>
+  <data name="AppBarPin.TrueValue" xml:space="preserve">
+    <value>unpin</value>
+	<comment>Remove shortcut (pin) for page from phone homescreen</comment>
+  </data>
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</root>

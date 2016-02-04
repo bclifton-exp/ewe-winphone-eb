@@ -5,14 +5,32 @@
     xmlns:local="using:Expedia.Client.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:maps="using:Bing.Maps"
     mc:Ignorable="d" NavigationCacheMode="Enabled">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-<TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Text="Search Hotels Page"/>
-        
-        <DatePicker x:Name="DPicker" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 -150 0 0"></DatePicker>
-        
-        <AutoSuggestBox HorizontalAlignment="Center" VerticalAlignment="Center" Width="350" 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" Margin="25">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" x:Uid="GoingTo" Text="Goin to" Margin="0 0 0 5"/>
+
+            <AutoSuggestBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 0 0 25"
                         ItemsSource="{Binding SearchSuggestions}"
                         TextMemberPath="Display"
                         UpdateTextOnSelect="True"
@@ -20,10 +38,31 @@
                         SuggestionChosen="AutoSuggestBox_OnSuggestionChosen"
                         TextChanged="AutoSuggestBox_OnTextChanged"
                         GotFocus="UIElement_OnGotFocus"
-                         >
-        </AutoSuggestBox>
-        
-       
+                        x:Uid="AutoSuggest">
+            </AutoSuggestBox>
 
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Check In" x:Uid="CheckinLabel" Margin="0 0 10 5"/> <!--this will probably change for the calendar control + localization-->
+            <CalendarDatePicker Grid.Row="3" Grid.Column="0" HorizontalAlignment="Stretch" Margin="0 0 10 0"/>
+
+            <TextBlock Grid.Row="2" Grid.Column="1" Text="Check Out" x:Uid="CheckoutLabel" Margin="10 0 0 5"/>
+            <!--this will probably change for the calendar control + localization-->
+            <CalendarDatePicker Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" Margin="10 0 0 0"/>
+
+            <ComboBox Grid.Row="4" Grid.Column="0" Header="Adults (18+)" Width="150" Margin="0 10 10 0" x:Uid="Adults"/>
+
+            <ComboBox Grid.Row="4" Grid.Column="1" Header="Children (0-17)" Width="150" Margin="10 10 0 0" x:Uid="Children"/>
+
+            <Button Command="{Binding SearchHotels}"
+					Content="Search"
+					x:Uid="SearchButton"
+					Grid.Row="5"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+					Margin="10 0 10 15"
+                    HorizontalAlignment="Stretch"
+					VerticalAlignment="Bottom"/>
+
+        </Grid>
+        <maps:Map x:Name="Map" Loading="Map_OnLoading" Grid.Column="1" Credentials="Auuzso-d2Z0Hlyjk5UFRNe69v7EpFKz_X4clK1yxt4JwA0N-zdDSDkCb5gAz5lm4" ZoomLevel="12" MapType="Road"/>
     </Grid>
 </Page>

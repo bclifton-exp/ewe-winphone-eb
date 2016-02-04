@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Bing.Maps;
 using Expedia.Client.Interfaces;
 using Expedia.Client.ViewModels;
 using Expedia.Entities.Suggestions;
@@ -49,6 +50,14 @@ namespace Expedia.Client.Views
         {
             var box = sender as AutoSuggestBox;
             box.IsSuggestionListOpen = true;
+        }
+
+        private void Map_OnLoading(FrameworkElement sender, object args)
+        {
+            var context = DataContext as SearchHotelsViewModel;
+            var map = sender as Map;
+            context.MapControl = map;
+            map.Center = new Location(context.MapCenter.Coordinate.Point.Position.Latitude,context.MapCenter.Coordinate.Point.Position.Longitude);
         }
     }
 }

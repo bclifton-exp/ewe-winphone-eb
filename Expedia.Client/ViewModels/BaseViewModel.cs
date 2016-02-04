@@ -7,6 +7,8 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Maps;
+using Bing.Maps;
 using Expedia.Client.Utilities;
 using Expedia.Entities.Extensions;
 using Expedia.Entities.Suggestions;
@@ -53,6 +55,17 @@ namespace Expedia.Client.ViewModels
             }
         }
 
+        private Map _mapControl;
+        public Map MapControl
+        {
+            get { return _mapControl; }
+            set
+            {
+                _mapControl = value;
+                OnPropertyChanged("MapControl");
+            }
+        }
+
 
         public BaseViewModel(SuggestionLob lob)
         {
@@ -93,6 +106,7 @@ namespace Expedia.Client.ViewModels
         public void SetSearchSuggestion(SuggestionResult suggestionResult)
         {
             SelectedSearchSuggestion = suggestionResult;
+            MapControl.Center = new Location(double.Parse(suggestionResult.Coordinates.Latitude),double.Parse(suggestionResult.Coordinates.Longitude));
             IsSuggestionListOpen = false;
         }
 
