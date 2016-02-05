@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Input;
 using Windows.Devices.Geolocation;
-using Bing.Maps;
+//using Bing.Maps;
 using Expedia.Client.Interfaces;
 using Expedia.Client.Utilities;
 using Expedia.Entities.Suggestions;

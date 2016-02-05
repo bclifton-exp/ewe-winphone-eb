@@ -41,8 +41,7 @@
                 ItemTemplateSelector="{TemplateBinding ItemTemplateSelector}"
                 ItemContainerStyle="{TemplateBinding ItemContainerStyle}"
                 MaxHeight="{ThemeResource AutoSuggestListMaxHeight}"
-                Margin="{ThemeResource AutoSuggestListMargin}"
-                Padding="{ThemeResource AutoSuggestListPadding}">
+                Margin="{ThemeResource AutoSuggestListMargin}">
                                     <ListView.ItemContainerTransitions>
                                         <TransitionCollection />
                                     </ListView.ItemContainerTransitions>

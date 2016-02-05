@@ -5,7 +5,7 @@
     xmlns:local="using:Expedia.Client.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:maps="using:Bing.Maps"
+    xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
     mc:Ignorable="d" NavigationCacheMode="Enabled">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -63,6 +63,6 @@
 					VerticalAlignment="Bottom"/>
 
         </Grid>
-        <maps:Map x:Name="Map" Loading="Map_OnLoading" Grid.Column="1" Credentials="Auuzso-d2Z0Hlyjk5UFRNe69v7EpFKz_X4clK1yxt4JwA0N-zdDSDkCb5gAz5lm4" ZoomLevel="12" MapType="Road"/>
+        <maps:MapControl x:Name="Map" Loading="Map_OnLoading" Grid.Column="1" MapServiceToken="uTSDW7FxvBNrtGPD67ZQ~Cws5kVsbllSUip_fVoHCIQ~AiAsYMbHCnN32naqWWDEeulT3_C1XVy1yPU91wba8Knm9G1D31rZOIMDss4jJFtO" ZoomLevel="14" />
     </Grid>
 </Page>

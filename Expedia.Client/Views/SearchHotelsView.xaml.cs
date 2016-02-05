@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Maps;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Bing.Maps;
 using Expedia.Client.Interfaces;
 using Expedia.Client.ViewModels;
 using Expedia.Entities.Suggestions;
@@ -34,7 +35,8 @@ namespace Expedia.Client.Views
             this.InitializeComponent();
         }
 
-        private void AutoSuggestBox_OnSuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
+        private void AutoSuggestBox_OnSuggestionChosen(AutoSuggestBox sender,
+            AutoSuggestBoxSuggestionChosenEventArgs args)
         {
             var context = DataContext as SearchHotelsViewModel;
             context.SetSearchSuggestion(args.SelectedItem as SuggestionResult);
@@ -55,9 +57,14 @@ namespace Expedia.Client.Views
         private void Map_OnLoading(FrameworkElement sender, object args)
         {
             var context = DataContext as SearchHotelsViewModel;
-            var map = sender as Map;
+            var map = sender as MapControl;
             context.MapControl = map;
-            map.Center = new Location(context.MapCenter.Coordinate.Point.Position.Latitude,context.MapCenter.Coordinate.Point.Position.Longitude);
+            var geoPoint = new BasicGeoposition
+            {
+                Latitude = context.MapCenter.Coordinate.Point.Position.Latitude,
+                Longitude = context.MapCenter.Coordinate.Point.Position.Longitude
+            };
+            map.Center = new Geopoint(geoPoint);
         }
     }
 }
