@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Windows.Devices.Geolocation;
 using Expedia.Client.Utilities;
@@ -42,7 +43,7 @@ namespace Expedia.Services
             if (canUseLocation)
             {
                 var geoLocator = new Geolocator { DesiredAccuracy = PositionAccuracy.Default };
-                var position = await geoLocator.GetGeopositionAsync();
+                var position = await geoLocator.GetGeopositionAsync(new TimeSpan(0), new TimeSpan(0, 0, 20));
 
                 GeoLocationMemory.Instance().SetGeoposition(position); 
 

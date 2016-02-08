@@ -5,10 +5,11 @@
     xmlns:local="using:Expedia"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:views="using:Expedia.Client.Views"
     mc:Ignorable="d">
     <Grid>
 
-        <SplitView DisplayMode="CompactOverlay" IsPaneOpen="{Binding IsFlyoutMenuOpen}" CompactPaneLength="0" OpenPaneLength="48">
+        <SplitView DisplayMode="CompactOverlay" IsPaneOpen="{Binding IsFlyoutMenuOpen}" CompactPaneLength="0" OpenPaneLength="96">
 
         <SplitView.Pane>
                 <StackPanel Background="Gray">
@@ -36,7 +37,7 @@
         </SplitView.Pane>
         
         <SplitView.Content>
-                <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                <!--<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
                     <Frame x:Name="ShellFrame">
                         <Frame.ContentTransitions>
@@ -50,8 +51,49 @@
                         </Frame.ContentTransitions>
                     </Frame>
 
-            </Grid>
-        </SplitView.Content>
+            </Grid>-->
+
+                <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="0 0 0 0">
+                    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <ScrollViewer Grid.Row="1" VerticalScrollMode="Auto" VerticalScrollBarVisibility="Auto">
+                            <Pivot Style="{StaticResource TabsStylePivotStyle}">
+                                <PivotItem>
+                                    <PivotItem.Header>
+                                        <Viewbox Width="50" Height="40" Margin="20 5 20 5">
+                                            <PathIcon Data="M11.7660012 13.2592703 C14.5899896 13.2531049 16.3892947 11.4920396 16.4023661 8.686778 C16.3892947 5.87927446 14.5899896 4.11876965 11.7660012 4.11428571 C8.92723639 4.11876965 7.12622628 5.87983495 7.1296362 8.686778 C7.12565796 11.4920396 8.92723639 13.2531049 11.7660012 13.2592703 M9.98693619 19.0937766 L20.032583 19.0937766 C21.5426127 19.0993815 23.1231141 18.1639207 23.1236824 16.8075304 L23.1236824 9.94879202 C23.1225458 6.28373599 18.493569 6.28373599 18.4873175 9.94879202 L18.4873175 14.5212843 L9.98693619 14.5212843 C6.17975198 14.5476274 6.17463709 19.0993815 9.98693619 19.0937766 M47.6268375 11.7725153 C47.6313841 9.19088998 46.0082585 7.19217614 42.9904726 7.20002303 L24.4444444 7.20002303 L24.4444444 19.3929621 L47.6268375 19.3929621 L47.6268375 11.7725153 M49.4553194 9.85891103 L49.4553194 20.5284334 L5.40928408 20.5284334 L5.40928408 3.0001726 C5.40303254 -1.00005753 -0.00397605472 -1.00005753 2.19419424e-06 3.0001726 L2.19419424e-06 35.0081791 L5.40928408 35.0081791 L5.40928408 26.6249029 L49.4553194 26.6249029 L49.4553194 35.0081791 L54.8646013 35.0081791 L54.8646013 9.85891103 C54.8788093 5.6389681 49.442248 5.6389681 49.4553194 9.85891103"/>
+                                        </Viewbox>
+                                    </PivotItem.Header>
+                                    <views:SearchHotelsView />
+                                </PivotItem>
+                                <PivotItem>
+                                    <PivotItem.Header>
+                                        <Viewbox Width="50" Height="40" Margin="20 5 20 5">
+                                            <PathIcon Data="F1M23.716,0.284C23.476,0.044 23.18,-0.044 22.829,0.02 21.454,0.244 20.431,0.676 19.759,1.315 18.64,2.435 16.642,4.449 13.764,7.358L1.966,3.617C1.774,3.553,1.614,3.586,1.487,3.713L0,5.2 10.119,10.955 5.036,16.039 1.439,14.84 0,16.326 4.556,19.444 7.674,24 9.16,22.561 7.913,18.964 13.045,13.881 18.8,24 20.287,22.513C20.415,22.385,20.447,22.226,20.383,22.034L16.642,10.236 22.685,4.241C23.324,3.569 23.756,2.546 23.98,1.171 24.044,0.82 23.956,0.524 23.716,0.284"/>
+                                        </Viewbox>
+                                    </PivotItem.Header>
+                                    <TextBlock Text="planes and flights" />
+                                </PivotItem>
+                                <PivotItem>
+                                    <PivotItem.Header>
+                                        <Viewbox Width="50" Height="40" Margin="20 5 20 5">
+                                            <PathIcon Data="F1 M 121.233,38.2618L 110.305,10.0391C 108.26,4.63667 103.794,0.0390778 95.3399,1.52588e-005L 79.9271,1.52588e-005L 53.584,1.52588e-005L 37.9024,1.52588e-005C 29.4883,0.0390778 25.0215,4.63667 22.9402,10.0391L 12.0078,38.2618C 7.668,38.8216 -0.0130615,43.9219 0,53.5834L 0,89.5183L 10.6653,89.5183L 10.6653,100.988C 10.6387,115.13 30.6504,114.962 30.6452,100.988L 30.6452,89.5183L 66.6667,89.5183L 102.598,89.5183L 102.598,100.988C 102.641,114.962 122.654,115.13 122.667,100.988L 122.667,89.5183L 133.333,89.5183L 133.333,53.5834C 133.299,43.9219 125.613,38.8216 121.233,38.2618 Z M 20.9695,67.832C 15.8575,67.8463 11.7188,63.5834 11.7403,58.3385C 11.7188,53.0585 15.8575,48.7904 20.9695,48.8347C 26.0651,48.7904 30.2037,53.0585 30.1972,58.3385C 30.2037,63.5834 26.0639,67.8451 20.9695,67.832 Z M 66.6667,37.9962L 66.5775,37.9962L 23.388,37.9962L 31.6308,15.7722C 32.6256,12.6172 34.1693,10.3607 37.8157,10.306L 66.5775,10.306L 66.6667,10.306L 95.5208,10.306C 99.1107,10.3607 100.659,12.6159 101.701,15.7722L 109.945,37.9962L 66.6667,37.9962 Z M 112.365,67.832C 107.217,67.8463 103.075,63.5834 103.048,58.3385C 103.075,53.0585 107.217,48.7904 112.365,48.8347C 117.425,48.7904 121.563,53.0585 121.594,58.3385C 121.563,63.5834 117.425,67.8451 112.365,67.832 Z "/>
+                                        </Viewbox>
+                                    </PivotItem.Header>
+                                    <TextBlock Text="Cars cars and more cars" />
+                                </PivotItem>
+                            </Pivot>
+                        </ScrollViewer>
+
+                        <TextBlock x:Name="StatusBlock" Grid.Row="2" Margin="12, 10, 12, 10" Visibility="Collapsed"/>
+                    </Grid>
+                </Grid>
+            </SplitView.Content>
         
     </SplitView>
 

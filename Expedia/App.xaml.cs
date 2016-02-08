@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading;
+using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
@@ -40,9 +42,10 @@ namespace Expedia
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
-            ExpediaKernel.Instance().Get<ILocationService>().GetSetCurrentLocation();
+            await ExpediaKernel.Instance().Get<ILocationService>().GetSetCurrentLocation();
+            
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
             {

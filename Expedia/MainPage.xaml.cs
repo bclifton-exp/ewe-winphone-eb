@@ -51,37 +51,37 @@ namespace Expedia
 
         private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
         {
-            if (ShellFrame.CanGoBack)
-            {
-                e.Handled = true;
-                this.ShellFrame.GoBack();
-            }
-            else
-            {
-                Application.Current.Exit();
-            }
+            //if (ShellFrame.CanGoBack)
+            //{
+            //    e.Handled = true;
+            //    this.ShellFrame.GoBack();
+            //}
+            //else
+            //{
+            //    Application.Current.Exit();
+            //}
         }
 
         private void CurrentViewOnBackRequested(object sender, BackRequestedEventArgs backRequestedEventArgs)
         {
-            if (ShellFrame.CanGoBack)
-            {
-                this.ShellFrame.GoBack();
-            }
-            else
-            {
-                Application.Current.Exit();
-            }
+            //if (ShellFrame.CanGoBack)
+            //{
+            //    this.ShellFrame.GoBack();
+            //}
+            //else
+            //{
+            //    Application.Current.Exit();
+            //}
         }
 
         private void Hotels_OnClick(object sender, RoutedEventArgs e)
         {
-            ShellFrame.Navigate(typeof(SearchHotelsView));
+            //ShellFrame.Navigate(typeof(SearchHotelsView));
         }
 
         private void Flights_OnClick(object sender, RoutedEventArgs e)
         {
-            ShellFrame.Navigate(typeof(SearchFlightsView));
+            //ShellFrame.Navigate(typeof(SearchFlightsView));
         }
     }
 }

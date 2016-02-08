@@ -107,7 +107,10 @@ namespace Expedia.Client.ViewModels
         {
             SelectedSearchSuggestion = suggestionResult;
             var geoPoint = new BasicGeoposition {Latitude = double.Parse(suggestionResult.Coordinates.Latitude), Longitude = double.Parse(suggestionResult.Coordinates.Longitude)};
-            MapControl.Center = new Geopoint(geoPoint);
+            if (MapControl != null)
+            {
+                MapControl.Center = new Geopoint(geoPoint);
+            }
             IsSuggestionListOpen = false;
         }
 

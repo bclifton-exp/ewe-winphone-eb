@@ -6,6 +6,7 @@
         <ResourceDictionary Source="AutoSuggestBox.xaml" />
         <ResourceDictionary Source="PathIcons.xaml" />
         <ResourceDictionary Source="RadioButton.xaml"/>
+        <ResourceDictionary Source="Pivot.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

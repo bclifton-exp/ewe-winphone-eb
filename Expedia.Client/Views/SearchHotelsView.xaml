@@ -55,7 +55,7 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
-        <Grid Grid.Column="0" Margin="10 40 10 10">
+        <Grid Grid.Column="0" Margin="10 20 35 10"> <!--35 is the magic number for the pivot spacing-->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -104,6 +104,6 @@
 					VerticalAlignment="Bottom"/>
 
         </Grid>
-            <maps:MapControl x:Name="Map" Visibility="Collapsed" Loading="Map_OnLoading" Grid.Column="1" MapServiceToken="uTSDW7FxvBNrtGPD67ZQ~Cws5kVsbllSUip_fVoHCIQ~AiAsYMbHCnN32naqWWDEeulT3_C1XVy1yPU91wba8Knm9G1D31rZOIMDss4jJFtO" ZoomLevel="14" />
+            <maps:MapControl x:Name="Map" Visibility="Collapsed" Loading="Map_OnLoading" Margin="-15 0 0 0" Grid.Column="1" MapServiceToken="uTSDW7FxvBNrtGPD67ZQ~Cws5kVsbllSUip_fVoHCIQ~AiAsYMbHCnN32naqWWDEeulT3_C1XVy1yPU91wba8Knm9G1D31rZOIMDss4jJFtO" ZoomLevel="14" />
     </Grid>
 </Page>

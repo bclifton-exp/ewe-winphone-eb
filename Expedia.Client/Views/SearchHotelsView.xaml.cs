@@ -59,12 +59,19 @@ namespace Expedia.Client.Views
             var context = DataContext as SearchHotelsViewModel;
             var map = sender as MapControl;
             context.MapControl = map;
-            var geoPoint = new BasicGeoposition
+            if (context.MapCenter != null)
             {
-                Latitude = context.MapCenter.Coordinate.Point.Position.Latitude,
-                Longitude = context.MapCenter.Coordinate.Point.Position.Longitude
-            };
-            map.Center = new Geopoint(geoPoint);
+                var geoPoint = new BasicGeoposition
+                {
+                    Latitude = context.MapCenter.Coordinate.Point.Position.Latitude,
+                    Longitude = context.MapCenter.Coordinate.Point.Position.Longitude
+                };
+                map.Center = new Geopoint(geoPoint);
+            }
+            else
+            {
+                map.Center = new Geopoint(new BasicGeoposition());
+            }
         }
     }
 }
