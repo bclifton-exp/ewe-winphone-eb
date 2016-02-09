@@ -18,7 +18,7 @@ namespace Expedia.Styles.Templates
 
             if (suggestion == null) return Default;
 
-            if (suggestion.Type == SuggestionType.Neighborhood)
+            if (suggestion.Type == SuggestionType.Neighborhood && suggestion.IsLinkedToCity)
             {
                 return Neighborhood;
             }

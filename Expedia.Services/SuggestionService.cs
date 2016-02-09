@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Windows.Graphics.Printing.OptionDetails;
 using Expedia.Client;
 using Expedia.Entites;
 using Expedia.Entities.Suggestions;
@@ -87,22 +88,38 @@ namespace Expedia.Services
         private List<List<SuggestionResult>> SortByMulticity(SuggestionsResponse deserializedResults)
         {
             var multiCityResults = deserializedResults.Suggestions.Where(suggestion => suggestion.Type == SuggestionType.Multicity).ToList();
-            var treeResults = deserializedResults.Suggestions.Where(suggestion => suggestion.Type == SuggestionType.Neighborhood).ToList();
+            var neighborhoodResults = deserializedResults.Suggestions.Where(suggestion => suggestion.Type == SuggestionType.Neighborhood).ToList();
+            var unlinkedNeighborhoodResults = deserializedResults.Suggestions.Where(suggestion => suggestion.Type == SuggestionType.Neighborhood).ToList();
 
-            var listOfMultiCityAndNodes = new List<List<SuggestionResult>>();
+            var sortedSuggestions = new List<List<SuggestionResult>>();
+            
 
             foreach (var multiCity in multiCityResults)
             {
-                var multiCityAndNodes = new List<SuggestionResult> {multiCity};
-                multiCityAndNodes.AddRange(treeResults.Where(neighborhood => multiCity.Id == neighborhood.HierarchyInfo.Airport.MultiCity));
-
-                listOfMultiCityAndNodes.Add(multiCityAndNodes);
+                var multiCityNodes = new List<SuggestionResult> {multiCity};
+                var linkedNeighborhoods = neighborhoodResults.Where(neighborhood => multiCity.Id == neighborhood.HierarchyInfo.Airport.MultiCity).ToList();
+                foreach (var hood in linkedNeighborhoods)
+                {
+                    hood.IsLinkedToCity = true;
+                }
+                multiCityNodes.AddRange(linkedNeighborhoods);
+                sortedSuggestions.Add(multiCityNodes);
+            }
+            
+            foreach (var neighborhood in from list in sortedSuggestions
+                                         from neighborhood in neighborhoodResults
+                                         where list.Contains(neighborhood)
+                                         select neighborhood)
+            {
+                unlinkedNeighborhoodResults.Remove(neighborhood);
             }
 
-            var otherResults = deserializedResults.Suggestions.Where(suggestion => suggestion.Type != SuggestionType.Multicity && suggestion.Type != SuggestionType.Neighborhood).ToList();
-            listOfMultiCityAndNodes.Add(otherResults);
+            sortedSuggestions.Add(unlinkedNeighborhoodResults);
 
-            return listOfMultiCityAndNodes;
+            var otherResults = deserializedResults.Suggestions.Where(suggestion => suggestion.Type != SuggestionType.Multicity && suggestion.Type != SuggestionType.Neighborhood).ToList();
+            sortedSuggestions.Add(otherResults);
+
+            return sortedSuggestions;
 
         }
     }

@@ -94,6 +94,9 @@ namespace Expedia.Client.ViewModels
         {
             var results = await SuggestionService.Suggest(new CancellationToken(false), inputQuery, Lob);
 
+            if (results == null)
+                return;
+
             var orderedSuggestions = new ObservableCollection<SuggestionResult>();
             foreach (var suggestion in results.SortedSuggestionsList.SelectMany(suggestionList => suggestionList))
             {

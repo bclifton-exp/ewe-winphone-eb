@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
@@ -16,6 +17,9 @@ namespace Expedia.Services.Base
                 {
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                     HttpResponseMessage response = await client.GetAsync(requestUri, ct);
+
+                    if (response.StatusCode == HttpStatusCode.BadRequest)
+                        return null;
 
                     var jsonData = await response.Content.ReadAsStringAsync();
 

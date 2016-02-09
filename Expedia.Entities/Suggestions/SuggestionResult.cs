@@ -44,6 +44,8 @@ namespace Expedia.Entities.Suggestions
 	        get { return GaiaId; }
 	    }
 
+        public bool IsLinkedToCity { get; set; }
+
   //      private static readonly Func<SuggestionResult, object[]> EqualityFields = (o => new object[] { o.Id });
 
 		//public override bool Equals(object obj)
