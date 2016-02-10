@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Expedia.Client.Converters;
 using Expedia.Client.Interfaces;
 using Expedia.Client.ViewModels;
 using Expedia.Entities.Suggestions;
@@ -24,9 +25,6 @@ using Expedia.Injection;
 
 namespace Expedia.Client.Views
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class SearchHotelsView : Page
     {
         public SearchHotelsView()
@@ -35,8 +33,7 @@ namespace Expedia.Client.Views
             this.InitializeComponent();
         }
 
-        private void AutoSuggestBox_OnSuggestionChosen(AutoSuggestBox sender,
-            AutoSuggestBoxSuggestionChosenEventArgs args)
+        private void AutoSuggestBox_OnSuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
         {
             var context = DataContext as SearchHotelsViewModel;
             context.SetSearchSuggestion(args.SelectedItem as SuggestionResult);
@@ -72,6 +69,31 @@ namespace Expedia.Client.Views
             {
                 map.Center = new Geopoint(new BasicGeoposition());
             }
+        }
+
+        //CalendarDatePicker is super broken so all of this nasty code is necessary until msoft fixes it.
+        private void CalendarDatePicker_OnStartDateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
+        {
+            var context = DataContext as SearchHotelsViewModel;
+            context.StartDate = sender.Date.Value.Date;
+        }   
+
+        private void CalendarDatePicker_OnEndDateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
+        {
+            var context = DataContext as SearchHotelsViewModel;
+            context.EndDate = sender.Date.Value.Date;
+        }
+
+        private void StartDateLoaded(object sender, RoutedEventArgs e)
+        {
+            var calendar = sender as CalendarDatePicker;
+            calendar.Date = DateTime.Now;
+        }
+
+        private void EndDateLoaded(object sender, RoutedEventArgs e)
+        {
+            var calendar = sender as CalendarDatePicker;
+            calendar.Date = DateTime.Now.AddDays(1);
         }
     }
 }

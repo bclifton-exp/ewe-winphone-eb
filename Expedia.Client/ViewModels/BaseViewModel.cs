@@ -19,8 +19,76 @@ namespace Expedia.Client.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
+        #region Properties
+
         public readonly ISuggestionService SuggestionService;
         private SuggestionLob Lob { get; set; }
+
+        private ObservableCollection<int> _adultCountSource;
+        public ObservableCollection<int> AdultCountSource
+        {
+            get { return _adultCountSource; }
+            set
+            {
+                _adultCountSource = value;
+                OnPropertyChanged("AdultCountSource");
+            }
+        }
+
+        private ObservableCollection<int> _childCountSource;
+        public ObservableCollection<int> ChildCountSource
+        {
+            get { return _childCountSource; }
+            set
+            {
+                _childCountSource = value;
+                OnPropertyChanged("ChildCountSource");
+            }
+        }
+
+        private int _adultCount;
+        public int AdultCount
+        {
+            get { return _adultCount; }
+            set
+            {
+                _adultCount = value;
+                OnPropertyChanged("AdultCount");
+            }
+        }
+
+        private int _childCount;
+        public int ChildCount
+        {
+            get { return _childCount; }
+            set
+            {
+                _childCount = value;
+                OnPropertyChanged("ChildCount");
+            }
+        }
+
+        private DateTime _startDate;
+        public DateTime StartDate
+        {
+            get { return _startDate; }
+            set
+            {
+                _startDate = value;
+                OnPropertyChanged("StartDate");
+            }
+        }
+
+        private DateTime _endDate;
+        public DateTime EndDate
+        {
+            get { return _endDate; }
+            set
+            {
+                _endDate = value;
+                OnPropertyChanged("EndDate");
+            }
+        }
 
         private SuggestionResult _selectedSearchSuggestion;
         public SuggestionResult SelectedSearchSuggestion
@@ -65,12 +133,16 @@ namespace Expedia.Client.ViewModels
                 OnPropertyChanged("MapControl");
             }
         }
-
+        #endregion
 
         public BaseViewModel(SuggestionLob lob)
         {
             SuggestionService = ExpediaKernel.Instance().Get<ISuggestionService>();
             Lob = lob;
+            AdultCountSource = new ObservableCollection<int> { 1, 2, 3, 4, 5, 6 };
+            ChildCountSource = new ObservableCollection<int> { 0, 1, 2, 3, 4, 5 };
+            AdultCount = 1;
+            ChildCount = 0;
         }
 
         public async void GetNearbySuggestions()

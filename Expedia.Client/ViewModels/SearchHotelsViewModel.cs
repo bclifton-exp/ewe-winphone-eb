@@ -6,11 +6,14 @@ using System.Text;
 using System.Threading;
 using System.Windows.Input;
 using Windows.Devices.Geolocation;
+using Windows.UI.Xaml.Controls;
 //using Bing.Maps;
 using Expedia.Client.Interfaces;
 using Expedia.Client.Utilities;
+using Expedia.Entities.Hotels;
 using Expedia.Entities.Suggestions;
 using Expedia.Services.Interfaces;
+using Microsoft.Practices.Prism.Commands;
 
 namespace Expedia.Client.ViewModels
 {
@@ -48,6 +51,32 @@ namespace Expedia.Client.ViewModels
             _locationService = locationService;
             GetNearbySuggestions();
             MapCenter = GeoLocationMemory.Instance().GetCurrentGeoposition();
+            SearchHotels = new DelegateCommand(ExecuteHotelSearch);
+        }
+
+        private void ExecuteHotelSearch()
+        {
+            var check1 = StartDate;
+            var check2 = EndDate;
+
+            var check3 = AdultCount;
+            var check4 = ChildCount;
+
+            var check5 = SelectedSearchSuggestion;
+
+            var check6 = SelectedSearchSuggestion.HotelId;
+
+            var hotelSearchParams = new SearchHotelsLocalParameters
+            {
+                //LocationName = locationName,
+                //LocationRegionId = regionId,
+                //NearestAirportCode = nearestAirportCode,
+                //CheckInDate = checkInDate,
+                //CheckOutDate = checkOutDate,
+                //AdultsCount = adultsCount,
+                //ChildrenAges = childrenAges,
+                //RoomsCount = roomsCount //this is always one until we have a control to pick
+            };
         }
     }
 }

@@ -29,7 +29,7 @@ namespace Expedia.Services
 
             if (lob == SuggestionLob.HOTELS)
             {
-                regionTypes = "airport|city|multicity|neighborhood|metrocode|hotel";
+                regionTypes = "airport|city|multicity|neighborhood|metrocode|hotel|poi";
             }
 
             var request = new ApiRequest(Constants.Urls.BaseSuggestionUrl);
