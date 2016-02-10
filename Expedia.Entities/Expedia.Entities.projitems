@@ -26,6 +26,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Cars\SortCarsByType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Coordinate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\AuthenticationException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\ChildAgeItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\FacebookAccount.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\RegionActivityBanner.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ErrorCodes.cs" />

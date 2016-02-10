@@ -66,6 +66,8 @@ namespace Expedia.Client.ViewModels
 
             var check6 = SelectedSearchSuggestion.HotelId;
 
+            var check7 = ChildAges;
+
             var hotelSearchParams = new SearchHotelsLocalParameters
             {
                 //LocationName = locationName,

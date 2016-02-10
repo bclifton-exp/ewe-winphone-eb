@@ -10,6 +10,7 @@ using Windows.Devices.Geolocation;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Maps;
 using Expedia.Client.Utilities;
+using Expedia.Entities.Entities;
 using Expedia.Entities.Extensions;
 using Expedia.Entities.Suggestions;
 using Expedia.Injection;
@@ -64,7 +65,19 @@ namespace Expedia.Client.ViewModels
             set
             {
                 _childCount = value;
+                BuildChildAgeControls(value);
                 OnPropertyChanged("ChildCount");
+            }
+        }
+
+        private ObservableCollection<ChildAgeItem> _childAges;
+        public ObservableCollection<ChildAgeItem> ChildAges
+        {
+            get { return _childAges; }
+            set
+            {
+                _childAges = value;
+                OnPropertyChanged("ChildAges");
             }
         }
 
@@ -143,6 +156,7 @@ namespace Expedia.Client.ViewModels
             ChildCountSource = new ObservableCollection<int> { 0, 1, 2, 3, 4, 5 };
             AdultCount = 1;
             ChildCount = 0;
+            ChildAges = new ObservableCollection<ChildAgeItem>();
         }
 
         public async void GetNearbySuggestions()
@@ -200,6 +214,30 @@ namespace Expedia.Client.ViewModels
             if (string.IsNullOrEmpty(input))
             {
                 GetNearbySuggestions();
+            }
+        }
+
+        private void BuildChildAgeControls(int childCount)
+        {
+            if (ChildAges != null)
+            {
+                if (ChildAges.Count > childCount)
+                {
+                    while (ChildAges.Count > childCount)
+                    {
+                        ChildAges.Remove(ChildAges.Last());
+                    }
+                }
+
+                if (ChildAges.Count < childCount)
+                {
+                    while (ChildAges.Count < childCount)
+                    {
+                        ChildAges.Add(ChildAges.Count == 0
+                            ? new ChildAgeItem(1)
+                            : new ChildAgeItem(ChildAges.IndexOf(ChildAges.Last()) + 2));
+                    }
+                }
             }
         }
 

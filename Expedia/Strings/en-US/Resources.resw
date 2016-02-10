@@ -1,6 +1,64 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- ==== IGNORE BELOW SECTION FOR TRANSLATION ==== -->
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
@@ -59,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <!-- ==== IGNORE ABOVE SECTION FOR TRANSLATION ==== -->
-  
-  <!-- Main home screen search -->
   <data name="FlightsTab.Text" xml:space="preserve">
     <value>Flights</value>
     <comment>Main Flights tab button</comment>
@@ -78,8 +133,6 @@
     <value>Activities</value>
     <comment>Main Activities tab button</comment>
   </data>
-
-  <!-- Hotels -->
   <data name="SearchHotelsText.Text" xml:space="preserve">
     <value>Search Hotels</value>
   </data>
@@ -97,14 +150,14 @@
   </data>
   <data name="CheckinLabel.Text" xml:space="preserve">
     <value>Check in</value>
-	<comment>Same as above Checkin.Header</comment>
+    <comment>Same as above Checkin.Header</comment>
   </data>
   <data name="Checkout.Header" xml:space="preserve">
     <value>Check out</value>
   </data>
   <data name="CheckoutLabel.Text" xml:space="preserve">
     <value>Check out</value>
-	<comment>Same as above Checkout.Header</comment>
+    <comment>Same as above Checkout.Header</comment>
   </data>
   <data name="Adults.Header" xml:space="preserve">
     <value>Adults (18+)</value>
@@ -117,21 +170,19 @@
   </data>
   <data name="SearchButton.Content" xml:space="preserve">
     <value>Search</value>
-	<comment>Big yellow search button</comment>
+    <comment>Big yellow search button</comment>
   </data>
-
-  <!-- Flights -->
   <data name="SearchFlights.Text" xml:space="preserve">
     <value>Search Flights</value>
     <comment>Flight search header</comment>
   </data>
   <data name="RoundTripButton.Content" xml:space="preserve">
     <value>Roundtrip</value>
-	<comment>Roundtrip button</comment>
+    <comment>Roundtrip button</comment>
   </data>
   <data name="OneWayButton.Content" xml:space="preserve">
     <value>One way</value>
-	<comment>One way button</comment>
+    <comment>One way button</comment>
   </data>
   <data name="FlyingFrom.Text" xml:space="preserve">
     <value>Flying from</value>
@@ -150,20 +201,18 @@
   </data>
   <data name="DepartingText.Text" xml:space="preserve">
     <value>Departing</value>
-	<comment>Same as above, used for error template</comment>
+    <comment>Same as above, used for error template</comment>
   </data>
   <data name="ReturningHeader.Header" xml:space="preserve">
     <value>Returning</value>
   </data>
   <data name="ReturningText.Text" xml:space="preserve">
     <value>Returning</value>
-	<comment>Same as above, used for error template</comment>
+    <comment>Same as above, used for error template</comment>
   </data>
   <data name="DatesErrorMessage.Text" xml:space="preserve">
     <value>There are errors in your date(s). Please modify to continue.</value>
   </data>
-  
-  <!--Search Cars-->
   <data name="SearchCars.Text" xml:space="preserve">
     <value>Search Cars</value>
     <comment>Cars search header</comment>
@@ -192,27 +241,25 @@
   <data name="CarsDestinationLocation.PlaceholderContent" xml:space="preserve">
     <value>Same as Pick-Up</value>
   </data>
-  
-  <!--Cars Results Screen-->
   <data name="NoCarResults.Text" xml:space="preserve">
     <value>No Results</value>
   </data>
-    <data name="PassengersText.Text" xml:space="preserve">
+  <data name="PassengersText.Text" xml:space="preserve">
     <value>Passengers</value>
   </data>
-   <data name="DoorsText.Text" xml:space="preserve">
+  <data name="DoorsText.Text" xml:space="preserve">
     <value>Doors</value>
   </data>
   <data name="BagsText.Text" xml:space="preserve">
     <value>Bags</value>
   </data>
-    <data name="MileageText.Text" xml:space="preserve">
+  <data name="MileageText.Text" xml:space="preserve">
     <value>Unlimited Mileage</value>
   </data>
-   <data name="PassengersRadio.Content" xml:space="preserve">
+  <data name="PassengersRadio.Content" xml:space="preserve">
     <value>Passengers</value>
   </data>
-   <data name="DoorsRadio.Content" xml:space="preserve">
+  <data name="DoorsRadio.Content" xml:space="preserve">
     <value>Doors</value>
   </data>
   <data name="BagsRadio.Content" xml:space="preserve">
@@ -221,7 +268,7 @@
   <data name="ReserveButton.Content" xml:space="preserve">
     <value>Reserve</value>
   </data>
-   <data name="CarsAvailable.Text" xml:space="preserve">
+  <data name="CarsAvailable.Text" xml:space="preserve">
     <value>cars available</value>
   </data>
   <data name="FilterCompanies.Text" xml:space="preserve">
@@ -236,26 +283,21 @@
   <data name="UnlimitedMileage.Text" xml:space="preserve">
     <value>Unlimited Mileage</value>
   </data>
-  
-
-  <!-- Hotel Search Results Screen -->
   <data name="AVP_Loading.Text" xml:space="preserve">
     <value>loading</value>
-	<comment>Shown while waiting for search results</comment>
+    <comment>Shown while waiting for search results</comment>
   </data>
   <data name="Refreshing.Text" xml:space="preserve">
     <value>Refreshing...</value>
   </data>
   <data name="HotelsIn.ResultType" xml:space="preserve">
     <value>Hotels in</value>
-	<comment>Hotels in CITY NAME</comment>
+    <comment>Hotels in CITY NAME</comment>
   </data>
   <data name="HotelsAvailable.Text" xml:space="preserve">
     <value>hotels available</value>
-	<comment>x hotels available</comment>
+    <comment>x hotels available</comment>
   </data>
-
-  <!-- Sorting -->
   <data name="SortBy.Content" xml:space="preserve">
     <value>Sort by</value>
     <comment>Menu button to enable sorting</comment>
@@ -266,17 +308,15 @@
   <data name="SortGuestRating.Content" xml:space="preserve">
     <value>Guest Rating</value>
   </data>
-   <data name="SortStarRating.Content" xml:space="preserve">
+  <data name="SortStarRating.Content" xml:space="preserve">
     <value>Star Rating</value>
-  </data> 
+  </data>
   <data name="SortBestDeals.Content" xml:space="preserve">
     <value>Best Deals</value>
   </data>
   <data name="SortMostPopular.Content" xml:space="preserve">
     <value>Most Popular</value>
   </data>
-
-  <!-- Filtering -->
   <data name="FilterBy.Content" xml:space="preserve">
     <value>Filter by</value>
     <comment>Menu button to enable filtering</comment>
@@ -296,28 +336,21 @@
   <data name="FilterAccessibility.Text" xml:space="preserve">
     <value>Accessibility</value>
   </data>
-  
-  <!--Cars-->
-    <data name="DailyText.Text" xml:space="preserve">
+  <data name="DailyText.Text" xml:space="preserve">
     <value>Daily</value>
   </data>
-  
-   <data name="DailyTextExpander.DailyText" xml:space="preserve">
+  <data name="DailyTextExpander.DailyText" xml:space="preserve">
     <value>Daily</value>
   </data>
-
   <data name="DailyTextExpander.OrSimilarText" xml:space="preserve">
     <value>or similar</value>
   </data>
-  
   <data name="TotalText.Text" xml:space="preserve">
     <value>Total</value>
   </data>
-    <data name="OrSimilarText.Text" xml:space="preserve">
+  <data name="OrSimilarText.Text" xml:space="preserve">
     <value>or similar</value>
   </data>
-
-  <!-- Hotel List -->
   <data name="AvgNight.Text" xml:space="preserve">
     <value>avg/night</value>
   </data>
@@ -338,23 +371,19 @@
   </data>
   <data name="LateNightBannerMessage" xml:space="preserve">
     <value>Need a Late night check in?</value>
-	<comment>Banner shows only late at night</comment>
+    <comment>Banner shows only late at night</comment>
   </data>
-
-  <!-- Flight Search Results Screen-->
   <data name="DeparturesTo.ResultType" xml:space="preserve">
     <value>Departures to</value>
-	<comment>e.g. Departures to San Francisco</comment>
+    <comment>e.g. Departures to San Francisco</comment>
   </data>
   <data name="FlightsText.Text" xml:space="preserve">
     <value>flights available</value>
   </data>
   <data name="SelectAFlightTo.Text" xml:space="preserve">
     <value>Select a flight to</value>
-	<comment>e.g. Select a flight to San Francisco</comment>
+    <comment>e.g. Select a flight to San Francisco</comment>
   </data>
-  
-  <!-- Sorting -->
   <data name="SortDuration.Content" xml:space="preserve">
     <value>Duration</value>
   </data>
@@ -364,16 +393,12 @@
   <data name="SortDeparture.Content" xml:space="preserve">
     <value>Departure</value>
   </data>
-
-  <!-- Filtering -->
   <data name="FilterStops.Text" xml:space="preserve">
     <value>Stops</value>
   </data>
   <data name="FilterAirlines.Text" xml:space="preserve">
     <value>Airlines</value>
   </data>
-  
-  <!-- Return flight selection -->
   <data name="YourSelectedDeparture.Text" xml:space="preserve">
     <value>Your selected departure</value>
   </data>
@@ -384,8 +409,6 @@
   <data name="SelectYourReturnFlightTo.Text" xml:space="preserve">
     <value>Select your return flight to</value>
   </data>
-
-  <!-- Side navigation drawer -->
   <data name="carsMenuButton.Content" xml:space="preserve">
     <value>cars</value>
   </data>
@@ -403,7 +426,7 @@
   </data>
   <data name="myItineraryMenuButton.Content" xml:space="preserve">
     <value>my itinerary</value>
-  </data> 
+  </data>
   <data name="signOutMenuButton.Content" xml:space="preserve">
     <value>sign out</value>
   </data>
@@ -419,8 +442,6 @@
   <data name="fullSiteMenuButton.Content" xml:space="preserve">
     <value>website</value>
   </data>
-
-  <!-- Settings Screen -->
   <data name="SettingsHeader.Text" xml:space="preserve">
     <value>SETTINGS</value>
     <comment>Header on settings page</comment>
@@ -446,9 +467,6 @@
     <value>Call Support</value>
     <comment>Call Support button on settings page</comment>
   </data>
-  
-
-  <!-- About Screen -->
   <data name="AboutHeader.Text" xml:space="preserve">
     <value>ABOUT</value>
     <comment>Label on about page</comment>
@@ -458,7 +476,7 @@
   </data>
   <data name="AboutButton.Content" xml:space="preserve">
     <value>About</value>
-	<comment>About button links to Expedia webpage</comment>
+    <comment>About button links to Expedia webpage</comment>
   </data>
   <data name="PrivacyButton.Content" xml:space="preserve">
     <value>Privacy</value>
@@ -466,8 +484,6 @@
   <data name="LegalButton.Content" xml:space="preserve">
     <value>Legal</value>
   </data>
-
-  <!-- Sign In Screen -->
   <data name="SignIn.Text" xml:space="preserve">
     <value>Sign In</value>
   </data>
@@ -494,15 +510,15 @@
   </data>
   <data name="SignInButton.Content" xml:space="preserve">
     <value>Sign In</value>
-	<comment>Yellow Sign In button</comment>
+    <comment>Yellow Sign In button</comment>
   </data>
   <data name="CreateAccountButton.Content" xml:space="preserve">
     <value>Create Account</value>
-	<comment>Yellow Account Creation button</comment>
+    <comment>Yellow Account Creation button</comment>
   </data>
   <data name="CreateAnAccountButton.Content" xml:space="preserve">
     <value>Create an Account</value>
-	<comment>Yellow Create An Account button</comment>
+    <comment>Yellow Create An Account button</comment>
   </data>
   <data name="CreateAccount.Text" xml:space="preserve">
     <value>Create an Account</value>
@@ -521,7 +537,7 @@
   </data>
   <data name="OrText.Text" xml:space="preserve">
     <value>or</value>
-	<comment>'or' text between 'Continue as a Guest' button and 'Connect' buttons</comment>
+    <comment>'or' text between 'Continue as a Guest' button and 'Connect' buttons</comment>
   </data>
   <data name="ConnectButton.Content" xml:space="preserve">
     <value>Connect</value>
@@ -529,8 +545,6 @@
   <data name="ConfirmExpediaIdentity.Text" xml:space="preserve">
     <value>Please confirm your Expedia identity</value>
   </data>
-
-  <!-- Menu Bar buttons -->
   <data name="AppBarHome.Label" xml:space="preserve">
     <value>home</value>
   </data>
@@ -542,28 +556,10 @@
   </data>
   <data name="AppBarPin.NullOrFalseValue" xml:space="preserve">
     <value>pin to start</value>
-	<comment>Add shortcut (pin) to page on phone homescreen</comment>
+    <comment>Add shortcut (pin) to page on phone homescreen</comment>
   </data>
   <data name="AppBarPin.TrueValue" xml:space="preserve">
     <value>unpin</value>
-	<comment>Remove shortcut (pin) for page from phone homescreen</comment>
+    <comment>Remove shortcut (pin) for page from phone homescreen</comment>
   </data>
-
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </root>
