@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
+using System.Windows.Input;
 using Windows.Devices.Geolocation;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Maps;
@@ -18,7 +19,7 @@ using Expedia.Services.Interfaces;
 
 namespace Expedia.Client.ViewModels
 {
-    public class BaseViewModel : INotifyPropertyChanged
+    public class BaseSearchViewModel : INotifyPropertyChanged
     {
         #region Properties
 
@@ -148,7 +149,7 @@ namespace Expedia.Client.ViewModels
         }
         #endregion
 
-        public BaseViewModel(SuggestionLob lob)
+        public BaseSearchViewModel(SuggestionLob lob)
         {
             SuggestionService = ExpediaKernel.Instance().Get<ISuggestionService>();
             Lob = lob;
@@ -173,6 +174,8 @@ namespace Expedia.Client.ViewModels
                 }
 
                 SearchSuggestions = orderedSuggestions;
+
+                SelectedSearchSuggestion = null;
             }
         }
 
@@ -190,6 +193,8 @@ namespace Expedia.Client.ViewModels
             }
 
             SearchSuggestions = orderedSuggestions;
+
+            SelectedSearchSuggestion = null;
         }
 
         public void SetSearchSuggestion(SuggestionResult suggestionResult)

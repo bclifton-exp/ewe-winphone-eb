@@ -1,31 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Reactive.Linq;
-using System.Text;
-using System.Threading;
-using System.Windows.Input;
+﻿using System.Linq;
 using Windows.Devices.Geolocation;
-using Windows.Foundation;
-using Windows.UI.Xaml.Controls;
+using Expedia.Client.Extensions;
 //using Bing.Maps;
 using Expedia.Client.Interfaces;
 using Expedia.Client.Utilities;
+using Expedia.Client.Views;
 using Expedia.Entities.Hotels;
 using Expedia.Entities.Suggestions;
 using Expedia.Services.Interfaces;
-using Microsoft.Practices.Prism.Commands;
+using GalaSoft.MvvmLight.Command;
 
 namespace Expedia.Client.ViewModels
 {
-    public class SearchHotelsViewModel : BaseViewModel, ISearchHotelsViewModel
+    public class SearchHotelsViewModel : BaseSearchViewModel, ISearchHotelsViewModel
     {
         private IHotelService _hotelService { get; set; }
         private ILocationService _locationService { get; set; }
 
-        private ICommand _searchHotels;
-        public ICommand SearchHotels
+        private RelayCommand _searchHotels;
+        public RelayCommand SearchHotels
         {
             get { return _searchHotels; }
             set
@@ -53,7 +46,7 @@ namespace Expedia.Client.ViewModels
             _locationService = locationService;
             GetNearbySuggestions();
             MapCenter = GeoLocationMemory.Instance().GetCurrentGeoposition();
-            SearchHotels = new DelegateCommand(ExecuteHotelSearch);
+            SearchHotels = new DependentRelayCommand(ExecuteHotelSearch, CanExecuteSearch, this, () => SelectedSearchSuggestion);
         }
 
         private void ExecuteHotelSearch()
@@ -89,7 +82,15 @@ namespace Expedia.Client.ViewModels
             //    hotelSearchParams.LocationLatitude = latitude;
             //    hotelSearchParams.LocationLongitude = longitude;
             //}
+                
+            Navigator.Instance().NavigateForward(SuggestionLob.HOTELS, typeof(HotelResultsView));
         }
+
+        private bool CanExecuteSearch()
+        {
+            return SelectedSearchSuggestion != null; //TODO valid date stuff too
+        }
+
 
         private void DirectHotelSearch(HotelResultItem hotel, SearchHotelsLocalParameters hotelSearchParams)
         {

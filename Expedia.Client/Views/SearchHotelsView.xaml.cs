@@ -21,8 +21,6 @@ using Expedia.Client.ViewModels;
 using Expedia.Entities.Suggestions;
 using Expedia.Injection;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace Expedia.Client.Views
 {
     public sealed partial class SearchHotelsView : Page

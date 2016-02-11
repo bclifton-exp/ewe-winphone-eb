@@ -6,7 +6,7 @@ using Expedia.Entities.Suggestions;
 
 namespace Expedia.Client.ViewModels
 {
-    public class SearchFlightsViewModel : BaseViewModel, ISearchFlightsViewModel
+    public class SearchFlightsViewModel : BaseSearchViewModel, ISearchFlightsViewModel
     {
         public SearchFlightsViewModel() : base(SuggestionLob.FLIGHTS)
         {

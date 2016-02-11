@@ -8,17 +8,18 @@ using Expedia.Client.Interfaces;
 using Expedia.Entities.Suggestions;
 using Expedia.Injection;
 using Expedia.Services.Interfaces;
+using GalaSoft.MvvmLight.Command;
 using Microsoft.Practices.Prism.Commands;
 
 namespace Expedia.Client.ViewModels
 {
-    public class MainPageViewModel : BaseViewModel, IMainPageViewModel
+    public class MainPageViewModel : BaseSearchViewModel, IMainPageViewModel
     {
         private ISettingsService _settingsService { get; set; }
         private ILocationService _locationService { get; set; }
 
-        private ICommand _hamburgerClick;
-        public ICommand HamburgerClick
+        private RelayCommand _hamburgerClick;
+        public RelayCommand HamburgerClick
         {
             get { return _hamburgerClick; }
             set
@@ -46,7 +47,7 @@ namespace Expedia.Client.ViewModels
             _settingsService = settingsService;
             _locationService = locationService;
 
-            HamburgerClick = new DelegateCommand(() =>
+            HamburgerClick = new RelayCommand(() =>
             {
                 IsFlyoutMenuOpen = !IsFlyoutMenuOpen;
             });
