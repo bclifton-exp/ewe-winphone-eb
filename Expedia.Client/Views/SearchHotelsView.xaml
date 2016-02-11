@@ -27,7 +27,9 @@
         </DataTemplate>
     </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" x:Name="SearchColumn"/>
             <ColumnDefinition Width="2*"/>
