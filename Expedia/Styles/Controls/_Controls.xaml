@@ -7,6 +7,7 @@
         <ResourceDictionary Source="PathIcons.xaml" />
         <ResourceDictionary Source="RadioButton.xaml"/>
         <ResourceDictionary Source="Pivot.xaml"/>
+        <ResourceDictionary Source="TextBlock.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

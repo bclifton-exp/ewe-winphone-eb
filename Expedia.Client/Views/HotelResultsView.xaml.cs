@@ -1,18 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
+﻿using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Expedia.Client.Interfaces;
+using Expedia.Client.ViewModels;
+using Expedia.Entities.Hotels;
 using Expedia.Injection;
 
 namespace Expedia.Client.Views
@@ -23,6 +13,13 @@ namespace Expedia.Client.Views
         {
             this.DataContext = ExpediaKernel.Instance().Get<IHotelResultsViewModel>();
             this.InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            var hotelParams = e.Parameter as SearchHotelsLocalParameters;
+            var context = DataContext as HotelResultsViewModel;
+            context.GetHotelResults(hotelParams);
         }
     }
 }

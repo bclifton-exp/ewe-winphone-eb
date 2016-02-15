@@ -83,7 +83,7 @@ namespace Expedia.Client.ViewModels
             //    hotelSearchParams.LocationLongitude = longitude;
             //}
                 
-            Navigator.Instance().NavigateForward(SuggestionLob.HOTELS, typeof(HotelResultsView));
+            Navigator.Instance().NavigateForward(SuggestionLob.HOTELS, typeof(HotelResultsView), hotelSearchParams);
         }
 
         private bool CanExecuteSearch()

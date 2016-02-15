@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 
 namespace Expedia.Client
 {
@@ -65,5 +66,141 @@ namespace Expedia.Client
             public const string ResponsePatternExpiryGroup = "expiry";
             public static readonly Regex ResponseRegex = new Regex(ResponsePattern);
         }
+
+        public static TimeSpan TimerUpdateTiles()
+        {
+            return TimeSpan.FromMinutes(5);
+        }
+
+        public static readonly Regex MatchExpediaHostname = new Regex("^https?://((?:(?:www\\.)(?:expedia.[\\w|\\.]*))|(?:wwwexpediacom.[\\w|\\.]*))/?(?:.*)$", RegexOptions.IgnoreCase);
+        public static readonly Regex MatchFeedbackHostname = new Regex(@"^https?://(?:\w+(?!expedia)\.?)*((?:www)?opinionlab(?:\w*)\.[\w|\.]+)/?(?:.*)$", RegexOptions.IgnoreCase);
+
+        #region All Known File Extensions and URI Schemes
+
+        /// <summary>
+        /// If it's one of these, we'll need to launch the media player
+        /// from http://msdn.microsoft.com/en-us/library/windowsphone/develop/jj207065(v=vs.105).aspx
+        /// </summary>
+        public static readonly string[] PlayMediaFileExtensions =
+        {
+            ".3gp",
+            ".3g2",
+            ".3gpp",
+            ".3gpp2",
+            ".aac",
+            ".aetx",
+            ".asf",
+            ".avi",
+            ".m1v",
+            ".m2v",
+            ".m4a",
+            ".m4r",
+            ".m4v",
+            ".mkv",
+            ".mov",
+            ".mp3",
+            ".mp4",
+            ".mpe",
+            ".mpeg",
+            ".mpg",
+            ".qcp",
+            ".wav",
+            ".wdp",
+            ".wma",
+            ".wmv"
+        };
+
+        /// <summary>
+        /// If it's one of these, we'll need to launch the appropriate handler
+        /// from http://msdn.microsoft.com/en-us/library/windowsphone/develop/jj207065(v=vs.105).aspx
+        /// </summary>
+        public static readonly string[] LaunchFileExtensions =
+        {
+            ".rtf",
+            ".tif",
+            ".tiff",
+            ".one",
+            ".onetoc2",
+            ".doc",
+            ".docm",
+            ".docx",
+            ".dot",
+            ".dotm",
+            ".dotx",
+            ".pdf",
+            ".pptx",
+            ".pptm",
+            ".potx",
+            ".potm",
+            ".ppam",
+            ".ppsx",
+            ".ppsm",
+            ".ppt",
+            ".pps",
+            ".xls",
+            ".xlm",
+            ".xlt",
+            ".xlsx",
+            ".xlsm",
+            ".xltx",
+            ".xltm",
+            ".xlsb",
+            ".xlam",
+            ".xll",
+            ".cer",
+            ".hdp",
+            ".ico",
+            ".icon",
+            ".jxr",
+            ".p7b",
+            ".pem",
+            ".txt",
+            ".url",
+            ".vcf",
+            ".xap",
+            ".xht",
+            ".xsl",
+            ".zip"
+        };
+
+        /// <summary>
+        /// IE will handle these protocols for us
+        /// </summary>
+        public static readonly string[] LaunchUriSchemes =
+        {
+            "callto",
+            "mailto",
+            "ms-",
+            "onenote",
+            "wallet",
+            "zune"
+        };
+
+
+        /// <summary>
+        /// We can skip a bunch of logic if we see these common extensions
+        /// </summary>
+        public static readonly string[] BypassList =
+        {
+            ".com",
+            ".htm",
+            ".html",
+            ".asp",
+            ".aspx",
+            ".js",
+            ".xml"
+        };
+
+        #endregion
+
+        public const string HotelImagesUrl = "https://media1.expedia.com";
+
+        public const int MaximumNumberOfAdults = 6;
+        public const int MaximumNumberOfChildren = 5;
+        public const int MaximumNumberOfPerson = 6;
+        public const int MaximumChildAge = 17;
+
+        public const string AkamaiHeaderKey = "x-akamai-device-characteristics";
+        public const string AkamaiHeaderValue = "is_tablet=true;is_wireless_device=true;is_mobile=true";
     }
 }

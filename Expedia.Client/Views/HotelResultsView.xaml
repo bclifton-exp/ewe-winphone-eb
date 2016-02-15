@@ -5,9 +5,205 @@
     xmlns:local="using:Expedia.Client.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:Expedia.Client.Converters"
     mc:Ignorable="d" NavigationCacheMode="Enabled">
+    
+    <Page.Resources>
+        <converters:ReversedBoolToVisibilityConverter x:Key="ReversedBoolToVisibilityConverter"/>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <converters:CurrencyCodeToVisibilityConverter x:Key="CurrencyCodeToVisibilityConverter"/>
+        <converters:IntBetweenOneAndThreeToVisibilityConverter x:Key="IntBetweenOneAndThreeToVisibilityConverter"/>
+        <converters:IntBetweenOneAndFiveToVisibilityConverter x:Key="IntBetweenOneAndFiveToVisibilityConverter"/>
+        
+        <DataTemplate x:Key="HotelResultItemTemplate">
+            <Grid HorizontalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="115" />
+                    <ColumnDefinition Width="14" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Image Source="{Binding ImageUrl}"
+					   Width="95"
+					   Height="95"
+					   Stretch="UniformToFill"
+					   Grid.RowSpan="4"
+					   Margin="20,0,0,0"
+					   VerticalAlignment="Top" />
+
+                <TextBlock Text="{Binding HotelName}"
+						   Grid.Column="2"
+                           Grid.Row="0" Grid.ColumnSpan="3"
+						   Style="{StaticResource HotelResultsHeaderTextStyle}"
+						   Margin="0,2.5,20,0" />
+
+                <StackPanel Grid.Column="4"
+							Grid.Row="1"
+							Orientation="Vertical"
+							HorizontalAlignment="Right"
+							VerticalAlignment="Top"
+							Margin="0,7.5,20,0"
+							Visibility="{Binding IsSoldOut, Converter={StaticResource ReversedBoolToVisibilityConverter}}">
+
+                    <Grid 
+					  Margin="0.5,0,0,1"
+					  HorizontalAlignment="Right"
+					  VerticalAlignment="Top"
+					  Visibility="{Binding IsSoldOut, Converter={StaticResource ReversedBoolToVisibilityConverter}}">
+                        
+                        <StackPanel Orientation="Horizontal"
+								VerticalAlignment="Top"
+								Visibility="{Binding StrikeThroughPriceIsHigher, Converter={StaticResource BoolToVisibilityConverter}}">
+                            <TextBlock Text="{Binding RateCurrencyCode}"
+								   Visibility="{Binding RateCurrencyCode, Converter={StaticResource CurrencyCodeToVisibilityConverter}}"
+								   Style="{StaticResource StrikeThroughTextStyle}" />
+                            <TextBlock Text="{Binding RateCurrencySymbol}"
+								   Style="{StaticResource StrikeThroughTextStyle}" />
+                            <TextBlock Text="{Binding StrikeThroughPrice}"
+								   Style="{StaticResource StrikeThroughTextStyle}" />
+                        </StackPanel>
+                        <Rectangle Fill="{StaticResource IconPathBrush}"
+							   Height="1"
+							   HorizontalAlignment="Stretch"
+							   VerticalAlignment="Center" />
+                    </Grid>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding RateCurrencyCode}"
+							   Visibility="{Binding RateCurrencyCode, Converter={StaticResource CurrencyCodeToVisibilityConverter}}"
+							   Style="{StaticResource TicketPriceTextStyle}" />
+                        <TextBlock Text="{Binding RateCurrencySymbol}"
+							   Style="{StaticResource TicketPriceTextStyle}" />
+                        <TextBlock Text="{Binding Price}"
+							   Style="{StaticResource TicketPriceTextStyle}" />
+
+                    </StackPanel>
+                </StackPanel>
+                
+                <TextBlock Style="{StaticResource AvgNightTextStyle}"
+						   Text="avg/night"
+						   Grid.Row="2"
+						   Grid.Column="3"
+						   Grid.ColumnSpan="2"
+						   x:Uid="AvgNight"
+						   HorizontalAlignment="Right"
+						   VerticalAlignment="Top"
+						   Margin="0,-12,20,0"
+						   Visibility="{Binding IsSoldOut, Converter={StaticResource ReversedBoolToVisibilityConverter}}" />
+                
+                <StackPanel Orientation="Horizontal"
+							Grid.Row="3"
+							Grid.Column="2"
+							Grid.ColumnSpan="3"
+							HorizontalAlignment="Right"
+							Margin="0,-8,20,0">
+                    
+                    <TextBlock Text="Only"
+                               x:Uid="Only"
+							   Visibility="{Binding RoomsLeftAtThisRate, Converter={StaticResource IntBetweenOneAndThreeToVisibilityConverter}}"
+							   Style="{StaticResource RoomsLeftTextStyle}" />
+                    <TextBlock Text="{Binding RoomsLeftAtThisRate}"
+							   Visibility="{Binding RoomsLeftAtThisRate, Converter={StaticResource IntBetweenOneAndFiveToVisibilityConverter}}"
+							   Style="{StaticResource RoomsLeftTextStyle}"
+							   Margin="4,0" />
+                    
+                    <TextBlock Text="room(s) left!"
+                               x:Uid="RoomsLeft"
+							   Visibility="{Binding RoomsLeftAtThisRate, Converter={StaticResource IntBetweenOneAndFiveToVisibilityConverter}}"
+							   Style="{StaticResource RoomsLeftTextStyle}" />
+
+                    <TextBlock Text="We are sold out!"
+                               x:Uid="SoldOut"
+							   Visibility="{Binding IsSoldOut, Converter={StaticResource BoolToVisibilityConverter}}"
+							   Style="{StaticResource RoomsLeftTextStyle}" />
+                </StackPanel>
+
+                <Rectangle Fill="{StaticResource HotelLineBrush}"
+						   Grid.Row="4"
+						   Grid.ColumnSpan="3"
+						   Grid.Column="2"
+						   HorizontalAlignment="Stretch"
+						   Height="1"
+						   Margin="0,8,1,8" />
+
+                <!--<controls:RatingControl RatingValue="{Binding Rating}"
+										FlowDirection="LeftToRight"
+										HorizontalAlignment="Left"
+										VerticalAlignment="Top"
+										Grid.Row="1"
+										Grid.Column="2"
+										Grid.RowSpan="3"
+										Margin="0,8,0,0"
+										FullIconUri="/Assets/StarRating/StarRatingFull.png"
+										HalfIconUri="/Assets/StarRating/StarRatingHalf.png" />-->
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock Text="There's gonna be some results in here."/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" x:Name="ResultColumn"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="320" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="ResultColumn.MinWidth" Value="320" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="360" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="ResultColumn.MinWidth" Value="360" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="432" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="ResultColumn.MinWidth" Value="432" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <!--<Setter Target="Map.Visibility" Value="Visible" />-->
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <ListView Grid.Column="0" Margin="0 10 0 0" ItemTemplate="{StaticResource HotelResultItemTemplate}" ItemsSource="{Binding HotelResultItems}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <Setter Property="Margin" Value="-25 0 0 0"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+        
     </Grid>
 </Page>

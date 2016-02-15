@@ -9,6 +9,6 @@ namespace Expedia.Services.Interfaces
 {
     public interface IHotelService
     {
-        Task<HotelSearchResponse> GetHotels(HotelSearchQueryParameters parameters, CancellationToken ct);
+        Task<HotelResults> SearchHotels(CancellationToken ct, SearchHotelsLocalParameters searchInput);
     }
 }

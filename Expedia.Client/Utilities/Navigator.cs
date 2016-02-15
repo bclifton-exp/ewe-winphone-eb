@@ -59,22 +59,22 @@ namespace Expedia.Client.Utilities
             }
         }
 
-        public void NavigateForward(SuggestionLob lob, Type view)
+        public void NavigateForward(SuggestionLob lob, Type view, object param = null)
         {
             switch (lob)
             {
                 case SuggestionLob.HOTELS:
-                    _hotelFrame.Navigate(view);
+                    _hotelFrame.Navigate(view, param);
                     _currentFrame = _hotelFrame;
                     break;
                 case SuggestionLob.FLIGHTS:
-                    _flightFrame.Navigate(view);
+                    _flightFrame.Navigate(view, param);
                     _currentFrame = _flightFrame;
                     break;
                 case SuggestionLob.PACKAGES:
                     break;
                 case SuggestionLob.CARS:
-                    _carFrame.Navigate(view);
+                    _carFrame.Navigate(view, param);
                     _currentFrame = _carFrame;
                     break;
                 case SuggestionLob.NONE:
