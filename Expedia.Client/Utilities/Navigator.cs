@@ -62,18 +62,24 @@ namespace Expedia.Client.Utilities
                 {
                     _currentFrame.GoBack();
                     e.Handled = true;
+                    CancellationTokenManager.Instance().CancelCurrentToken();
                 }
             }
         }
 
         private void CurrentViewOnBackRequested(object sender, BackRequestedEventArgs e)
         {
-            _mainViewModel.IsMenuFrameVisible = false;
-
-            if (_currentFrame != null && _currentFrame.CanGoBack)
+            if (_mainViewModel.IsMenuFrameVisible)
             {
-                _currentFrame.GoBack();
-                CancellationTokenManager.Instance().CancelCurrentToken();
+                _mainViewModel.IsMenuFrameVisible = false;
+            }
+            else
+            {
+                if (_currentFrame != null && _currentFrame.CanGoBack)
+                {
+                    _currentFrame.GoBack();
+                    CancellationTokenManager.Instance().CancelCurrentToken();
+                }
             }
         }
 
