@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading;
 using Expedia.Client.Interfaces;
+using Expedia.Client.Utilities;
 using Expedia.Entities.Extensions;
 using Expedia.Entities.Hotels;
 using Expedia.Services.Interfaces;
@@ -33,7 +34,9 @@ namespace Expedia.Client.ViewModels
 
         public async void GetHotelResults(SearchHotelsLocalParameters searchCriteria)
         {
-            var results = await _hotelService.SearchHotels(new CancellationToken(false), searchCriteria);
+            HotelResultItems = null;
+            var ct = CancellationTokenManager.Instance().CreateAndSetCurrentToken();
+            var results = await _hotelService.SearchHotels(ct, searchCriteria);
             HotelResultItems = results.Hotels.ToObservableCollection();
         }
     }

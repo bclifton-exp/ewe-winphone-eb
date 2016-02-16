@@ -26,11 +26,18 @@ namespace Expedia.Services
 
         public async Task<HotelResults> SearchHotels(CancellationToken ct, SearchHotelsLocalParameters searchInput)
         {
-            var clientSearchParameters = CreateClientQueryParameters(searchInput);
+            try
+            {
+                var clientSearchParameters = CreateClientQueryParameters(searchInput);
 
-            var results = await GetHotels(clientSearchParameters, ct);
+                var results = await GetHotels(clientSearchParameters, ct);
 
-            return await CreateHotelResultsFromClientResponse(ct, searchInput, results);
+                return await CreateHotelResultsFromClientResponse(ct, searchInput, results);
+            }
+            catch (Exception ex)
+            {
+                return new HotelResults {Hotels = new HotelResultItem[0]};
+            }
         }
 
         private async Task<HotelSearchResponse> GetHotels(HotelSearchQueryParameters parameters, CancellationToken ct)

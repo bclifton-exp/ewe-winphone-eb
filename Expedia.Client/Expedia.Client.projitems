@@ -15,12 +15,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\DateTimeToDateTimeOffsetConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\InbetweenOneAndFiveToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\InbetweenOneAndThreeToVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\ReversedNullToBoolConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ReversedBoolToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\DependentRelayCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IHotelResultsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IMainPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISearchFlightsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISearchHotelsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\CancellationTokenManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\GeoLocationMemory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\Navigator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseResultViewModel.cs" />

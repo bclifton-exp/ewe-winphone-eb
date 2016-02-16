@@ -27,7 +27,7 @@ namespace Expedia.Services.Base
                 }
                 catch (OperationCanceledException)
                 {
-                    return null; //TODO handle the cancellations
+                    return null;
                 }
             }
         }
@@ -47,7 +47,7 @@ namespace Expedia.Services.Base
                 }
                 catch (OperationCanceledException)
                 {
-                    return null; //TODO handle the cancellations
+                    return null;
                 }
             }
         }

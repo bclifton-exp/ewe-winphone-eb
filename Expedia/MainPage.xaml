@@ -26,7 +26,7 @@
                     </Viewbox>
                 </RadioButton>
 
-                <RadioButton x:Name="Cars" Style="{StaticResource NavRadioButtonStyle}" GroupName="Navigation">
+                <RadioButton x:Name="Itinerary" Style="{StaticResource NavRadioButtonStyle}" GroupName="Navigation">
                         <Viewbox Width="34" Height="34" Margin="2 -5 0 0">
                             <PathIcon Data="F1 M 6.14438,3.05176e-005L 0,3.05176e-005L 0,6.18002L 6.14438,6.18002L 6.14438,3.05176e-005 Z M 6.14438,9.12003L 0,9.12003L 0,15.3L 6.14438,15.3L 6.14438,9.12003 Z M 6.14438,17.7778L 0,17.7778L 0,23.9222L 6.14438,23.9222L 6.14438,17.7778 Z M 30.7699,1.96503L 10.2726,1.96503L 10.2726,5.17502L 30.7699,5.17502L 30.7699,1.96503 Z M 30.7699,11.085L 10.2726,11.085L 10.2726,14.295L 30.7699,14.295L 30.7699,11.085 Z M 30.7699,19.245L 10.2726,19.245L 10.2726,22.455L 30.7699,22.455L 30.7699,19.245 Z "/>
                     </Viewbox>
