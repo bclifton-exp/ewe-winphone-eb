@@ -5,6 +5,8 @@ using System.Text;
 using System.Windows.Input;
 using Windows.Devices.Geolocation;
 using Expedia.Client.Interfaces;
+using Expedia.Client.Utilities;
+using Expedia.Client.Views;
 using Expedia.Entities.Suggestions;
 using Expedia.Injection;
 using Expedia.Services.Interfaces;
@@ -18,17 +20,6 @@ namespace Expedia.Client.ViewModels
         private ISettingsService _settingsService { get; set; }
         private ILocationService _locationService { get; set; }
 
-        private RelayCommand _hamburgerClick;
-        public RelayCommand HamburgerClick
-        {
-            get { return _hamburgerClick; }
-            set
-            {
-                _hamburgerClick = value;
-                OnPropertyChanged("HamburgerClick");
-            }
-        }
-
         private bool _isFlyoutMenuOpen;
         public bool IsFlyoutMenuOpen
         {
@@ -40,6 +31,38 @@ namespace Expedia.Client.ViewModels
             }
         }
 
+        private bool _isMenuFrameVisible;
+        public bool IsMenuFrameVisible
+        {
+            get { return _isMenuFrameVisible; }
+            set
+            {
+                _isMenuFrameVisible = value;
+                OnPropertyChanged("IsMenuFrameVisible");
+            }
+        }
+
+        private RelayCommand _hamburgerClick;
+        public RelayCommand HamburgerClick
+        {
+            get { return _hamburgerClick; }
+            set
+            {
+                _hamburgerClick = value;
+                OnPropertyChanged("HamburgerClick");
+            }
+        }
+
+        private RelayCommand _goToSettings;
+        public RelayCommand GoToSettings
+        {
+            get { return _goToSettings; }
+            set
+            {
+                _goToSettings = value;
+                OnPropertyChanged("GoToSettings");
+            }
+        }
 
 
         public MainPageViewModel(ISettingsService settingsService, ILocationService locationService) : base(SuggestionLob.NONE)
@@ -51,6 +74,15 @@ namespace Expedia.Client.ViewModels
             {
                 IsFlyoutMenuOpen = !IsFlyoutMenuOpen;
             });
+
+            GoToSettings = new RelayCommand(() =>
+            {
+                IsFlyoutMenuOpen = false;
+                Navigator.Instance().NavigateToMenuView(typeof(SettingsMenuView));
+                IsMenuFrameVisible = true;
+            });
+
+
         }
 
     }

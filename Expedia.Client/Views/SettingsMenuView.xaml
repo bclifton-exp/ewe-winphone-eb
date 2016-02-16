@@ -1,0 +1,93 @@
+﻿<Page
+    x:Class="Expedia.Client.Views.SettingsMenuView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Expedia.Client.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" NavigationCacheMode="Enabled">
+
+    <Grid Background="{ThemeResource AppBarBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="SETTINGS"
+				   x:Uid="SettingsHeader"
+				   Style="{StaticResource AboutHeaderStyle}"
+				   Margin="20,46,20,27" />
+
+        <Border Grid.Row="0"
+				Height="1"
+				VerticalAlignment="Bottom"
+				HorizontalAlignment="Stretch"
+				Background="{StaticResource SecondaryColor7Brush}" />
+
+        <TextBlock Text="Use location services"
+                   x:Uid="SettingsLocationServicesLabel"
+				   Grid.Row="2"
+				   Style="{StaticResource AboutTextStyle}"
+				   Margin="20,10" />
+
+        <ToggleSwitch OnContent="On"
+					  OffContent="Off"
+					  x:Uid="SettingsLocationServices"
+					  IsOn="{Binding UseLocationService, Mode=TwoWay}"
+					  Grid.Row="3"
+					  Margin="20,0" />
+
+        <Border Grid.Row="4"
+				Height="1"
+				VerticalAlignment="Bottom"
+				HorizontalAlignment="Stretch"
+				Background="{StaticResource SecondaryColor7Brush}" />
+
+        <TextBlock Text="Country"
+				   Grid.Row="5"
+                   x:Uid="CountryLabel"
+				   Style="{StaticResource AboutTextStyle}"
+				   Margin="20,10" />
+
+        <ComboBox ItemsSource="{Binding Countries}"
+				  SelectedItem="{Binding SelectedCountry, Mode=TwoWay}"
+				  SelectedValuePath="CountryId"
+				  DisplayMemberPath="DisplayName"
+				  Grid.Row="6"
+				  Margin="20,10,20,10"
+                  x:Name="CountryCombo"/>
+
+        <Border Grid.Row="7"
+				Height="1"
+                Margin="0 0 0 5"
+				VerticalAlignment="Bottom"
+				HorizontalAlignment="Stretch"
+				Background="{StaticResource SecondaryColor7Brush}" />
+
+        <Button Content="Site Help"
+				Grid.Row="8"
+				Style="{StaticResource HelpButtonStyle}"
+				Margin="20,5,20,5"
+				Foreground="{StaticResource SecondaryColor8Brush}"
+				x:Uid="SettingsHelp"
+				Command="{Binding ToHelp}" />
+
+        <Button Content="Call Support"
+				Grid.Row="9"
+				Style="{StaticResource HelpButtonStyle}"
+				Margin="20,5,20,5"
+				Foreground="{StaticResource SecondaryColor8Brush}"
+				x:Uid="SupportPhone"
+				Command="{Binding CallSupportCommand}"/>
+
+    </Grid>
+</Page>

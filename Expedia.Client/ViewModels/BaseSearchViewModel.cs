@@ -19,7 +19,7 @@ using Expedia.Services.Interfaces;
 
 namespace Expedia.Client.ViewModels
 {
-    public class BaseSearchViewModel : INotifyPropertyChanged
+    public abstract class BaseSearchViewModel : INotifyPropertyChanged
     {
         #region Properties
 

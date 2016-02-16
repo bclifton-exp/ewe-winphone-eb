@@ -8,6 +8,7 @@
         <ResourceDictionary Source="RadioButton.xaml"/>
         <ResourceDictionary Source="Pivot.xaml"/>
         <ResourceDictionary Source="TextBlock.xaml"/>
+        <ResourceDictionary Source="Button.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

@@ -2,7 +2,9 @@
 using Windows.Foundation.Metadata;
 using Windows.Phone.UI.Input;
 using Windows.UI.Core;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Expedia.Client.ViewModels;
 using Expedia.Entities.Suggestions;
 
 namespace Expedia.Client.Utilities
@@ -11,9 +13,12 @@ namespace Expedia.Client.Utilities
     {
         private static Navigator _instance;
         private Frame _currentFrame;
+        private Frame _menuFrame;
         private Frame _hotelFrame;
         private Frame _flightFrame;
         private Frame _carFrame;
+
+        private MainPageViewModel _mainViewModel;
         //private Frame _activitiesFrame;
         //private Frame _packagesFrame;
 
@@ -35,24 +40,36 @@ namespace Expedia.Client.Utilities
             return _instance ?? (_instance = new Navigator());
         }
 
-        public void FirstTimeSetup(Frame hotelFrame, Frame flightFrame, Frame carFrame)
+        public void FirstTimeSetup(Frame menuFrame, Frame hotelFrame, Frame flightFrame, Frame carFrame, MainPageViewModel mainViewModel)
         {
             _hotelFrame = hotelFrame;
             _flightFrame = flightFrame;
             _carFrame = carFrame;
+            _menuFrame = menuFrame;
+            _mainViewModel = mainViewModel;
         }
 
         private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
         {
-            if (_currentFrame != null && _currentFrame.CanGoBack)
+            if (_mainViewModel.IsMenuFrameVisible)
             {
-                _currentFrame.GoBack();
+                _mainViewModel.IsMenuFrameVisible = false;
                 e.Handled = true;
+            }
+            else
+            {
+                if (_currentFrame != null && _currentFrame.CanGoBack)
+                {
+                    _currentFrame.GoBack();
+                    e.Handled = true;
+                }
             }
         }
 
         private void CurrentViewOnBackRequested(object sender, BackRequestedEventArgs e)
         {
+            _mainViewModel.IsMenuFrameVisible = false;
+
             if (_currentFrame != null && _currentFrame.CanGoBack)
             {
                 _currentFrame.GoBack();
@@ -83,6 +100,11 @@ namespace Expedia.Client.Utilities
                 default:
                     throw new ArgumentOutOfRangeException(nameof(lob), lob, null);
             }
+        }
+
+        public void NavigateToMenuView(Type view, object param = null)
+        {
+            _menuFrame.Navigate(view);
         }
     }
 }

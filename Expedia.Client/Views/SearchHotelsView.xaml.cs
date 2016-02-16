@@ -73,13 +73,23 @@ namespace Expedia.Client.Views
         private void CalendarDatePicker_OnStartDateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
         {
             var context = DataContext as SearchHotelsViewModel;
-            context.StartDate = sender.Date.Value.Date;
+            if (sender.Date != null)
+            {
+                context.StartDate = sender.Date.Value.Date;
+
+                if (context.StartDate > context.EndDate)
+                {
+                    context.EndDate = context.StartDate.AddDays(1);
+                    EndDatePicker.Date = context.EndDate;
+                }
+            }
         }   
 
         private void CalendarDatePicker_OnEndDateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
         {
             var context = DataContext as SearchHotelsViewModel;
-            context.EndDate = sender.Date.Value.Date;
+            if(sender.Date != null)
+                context.EndDate = sender.Date.Value.Date;
         }
 
         private void StartDateLoaded(object sender, RoutedEventArgs e)

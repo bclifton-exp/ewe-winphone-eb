@@ -6,37 +6,52 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="using:Expedia.Client.Views"
+    xmlns:converters="using:Expedia.Client.Converters"
     mc:Ignorable="d">
+    
+    <Page.Resources>
+        <converters:BoolToVisibilityConverter x:Name="BoolToVisibilityConverter"/>
+    </Page.Resources>
+    
     <Grid>
 
-        <SplitView DisplayMode="CompactOverlay" IsPaneOpen="{Binding IsFlyoutMenuOpen}" CompactPaneLength="0" OpenPaneLength="96">
+        <SplitView DisplayMode="CompactOverlay" IsPaneOpen="{Binding IsFlyoutMenuOpen}" CompactPaneLength="0" OpenPaneLength="145">
 
-        <SplitView.Pane>
+            <SplitView.Pane>
                 <StackPanel Background="Gray">
 
-                    <RadioButton x:Name="Settings" Style="{StaticResource NavRadioButtonStyle}" GroupName="Navigation" Margin="0 60 0 0">
-                    <Viewbox Height="32" Width="32">
-                            <PathIcon Data="F1 M 37.6289,-0.000976563L 49.6289,-0.000976563L 52.8506,10.8311C 55.3838,11.5439 57.7979,12.542 60.0557,13.79L 70.0654,8.37012L 78.5518,16.8545L 73.1934,26.749C 74.4844,29.0117 75.5234,31.4365 76.2725,33.9863L 87.251,37.252L 87.251,49.252L 76.4746,52.457C 75.7588,55.1113 74.7295,57.6377 73.4297,59.9932L 78.8838,70.0645L 70.3994,78.5518L 60.4404,73.1582C 58.0811,74.5029 55.5439,75.5732 52.875,76.3252L 49.624,87.2549L 37.624,87.2549L 34.373,76.3232C 31.7061,75.5713 29.1729,74.501 26.8145,73.1572L 16.8574,78.5488L 8.37207,70.0635L 13.8262,59.9912C 12.5264,57.6357 11.498,55.1113 10.7822,52.458L 0,49.251L 0,37.251L 10.9854,33.9834C 11.7334,31.4365 12.7715,29.0137 14.0615,26.7529L 8.70313,16.8564L 17.1885,8.37012L 27.1982,13.791C 29.4561,12.542 31.8721,11.543 34.4072,10.8311L 37.6289,-0.000976563 Z M 43.9824,59.5264C 52.9834,59.5264 60.2803,52.2275 60.2803,43.2275C 60.2803,34.2266 52.9834,26.9277 43.9824,26.9277C 34.9824,26.9277 27.6826,34.2266 27.6826,43.2275C 27.6826,52.2275 34.9824,59.5264 43.9824,59.5264 Z "/>
-                    </Viewbox>
-                </RadioButton>
+                    <Button x:Name="Settings" Margin="0 60 0 0" Background="Transparent" Command="{Binding GoToSettings}">
+                        <StackPanel Orientation="Horizontal">
+                            <Viewbox Height="35" Width="35">
+                                <PathIcon Data="F1 M 37.6289,-0.000976563L 49.6289,-0.000976563L 52.8506,10.8311C 55.3838,11.5439 57.7979,12.542 60.0557,13.79L 70.0654,8.37012L 78.5518,16.8545L 73.1934,26.749C 74.4844,29.0117 75.5234,31.4365 76.2725,33.9863L 87.251,37.252L 87.251,49.252L 76.4746,52.457C 75.7588,55.1113 74.7295,57.6377 73.4297,59.9932L 78.8838,70.0645L 70.3994,78.5518L 60.4404,73.1582C 58.0811,74.5029 55.5439,75.5732 52.875,76.3252L 49.624,87.2549L 37.624,87.2549L 34.373,76.3232C 31.7061,75.5713 29.1729,74.501 26.8145,73.1572L 16.8574,78.5488L 8.37207,70.0635L 13.8262,59.9912C 12.5264,57.6357 11.498,55.1113 10.7822,52.458L 0,49.251L 0,37.251L 10.9854,33.9834C 11.7334,31.4365 12.7715,29.0137 14.0615,26.7529L 8.70313,16.8564L 17.1885,8.37012L 27.1982,13.791C 29.4561,12.542 31.8721,11.543 34.4072,10.8311L 37.6289,-0.000976563 Z M 43.9824,59.5264C 52.9834,59.5264 60.2803,52.2275 60.2803,43.2275C 60.2803,34.2266 52.9834,26.9277 43.9824,26.9277C 34.9824,26.9277 27.6826,34.2266 27.6826,43.2275C 27.6826,52.2275 34.9824,59.5264 43.9824,59.5264 Z "/>
+                            </Viewbox>
+                            <TextBlock Text="Settings" Margin="5 5 0 0" Style="{StaticResource MenuTextStyle}"/>
+                        </StackPanel>
+                    </Button>
 
-                    <RadioButton x:Name="Account" Style="{StaticResource NavRadioButtonStyle}" GroupName="Navigation">
-                    <Viewbox  Height="35" Width="35">
-                            <PathIcon Data="F1 M 131.432,90.6536C 128.611,76.0937 89.7838,77.6419 80.4271,66.2396C 78.4531,63.8334 78.4531,63.8334 79.776,54.8972C 82.0338,44.8945 84.0807,51.103 87.3098,31.1524C 90.0235,14.3972 84.2357,1.52588e-005 66.6667,1.52588e-005C 49.0976,1.52588e-005 43.3105,14.3972 46.0228,31.1524C 49.252,51.103 51.2975,44.8945 53.5573,54.8972C 54.8802,63.8334 54.8802,63.8334 52.907,66.2396C 43.5495,77.6419 4.72269,76.0937 1.90106,90.6536C 1.56641,92.3763 0,101.911 0,101.911L 133.333,101.911C 133.333,101.911 131.767,92.3763 131.432,90.6536 Z "/>
-                    </Viewbox>
-                </RadioButton>
+                    <Button x:Name="Account" Background="Transparent" Margin="0 10 0 10">
+                        <StackPanel Orientation="Horizontal">
+                            <Viewbox  Height="35" Width="35">
+                                <PathIcon Data="F1 M 131.432,90.6536C 128.611,76.0937 89.7838,77.6419 80.4271,66.2396C 78.4531,63.8334 78.4531,63.8334 79.776,54.8972C 82.0338,44.8945 84.0807,51.103 87.3098,31.1524C 90.0235,14.3972 84.2357,1.52588e-005 66.6667,1.52588e-005C 49.0976,1.52588e-005 43.3105,14.3972 46.0228,31.1524C 49.252,51.103 51.2975,44.8945 53.5573,54.8972C 54.8802,63.8334 54.8802,63.8334 52.907,66.2396C 43.5495,77.6419 4.72269,76.0937 1.90106,90.6536C 1.56641,92.3763 0,101.911 0,101.911L 133.333,101.911C 133.333,101.911 131.767,92.3763 131.432,90.6536 Z "/>
+                            </Viewbox>
+                            <TextBlock Text="Account" Margin="5 8 0 0" Style="{StaticResource MenuTextStyle}"/>
+                        </StackPanel>
+                    </Button>
 
-                <RadioButton x:Name="Itinerary" Style="{StaticResource NavRadioButtonStyle}" GroupName="Navigation">
-                        <Viewbox Width="34" Height="34" Margin="2 -5 0 0">
-                            <PathIcon Data="F1 M 6.14438,3.05176e-005L 0,3.05176e-005L 0,6.18002L 6.14438,6.18002L 6.14438,3.05176e-005 Z M 6.14438,9.12003L 0,9.12003L 0,15.3L 6.14438,15.3L 6.14438,9.12003 Z M 6.14438,17.7778L 0,17.7778L 0,23.9222L 6.14438,23.9222L 6.14438,17.7778 Z M 30.7699,1.96503L 10.2726,1.96503L 10.2726,5.17502L 30.7699,5.17502L 30.7699,1.96503 Z M 30.7699,11.085L 10.2726,11.085L 10.2726,14.295L 30.7699,14.295L 30.7699,11.085 Z M 30.7699,19.245L 10.2726,19.245L 10.2726,22.455L 30.7699,22.455L 30.7699,19.245 Z "/>
-                    </Viewbox>
-                </RadioButton>
+                    <Button x:Name="Itinerary" Background="Transparent" Margin="0 10 0 10">
+                        <StackPanel Orientation="Horizontal">
+                            <Viewbox Width="35" Height="35" Margin="0 -5 0 0">
+                                <PathIcon Data="F1 M 6.14438,3.05176e-005L 0,3.05176e-005L 0,6.18002L 6.14438,6.18002L 6.14438,3.05176e-005 Z M 6.14438,9.12003L 0,9.12003L 0,15.3L 6.14438,15.3L 6.14438,9.12003 Z M 6.14438,17.7778L 0,17.7778L 0,23.9222L 6.14438,23.9222L 6.14438,17.7778 Z M 30.7699,1.96503L 10.2726,1.96503L 10.2726,5.17502L 30.7699,5.17502L 30.7699,1.96503 Z M 30.7699,11.085L 10.2726,11.085L 10.2726,14.295L 30.7699,14.295L 30.7699,11.085 Z M 30.7699,19.245L 10.2726,19.245L 10.2726,22.455L 30.7699,22.455L 30.7699,19.245 Z "/>
+                            </Viewbox>
+                            <TextBlock Text="Itinerary" Margin="6 0 0 0" Style="{StaticResource MenuTextStyle}"/>
+                        </StackPanel>
+                    </Button>
 
-            </StackPanel>
-            
-        </SplitView.Pane>
-        
-        <SplitView.Content>
+                </StackPanel>
+
+            </SplitView.Pane>
+
+            <SplitView.Content>
                 <!--<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
                     <Frame x:Name="ShellFrame">
@@ -86,12 +101,18 @@
                             </Frame>
                         </PivotItem>
                     </Pivot>
+
+                    <Frame x:Name="MenuFrame" Width="550" HorizontalAlignment="Left" Visibility="{Binding IsMenuFrameVisible, Converter={StaticResource BoolToVisibilityConverter}}" />
+
                 </Grid>
+               
             </SplitView.Content>
-        
-    </SplitView>
+
+        </SplitView>
 
         <Button FontFamily="Segoe MDL2 Assets" FontSize="32" Content="&#xE700;" Width="48" Height="45" Background="Transparent" VerticalAlignment="Top" Command="{Binding HamburgerClick}"/>
-        
+
+       
+
     </Grid>
 </Page>

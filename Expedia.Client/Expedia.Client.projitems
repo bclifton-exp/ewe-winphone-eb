@@ -22,15 +22,18 @@
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IMainPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISearchFlightsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISearchHotelsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISettingsMenuViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\CancellationTokenManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\GeoLocationMemory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\Navigator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseMenuViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseResultViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseSearchViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\HotelResultsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SearchFlightsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SearchHotelsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SettingsMenuViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\HotelResultsView.xaml.cs">
       <DependentUpon>HotelResultsView.xaml</DependentUpon>
     </Compile>
@@ -39,6 +42,9 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\SearchHotelsView.xaml.cs">
       <DependentUpon>SearchHotelsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SettingsMenuView.xaml.cs">
+      <DependentUpon>SettingsMenuView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -51,6 +57,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\SearchHotelsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\SettingsMenuView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

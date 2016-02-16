@@ -2,6 +2,7 @@
 using Windows.UI.Xaml.Controls;
 using Expedia.Client.Interfaces;
 using Expedia.Client.Utilities;
+using Expedia.Client.ViewModels;
 using Expedia.Injection;
 
 namespace Expedia
@@ -12,7 +13,8 @@ namespace Expedia
         {
             this.InitializeComponent();
             this.DataContext = ExpediaKernel.Instance().Get<IMainPageViewModel>();
-            Navigator.Instance().FirstTimeSetup(HotelFrame, FlightFrame, CarFrame);
+            var context = DataContext as MainPageViewModel;
+            Navigator.Instance().FirstTimeSetup(MenuFrame, HotelFrame, FlightFrame, CarFrame, context);
         }
     }
 }

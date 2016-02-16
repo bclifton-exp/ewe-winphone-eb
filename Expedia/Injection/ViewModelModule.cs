@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Expedia.Client.Interfaces;
+﻿using Expedia.Client.Interfaces;
 using Expedia.Client.ViewModels;
 using Ninject.Modules;
 
@@ -16,6 +11,7 @@ namespace Expedia.Injection
             Bind<IMainPageViewModel>().To<MainPageViewModel>();
             Bind<ISearchHotelsViewModel>().To<SearchHotelsViewModel>();
             Bind<IHotelResultsViewModel>().To<HotelResultsViewModel>();
+            Bind<ISettingsMenuViewModel>().To<SettingsMenuViewModel>();
             Bind<ISearchFlightsViewModel>().To<SearchFlightsViewModel>();
         }
     }

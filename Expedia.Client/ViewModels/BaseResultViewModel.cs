@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Expedia.Client.ViewModels
 {
-    public class BaseResultViewModel : INotifyPropertyChanged
+    public abstract class BaseResultViewModel : INotifyPropertyChanged
     {
 
         public event PropertyChangedEventHandler PropertyChanged;
