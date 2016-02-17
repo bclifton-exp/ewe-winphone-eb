@@ -10,5 +10,6 @@ namespace Expedia.Services.Interfaces
     public interface ILocationService
     {
         Task<Geoposition> GetSetCurrentLocation();
+        void ManuallySetLocationPrivilege(bool canUseLocation);
     }
 }

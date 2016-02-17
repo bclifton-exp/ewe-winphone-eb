@@ -5,7 +5,12 @@
     xmlns:local="using:Expedia.Client.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:Expedia.Client.Converters"
     mc:Ignorable="d" NavigationCacheMode="Enabled">
+    
+    <Page.Resources>
+        <converters:GeolocationAccessStatusToBoolConverter x:Name="GeolocationAccessStatusToBoolConverter"/>
+    </Page.Resources>
 
     <Grid Background="{ThemeResource AppBarBackgroundThemeBrush}">
         <Grid.RowDefinitions>
@@ -42,7 +47,7 @@
         <ToggleSwitch OnContent="On"
 					  OffContent="Off"
 					  x:Uid="SettingsLocationServices"
-					  IsOn="{Binding UseLocationService, Mode=TwoWay}"
+					  IsOn="{Binding UseLocationService, Mode=TwoWay, Converter={StaticResource GeolocationAccessStatusToBoolConverter}}"
 					  Grid.Row="3"
 					  Margin="20,0" />
 
@@ -58,8 +63,8 @@
 				   Style="{StaticResource AboutTextStyle}"
 				   Margin="20,10" />
 
-        <ComboBox ItemsSource="{Binding Countries}"
-				  SelectedItem="{Binding SelectedCountry, Mode=TwoWay}"
+        <ComboBox ItemsSource="{Binding PointsOfSale}"
+				  SelectedItem="{Binding SelectedPoS, Mode=TwoWay}"
 				  SelectedValuePath="CountryId"
 				  DisplayMemberPath="DisplayName"
 				  Grid.Row="6"

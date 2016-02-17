@@ -52,5 +52,12 @@ namespace Expedia.Services
             return null;
         }
 
+        public void ManuallySetLocationPrivilege(bool canUseLocation)
+        {
+            var accessStatus = canUseLocation ? GeolocationAccessStatus.Allowed : GeolocationAccessStatus.Denied;
+            _settingsService.SetUseLocationService(accessStatus);
+
+            GetSetCurrentLocation();
+        }
     }
 }

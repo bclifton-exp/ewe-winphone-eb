@@ -149,7 +149,7 @@ namespace Expedia.Client.ViewModels
         }
         #endregion
 
-        public BaseSearchViewModel(SuggestionLob lob)
+        protected BaseSearchViewModel(SuggestionLob lob)
         {
             SuggestionService = ExpediaKernel.Instance().Get<ISuggestionService>();
             Lob = lob;
