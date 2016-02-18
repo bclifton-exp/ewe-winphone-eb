@@ -78,6 +78,7 @@ namespace Expedia.Client.Utilities
                 if (_currentFrame != null && _currentFrame.CanGoBack)
                 {
                     _currentFrame.GoBack();
+                    e.Handled = true;
                     CancellationTokenManager.Instance().CancelCurrentToken();
                 }
             }
