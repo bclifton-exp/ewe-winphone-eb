@@ -19,6 +19,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ReversedNullToBoolConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ReversedBoolToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\DependentRelayCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IAccountMenuViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IHotelResultsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IMainPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISearchFlightsViewModel.cs" />
@@ -27,6 +28,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\CancellationTokenManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\GeoLocationMemory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\Navigator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AccountMenuViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseMenuViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseResultViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseSearchViewModel.cs" />
@@ -35,6 +37,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SearchFlightsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SearchHotelsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SettingsMenuViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\AccountMenuView.xaml.cs">
+      <DependentUpon>AccountMenuView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\HotelResultsView.xaml.cs">
       <DependentUpon>HotelResultsView.xaml</DependentUpon>
     </Compile>
@@ -49,6 +54,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Views\AccountMenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\HotelResultsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

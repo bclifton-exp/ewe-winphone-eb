@@ -64,6 +64,17 @@ namespace Expedia.Client.ViewModels
             }
         }
 
+        private RelayCommand _goToAccount;
+        public RelayCommand GoToAccount
+        {
+            get { return _goToAccount; }
+            set
+            {
+                _goToAccount = value;
+                OnPropertyChanged("GoToAccount");
+            }
+        }
+
 
         public MainPageViewModel(ISettingsService settingsService, ILocationService locationService) : base(SuggestionLob.NONE)
         {
@@ -82,6 +93,12 @@ namespace Expedia.Client.ViewModels
                 IsMenuFrameVisible = true;
             });
 
+            GoToAccount = new RelayCommand(() =>
+            {
+                IsFlyoutMenuOpen = false;
+                Navigator.Instance().NavigateToMenuView(typeof(AccountMenuView));
+                IsMenuFrameVisible = true;
+            });
 
         }
 

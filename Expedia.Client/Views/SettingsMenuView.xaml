@@ -27,10 +27,10 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TextBlock Text="SETTINGS"
+        <TextBlock Text="Settings"
 				   x:Uid="SettingsHeader"
-				   Style="{StaticResource AboutHeaderStyle}"
-				   Margin="20,46,20,27" />
+				   Style="{StaticResource PivotPageHeaderStyle}"
+				   Margin="10,55,20,27" />
 
         <Border Grid.Row="0"
 				Height="1"

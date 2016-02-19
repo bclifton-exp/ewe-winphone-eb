@@ -1,0 +1,101 @@
+﻿<Page
+    x:Class="Expedia.Client.Views.AccountMenuView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Expedia.Client.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:Expedia.Client.Converters"
+    mc:Ignorable="d" NavigationCacheMode="Enabled">
+    
+    <Page.Resources>
+        <converters:BoolToVisibilityConverter x:Name="BoolToVisibilityConverter"/>
+        <converters:ReversedBoolToVisibilityConverter x:Name="ReversedBoolToVisibilityConverter"/>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource AppBarBackgroundThemeBrush}" Padding="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock Text="Sign In"
+                   Grid.Row="1"
+				   Style="{StaticResource PivotPageHeaderStyle}"
+				   x:Uid="SignIn"
+                   Visibility="{Binding IsFacebookLinking, Converter={StaticResource ReversedBoolToVisibilityConverter}, FallbackValue=Collapsed}"/>
+
+        <TextBlock Text="Please confirm your Expedia identity"
+                   Grid.Row="1"
+				   Style="{StaticResource PivotPageHeaderStyle}"
+				   x:Uid="ConfirmExpediaIdentity"
+                   Visibility="{Binding IsFacebookLinking, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Collapsed}"/>
+
+        <TextBox PlaceholderText="Email or Username"
+                 Grid.Row="2"
+                 Text="{Binding UserName, Mode=TwoWay}"
+                 IsSpellCheckEnabled="False"
+				 Margin="0,18,0,12"
+				 x:Uid="EmailorUserName"
+                 TabIndex="0"
+                 x:Name="EmailBox"
+				 InputScope="EmailSmtpAddress"/>
+        <!-- TODO: Enter command -->
+        <PasswordBox PlaceholderText="Password"
+                     Grid.Row="3"
+					 Password="{Binding Password, Mode=TwoWay}"
+					 x:Uid="Password"
+                     TabIndex="1"
+					 x:Name="PasswordTextBox"
+					
+					/>
+        <Button Content="Sign In"
+                Grid.Row="4"
+				Command="{Binding [SignIn]}"
+				Margin="0,11,0,20"
+				x:Uid="SignInButton"
+				Style="{StaticResource SearchButtonStyle}" />
+        <Button Content="Create an Account"
+                Grid.Row="5"
+				Command="{Binding [ToCreateAccount]}"
+				Margin="0,10,0,30"
+				x:Uid="CreateAnAccountButton"
+				Style="{StaticResource SearchButtonStyle}" />
+        
+        <Rectangle Fill="{StaticResource HotelLineBrush}"
+                   Grid.Row="6"
+                   Margin="-10 0 -10 0"
+				   Height="1" />
+        <Button Content="Continue as a Guest"
+                Grid.Row="7"
+				Margin="0,30,0,11"
+				x:Uid="GuestButton"
+				Command="{Binding ContinueAsGuest}"
+				Style="{StaticResource GuestButtonStyle}"
+				Visibility="{Binding IsFacebookLinking, Converter={StaticResource ReversedBoolToVisibilityConverter}}"/>
+        <TextBlock Text="or"
+                   Margin="-10 0 -10 0"
+                   Grid.Row="8"
+				   HorizontalAlignment="Center"
+				   Style="{StaticResource SearchLocationItemStyle}"
+				   x:Uid="OrText"
+				   Visibility="{Binding IsFacebookLinking, Converter={StaticResource ReversedBoolToVisibilityConverter}}"/>
+        <Button Content="Connect"
+                Grid.Row="9"
+				Command="{Binding ConnectWithFacebook}"
+				Margin="0,11,0,0"
+				VerticalAlignment="Top"
+				x:Uid="ConnectButton"
+				Style="{StaticResource FacebookButtonStyle}"
+				Visibility="{Binding IsFacebookLinking, Converter={StaticResource ReversedBoolToVisibilityConverter}}"/>
+    </Grid>
+</Page>

@@ -419,7 +419,7 @@
 
   <!-- Settings Screen -->
   <data name="SettingsHeader.Text" xml:space="preserve">
-    <value>SETTINGS</value>
+    <value>Settings</value>
     <comment>Header on settings page</comment>
   </data>
   <data name="SettingsLocationServicesLabel.Text" xml:space="preserve">

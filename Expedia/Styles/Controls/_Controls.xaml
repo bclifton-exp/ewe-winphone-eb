@@ -9,6 +9,8 @@
         <ResourceDictionary Source="Pivot.xaml"/>
         <ResourceDictionary Source="TextBlock.xaml"/>
         <ResourceDictionary Source="Button.xaml"/>
+        <ResourceDictionary Source="PasswordBox.xaml"/>
+        <ResourceDictionary Source="ToggleButton.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>
