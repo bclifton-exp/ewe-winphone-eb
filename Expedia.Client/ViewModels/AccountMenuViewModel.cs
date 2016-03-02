@@ -94,16 +94,16 @@ namespace Expedia.Client.ViewModels
         }
 
 
-        //private RelayCommand _signInCommand;
-        //public RelayCommand SignInCommand
-        //{
-        //    get { return _signInCommand; }
-        //    set
-        //    {
-        //        _signInCommand = value;
-        //        OnPropertyChanged("SignInCommand");
-        //    }
-        //}
+        private RelayCommand _signInCommand;
+        public RelayCommand SignInCommand
+        {
+            get { return _signInCommand; }
+            set
+            {
+                _signInCommand = value;
+                OnPropertyChanged("SignInCommand");
+            }
+        }
 
 
         public AccountMenuViewModel(ILocationService locationService, ISettingsService settingsService, IPointOfSaleService pointOfSaleService, IAuthenticationService authenticationService) : base(locationService, settingsService, pointOfSaleService)
@@ -116,10 +116,12 @@ namespace Expedia.Client.ViewModels
                 Navigator.Instance().NavigateToMenuView(typeof(CreateAccountView));
             });
 
-            //SignInCommand = new RelayCommand(() =>
-            //{
-            //    SignInUser(currentToken);
-            //});
+            ContinueAsGuest = new RelayCommand(() =>
+            {
+                Navigator.Instance().CloseMenu();
+            });
+
+            SignInCommand = new RelayCommand(SignInUser);
         }
 
         public async void SignInUser()
@@ -127,11 +129,13 @@ namespace Expedia.Client.ViewModels
             var currentToken = CancellationTokenManager.Instance().CreateAndSetCurrentToken();
             IsBusy = true;
             var isSignedIn = await _authenticationService.SignIn(currentToken, UserName, Password);
-         
+            IsBusy = false;
+
             if (isSignedIn)
             {
                 RealName = _settingsService.GetRealName();
                 Navigator.Instance().CloseMenu();
+                //TODO errors etc.
             }
         }
     }

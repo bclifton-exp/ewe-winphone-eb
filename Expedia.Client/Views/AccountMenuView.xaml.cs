@@ -25,13 +25,5 @@ namespace Expedia.Client.Views
             this.DataContext = ExpediaKernel.Instance().Get<IAccountMenuViewModel>();
             this.InitializeComponent();
         }
-
-        private void SignIn_OnClick(object sender, RoutedEventArgs e)
-        {
-            var context = DataContext as AccountMenuViewModel;
-            context.SignInUser();
-        }
-
-        
     }
 }

@@ -61,7 +61,7 @@
 					 x:Name="PasswordTextBox"/>
         <Button Content="Sign In"
                 Grid.Row="4"
-                Click="SignIn_OnClick"
+                Command="{Binding SignInCommand}"
 				Margin="0,11,0,20"
 				x:Uid="SignInButton"
                 TabIndex="2"
