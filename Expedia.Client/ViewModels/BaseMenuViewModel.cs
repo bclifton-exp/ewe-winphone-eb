@@ -13,6 +13,17 @@ namespace Expedia.Client.ViewModels
         public ISettingsService SettingsService;
         public IPointOfSaleService PointOfSaleService;
 
+        private bool _isBusy;
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set
+            {
+                _isBusy = value;
+                OnPropertyChanged("IsBusy");
+            }
+        }
+
         protected BaseMenuViewModel(ILocationService locationService, ISettingsService settingsService, IPointOfSaleService pointOfSaleService)
         {
             LocationService = locationService;

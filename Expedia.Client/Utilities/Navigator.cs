@@ -5,6 +5,7 @@ using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Expedia.Client.ViewModels;
+using Expedia.Client.Views;
 using Expedia.Entities.Suggestions;
 
 namespace Expedia.Client.Utilities
@@ -53,8 +54,16 @@ namespace Expedia.Client.Utilities
         {
             if (_mainViewModel.IsMenuFrameVisible)
             {
-                _mainViewModel.IsMenuFrameVisible = false;
-                e.Handled = true;
+                if (_menuFrame.CurrentSourcePageType == typeof(CreateAccountView))
+                {
+                    _menuFrame.GoBack();
+                    e.Handled = true;
+                }
+                else
+                {
+                    _mainViewModel.IsMenuFrameVisible = false;
+                    e.Handled = true;
+                }
             }
             else
             {
@@ -71,7 +80,14 @@ namespace Expedia.Client.Utilities
         {
             if (_mainViewModel.IsMenuFrameVisible)
             {
-                _mainViewModel.IsMenuFrameVisible = false;
+                if (_menuFrame.CurrentSourcePageType == typeof (CreateAccountView))
+                {
+                    _menuFrame.GoBack();
+                }
+                else
+                {
+                    _mainViewModel.IsMenuFrameVisible = false;
+                }
             }
             else
             {
@@ -112,6 +128,11 @@ namespace Expedia.Client.Utilities
         public void NavigateToMenuView(Type view, object param = null)
         {
             _menuFrame.Navigate(view);
+        }
+
+        public void CloseMenu()
+        {
+            _mainViewModel.IsMenuFrameVisible = false;
         }
     }
 }

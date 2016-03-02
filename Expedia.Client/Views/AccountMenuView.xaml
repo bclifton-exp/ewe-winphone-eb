@@ -7,13 +7,15 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:converters="using:Expedia.Client.Converters"
     mc:Ignorable="d" NavigationCacheMode="Enabled">
-    
+
     <Page.Resources>
         <converters:BoolToVisibilityConverter x:Name="BoolToVisibilityConverter"/>
         <converters:ReversedBoolToVisibilityConverter x:Name="ReversedBoolToVisibilityConverter"/>
+        <converters:ReversedNullToBoolConverter x:Key="ReversedNullToBoolConverter"/>
     </Page.Resources>
 
-    <Grid Background="{ThemeResource AppBarBackgroundThemeBrush}" Padding="10">
+    <Grid>
+        <Grid x:Name="MainGrid" Background="{ThemeResource AppBarBackgroundThemeBrush}" Padding="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="45"/>
             <RowDefinition Height="Auto" />
@@ -28,6 +30,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+
         <TextBlock Text="Sign In"
                    Grid.Row="1"
 				   Style="{StaticResource PivotPageHeaderStyle}"
@@ -55,22 +58,22 @@
 					 Password="{Binding Password, Mode=TwoWay}"
 					 x:Uid="Password"
                      TabIndex="1"
-					 x:Name="PasswordTextBox"
-					
-					/>
+					 x:Name="PasswordTextBox"/>
         <Button Content="Sign In"
                 Grid.Row="4"
-				Command="{Binding [SignIn]}"
+                Click="SignIn_OnClick"
 				Margin="0,11,0,20"
 				x:Uid="SignInButton"
+                TabIndex="2"
 				Style="{StaticResource SearchButtonStyle}" />
         <Button Content="Create an Account"
                 Grid.Row="5"
-				Command="{Binding [ToCreateAccount]}"
+				Command="{Binding ToCreateAccount}"
 				Margin="0,10,0,30"
+                TabIndex="3"
 				x:Uid="CreateAnAccountButton"
 				Style="{StaticResource SearchButtonStyle}" />
-        
+
         <Rectangle Fill="{StaticResource HotelLineBrush}"
                    Grid.Row="6"
                    Margin="-10 0 -10 0"
@@ -97,5 +100,7 @@
 				x:Uid="ConnectButton"
 				Style="{StaticResource FacebookButtonStyle}"
 				Visibility="{Binding IsFacebookLinking, Converter={StaticResource ReversedBoolToVisibilityConverter}}"/>
+        </Grid>
+        <ProgressRing x:Name="ProgressRing" Margin="0 0 0 600" IsActive="{Binding IsBusy, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Visibility="{Binding ElementName=ProgressRing, Path=IsActive, Converter={StaticResource BoolToVisibilityConverter}}" Width="100" Height="100" />
     </Grid>
 </Page>

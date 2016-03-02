@@ -37,6 +37,26 @@
 				Value="{StaticResource TertiaryColor2Brush}" />
     </Style>
 
+    <Style x:Key="LocationHeaderStyle"
+		   TargetType="TextBlock">
+        <Setter Property="FontFamily"
+				Value="{StaticResource PhoneFontFamilyNormal}" />
+        <Setter Property="FontSize"
+				Value="15" />
+        <Setter Property="LineHeight"
+				Value="18" />
+        <Setter Property="LineStackingStrategy"
+				Value="BlockLineHeight" />
+        <Setter Property="TextWrapping"
+				Value="Wrap" />
+        <Setter Property="TextTrimming"
+				Value="WordEllipsis" />
+        <Setter Property="FontWeight"
+				Value="SemiBold" />
+        <Setter Property="Foreground"
+				Value="{StaticResource PrimaryColor6Brush}" />
+    </Style>
+
     <Style x:Key="ResultsHeaderTextStyle"
 		   TargetType="TextBlock"
 		   BasedOn="{StaticResource SortTextStyle}">

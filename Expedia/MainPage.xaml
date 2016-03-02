@@ -8,14 +8,46 @@
     xmlns:views="using:Expedia.Client.Views"
     xmlns:converters="using:Expedia.Client.Converters"
     mc:Ignorable="d">
-    
+
     <Page.Resources>
         <converters:BoolToVisibilityConverter x:Name="BoolToVisibilityConverter"/>
     </Page.Resources>
     
     <Grid>
 
-        <SplitView DisplayMode="CompactOverlay" IsPaneOpen="{Binding IsFlyoutMenuOpen}" CompactPaneLength="0" OpenPaneLength="145">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="320" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="MenuFrame.Width" Value="320" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="360" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="MenuFrame.Width" Value="360" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="432" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="MenuFrame.Width" Value="432" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <SplitView x:Name="SplitView" DisplayMode="CompactOverlay" IsPaneOpen="{Binding IsFlyoutMenuOpen}" CompactPaneLength="0" OpenPaneLength="145">
 
             <SplitView.Pane>
                 <StackPanel Background="Gray">

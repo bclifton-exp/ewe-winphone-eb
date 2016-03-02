@@ -13,25 +13,16 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Expedia.Client.Interfaces;
-using Expedia.Client.ViewModels;
 using Expedia.Injection;
 
 namespace Expedia.Client.Views
 {
-    public sealed partial class AccountMenuView : Page
+    public sealed partial class CreateAccountView : Page
     {
-        public AccountMenuView()
+        public CreateAccountView()
         {
-            this.DataContext = ExpediaKernel.Instance().Get<IAccountMenuViewModel>();
+            this.DataContext = ExpediaKernel.Instance().Get<ICreateAccountViewModel>();
             this.InitializeComponent();
         }
-
-        private void SignIn_OnClick(object sender, RoutedEventArgs e)
-        {
-            var context = DataContext as AccountMenuViewModel;
-            context.SignInUser();
-        }
-
-        
     }
 }

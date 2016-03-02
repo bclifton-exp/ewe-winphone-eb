@@ -20,6 +20,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ReversedBoolToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\DependentRelayCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IAccountMenuViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ICreateAccountViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IHotelResultsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IMainPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISearchFlightsViewModel.cs" />
@@ -32,6 +33,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseMenuViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseResultViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseSearchViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CreateAccountViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\HotelResultsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SearchFlightsViewModel.cs" />
@@ -39,6 +41,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SettingsMenuViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\AccountMenuView.xaml.cs">
       <DependentUpon>AccountMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\CreateAccountView.xaml.cs">
+      <DependentUpon>CreateAccountView.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\HotelResultsView.xaml.cs">
       <DependentUpon>HotelResultsView.xaml</DependentUpon>
@@ -55,6 +60,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)Views\AccountMenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\CreateAccountView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

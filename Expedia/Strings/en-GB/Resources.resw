@@ -497,6 +497,10 @@
     <value>Create Account</value>
 	<comment>Yellow Account Creation button</comment>
   </data>
+  <data name="EmailOptIn.Text" xml:space="preserve">
+    <value>Please send me Expedia.com emails with travel deals, special offers, and other information.</value>
+    <comment>Opt In Details</comment>
+  </data>
   <data name="CreateAnAccountButton.Content" xml:space="preserve">
     <value>Create an Account</value>
 	<comment>Yellow Create An Account button</comment>

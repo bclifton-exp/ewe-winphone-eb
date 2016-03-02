@@ -46,7 +46,12 @@ namespace Expedia.Services
 
             var result = await ExecutePost(request.GetFullUri(), request.GetPayloadContent(), ct);
 
-            return result != null ? JsonConvert.DeserializeObject<AccountCreationResponse>(result) : null;
+            var response = result != null ? JsonConvert.DeserializeObject<AccountCreationResponse>(result) : null;
+
+            var realName = response.FirstName.ToTitleCase() + " " + response.LastName.ToTitleCase();
+            _settingsService.SetUserInfo(long.Parse(response.TUID), realName);
+
+            return response;
         }
 
         private async Task<SignInResponse> Authenticate(CancellationToken ct, string email, string password)
