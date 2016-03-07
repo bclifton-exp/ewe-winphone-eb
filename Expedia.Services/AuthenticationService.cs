@@ -1,11 +1,18 @@
-﻿using System.Threading;
+﻿using System;
+using System.Net.NetworkInformation;
+using System.Reactive.Concurrency;
+using System.Threading;
 using System.Threading.Tasks;
+using Windows.Security.Authentication.Web;
+using Expedia.Business.Entities;
 using Expedia.Client;
 using Expedia.Entites;
+using Expedia.Entities.Extensions;
 using Expedia.Entities.User;
 using Expedia.Services.Base;
 using Expedia.Services.Interfaces;
 using Expedia.Services.Query;
+using Facebook;
 using Newtonsoft.Json;
 
 namespace Expedia.Services
@@ -82,29 +89,142 @@ namespace Expedia.Services
             return response.IsSuccess;
         }
 
-        //     public Task SignInWithFacebook(CancellationToken ct) //TODO webview-ish implementation
-   //     {
-   //         var callback = new Uri(Constants.Facebook.RedirectUrl, UriKind.RelativeOrAbsolute);
+        public async Task<bool> VerifySignIn(CancellationToken ct)
+        {
+            var response = await VerifyAuthentication(ct);
 
-        //         var uri = new Uri(
-        //             Constants.Facebook.ConnectUrl.InvariantCultureFormat(
-        //                 Constants.Facebook.ExpediaClientAppId,
-        //                 Uri.EscapeDataString(callback.ToString()),
-        //                 Constants.Facebook.ResponseType,
-        //                 Constants.Facebook.Scope),
-        //                 UriKind.Absolute);
+            return await ProcessSignInResponse(response, ct);
+        }
 
+        public async Task<SignInResponse> VerifyAuthentication(CancellationToken ct)
+        {
+            var urlBase = string.Format(Constants.Urls.BaseUrlFormat, _settingsService.GetCurrentDomain());
+            var request = new ApiRequest(urlBase);
+            request.AppendPath(Constants.Urls.UserApiRoot);
+            request.AppendPath("sign-in");
+            request.PayloadParam("profileOnly", "true");
 
-        //         //Force error since we won't get any from authenticationBroker
-        //         if (!NetworkInterface.GetIsNetworkAvailable())
-        //         {
-        //             //Error message flyout is generic and includes connection verification
-        //             throw new Exception();
-        //         }
+            var result = await ExecutePost(request.GetFullUri(), request.GetPayloadContent(), ct);
 
-        //return _dispatcherScheduler.Run(async ict => WebAuthenticationBroker.AuthenticateAndContinue(uri, callback), ct);
+            return result != null ? JsonConvert.DeserializeObject<SignInResponse>(result) : null;
+        }
 
-        //     }
+        public async Task<FacebookAccount> SignInWithFacebook(CancellationToken ct, string accessToken)
+        {
+            var fbClient = new FacebookClient(accessToken);
+            dynamic result = await fbClient.GetTaskAsync("me", new { fields = "name,id,email" }, ct);
+
+            var linkingStatus = await GetFacebookLinking(ct, result.id, accessToken);
+
+            var facebookAccount = new FacebookAccount
+            {
+                AccessToken = accessToken,
+                Email = result.email,
+                Name = result.name,
+                UserId = result.id,
+                Linking = linkingStatus
+            };
+
+            return facebookAccount;
+        }
+
+        public async Task<bool> CompleteSignInWithFacebook(CancellationToken ct, FacebookAccount account, string expediaEmail = null, string expediaPassword = null)
+        {
+            bool canVerify = false;
+
+            switch (account.Linking)
+            {
+                case FacebookLinking.NotLinked:
+                    var response = await CreateWithFacebook(ct, account.UserId, account.AccessToken, account.Email);
+                    canVerify = response.Status.Equals("success", StringComparison.OrdinalIgnoreCase);
+                    break;
+
+                case FacebookLinking.Existing:
+                    response = await LinkWithFacebook(ct, account.UserId, account.AccessToken, expediaEmail, expediaPassword);
+                    canVerify = response.Status.Equals("success", StringComparison.OrdinalIgnoreCase);
+                    break;
+
+                case FacebookLinking.Linked:
+                    canVerify = true;
+                    break;
+            }
+
+            if (!canVerify)
+            {
+                throw new AuthenticationException();
+            }
+
+            return await VerifySignIn(ct);
+        }
+
+        private async Task<LinkAccountResponse> CreateWithFacebook(CancellationToken ct, string facebookUserId, string facebookAccessToken, string facebookEmail)
+        {
+            var urlBase = string.Format(Constants.Urls.BaseUrlFormat, _settingsService.GetCurrentDomain());
+            var request = new ApiRequest(urlBase);
+            request.AppendPath(Constants.Urls.AuthenticationApiRoot);
+            request.AppendSearchQuery("linkNewAccount");
+            request.AppendParam("accessToken", facebookAccessToken);
+            request.AppendParam("email",facebookEmail);
+            request.AppendParam("provider", "facebook");
+            request.AppendParam("userId", facebookUserId);
+
+            var response = await ExecuteGet(request.GetFullUri(), ct);
+            return JsonConvert.DeserializeObject<LinkAccountResponse>(response);
+        }
+
+        public async Task<LinkAccountResponse> LinkWithFacebook(CancellationToken ct, string facebookUserId, string facebookAccessToken, string expediaEmail, string expediaPassword)
+        {
+            var urlBase = string.Format(Constants.Urls.BaseUrlFormat, _settingsService.GetCurrentDomain());
+            var request = new ApiRequest(urlBase);
+            request.AppendPath(Constants.Urls.AuthenticationApiRoot);
+            request.AppendSearchQuery("linkExistingAccount");
+            request.AppendParam("provider", "Facebook");
+            request.AppendParam("userId", facebookUserId);
+            request.AppendParam("accessToken", facebookAccessToken);
+            request.AppendParam("email", expediaEmail);
+            request.AppendParam("password", expediaPassword);
+
+            var response = await ExecuteGet(request.GetFullUri(), ct);
+            return JsonConvert.DeserializeObject<LinkAccountResponse>(response);
+        }
+
+        private async Task<FacebookLinking> GetFacebookLinking(CancellationToken ct, string facebookUserId, string facebookAccessToken)
+        {
+            var urlBase = string.Format(Constants.Urls.BaseUrlFormat, _settingsService.GetCurrentDomain());
+            var request = new ApiRequest(urlBase);
+            request.AppendPath(Constants.Urls.AuthenticationApiRoot);
+            request.AppendSearchQuery("autologin");
+            request.AppendParam("accessToken",facebookAccessToken);
+            request.AppendParam("provider", "facebook");
+            request.AppendParam("userId",facebookUserId);
+
+            var response = await ExecuteGet(request.GetFullUri(), ct);
+            var result = JsonConvert.DeserializeObject<AutoLoginResponse>(response);
+
+            if (result.Status.Equals(Constants.LinkingStatus.FacebookNotFound, StringComparison.OrdinalIgnoreCase)
+                || result.Status.Equals(Constants.LinkingStatus.FacebookNotLinked, StringComparison.OrdinalIgnoreCase))
+            {
+                return FacebookLinking.NotLinked;
+            }
+            else if (result.Status.Equals(Constants.LinkingStatus.FacebookExisting, StringComparison.OrdinalIgnoreCase))
+            {
+                return FacebookLinking.Existing;
+            }
+            else if (result.Status.Equals(Constants.LinkingStatus.FacebookLinked, StringComparison.OrdinalIgnoreCase))
+            {
+                return FacebookLinking.Linked;
+            }
+            else if (result.Status.Equals(Constants.LinkingStatus.FacebookError, StringComparison.OrdinalIgnoreCase))
+            {
+                return FacebookLinking.Error;
+            }
+            else if (result.Status.Equals(Constants.LinkingStatus.FacebookLinkedWithOther, StringComparison.OrdinalIgnoreCase))
+            {
+                return FacebookLinking.ErrorLinkedWithOther;
+            }
+
+            return FacebookLinking.Unknown;
+        }
 
     }
 }

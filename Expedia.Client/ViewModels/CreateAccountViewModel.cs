@@ -133,7 +133,7 @@ namespace Expedia.Client.ViewModels
             var response = await _authenticationService.CreateAccount(ct, accountParams);
             IsBusy = false;
             //TODO error catching etc.
-            Navigator.Instance().CloseMenu();
+            Navigator.Instance().CloseMenu(true);
         }
 
         private bool CanExecuteCreateAccount()

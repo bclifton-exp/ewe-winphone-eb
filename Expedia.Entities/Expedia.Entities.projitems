@@ -27,7 +27,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Coordinate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\AuthenticationException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\ChildAgeItem.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Entities\FacebookAccount.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\RegionActivityBanner.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ErrorCodes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExpediaClientException.cs" />
@@ -116,6 +115,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)User\AccountCreationParams.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)User\AccountCreationResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)User\AutoLoginResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)User\FacebookAccount.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)User\FacebookLinking.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)User\LinkAccountResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)User\MobileError.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)User\Phone.cs" />

@@ -659,6 +659,16 @@
     <comment>Header above child age box. E.g. Child 1, Child 2, etc</comment>
   </data>
 
+  <data name="SignInHeader" xml:space="preserve">
+    <value>Sign In</value>
+    <comment>Account Header</comment>
+  </data>
+
+  <data name="SignOutHeader" xml:space="preserve">
+    <value>Sign Out</value>
+    <comment>Account Header</comment>
+  </data>
+
   <data name="CheckInDateFormat" xml:space="preserve">
     <value>{0:MMM d}</value>
     <comment>Date format for checkin/checkout. "MMM d" is jul. 8</comment>

@@ -22,8 +22,8 @@ namespace Expedia.Client.Views
     {
         public AccountMenuView()
         {
-            this.DataContext = ExpediaKernel.Instance().Get<IAccountMenuViewModel>();
             this.InitializeComponent();
+            this.DataContext = ExpediaKernel.Instance().Get<IAccountMenuViewModel>();
         }
     }
 }

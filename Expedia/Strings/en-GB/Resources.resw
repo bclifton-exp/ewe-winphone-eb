@@ -505,6 +505,13 @@
     <value>Create an Account</value>
 	<comment>Yellow Create An Account button</comment>
   </data>
+  <data name="LinkAccountsButton.Content" xml:space="preserve">
+    <value>Link Accounts</value>
+  </data>
+  <data name="NoThanksButton.Content" xml:space="preserve">
+    <value>No Thanks</value>
+	<comment>No Thanks button</comment>
+  </data>
   <data name="CreateAccount.Text" xml:space="preserve">
     <value>Create an Account</value>
   </data>
@@ -529,6 +536,9 @@
   </data>
   <data name="ConfirmExpediaIdentity.Text" xml:space="preserve">
     <value>Please confirm your Expedia identity</value>
+  </data>
+  <data name="CreateExpediaIdentity.Text" xml:space="preserve">
+    <value>Create a new Expedia account based on your Facebook account?</value>
   </data>
 
   <!-- Menu Bar buttons -->

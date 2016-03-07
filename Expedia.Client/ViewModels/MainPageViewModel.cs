@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
-using System.Text;
-using System.Windows.Input;
-using Windows.Devices.Geolocation;
-using Expedia.Client.Interfaces;
+﻿using Expedia.Client.Interfaces;
 using Expedia.Client.Utilities;
 using Expedia.Client.Views;
 using Expedia.Entities.Suggestions;
-using Expedia.Injection;
 using Expedia.Services.Interfaces;
 using GalaSoft.MvvmLight.Command;
-using Microsoft.Practices.Prism.Commands;
 
 namespace Expedia.Client.ViewModels
 {
@@ -19,6 +11,7 @@ namespace Expedia.Client.ViewModels
     {
         private ISettingsService _settingsService { get; set; }
         private ILocationService _locationService { get; set; }
+        private IAuthenticationService _authenticationService { get; set; }
 
         private bool _isFlyoutMenuOpen;
         public bool IsFlyoutMenuOpen
@@ -28,6 +21,17 @@ namespace Expedia.Client.ViewModels
             {
                 _isFlyoutMenuOpen = value;
                 OnPropertyChanged("IsFlyoutMenuOpen");
+            }
+        }
+
+        private bool _isSignedIn;
+        public bool IsSignedIn
+        {
+            get { return _isSignedIn; }
+            set
+            {
+                _isSignedIn = value;
+                OnPropertyChanged("IsSignedIn");
             }
         }
 
@@ -76,10 +80,13 @@ namespace Expedia.Client.ViewModels
         }
 
 
-        public MainPageViewModel(ISettingsService settingsService, ILocationService locationService) : base(SuggestionLob.NONE)
+        public MainPageViewModel(ISettingsService settingsService, ILocationService locationService, IAuthenticationService authenticationService) : base(SuggestionLob.NONE)
         {
             _settingsService = settingsService;
             _locationService = locationService;
+            _authenticationService = authenticationService;
+
+            IsSignedIn = !string.IsNullOrEmpty(_settingsService.GetUserToken());
 
             HamburgerClick = new RelayCommand(() =>
             {
@@ -96,8 +103,17 @@ namespace Expedia.Client.ViewModels
             GoToAccount = new RelayCommand(() =>
             {
                 IsFlyoutMenuOpen = false;
-                Navigator.Instance().NavigateToMenuView(typeof(AccountMenuView));
-                IsMenuFrameVisible = true;
+
+                if (IsSignedIn)
+                {
+                    _authenticationService.SignOut();
+                    IsSignedIn = !string.IsNullOrEmpty(_settingsService.GetUserToken());
+                }
+                else
+                {
+                    Navigator.Instance().NavigateToMenuView(typeof(AccountMenuView));
+                    IsMenuFrameVisible = true;
+                }
             });
 
         }

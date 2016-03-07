@@ -12,6 +12,8 @@ namespace Expedia.Services.Interfaces
     {
         Task<AccountCreationResponse> CreateAccount(CancellationToken ct, AccountCreationParams accountParams);
         Task<bool> SignIn(CancellationToken ct, string email, string password);
+        Task<FacebookAccount> SignInWithFacebook(CancellationToken ct, string accessToken);
+        Task<bool> CompleteSignInWithFacebook(CancellationToken ct, FacebookAccount account, string expediaEmail = null, string expediaPassword = null);
         void SignOut();
     }
 }

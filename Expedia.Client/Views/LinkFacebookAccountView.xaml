@@ -1,0 +1,94 @@
+﻿<Page
+    x:Class="Expedia.Client.Views.LinkFacebookAccountView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Expedia.Client.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:Expedia.Client.Converters"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <converters:BoolToVisibilityConverter x:Name="BoolToVisibilityConverter"/>
+        <converters:ReversedBoolToVisibilityConverter x:Name="ReversedBoolToVisibilityConverter"/>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource AppBarBackgroundThemeBrush}">
+        <Grid Visibility="{Binding IsLoading, Converter={StaticResource ReversedBoolToVisibilityConverter}}">
+        <Grid x:Name="LinkExistingGrid" Background="{ThemeResource AppBarBackgroundThemeBrush}" Padding="10" Visibility="{Binding IsCreateNew, Converter={StaticResource ReversedBoolToVisibilityConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Please confirm your Expedia identity"
+                   Grid.Row="1"
+				   Style="{StaticResource PivotPageHeaderStyle}"
+				   x:Uid="ConfirmExpediaIdentity"
+                   />
+
+            <TextBox PlaceholderText="Email or Username"
+                 Grid.Row="2"
+                 Text="{Binding UserName, Mode=TwoWay}"
+                 IsSpellCheckEnabled="False"
+				 Margin="0,18,0,12"
+				 x:Uid="EmailorUserName"
+                 TabIndex="0"
+                 x:Name="EmailBox"
+				 InputScope="EmailSmtpAddress"/>
+            <!-- TODO: Enter command -->
+            <PasswordBox PlaceholderText="Password"
+                     Grid.Row="3"
+					 Password="{Binding Password, Mode=TwoWay}"
+					 x:Uid="Password"
+                     TabIndex="1"
+					 x:Name="PasswordTextBox"/>
+            <Button Content="Link Accounts"
+                Grid.Row="4"
+                Command="{Binding LinkAccounts}"
+				Margin="0,11,0,20"
+				x:Uid="LinkAccountsButton"
+                TabIndex="2"
+				Style="{StaticResource SearchButtonStyle}" />
+        </Grid>
+
+
+        <Grid x:Name="CreateNewGrid" Background="{ThemeResource AppBarBackgroundThemeBrush}" Padding="10" Visibility="{Binding IsCreateNew, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock Text="Create a new Expedia account based on your Facebook account?"
+                   Grid.Row="1"
+				   Style="{StaticResource PivotPageHeaderStyle}"
+				   x:Uid="CreateExpediaIdentity"
+                   />
+
+            <Button Content="Create an Account"
+                Grid.Row="2"
+                Command="{Binding CreateAccount}"
+				Margin="0,20,0,20"
+				x:Uid="CreateAnAccountButton"
+                TabIndex="2"
+				Style="{StaticResource SearchButtonStyle}" />
+
+            <Button Content="No Thanks"
+                Grid.Row="3"
+                Command="{Binding NoThanks}"
+				Margin="0,20,0,20"
+				x:Uid="NoThanksButton"
+                TabIndex="2"
+                Background="Gray"
+				Style="{StaticResource SearchButtonStyle}" />
+
+        </Grid>
+    </Grid>
+        <ProgressRing x:Name="ProgressRing" Margin="0 0 0 600" IsActive="{Binding IsBusy, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Visibility="{Binding ElementName=ProgressRing, Path=IsActive, Converter={StaticResource BoolToVisibilityConverter}}" Width="100" Height="100" />
+        </Grid>
+</Page>

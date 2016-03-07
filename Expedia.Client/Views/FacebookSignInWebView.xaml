@@ -1,0 +1,14 @@
+﻿<Page
+    x:Class="Expedia.Client.Views.FacebookSignInWebView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Expedia.Client.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" NavigationCacheMode="Disabled">
+
+    <Grid Background="{ThemeResource AppBarBackgroundThemeBrush}">
+        <WebView x:Name="WebView" NavigationCompleted="WebView_OnNavigationCompleted" LoadCompleted="WebView_OnLoadCompleted" Margin="0 50 0 0"/>
+        <ProgressRing x:Name="ProgressRing" Margin="0 0 0 600" Width="100" Height="100" />
+    </Grid>
+</Page>

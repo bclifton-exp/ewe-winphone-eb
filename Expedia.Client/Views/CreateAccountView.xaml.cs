@@ -21,8 +21,8 @@ namespace Expedia.Client.Views
     {
         public CreateAccountView()
         {
-            this.DataContext = ExpediaKernel.Instance().Get<ICreateAccountViewModel>();
             this.InitializeComponent();
+            this.DataContext = ExpediaKernel.Instance().Get<ICreateAccountViewModel>();
         }
     }
 }

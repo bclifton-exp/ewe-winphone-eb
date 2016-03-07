@@ -127,11 +127,12 @@ namespace Expedia.Client.Utilities
 
         public void NavigateToMenuView(Type view, object param = null)
         {
-            _menuFrame.Navigate(view);
+            _menuFrame.Navigate(view, param);
         }
 
-        public void CloseMenu()
+        public void CloseMenu(bool isSignedIn = false)
         {
+            _mainViewModel.IsSignedIn = isSignedIn;
             _mainViewModel.IsMenuFrameVisible = false;
         }
     }

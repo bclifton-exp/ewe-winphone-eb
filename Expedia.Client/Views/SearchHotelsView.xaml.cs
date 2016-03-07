@@ -27,8 +27,8 @@ namespace Expedia.Client.Views
     {
         public SearchHotelsView()
         {
-            this.DataContext = ExpediaKernel.Instance().Get<ISearchHotelsViewModel>();
             this.InitializeComponent();
+            this.DataContext = ExpediaKernel.Instance().Get<ISearchHotelsViewModel>();
         }
 
         private void AutoSuggestBox_OnSuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)

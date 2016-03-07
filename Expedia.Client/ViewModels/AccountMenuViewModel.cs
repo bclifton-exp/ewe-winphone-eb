@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
+using System.Windows.Input;
 using Windows.UI.Xaml.Controls;
 using Expedia.Client.Interfaces;
 using Expedia.Client.Utilities;
 using Expedia.Client.Views;
+using Expedia.Entites;
 using Expedia.Services.Interfaces;
 using GalaSoft.MvvmLight.Command;
+using Microsoft.Practices.Prism.Commands;
 
 namespace Expedia.Client.ViewModels
 {
@@ -71,14 +74,14 @@ namespace Expedia.Client.ViewModels
             }
         }
 
-        private RelayCommand _connectWithFacebook;
-        public RelayCommand ConnectWithFacebook
+        private ICommand _connectFacebook;
+        public ICommand ConnectFacebook
         {
-            get { return _connectWithFacebook; }
+            get { return _connectFacebook; }
             set
             {
-                _connectWithFacebook = value;
-                OnPropertyChanged("ConnectWithFacebook");
+                _connectFacebook = value;
+                OnPropertyChanged("ConnectFacebook");
             }
         }
 
@@ -94,8 +97,8 @@ namespace Expedia.Client.ViewModels
         }
 
 
-        private RelayCommand _signInCommand;
-        public RelayCommand SignInCommand
+        private ICommand _signInCommand;
+        public ICommand SignInCommand
         {
             get { return _signInCommand; }
             set
@@ -110,6 +113,14 @@ namespace Expedia.Client.ViewModels
         {
             _authenticationService = authenticationService;
             _settingsService = settingsService;
+            var currentToken = CancellationTokenManager.Instance().CreateAndSetCurrentToken();
+
+            ConnectFacebook = new DelegateCommand(GetUriAndLoginToFacebook);
+
+            SignInCommand = new DelegateCommand(() =>
+            {
+                SignInUser(currentToken);
+            });
 
             ToCreateAccount = new RelayCommand(() =>
             {
@@ -120,21 +131,33 @@ namespace Expedia.Client.ViewModels
             {
                 Navigator.Instance().CloseMenu();
             });
-
-            SignInCommand = new RelayCommand(SignInUser);
         }
 
-        public async void SignInUser()
+        private void GetUriAndLoginToFacebook()
         {
-            var currentToken = CancellationTokenManager.Instance().CreateAndSetCurrentToken();
+            var callback = new Uri(Constants.Facebook.RedirectUrl, UriKind.RelativeOrAbsolute);
+
+            var uri = new Uri(
+             Constants.Facebook.ConnectUrl.InvariantCultureFormat(
+                 Constants.Facebook.ExpediaClientAppId,
+                 Uri.EscapeDataString(callback.ToString()),
+                 Constants.Facebook.ResponseType,
+                 Constants.Facebook.Scope),
+                 UriKind.Absolute);
+
+            Navigator.Instance().NavigateToMenuView(typeof(FacebookSignInWebView), uri);
+        }
+
+        public async void SignInUser(CancellationToken ct)
+        {
             IsBusy = true;
-            var isSignedIn = await _authenticationService.SignIn(currentToken, UserName, Password);
+            var isSignedIn = await _authenticationService.SignIn(ct, UserName, Password);
             IsBusy = false;
 
             if (isSignedIn)
             {
                 RealName = _settingsService.GetRealName();
-                Navigator.Instance().CloseMenu();
+                Navigator.Instance().CloseMenu(isSignedIn);
                 //TODO errors etc.
             }
         }

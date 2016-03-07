@@ -94,7 +94,7 @@
 				   Visibility="{Binding IsFacebookLinking, Converter={StaticResource ReversedBoolToVisibilityConverter}}"/>
         <Button Content="Connect"
                 Grid.Row="9"
-				Command="{Binding ConnectWithFacebook}"
+				Command="{Binding ConnectFacebook}"
 				Margin="0,11,0,0"
 				VerticalAlignment="Top"
 				x:Uid="ConnectButton"
