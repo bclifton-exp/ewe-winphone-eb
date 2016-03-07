@@ -68,6 +68,17 @@ namespace Expedia.Client.ViewModels
             }
         }
 
+        private string _errorText;
+        public string ErrorText
+        {
+            get { return _errorText; }
+            set
+            {
+                _errorText = value;
+                OnPropertyChanged("ErrorText");
+            }
+        }
+
         private FacebookAccount _facebookAccount;
         public FacebookAccount FacebookAccount
         {
@@ -127,6 +138,7 @@ namespace Expedia.Client.ViewModels
 
             LinkAccounts = new DelegateCommand(() =>
             {
+                ErrorText = null;
                 CompleteFacebookSignIn(UserName, Password);
             });
         }
@@ -151,9 +163,9 @@ namespace Expedia.Client.ViewModels
 
             var response = await _authenticationService.CompleteSignInWithFacebook(ct, FacebookAccount);
 
-            if (response)
+            if (response.IsSuccess)
             {
-                Navigator.Instance().CloseMenu(response);
+                Navigator.Instance().CloseMenu(response.IsSuccess);
             }
             else
             {
@@ -171,14 +183,13 @@ namespace Expedia.Client.ViewModels
 
             var response = await _authenticationService.CompleteSignInWithFacebook(ct, FacebookAccount, expediaEmail, expediaPassword);
 
-            if (response)
+            if (response.IsSuccess)
             {
-                Navigator.Instance().CloseMenu(response);
+                Navigator.Instance().CloseMenu(response.IsSuccess);
             }
             else
             {
-                Navigator.Instance().NavigateToMenuView(typeof(AccountMenuView));
-                //TODO error message
+                ErrorText = response.Errors.ErrorInfo;
             }
 
             IsBusy = false;

@@ -26,7 +26,7 @@ namespace Expedia.Services
             _settingsService = settingsService;
         }
 
-        public async Task<bool> SignIn(CancellationToken ct, string email, string password)
+        public async Task<SignInResponse> SignIn(CancellationToken ct, string email, string password)
         {
             var response = await Authenticate(ct, email, password);
 
@@ -76,7 +76,7 @@ namespace Expedia.Services
             return result != null ? JsonConvert.DeserializeObject<SignInResponse>(result) : null;
         }
 
-        private async Task<bool> ProcessSignInResponse(SignInResponse response, CancellationToken ct)
+        private async Task<SignInResponse> ProcessSignInResponse(SignInResponse response, CancellationToken ct)
         {
             if (!response.IsSuccess)
             {
@@ -86,10 +86,10 @@ namespace Expedia.Services
             var realName = response.FirstName.ToTitleCase() + " " + response.LastName.ToTitleCase();
             _settingsService.SetUserInfo(response.TUid,realName);
 
-            return response.IsSuccess;
+            return response;
         }
 
-        public async Task<bool> VerifySignIn(CancellationToken ct)
+        public async Task<SignInResponse> VerifySignIn(CancellationToken ct)
         {
             var response = await VerifyAuthentication(ct);
 
@@ -128,14 +128,15 @@ namespace Expedia.Services
             return facebookAccount;
         }
 
-        public async Task<bool> CompleteSignInWithFacebook(CancellationToken ct, FacebookAccount account, string expediaEmail = null, string expediaPassword = null)
+        public async Task<SignInResponse> CompleteSignInWithFacebook(CancellationToken ct, FacebookAccount account, string expediaEmail = null, string expediaPassword = null)
         {
             bool canVerify = false;
+            LinkAccountResponse response = null;
 
             switch (account.Linking)
             {
                 case FacebookLinking.NotLinked:
-                    var response = await CreateWithFacebook(ct, account.UserId, account.AccessToken, account.Email);
+                    response = await CreateWithFacebook(ct, account.UserId, account.AccessToken, account.Email);
                     canVerify = response.Status.Equals("success", StringComparison.OrdinalIgnoreCase);
                     break;
 
@@ -151,6 +152,12 @@ namespace Expedia.Services
 
             if (!canVerify)
             {
+                if (response.Status.Equals("loginFailed"))
+                {
+                    return new SignInResponse { Errors = new MobileError { ErrorInfo = "Login Failed" } }; //TODO PoS this
+                }
+               
+
                 throw new AuthenticationException();
             }
 

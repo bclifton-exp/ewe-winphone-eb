@@ -151,14 +151,18 @@ namespace Expedia.Client.ViewModels
         public async void SignInUser(CancellationToken ct)
         {
             IsBusy = true;
-            var isSignedIn = await _authenticationService.SignIn(ct, UserName, Password);
+            var response = await _authenticationService.SignIn(ct, UserName, Password);
             IsBusy = false;
 
-            if (isSignedIn)
+            if (response.IsSuccess)
             {
                 RealName = _settingsService.GetRealName();
-                Navigator.Instance().CloseMenu(isSignedIn);
-                //TODO errors etc.
+                Navigator.Instance().CloseMenu(response.IsSuccess);
+            }
+            else
+            {
+                var errorText = response.Errors.ErrorInfo;
+                //TODO display this somewhere
             }
         }
     }
