@@ -112,16 +112,18 @@ namespace Expedia.Services
         public async Task<FacebookAccount> SignInWithFacebook(CancellationToken ct, string accessToken)
         {
             var fbClient = new FacebookClient(accessToken);
-            dynamic result = await fbClient.GetTaskAsync("me", new { fields = "name,id,email" }, ct);
+            var result = await fbClient.GetTaskAsync("me", new { fields = "name,id,email" }, ct);
 
-            var linkingStatus = await GetFacebookLinking(ct, result.id, accessToken);
+            var jsonObj = JsonConvert.DeserializeObject<FacebookAccountJson>(result.ToString());
+
+            var linkingStatus = await GetFacebookLinking(ct, jsonObj.UserId, accessToken);
 
             var facebookAccount = new FacebookAccount
             {
                 AccessToken = accessToken,
-                Email = result.email,
-                Name = result.name,
-                UserId = result.id,
+                Email = jsonObj.Email,
+                Name = jsonObj.Name,
+                UserId = jsonObj.UserId,
                 Linking = linkingStatus
             };
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Expedia.Client.Contracts;
+using Newtonsoft.Json;
 
 namespace Expedia.Entities.User
 {
@@ -13,4 +14,16 @@ namespace Expedia.Entities.User
 		public string UserId { get; set; }
 		public FacebookLinking Linking { get; set; }
 	}
+
+    public class FacebookAccountJson
+    {
+        [JsonProperty("email")]
+        public string Email { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("id")]
+        public string UserId { get; set; }
+    }
 }
