@@ -1,6 +1,7 @@
 ﻿using Expedia.Entities.Hotels;
 using System;
 using System.Collections.Generic;
+using Windows.Devices.Geolocation;
 
 namespace Expedia.Entities.Hotels
 {
@@ -39,6 +40,8 @@ namespace Expedia.Entities.Hotels
 		public HotelStarRatingFilter[] StarRatingFilters { get; set; }
 		public HotelFilter[] AmenityFilters { get; set; }
 		public HotelFilter[] AccessibilityFilters { get; set; }
+
+        public Geopoint SelectedMapCenter { get; set; }
 
 		//public override int GetHashCode()
 		//{

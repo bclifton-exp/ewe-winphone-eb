@@ -71,6 +71,9 @@ namespace Expedia.Client.ViewModels
                 RoomsCount = 1 //this is always one until we have a control to pick this value
             };
 
+            if(MapControl != null)
+                hotelSearchParams.SelectedMapCenter = MapControl.Center;
+
             if (SelectedSearchSuggestion.HotelId != null)
             {
                 var hotel = new HotelResultItem { HotelId = SelectedSearchSuggestion.HotelId };

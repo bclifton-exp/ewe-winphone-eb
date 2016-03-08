@@ -1,4 +1,8 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using System.Linq;
+using Windows.Devices.Geolocation;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Maps;
 using Windows.UI.Xaml.Navigation;
 using Expedia.Client.Interfaces;
 using Expedia.Client.ViewModels;
@@ -19,7 +23,36 @@ namespace Expedia.Client.Views
         {
             var hotelParams = e.Parameter as SearchHotelsLocalParameters;
             var context = DataContext as HotelResultsViewModel;
+            if (hotelParams.SelectedMapCenter != null)
+            {
+                var geoPoint = new BasicGeoposition
+                {
+                    Latitude = hotelParams.SelectedMapCenter.Position.Latitude,
+                    Longitude = hotelParams.SelectedMapCenter.Position.Longitude
+                };
+                context.MapCenter = new Geopoint(geoPoint);
+            }
             context.GetHotelResults(hotelParams);
+        }
+
+        private void Map_OnLoading(FrameworkElement sender, object args)
+        {
+            var context = DataContext as HotelResultsViewModel;
+            var map = sender as MapControl;
+            context.MapControl = map;
+            if (context.MapCenter != null)
+            {
+                var geoPoint = new BasicGeoposition
+                {
+                    Latitude = context.MapCenter.Position.Latitude,
+                    Longitude = context.MapCenter.Position.Longitude
+                };
+                map.Center = new Geopoint(geoPoint);
+            }
+            else
+            {
+                map.Center = new Geopoint(new BasicGeoposition());
+            }
         }
     }
 }

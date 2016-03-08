@@ -115,7 +115,7 @@ namespace Expedia.Services
                     AccessibilityFilters = accessibilityFilters,
                     NeighborhoodFilters = neighborhoodFilters,
 
-                    Hotels = results.HotelList.Select(hotel => new HotelResultItem()
+                    Hotels = results.HotelList.Select(hotel => new HotelResultItem
                     {
                         HotelId = hotel.HotelId,
                         ImageUrl = !string.IsNullOrWhiteSpace(hotel.LargeThumbnailUrl) ? Constants.HotelImagesUrl + hotel.LargeThumbnailUrl : null,
@@ -125,7 +125,10 @@ namespace Expedia.Services
                         RateCurrencyCode = hotel.RateCurrencyCode,
                         RateCurrencySymbol = hotel.RateCurrencySymbol,
                         RoomsLeftAtThisRate = hotel.RoomsLeftAtThisRate,
-                        Rating = hotel.HotelStarRating
+                        Rating = hotel.HotelStarRating,
+                        LocationId = hotel.LocationId,
+                        Latitude = hotel.Latitude,
+                        Longitude = hotel.Longitude
                     }).ToArray()
                 };
             }, ct);
