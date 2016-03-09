@@ -48,6 +48,8 @@
 						   Style="{StaticResource HotelResultsHeaderTextStyle}"
 						   Margin="0,2.5,20,0" />
 
+                <Button Grid.Column="2" Content="Temp Book Button" Margin="10 30 0 0" Command="{Binding DataContext.BookHotel, ElementName=ResultListView}" CommandParameter="{Binding}"/>
+
                 <StackPanel Grid.Column="4"
 							Grid.Row="1"
 							Orientation="Vertical"
@@ -101,14 +103,14 @@
 						   VerticalAlignment="Top"
 						   Margin="0,-12,20,0"
 						   Visibility="{Binding IsSoldOut, Converter={StaticResource ReversedBoolToVisibilityConverter}}" />
-                
+
                 <StackPanel Orientation="Horizontal"
 							Grid.Row="3"
 							Grid.Column="2"
 							Grid.ColumnSpan="3"
 							HorizontalAlignment="Right"
 							Margin="0,-8,20,0">
-                    
+
                     <TextBlock Text="Only"
                                x:Uid="Only"
 							   Visibility="{Binding RoomsLeftAtThisRate, Converter={StaticResource IntBetweenOneAndThreeToVisibilityConverter}}"
@@ -117,7 +119,7 @@
 							   Visibility="{Binding RoomsLeftAtThisRate, Converter={StaticResource IntBetweenOneAndFiveToVisibilityConverter}}"
 							   Style="{StaticResource RoomsLeftTextStyle}"
 							   Margin="4,0" />
-                    
+
                     <TextBlock Text="room(s) left!"
                                x:Uid="RoomsLeft"
 							   Visibility="{Binding RoomsLeftAtThisRate, Converter={StaticResource IntBetweenOneAndFiveToVisibilityConverter}}"

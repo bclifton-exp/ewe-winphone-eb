@@ -52,6 +52,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\FacebookSignInWebView.xaml.cs">
       <DependentUpon>FacebookSignInWebView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\HotelBookingWebView.xaml.cs">
+      <DependentUpon>HotelBookingWebView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\HotelResultsView.xaml.cs">
       <DependentUpon>HotelResultsView.xaml</DependentUpon>
     </Compile>
@@ -78,6 +81,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\FacebookSignInWebView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\HotelBookingWebView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

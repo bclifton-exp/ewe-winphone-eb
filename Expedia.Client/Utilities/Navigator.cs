@@ -69,9 +69,9 @@ namespace Expedia.Client.Utilities
             {
                 if (_currentFrame != null && _currentFrame.CanGoBack)
                 {
+                    CancellationTokenManager.Instance().CancelCurrentToken();
                     _currentFrame.GoBack();
                     e.Handled = true;
-                    CancellationTokenManager.Instance().CancelCurrentToken();
                 }
             }
         }
@@ -93,9 +93,9 @@ namespace Expedia.Client.Utilities
             {
                 if (_currentFrame != null && _currentFrame.CanGoBack)
                 {
+                    CancellationTokenManager.Instance().CancelCurrentToken();
                     _currentFrame.GoBack();
                     e.Handled = true;
-                    CancellationTokenManager.Instance().CancelCurrentToken();
                 }
             }
         }

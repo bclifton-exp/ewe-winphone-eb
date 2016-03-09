@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -11,9 +12,13 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Maps;
 using Expedia.Client.Interfaces;
 using Expedia.Client.Utilities;
+using Expedia.Client.Views;
+using Expedia.Entites;
 using Expedia.Entities.Extensions;
 using Expedia.Entities.Hotels;
+using Expedia.Entities.Suggestions;
 using Expedia.Services.Interfaces;
+using GalaSoft.MvvmLight.Command;
 using Microsoft.Practices.Prism.Commands;
 
 namespace Expedia.Client.ViewModels
@@ -21,6 +26,8 @@ namespace Expedia.Client.ViewModels
     public class HotelResultsViewModel : BaseResultViewModel, IHotelResultsViewModel
     {
         private IHotelService _hotelService { get; set; }
+        private ISettingsService _settingsService { get; set; }
+        private IPointOfSaleService _pointOfSaleService { get; set; }
 
         private ObservableCollection<HotelResultItem> _hotelResultItems;
         public ObservableCollection<HotelResultItem> HotelResultItems
@@ -56,21 +63,70 @@ namespace Expedia.Client.ViewModels
             }
         }
 
+        private SearchHotelsLocalParameters _currentSearchCriteria;
+        public SearchHotelsLocalParameters CurrentSearchCriteria
+        {
+            get { return _currentSearchCriteria; }
+            set
+            {
+                _currentSearchCriteria = value;
+                OnPropertyChanged("CurrentSearchCriteria");
+            }
+        }
 
-        public HotelResultsViewModel(IHotelService hotelService)
+        private RelayCommand<HotelResultItem> _bookHotel;
+        public RelayCommand<HotelResultItem> BookHotel
+        {
+            get { return _bookHotel; }
+            set
+            {
+                _bookHotel = value;
+                OnPropertyChanged("BookHotel");
+            }
+        }
+
+
+        public HotelResultsViewModel(IHotelService hotelService, ISettingsService settingsService, IPointOfSaleService pointOfSaleService)
         {
             _hotelService = hotelService;
+            _settingsService = settingsService;
+            _pointOfSaleService = pointOfSaleService;
         }
 
         public async void GetHotelResults(SearchHotelsLocalParameters searchCriteria)
         {
             HotelResultItems = null;
+            ClearPushPins();
+            CurrentSearchCriteria = searchCriteria;
             var ct = CancellationTokenManager.Instance().CreateAndSetCurrentToken();
             var results = await _hotelService.SearchHotels(ct, searchCriteria);
             HotelResultItems = results.Hotels.ToObservableCollection();
 
-            ClearPushPins();
             BuildPushpins(HotelResultItems);
+
+            BookHotel = new RelayCommand<HotelResultItem>(BuildAndNavigateToHotelUri);
+        }
+
+        private async void BuildAndNavigateToHotelUri(HotelResultItem hotel) //Gone after Native
+        {
+            var hostname = _settingsService.GetCurrentDomain();
+            var childrenString = CurrentSearchCriteria.ChildrenAges.Length > 0
+                ? CurrentSearchCriteria.ChildrenAges.Select(_ => ":c{0}".InvariantCultureFormat(_)).JoinBy(String.Empty)
+                : string.Empty;
+            var pos = await _pointOfSaleService.GetCurrentPointOfSale();
+
+            var hotelDeeplink = new Uri("https://www.{0}/h{1}.Hotel-Information?chkin={2}&chkout={3}&rm1=a{4}{5}&forceNoRedir=1&brandcid=App.Windows.Native"
+                .InvariantCultureFormat(
+                    hostname,
+                    hotel.HotelId,
+                    CurrentSearchCriteria.CheckInDate
+                        .ToString(pos.DateFormatHotel, DateTimeFormatInfo.InvariantInfo),
+                    CurrentSearchCriteria.CheckOutDate
+                        .ToString(pos.DateFormatHotel, DateTimeFormatInfo.InvariantInfo),
+                    CurrentSearchCriteria.AdultsCount,
+                    childrenString));
+
+            Navigator.Instance().NavigateForward(SuggestionLob.HOTELS,typeof(HotelBookingWebView),hotelDeeplink);
         }
 
         internal void PushPinSelected(MapIcon selectedPushPin, ListView resultListView)
