@@ -81,33 +81,36 @@ namespace Expedia.Client.ViewModels
 
         private void ClearPushPins()
         {
-            MapControl.MapElements.Clear();
+            MapControl?.MapElements.Clear();
         }
 
         private void BuildPushpins(ObservableCollection<HotelResultItem> hotelResultItems)
         {
-            foreach (var hotel in hotelResultItems)
+            if (MapControl != null)
             {
-                var mapIcon = new MapIcon
+                foreach (var hotel in hotelResultItems)
                 {
-                    Title = hotel.HotelName + "(" + "$" + hotel.Price + ")", //TODO PoS based currency symbol
-                    Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/pushpin_scaled.png")),
-                };
+                    var mapIcon = new MapIcon
+                    {
+                        Title = hotel.HotelName + "(" + "$" + hotel.Price + ")", //TODO PoS based currency symbol
+                        Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/pushpin_scaled.png")),
+                    };
 
-                var geoPoint = new BasicGeoposition
-                {
-                    Latitude = hotel.Latitude,
-                    Longitude = hotel.Longitude
-                };
-                mapIcon.Location = new Geopoint(geoPoint);
+                    var geoPoint = new BasicGeoposition
+                    {
+                        Latitude = hotel.Latitude,
+                        Longitude = hotel.Longitude
+                    };
+                    mapIcon.Location = new Geopoint(geoPoint);
 
-                MapControl.MapElements.Add(mapIcon);
+                    MapControl.MapElements.Add(mapIcon);
+                }
             }
         }
 
         private void SetPushPinFocus(HotelResultItem selectedHotel)
         {
-            if (selectedHotel != null)
+            if (selectedHotel != null && MapControl != null)
             {
                 var geoPoint = new BasicGeoposition
                 {
