@@ -4,14 +4,17 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Windows.Input;
 using Windows.Devices.Geolocation;
 using Windows.Storage.Streams;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Maps;
 using Expedia.Client.Interfaces;
 using Expedia.Client.Utilities;
 using Expedia.Entities.Extensions;
 using Expedia.Entities.Hotels;
 using Expedia.Services.Interfaces;
+using Microsoft.Practices.Prism.Commands;
 
 namespace Expedia.Client.ViewModels
 {
@@ -70,6 +73,12 @@ namespace Expedia.Client.ViewModels
             BuildPushpins(HotelResultItems);
         }
 
+        internal void PushPinSelected(MapIcon selectedPushPin, ListView resultListView)
+        {
+            SelectedHotel = HotelResultItems.First(h => selectedPushPin.Title.Contains(h.HotelName));
+            resultListView.ScrollIntoView(SelectedHotel, ScrollIntoViewAlignment.Leading);
+        }
+
         private void ClearPushPins()
         {
             MapControl.MapElements.Clear();
@@ -82,7 +91,7 @@ namespace Expedia.Client.ViewModels
                 var mapIcon = new MapIcon
                 {
                     Title = hotel.HotelName + "(" + "$" + hotel.Price + ")", //TODO PoS based currency symbol
-                    Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/pushpin_scaled.png"))
+                    Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/pushpin_scaled.png")),
                 };
 
                 var geoPoint = new BasicGeoposition

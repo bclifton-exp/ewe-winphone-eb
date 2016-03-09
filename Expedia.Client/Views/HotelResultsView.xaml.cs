@@ -54,5 +54,12 @@ namespace Expedia.Client.Views
                 map.Center = new Geopoint(new BasicGeoposition());
             }
         }
+
+        private void Map_OnMapElementClick(MapControl sender, MapElementClickEventArgs args)
+        {
+            var selectedPushPin = args.MapElements.FirstOrDefault(x => x is MapIcon) as MapIcon;
+            var context = DataContext as HotelResultsViewModel;
+            context.PushPinSelected(selectedPushPin, ResultListView);
+        }
     }
 }
