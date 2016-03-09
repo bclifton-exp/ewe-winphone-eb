@@ -81,7 +81,7 @@ namespace Expedia.Client.ViewModels
             {
                 var mapIcon = new MapIcon
                 {
-                    Title = hotel.HotelName + "(" + "$" + hotel.Price + ")",
+                    Title = hotel.HotelName + "(" + "$" + hotel.Price + ")", //TODO PoS based currency symbol
                     Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/pushpin_scaled.png"))
                 };
 

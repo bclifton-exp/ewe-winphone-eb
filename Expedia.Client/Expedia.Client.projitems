@@ -16,6 +16,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\GeolocationAccessStatusToBoolConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\InbetweenOneAndFiveToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\InbetweenOneAndThreeToVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\IndexToPivotColorConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ReversedNullToBoolConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ReversedBoolToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\SignInSignOutTextConverter.cs" />
