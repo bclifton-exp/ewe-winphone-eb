@@ -88,6 +88,7 @@ namespace Expedia.Client.Utilities
                 {
                     _mainViewModel.IsMenuFrameVisible = false;
                 }
+                e.Handled = true;
             }
             else
             {

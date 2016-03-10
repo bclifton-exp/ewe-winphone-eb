@@ -77,7 +77,7 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
-        <Grid Grid.Column="0" Margin="10 20 35 10"> <!--35 is the magic number for the pivot spacing-->
+        <Grid Grid.Column="0" Margin="10 20 10 10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>

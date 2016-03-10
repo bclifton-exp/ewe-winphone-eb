@@ -9,6 +9,6 @@
 
     <Grid Background="{ThemeResource AppBarBackgroundThemeBrush}">
         <WebView x:Name="WebView" NavigationCompleted="WebView_OnNavigationCompleted" LoadCompleted="WebView_OnLoadCompleted"/>
-        <ProgressRing x:Name="ProgressRing" Margin="0 0 0 600" Width="100" Height="100" />
+        <ProgressRing x:Name="ProgressRing" Margin="0 0 0 700" Width="100" Height="100" />
     </Grid>
 </Page>
