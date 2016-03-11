@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:converters="using:Expedia.Client.Converters"
     xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
+    xmlns:customControls="using:Expedia.Client.CustomControls"
     mc:Ignorable="d" NavigationCacheMode="Enabled">
     
     <Page.Resources>
@@ -16,139 +17,70 @@
         <converters:IntBetweenOneAndThreeToVisibilityConverter x:Key="IntBetweenOneAndThreeToVisibilityConverter"/>
         <converters:IntBetweenOneAndFiveToVisibilityConverter x:Key="IntBetweenOneAndFiveToVisibilityConverter"/>
         <converters:ReversedNullToBoolConverter x:Key="ReversedNullToBoolConverter"/>
-        
+        <converters:CurrencyConverter x:Name="CurrencyConverter"/>
+
         <DataTemplate x:Key="HotelResultItemTemplate">
-            <Grid HorizontalAlignment="Stretch">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="115" />
-                    <ColumnDefinition Width="14" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
+            <Grid Height="270" Margin="15 10 15 5" Background="White" x:Name="MainHotelGrid">
+                <Grid x:Name="LayoverGrid" Height="190" VerticalAlignment="Top" Background="White">
+                    <Border Visibility="Collapsed">
+                        <Border.Triggers>
+                            <EventTrigger RoutedEvent="Border.Loaded">
+                                <EventTrigger.Actions>
+                                    <BeginStoryboard>
+                                        <Storyboard BeginTime="00:00:00"
+                                    Duration="{Binding AnimationDuration, Mode=TwoWay}"
+                                    RepeatBehavior="Forever"
+                                    AutoReverse="True"
+                                    Storyboard.TargetName="LayoverGrid" 
+                                    Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
+                                            <ColorAnimation From="White" To="Gray" Duration="0:0:1" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger.Actions>
+                            </EventTrigger>
 
-                <Image Source="{Binding ImageUrl}"
-					   Width="95"
-					   Height="95"
-					   Stretch="UniformToFill"
-					   Grid.RowSpan="4"
-					   Margin="20,0,0,0"
-					   VerticalAlignment="Top" />
+                        </Border.Triggers>
+                    </Border>
 
-                <TextBlock Text="{Binding HotelName}"
-						   Grid.Column="2"
-                           Grid.Row="0" Grid.ColumnSpan="3"
-						   Style="{StaticResource HotelResultsHeaderTextStyle}"
-						   Margin="0,2.5,20,0" />
+                    <Grid Height="190" VerticalAlignment="Top">
+                        <Grid.Background>
+                            <ImageBrush ImageSource="{Binding ImageUrl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Stretch="UniformToFill" ImageFailed="ImageBrush_OnImageFailed"/>
+                        </Grid.Background>
+                        <Grid Height="190">
+                            <Grid.Background>
+                                <LinearGradientBrush  EndPoint="0.5,1.15" MappingMode="RelativeToBoundingBox"  StartPoint="0.5,0.4">
+                                    <GradientStop Color="Transparent"/>
+                                    <GradientStop Color="Black" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Grid.Background>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="110"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="2" Content="Temp Book Button" Margin="10 30 0 0" Command="{Binding DataContext.BookHotel, ElementName=ResultListView}" CommandParameter="{Binding}"/>
+                            <TextBlock Margin="15 0 0 0" FontWeight="SemiBold" VerticalAlignment="Bottom" Foreground="White" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" FontSize="22" Text="{Binding HotelName}" Style="{StaticResource SubheaderTextBlockStyle}" HorizontalAlignment="Left"/>
 
-                <StackPanel Grid.Column="4"
-							Grid.Row="1"
-							Orientation="Vertical"
-							HorizontalAlignment="Right"
-							VerticalAlignment="Top"
-							Margin="0,7.5,20,0"
-							Visibility="{Binding IsSoldOut, Converter={StaticResource ReversedBoolToVisibilityConverter}}">
-
-                    <Grid 
-					  Margin="0.5,0,0,1"
-					  HorizontalAlignment="Right"
-					  VerticalAlignment="Top"
-					  Visibility="{Binding IsSoldOut, Converter={StaticResource ReversedBoolToVisibilityConverter}}">
-                        
-                        <StackPanel Orientation="Horizontal"
-								VerticalAlignment="Top"
-								Visibility="{Binding StrikeThroughPriceIsHigher, Converter={StaticResource BoolToVisibilityConverter}}">
-                            <TextBlock Text="{Binding RateCurrencyCode}"
-								   Visibility="{Binding RateCurrencyCode, Converter={StaticResource CurrencyCodeToVisibilityConverter}}"
-								   Style="{StaticResource StrikeThroughTextStyle}" />
-                            <TextBlock Text="{Binding RateCurrencySymbol}"
-								   Style="{StaticResource StrikeThroughTextStyle}" />
-                            <TextBlock Text="{Binding StrikeThroughPrice}"
-								   Style="{StaticResource StrikeThroughTextStyle}" />
-                        </StackPanel>
-                        <Rectangle Fill="{StaticResource IconPathBrush}"
-							   Height="1"
-							   HorizontalAlignment="Stretch"
-							   VerticalAlignment="Center" />
+                            <customControls:RatingControl Margin="15 0 0 5" Grid.Column="0" Grid.Row="2" RatingValue="{Binding Rating}" MaxRatingValue="5" FlowDirection="LeftToRight" FullIconUri="/Assets/StarRatingFull.png" HalfIconUri="/Assets/StarRatingHalf.png" EmptyIconUri="/Assets/StarRatingEmpty.png"/>
+                        </Grid>
                     </Grid>
+                </Grid>
 
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding RateCurrencyCode}"
-							   Visibility="{Binding RateCurrencyCode, Converter={StaticResource CurrencyCodeToVisibilityConverter}}"
-							   Style="{StaticResource TicketPriceTextStyle}" />
-                        <TextBlock Text="{Binding RateCurrencySymbol}"
-							   Style="{StaticResource TicketPriceTextStyle}" />
-                        <TextBlock Text="{Binding Price}"
-							   Style="{StaticResource TicketPriceTextStyle}" />
-
-                    </StackPanel>
-                </StackPanel>
-                
-                <TextBlock Style="{StaticResource AvgNightTextStyle}"
-						   Text="avg/night"
-						   Grid.Row="2"
-						   Grid.Column="3"
-						   Grid.ColumnSpan="2"
-						   x:Uid="AvgNight"
-						   HorizontalAlignment="Right"
-						   VerticalAlignment="Top"
-						   Margin="0,-12,20,0"
-						   Visibility="{Binding IsSoldOut, Converter={StaticResource ReversedBoolToVisibilityConverter}}" />
-
-                <StackPanel Orientation="Horizontal"
-							Grid.Row="3"
-							Grid.Column="2"
-							Grid.ColumnSpan="3"
-							HorizontalAlignment="Right"
-							Margin="0,-8,20,0">
-
-                    <TextBlock Text="Only"
-                               x:Uid="Only"
-							   Visibility="{Binding RoomsLeftAtThisRate, Converter={StaticResource IntBetweenOneAndThreeToVisibilityConverter}}"
-							   Style="{StaticResource RoomsLeftTextStyle}" />
-                    <TextBlock Text="{Binding RoomsLeftAtThisRate}"
-							   Visibility="{Binding RoomsLeftAtThisRate, Converter={StaticResource IntBetweenOneAndFiveToVisibilityConverter}}"
-							   Style="{StaticResource RoomsLeftTextStyle}"
-							   Margin="4,0" />
-
-                    <TextBlock Text="room(s) left!"
-                               x:Uid="RoomsLeft"
-							   Visibility="{Binding RoomsLeftAtThisRate, Converter={StaticResource IntBetweenOneAndFiveToVisibilityConverter}}"
-							   Style="{StaticResource RoomsLeftTextStyle}" />
-
-                    <TextBlock Text="We are sold out!"
-                               x:Uid="SoldOut"
-							   Visibility="{Binding IsSoldOut, Converter={StaticResource BoolToVisibilityConverter}}"
-							   Style="{StaticResource RoomsLeftTextStyle}" />
+                <StackPanel VerticalAlignment="Bottom" Margin="5 0 0 55" Orientation="Horizontal">
+                    <TextBlock Text="{Binding GuestRating}" Foreground="{StaticResource LogoYellowBrush}" FontWeight="SemiBold"/>
+                    <TextBlock Text=" of 5 - Guest Rating" x:Uid="OfGuestRatingTextBlock"/>
                 </StackPanel>
 
-                <Rectangle Fill="{StaticResource HotelLineBrush}"
-						   Grid.Row="4"
-						   Grid.ColumnSpan="3"
-						   Grid.Column="2"
-						   HorizontalAlignment="Stretch"
-						   Height="1"
-						   Margin="0,8,1,8" />
+                <StackPanel VerticalAlignment="Bottom" Margin="0 0 5 40" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <TextBlock Text="{Binding Price, Converter={StaticResource CurrencyConverter}}" Style="{StaticResource SubheaderTextBlockStyle}" FontWeight="SemiBold" Foreground="{StaticResource IconGrayBrush}"  />
+                </StackPanel>
 
-                <!--<controls:RatingControl RatingValue="{Binding Rating}"
-										FlowDirection="LeftToRight"
-										HorizontalAlignment="Left"
-										VerticalAlignment="Top"
-										Grid.Row="1"
-										Grid.Column="2"
-										Grid.RowSpan="3"
-										Margin="0,8,0,0"
-										FullIconUri="/Assets/StarRating/StarRatingFull.png"
-										HalfIconUri="/Assets/StarRating/StarRatingHalf.png" />-->
+                <Button VerticalAlignment="Bottom" Command="{Binding DataContext.BookHotel, ElementName=ResultListView}" CommandParameter="{Binding}" Content="View Details" x:Uid="ViewDetailsButton" Style="{StaticResource SearchButtonStyle}" Background="{StaticResource HotelLightGreen}"/>
             </Grid>
         </DataTemplate>
     </Page.Resources>
@@ -200,7 +132,7 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
-        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Grid.Column="0">
+        <Grid Background="{ThemeResource AppBarBackgroundThemeBrush}" Grid.Column="0">
 
             <ProgressRing x:Name="ProgressRing" IsActive="{Binding HotelResultItems, Converter={StaticResource ReversedNullToBoolConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Visibility="{Binding ElementName=ProgressRing, Path=IsActive, Converter={StaticResource BoolToVisibilityConverter}}" Width="100" Height="100" />
 
@@ -208,7 +140,7 @@
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                    <Setter Property="Margin" Value="-25 0 0 0"/>
+                    <Setter Property="Margin" Value="0 0 0 0"/>
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>

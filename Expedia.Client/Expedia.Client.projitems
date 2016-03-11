@@ -12,6 +12,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ChildAgeHeaderConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\CurrencyCodeToVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\CurrencyConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\DateTimeToDateTimeOffsetConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\GeolocationAccessStatusToBoolConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\InbetweenOneAndFiveToVisibilityConverter.cs" />
@@ -20,6 +21,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ReversedNullToBoolConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ReversedBoolToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\SignInSignOutTextConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CustomControls\RatingControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\DependentRelayCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IAccountMenuViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ICreateAccountViewModel.cs" />
@@ -108,8 +110,5 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)CustomControls\" />
   </ItemGroup>
 </Project>

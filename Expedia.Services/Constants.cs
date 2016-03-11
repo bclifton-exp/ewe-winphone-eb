@@ -51,6 +51,7 @@ namespace Expedia.Client
 	    public static class UrlActions
 	    {
 	        public const string HotelSearch = "search?";
+	        public const string HotelInfo = "info?";
 	    }
 
         public static class Facebook

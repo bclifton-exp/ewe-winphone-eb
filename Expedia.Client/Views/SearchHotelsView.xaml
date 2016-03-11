@@ -30,7 +30,7 @@
 
 
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
+    <Grid Background="{ThemeResource AppBarBackgroundThemeBrush}" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" x:Name="SearchColumn"/>
             <ColumnDefinition Width="2*"/>
@@ -132,6 +132,6 @@
 					VerticalAlignment="Bottom"/>
 
         </Grid>
-            <maps:MapControl x:Name="Map" Visibility="Collapsed" Loading="Map_OnLoading" Margin="-15 0 0 0" Grid.Column="1" MapServiceToken="uTSDW7FxvBNrtGPD67ZQ~Cws5kVsbllSUip_fVoHCIQ~AiAsYMbHCnN32naqWWDEeulT3_C1XVy1yPU91wba8Knm9G1D31rZOIMDss4jJFtO" ZoomLevel="14" />
+            <maps:MapControl x:Name="Map" Visibility="Collapsed" Loading="Map_OnLoading" Margin="0 0 0 0" Grid.Column="1" MapServiceToken="uTSDW7FxvBNrtGPD67ZQ~Cws5kVsbllSUip_fVoHCIQ~AiAsYMbHCnN32naqWWDEeulT3_C1XVy1yPU91wba8Knm9G1D31rZOIMDss4jJFtO" ZoomLevel="14" />
     </Grid>
 </Page>

@@ -11,6 +11,7 @@
         <ResourceDictionary Source="Button.xaml"/>
         <ResourceDictionary Source="PasswordBox.xaml"/>
         <ResourceDictionary Source="ToggleButton.xaml"/>
+        <ResourceDictionary Source="RatingControl.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

@@ -3,6 +3,8 @@ using Windows.Devices.Geolocation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Maps;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using Expedia.Client.Interfaces;
 using Expedia.Client.ViewModels;
@@ -60,6 +62,15 @@ namespace Expedia.Client.Views
             var selectedPushPin = args.MapElements.FirstOrDefault(x => x is MapIcon) as MapIcon;
             var context = DataContext as HotelResultsViewModel;
             context.PushPinSelected(selectedPushPin, ResultListView);
+        }
+
+        private void ImageBrush_OnImageFailed(object sender, ExceptionRoutedEventArgs e)
+        {
+            var brush = sender as ImageBrush;
+            var source = brush.ImageSource as BitmapImage;
+
+            var context = DataContext as HotelResultsViewModel;
+            context.ReplaceHotelImageUrl(source.UriSource.AbsoluteUri);
         }
     }
 }

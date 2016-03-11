@@ -116,7 +116,12 @@
     <value>Search</value>
 	<comment>Big yellow search button</comment>
   </data>
-
+  <data name="ViewDetailsButton.Content" xml:space="preserve">
+    <value>View Details</value>
+  </data>
+  <data name="OfGuestRatingTextBlock.Text" xml:space="preserve">
+    <value> of 5 - Guest Rating</value>
+  </data>
   <!-- Flights -->
   <data name="SearchFlights.Text" xml:space="preserve">
     <value>Search Flights</value>

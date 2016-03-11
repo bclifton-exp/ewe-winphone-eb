@@ -54,6 +54,18 @@ namespace Expedia.Services
             return result != null ? JsonConvert.DeserializeObject<HotelSearchResponse>(result) : null;
         }
 
+        public async Task<HotelInformationResponse> GetHotelInformation(CancellationToken ct, string hotelId)
+        {
+            var urlBase = string.Format(Constants.Urls.BaseUrlFormat, _settingsService.GetCurrentDomain());
+            var request = new ApiRequest(urlBase);
+            request.AppendPath(Constants.Urls.MobileHotelsApiRoot);
+            request.AppendPath(Constants.UrlActions.HotelInfo);
+            request.AppendParam("hotelId", hotelId);
+
+            var result = await ExecuteGet(request.GetFullUri(), ct);
+            return result != null ? JsonConvert.DeserializeObject<HotelInformationResponse>(result) : null;
+        }
+
         private static HotelSearchQueryParameters CreateClientQueryParameters(SearchHotelsLocalParameters searchInput)
         {
             var clientSearchParameters = new HotelSearchQueryParameters
@@ -118,7 +130,7 @@ namespace Expedia.Services
                     Hotels = results.HotelList.Select(hotel => new HotelResultItem
                     {
                         HotelId = hotel.HotelId,
-                        ImageUrl = !string.IsNullOrWhiteSpace(hotel.LargeThumbnailUrl) ? Constants.HotelImagesUrl + hotel.LargeThumbnailUrl : null,
+                        ImageUrl = !string.IsNullOrWhiteSpace(hotel.LargeThumbnailUrl) ? Constants.HotelImagesUrl + hotel.LargeThumbnailUrl.Replace("_d", "_z") : null,
                         Price = hotel.LowRateInfo != null ? hotel.LowRateInfo.PriceToShowUsers : 0,
                         StrikeThroughPrice = hotel.LowRateInfo != null ? hotel.LowRateInfo.StrikethroughPriceToShowUsers : 0,
                         HotelName = hotel.LocalizedName,
@@ -126,6 +138,7 @@ namespace Expedia.Services
                         RateCurrencySymbol = hotel.RateCurrencySymbol,
                         RoomsLeftAtThisRate = hotel.RoomsLeftAtThisRate,
                         Rating = hotel.HotelStarRating,
+                        GuestRating = hotel.HotelGuestRating,
                         LocationId = hotel.LocationId,
                         Latitude = hotel.Latitude,
                         Longitude = hotel.Longitude

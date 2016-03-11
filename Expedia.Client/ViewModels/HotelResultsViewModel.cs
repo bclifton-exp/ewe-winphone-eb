@@ -129,6 +129,20 @@ namespace Expedia.Client.ViewModels
             Navigator.Instance().NavigateForward(SuggestionLob.HOTELS,typeof(HotelBookingWebView),hotelDeeplink);
         }
 
+        internal async void ReplaceHotelImageUrl(string badUrl)//Some strange workaround for bad hotel images from the API
+        {
+            var badHotel = HotelResultItems.First(h => h.ImageUrl == badUrl);
+
+            HotelResultItems.Remove(badHotel);//-
+
+            var hotelInfo = await _hotelService.GetHotelInformation(new CancellationToken(false), badHotel.HotelId);
+
+            var goodUrl = Constants.HotelImagesUrl + hotelInfo.Photos.First().Url;
+
+            badHotel.ImageUrl = goodUrl;
+            HotelResultItems.Add(badHotel);//+
+        }
+
         internal void PushPinSelected(MapIcon selectedPushPin, ListView resultListView)
         {
             SelectedHotel = HotelResultItems.First(h => selectedPushPin.Title.Contains(h.HotelName));

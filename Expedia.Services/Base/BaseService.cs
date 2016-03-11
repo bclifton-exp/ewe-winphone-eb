@@ -25,6 +25,10 @@ namespace Expedia.Services.Base
 
                     return jsonData;
                 }
+                catch (TaskCanceledException)
+                {
+                    return null;
+                }
                 catch (OperationCanceledException)
                 {
                     return null;

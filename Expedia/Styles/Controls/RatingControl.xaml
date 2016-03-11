@@ -1,0 +1,29 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:customControls="using:Expedia.Client.CustomControls">
+
+    <Style x:Key="RatingControlDefaultStyle" TargetType="customControls:RatingControl">
+        <Setter Property="MaxRatingValue" Value="5"/>
+        <Setter Property="Orientation" Value="Horizontal"/>
+        <Setter Property="FullIconUri" Value="ms-appx:///Assets/StarRatingFull.png"/>
+        <Setter Property="HalfIconUri" Value="ms-appx:///Assets/StarRatingHalf.png"/>
+        <Setter Property="EmptyIconUri" Value="ms-appx:///Assets/StarRatingEmpty.png"/>
+        <Setter Property="ElementWidth" Value="19.16" />
+        <Setter Property="ElementHeight" Value="16.66"/>
+        <Setter Property="InterElementMargin" Value="2" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="customControls:RatingControl">
+                    <StackPanel x:Name="PART_StackPanel" 
+								Orientation="{TemplateBinding Orientation}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="customControls:RatingControl" 
+		   BasedOn="{StaticResource RatingControlDefaultStyle}">
+    </Style>
+
+</ResourceDictionary>

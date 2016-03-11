@@ -13,6 +13,7 @@ namespace Expedia.Entities.Hotels
 		public string RateCurrencySymbol { get; set; }
 		public int RoomsLeftAtThisRate { get; set; }
 		public double Rating { get; set; }
+        public double GuestRating { get; set; }
 		public bool IsSoldOut { get { return RoomsLeftAtThisRate == 0 ; } }
 		public string HotelId { get; set; }
 
