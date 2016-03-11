@@ -81,7 +81,7 @@ namespace Expedia.Services
                 ReturnOpaqueHotels = false, //YOLO
                 EnableSponsoredListing = false,
                 PageIndex = 0,
-                ResultsPerPage = 50,
+                ResultsPerPage = -1,
                 ForceV2Search = true,
                 FilterUnavailable = true
             };
