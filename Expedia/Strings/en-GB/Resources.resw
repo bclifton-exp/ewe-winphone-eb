@@ -122,6 +122,10 @@
   <data name="OfGuestRatingTextBlock.Text" xml:space="preserve">
     <value> of 5 - Guest Rating</value>
   </data>
+  <data name="MapPlaceHolder.Text" xml:space="preserve">
+    <value> Search a destination, airport, landmark, or hotel name</value>
+  </data>
+  
   <!-- Flights -->
   <data name="SearchFlights.Text" xml:space="preserve">
     <value>Search Flights</value>

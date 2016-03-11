@@ -1,4 +1,5 @@
 ﻿using System;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -16,11 +17,6 @@ namespace Expedia.Client.Views
             ProgressRing.IsActive = true;
             var sourceUri = e.Parameter as Uri;
             WebView.Source = sourceUri;
-        }
-
-        private void WebView_OnNavigationCompleted(WebView sender, WebViewNavigationCompletedEventArgs args)
-        {
-           
         }
 
         private void WebView_OnLoadCompleted(object sender, NavigationEventArgs e)

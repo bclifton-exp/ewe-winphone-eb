@@ -80,7 +80,7 @@
                     <TextBlock Text="{Binding Price, Converter={StaticResource CurrencyConverter}}" Style="{StaticResource SubheaderTextBlockStyle}" FontWeight="SemiBold" Foreground="{StaticResource IconGrayBrush}"  />
                 </StackPanel>
 
-                <Button VerticalAlignment="Bottom" Command="{Binding DataContext.BookHotel, ElementName=ResultListView}" CommandParameter="{Binding}" Content="View Details" x:Uid="ViewDetailsButton" Style="{StaticResource SearchButtonStyle}" Background="{StaticResource HotelLightGreen}"/>
+                <Button VerticalAlignment="Bottom" Command="{Binding DataContext.BookHotel, ElementName=ResultListView}" CommandParameter="{Binding}" Content="View Details" x:Uid="ViewDetailsButton" Style="{StaticResource SearchButtonStyle}" Foreground="White" Background="{StaticResource LogoDarkBlueBrush}"/>
             </Grid>
         </DataTemplate>
     </Page.Resources>

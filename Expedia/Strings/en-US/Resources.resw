@@ -190,6 +190,9 @@
     <value>One way</value>
     <comment>One way button</comment>
   </data>
+  <data name="MapPlaceHolder.Text" xml:space="preserve">
+    <value> Search a destination, airport, landmark, or hotel name</value>
+  </data>
   <data name="FlyingFrom.Text" xml:space="preserve">
     <value>Flying from</value>
   </data>

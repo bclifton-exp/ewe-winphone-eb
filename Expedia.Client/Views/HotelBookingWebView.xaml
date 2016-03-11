@@ -15,7 +15,7 @@
                 </VisualState.StateTriggers>
 
                 <VisualState.Setters>
-                    <Setter Target="ProgressRing.Margin" Value="0 0 1000 500"/>
+                    <Setter Target="ProgressRing.Margin" Value="0 0 1000 400"/>
                 </VisualState.Setters>
             </VisualState>
             <VisualState>
@@ -24,7 +24,7 @@
                 </VisualState.StateTriggers>
 
                 <VisualState.Setters>
-                    <Setter Target="ProgressRing.Margin" Value="0 0 1000 500" />
+                    <Setter Target="ProgressRing.Margin" Value="0 0 1000 400" />
                 </VisualState.Setters>
             </VisualState>
             <VisualState>
@@ -33,7 +33,7 @@
                 </VisualState.StateTriggers>
 
                 <VisualState.Setters>
-                    <Setter Target="ProgressRing.Margin" Value="0 0 1000 500" />
+                    <Setter Target="ProgressRing.Margin" Value="0 0 1000 400" />
                 </VisualState.Setters>
             </VisualState>
 
@@ -43,14 +43,14 @@
                 </VisualState.StateTriggers>
 
                 <VisualState.Setters>
-                    <Setter Target="ProgressRing.Margin" Value="0 0 0 500" />
+                    <Setter Target="ProgressRing.Margin" Value="0 0 0 400" />
                 </VisualState.Setters>
             </VisualState>
         </VisualStateGroup>
     </VisualStateManager.VisualStateGroups>
 
     <Grid Background="{ThemeResource AppBarBackgroundThemeBrush}">
-        <WebView x:Name="WebView" NavigationCompleted="WebView_OnNavigationCompleted" LoadCompleted="WebView_OnLoadCompleted"/>
-        <ProgressRing x:Name="ProgressRing" Margin="0 0 0 500" Width="100" Height="100" />
+        <WebView x:Name="WebView" LoadCompleted="WebView_OnLoadCompleted"/>
+        <ProgressRing x:Name="ProgressRing" Margin="0 0 0 400" Width="100" Height="100" />
     </Grid>
 </Page>
