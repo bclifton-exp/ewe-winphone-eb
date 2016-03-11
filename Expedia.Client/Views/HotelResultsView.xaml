@@ -71,7 +71,7 @@
                     </Grid>
                 </Grid>
 
-                <StackPanel VerticalAlignment="Bottom" Margin="5 0 0 55" Orientation="Horizontal">
+                <StackPanel VerticalAlignment="Bottom" Margin="5 0 0 50" Orientation="Horizontal">
                     <TextBlock Text="{Binding GuestRating}" Foreground="{StaticResource LogoYellowBrush}" FontWeight="SemiBold"/>
                     <TextBlock Text=" of 5 - Guest Rating" x:Uid="OfGuestRatingTextBlock"/>
                 </StackPanel>

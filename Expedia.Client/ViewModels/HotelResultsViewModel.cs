@@ -8,6 +8,7 @@ using System.Threading;
 using System.Windows.Input;
 using Windows.Devices.Geolocation;
 using Windows.Storage.Streams;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Maps;
 using Expedia.Client.Interfaces;
@@ -107,7 +108,7 @@ namespace Expedia.Client.ViewModels
             BookHotel = new RelayCommand<HotelResultItem>(BuildAndNavigateToHotelUri);
         }
 
-        private async void BuildAndNavigateToHotelUri(HotelResultItem hotel) //Gone after Native
+        private async void BuildAndNavigateToHotelUri(HotelResultItem hotel) //Gone after Native - Web View Connector
         {
             var hostname = _settingsService.GetCurrentDomain();
             var childrenString = CurrentSearchCriteria.ChildrenAges.Length > 0
@@ -129,18 +130,18 @@ namespace Expedia.Client.ViewModels
             Navigator.Instance().NavigateForward(SuggestionLob.HOTELS,typeof(HotelBookingWebView),hotelDeeplink);
         }
 
-        internal async void ReplaceHotelImageUrl(string badUrl)//Some strange workaround for bad hotel images from the API
+        internal async void ReplaceHotelImageUrl(string badUrl)//Workaround for bad hotel images from the API
         {
             var badHotel = HotelResultItems.First(h => h.ImageUrl == badUrl);
 
-            HotelResultItems.Remove(badHotel);//-
+            HotelResultItems.Remove(badHotel);
 
             var hotelInfo = await _hotelService.GetHotelInformation(new CancellationToken(false), badHotel.HotelId);
 
             var goodUrl = Constants.HotelImagesUrl + hotelInfo.Photos.First().Url;
 
             badHotel.ImageUrl = goodUrl;
-            HotelResultItems.Add(badHotel);//+
+            HotelResultItems.Add(badHotel);
         }
 
         internal void PushPinSelected(MapIcon selectedPushPin, ListView resultListView)
@@ -174,7 +175,7 @@ namespace Expedia.Client.ViewModels
                     mapIcon.Location = new Geopoint(geoPoint);
 
                     MapControl.MapElements.Add(mapIcon);
-                }
+                }  
             }
         }
 

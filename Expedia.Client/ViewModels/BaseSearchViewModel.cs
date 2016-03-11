@@ -24,6 +24,7 @@ namespace Expedia.Client.ViewModels
         #region Properties
 
         public readonly ISuggestionService SuggestionService;
+        public readonly ISettingsService SettingsService;
         private SuggestionLob Lob { get; set; }
 
         private ObservableCollection<int> _adultCountSource;
@@ -111,6 +112,7 @@ namespace Expedia.Client.ViewModels
             set
             {
                 _selectedSearchSuggestion = value;
+                UpdateMapVisibility(value);
                 OnPropertyChanged("SelectedSearchSuggestion");
             }
         }
@@ -137,6 +139,39 @@ namespace Expedia.Client.ViewModels
             }
         }
 
+        private bool _isGPSEnabled;
+        public bool IsGPSEnabled
+        {
+            get { return _isGPSEnabled; }
+            set
+            {
+                _isGPSEnabled = value;
+                OnPropertyChanged("IsGPSEnabled");
+            }
+        }
+
+        private bool _isMapVisible;
+        public bool IsMapVisible
+        {
+            get { return _isMapVisible; }
+            set
+            {
+                _isMapVisible = value;
+                OnPropertyChanged("IsMapVisible");
+            }
+        }
+
+        private Geoposition _mapCenter;
+        public Geoposition MapCenter
+        {
+            get { return _mapCenter; }
+            set
+            {
+                _mapCenter = value;
+                OnPropertyChanged("MapCenter");
+            }
+        }
+
         private MapControl _mapControl;
         public MapControl MapControl
         {
@@ -152,12 +187,21 @@ namespace Expedia.Client.ViewModels
         protected BaseSearchViewModel(SuggestionLob lob)
         {
             SuggestionService = ExpediaKernel.Instance().Get<ISuggestionService>();
+            SettingsService = ExpediaKernel.Instance().Get<ISettingsService>();
             Lob = lob;
             AdultCountSource = new ObservableCollection<int> { 1, 2, 3, 4, 5, 6 };
             ChildCountSource = new ObservableCollection<int> { 0, 1, 2, 3, 4, 5 };
             AdultCount = 1;
             ChildCount = 0;
             ChildAges = new ObservableCollection<ChildAgeItem>();
+            SetGPS();
+        }
+
+        private void SetGPS()
+        {
+            var status = SettingsService.GetUseLocationService();
+            IsGPSEnabled = status == GeolocationAccessStatus.Allowed;
+            IsMapVisible = IsGPSEnabled;
         }
 
         public async void GetNearbySuggestions()
@@ -243,6 +287,14 @@ namespace Expedia.Client.ViewModels
                             : new ChildAgeItem(ChildAges.IndexOf(ChildAges.Last()) + 2));
                     }
                 }
+            }
+        }
+
+        private void UpdateMapVisibility(SuggestionResult suggestionValue)
+        {
+            if (!IsGPSEnabled)
+            {
+                IsMapVisible = suggestionValue != null;
             }
         }
 

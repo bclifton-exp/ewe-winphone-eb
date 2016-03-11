@@ -65,7 +65,20 @@ namespace Expedia.Client.Views
             }
             else
             {
-                map.Center = new Geopoint(new BasicGeoposition());
+                if (!context.IsGPSEnabled)
+                {
+                    var geoPoint = new BasicGeoposition
+                    {
+                        Latitude = double.Parse(context.SelectedSearchSuggestion.Coordinates.Latitude),
+                        Longitude = double.Parse(context.SelectedSearchSuggestion.Coordinates.Longitude)
+                    };
+
+                    map.Center = new Geopoint(geoPoint);
+                }
+                else
+                {
+                    map.Center = new Geopoint(new BasicGeoposition());
+                }
             }
         }
 

@@ -28,17 +28,6 @@ namespace Expedia.Client.ViewModels
             }
         }
 
-        private Geoposition _mapCenter;
-        public Geoposition MapCenter
-        {
-            get { return _mapCenter; }
-            set
-            {
-                _mapCenter = value;
-                OnPropertyChanged("MapCenter");
-            }
-        }
-
 
         public SearchHotelsViewModel(IHotelService hotelService,ILocationService locationService) : base(SuggestionLob.HOTELS)
         {
