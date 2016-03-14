@@ -1,10 +1,12 @@
-﻿using System.Linq;
+﻿using System.Collections.ObjectModel;
+using System.Linq;
 using Windows.Devices.Geolocation;
 using Expedia.Client.Extensions;
 //using Bing.Maps;
 using Expedia.Client.Interfaces;
 using Expedia.Client.Utilities;
 using Expedia.Client.Views;
+using Expedia.Entities.Entities;
 using Expedia.Entities.Hotels;
 using Expedia.Entities.Suggestions;
 using Expedia.Services.Interfaces;
@@ -27,7 +29,6 @@ namespace Expedia.Client.ViewModels
                 OnPropertyChanged("SearchHotels");
             }
         }
-
 
         public SearchHotelsViewModel(IHotelService hotelService,ILocationService locationService) : base(SuggestionLob.HOTELS)
         {
@@ -74,8 +75,30 @@ namespace Expedia.Client.ViewModels
             //    hotelSearchParams.LocationLatitude = latitude;
             //    hotelSearchParams.LocationLongitude = longitude;
             //}
-                
+
+            SearchParamsMemory.Instance().HotelParams = hotelSearchParams;
+            SearchParamsMemory.Instance().HotelSuggestion = SelectedSearchSuggestion;
             Navigator.Instance().NavigateForward(SuggestionLob.HOTELS, typeof(HotelResultsView), hotelSearchParams);
+        }
+
+        internal void SetExistingTripSearchDetails()
+        {
+            var existingParams = SearchParamsMemory.Instance().HotelParams;
+
+            if (existingParams != null)
+            {
+                StartDate = existingParams.CheckInDate.DateTime;
+                EndDate = existingParams.CheckOutDate.DateTime;
+                AdultCount = existingParams.AdultsCount;
+                var childAges = new ObservableCollection<ChildAgeItem>();
+                for (int i = 0; i < existingParams.ChildrenAges.Length; i++)
+                {
+                    childAges.Add(new ChildAgeItem(i) { Age = existingParams.ChildrenAges[i] });
+                }
+                ChildCount = childAges.Count;
+                ChildAges = childAges;
+                //SelectedSearchSuggestion = SearchParamsMemory.Instance().HotelSuggestion;
+            }
         }
 
         private bool CanExecuteSearch()

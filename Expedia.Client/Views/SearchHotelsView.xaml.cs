@@ -31,6 +31,12 @@ namespace Expedia.Client.Views
             this.DataContext = ExpediaKernel.Instance().Get<ISearchHotelsViewModel>();
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            var context = DataContext as SearchHotelsViewModel;
+            context.SetExistingTripSearchDetails();
+        }
+
         private void AutoSuggestBox_OnSuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
         {
             var context = DataContext as SearchHotelsViewModel;
