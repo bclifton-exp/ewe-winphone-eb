@@ -17,6 +17,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Expedia.Client.Converters;
 using Expedia.Client.Interfaces;
+using Expedia.Client.Utilities;
 using Expedia.Client.ViewModels;
 using Expedia.Entities.Suggestions;
 using Expedia.Injection;

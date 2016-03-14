@@ -77,7 +77,6 @@ namespace Expedia.Client.ViewModels
             //}
 
             SearchParamsMemory.Instance().HotelParams = hotelSearchParams;
-            SearchParamsMemory.Instance().HotelSuggestion = SelectedSearchSuggestion;
             Navigator.Instance().NavigateForward(SuggestionLob.HOTELS, typeof(HotelResultsView), hotelSearchParams);
         }
 
@@ -97,7 +96,6 @@ namespace Expedia.Client.ViewModels
                 }
                 ChildCount = childAges.Count;
                 ChildAges = childAges;
-                //SelectedSearchSuggestion = SearchParamsMemory.Instance().HotelSuggestion;
             }
         }
 

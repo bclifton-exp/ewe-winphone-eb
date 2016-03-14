@@ -96,7 +96,7 @@
 
             <TextBlock Grid.Row="0" Grid.Column="0" x:Uid="GoingTo" Text="Goin to" Margin="0 0 0 5"/>
 
-            <AutoSuggestBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 0 0 25"
+            <AutoSuggestBox x:Name="SuggestionBox" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 0 0 25"
                         ItemsSource="{Binding SearchSuggestions}"
                         TextMemberPath="Display"
                         UpdateTextOnSelect="True"

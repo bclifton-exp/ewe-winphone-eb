@@ -146,6 +146,8 @@ namespace Expedia.Client.ViewModels
 
         internal void PushPinSelected(MapIcon selectedPushPin, ListView resultListView)
         {
+            selectedPushPin.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/blue_pin.png"));
+
             SelectedHotel = HotelResultItems.First(h => selectedPushPin.Title.Contains(h.HotelName));
             resultListView.ScrollIntoView(SelectedHotel, ScrollIntoViewAlignment.Leading);
         }
@@ -164,7 +166,7 @@ namespace Expedia.Client.ViewModels
                     var mapIcon = new MapIcon
                     {
                         Title = hotel.HotelName + "(" + "$" + hotel.Price + ")", //TODO PoS based currency symbol
-                        Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/pushpin_scaled.png")),
+                        Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/yellow_pin.png")),
                     };
 
                     var geoPoint = new BasicGeoposition

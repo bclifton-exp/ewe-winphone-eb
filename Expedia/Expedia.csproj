@@ -115,10 +115,11 @@
     <None Include="Expedia_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\pushpin_scaled.png" />
+    <Content Include="Assets\blue_pin.png" />
     <Content Include="Assets\StarRatingEmpty.png" />
     <Content Include="Assets\StarRatingFull.png" />
     <Content Include="Assets\StarRatingHalf.png" />
+    <Content Include="Assets\yellow_pin.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
