@@ -10,6 +10,8 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles/ExpediaResourceDictionary.xaml" />
                 <ResourceDictionary Source="Styles/Controls/_Controls.xaml"/>
+                <ResourceDictionary Source="Styles/SystemResources.xaml"/>
+                <ResourceDictionary Source="Styles/Common.xaml"/>
                 <!--<ResourceDictionary Source="Styles/OrbitzResourceDictionary.xaml"/>-->
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

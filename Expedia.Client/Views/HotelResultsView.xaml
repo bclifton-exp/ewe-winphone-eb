@@ -9,15 +9,8 @@
     xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
     xmlns:customControls="using:Expedia.Client.CustomControls"
     mc:Ignorable="d" NavigationCacheMode="Enabled">
-    
+
     <Page.Resources>
-        <converters:ReversedBoolToVisibilityConverter x:Key="ReversedBoolToVisibilityConverter"/>
-        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
-        <converters:CurrencyCodeToVisibilityConverter x:Key="CurrencyCodeToVisibilityConverter"/>
-        <converters:IntBetweenOneAndThreeToVisibilityConverter x:Key="IntBetweenOneAndThreeToVisibilityConverter"/>
-        <converters:IntBetweenOneAndFiveToVisibilityConverter x:Key="IntBetweenOneAndFiveToVisibilityConverter"/>
-        <converters:ReversedNullToBoolConverter x:Key="ReversedNullToBoolConverter"/>
-        <converters:CurrencyConverter x:Name="CurrencyConverter"/>
 
         <DataTemplate x:Key="HotelResultItemTemplate">
             <Grid Height="270" Margin="15 10 15 5" Background="White" x:Name="MainHotelGrid">
@@ -83,6 +76,71 @@
                 <Button VerticalAlignment="Bottom" Command="{Binding DataContext.BookHotel, ElementName=ResultListView}" CommandParameter="{Binding}" Content="View Details" x:Uid="ViewDetailsButton" Style="{StaticResource SearchButtonStyle}" Foreground="White" Background="{StaticResource LogoDarkBlueBrush}"/>
             </Grid>
         </DataTemplate>
+
+        <DataTemplate x:Key="HotelResultItemTemplatePhone">
+            <Grid Height="210" Margin="15 10 15 5" Background="White" x:Name="MainHotelGrid" Tapped="MainHotelGrid_OnTapped">
+                <Grid x:Name="LayoverGrid" Height="170" VerticalAlignment="Top" Background="White">
+                    <Border Visibility="Collapsed">
+                        <Border.Triggers>
+                            <EventTrigger RoutedEvent="Border.Loaded">
+                                <EventTrigger.Actions>
+                                    <BeginStoryboard>
+                                        <Storyboard BeginTime="00:00:00"
+                                    Duration="{Binding AnimationDuration, Mode=TwoWay}"
+                                    RepeatBehavior="Forever"
+                                    AutoReverse="True"
+                                    Storyboard.TargetName="LayoverGrid" 
+                                    Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
+                                            <ColorAnimation From="White" To="Gray" Duration="0:0:1" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger.Actions>
+                            </EventTrigger>
+
+                        </Border.Triggers>
+                    </Border>
+
+                    <Grid Height="170" VerticalAlignment="Top">
+                        <Grid.Background>
+                            <ImageBrush ImageSource="{Binding ImageUrl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Stretch="UniformToFill" ImageFailed="ImageBrush_OnImageFailed"/>
+                        </Grid.Background>
+                        <Grid Height="180">
+                            <Grid.Background>
+                                <LinearGradientBrush  EndPoint="0.5,1.15" MappingMode="RelativeToBoundingBox"  StartPoint="0.5,0.4">
+                                    <GradientStop Color="Transparent"/>
+                                    <GradientStop Color="Black" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Grid.Background>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="90"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Margin="15 0 0 0" FontWeight="SemiBold" VerticalAlignment="Bottom" Foreground="White" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" FontSize="22" Text="{Binding HotelName}" Style="{StaticResource SubheaderTextBlockStyle}" HorizontalAlignment="Left"/>
+
+                            <customControls:RatingControl Margin="15 0 0 15" Grid.Column="0" Grid.Row="2" RatingValue="{Binding Rating}" MaxRatingValue="5" FlowDirection="LeftToRight" FullIconUri="/Assets/StarRatingFull.png" HalfIconUri="/Assets/StarRatingHalf.png" EmptyIconUri="/Assets/StarRatingEmpty.png"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+
+                <StackPanel VerticalAlignment="Bottom" Margin="5 0 0 10" Orientation="Horizontal">
+                    <TextBlock Text="{Binding GuestRating}" Foreground="{StaticResource LogoYellowBrush}" FontWeight="SemiBold"/>
+                    <TextBlock Text=" of 5 - Guest Rating" x:Uid="OfGuestRatingTextBlock"/>
+                </StackPanel>
+
+                <StackPanel VerticalAlignment="Bottom" Margin="0 0 5 0" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <TextBlock Text="{Binding Price, Converter={StaticResource CurrencyConverter}}" Style="{StaticResource SubheaderTextBlockStyle}" FontWeight="SemiBold" Foreground="{StaticResource IconGrayBrush}"  />
+                </StackPanel>
+
+                <!--<Button VerticalAlignment="Bottom" Command="{Binding DataContext.BookHotel, ElementName=ResultListView}" CommandParameter="{Binding}" Content="View Details" x:Uid="ViewDetailsButton" Style="{StaticResource SearchButtonStyle}" Foreground="White" Background="{StaticResource LogoDarkBlueBrush}"/>-->
+            </Grid>
+        </DataTemplate>
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
@@ -100,6 +158,7 @@
 
                     <VisualState.Setters>
                         <Setter Target="ResultColumn.MinWidth" Value="320" />
+                        <Setter Target="ResultListView.ItemTemplate" Value="{StaticResource HotelResultItemTemplatePhone}"></Setter>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>
@@ -109,6 +168,7 @@
 
                     <VisualState.Setters>
                         <Setter Target="ResultColumn.MinWidth" Value="360" />
+                        <Setter Target="ResultListView.ItemTemplate" Value="{StaticResource HotelResultItemTemplatePhone}"></Setter>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>
@@ -118,6 +178,7 @@
 
                     <VisualState.Setters>
                         <Setter Target="ResultColumn.MinWidth" Value="432" />
+                        <Setter Target="ResultListView.ItemTemplate" Value="{StaticResource HotelResultItemTemplatePhone}"></Setter>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>
@@ -133,10 +194,24 @@
         </VisualStateManager.VisualStateGroups>
 
         <Grid Background="{ThemeResource AppBarBackgroundThemeBrush}" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="90"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-            <ProgressRing x:Name="ProgressRing" IsActive="{Binding HotelResultItems, Converter={StaticResource ReversedNullToBoolConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Visibility="{Binding ElementName=ProgressRing, Path=IsActive, Converter={StaticResource BoolToVisibilityConverter}}" Width="100" Height="100" />
+            <ProgressRing x:Name="ProgressRing" Grid.Row="1" IsActive="{Binding HotelResultItems, Converter={StaticResource ReversedNullToBoolConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Visibility="{Binding ElementName=ProgressRing, Path=IsActive, Converter={StaticResource BoolToVisibilityConverter}}" Width="100" Height="100" />
 
-        <ListView x:Name="ResultListView" Grid.Column="0" Margin="0 10 0 0" ItemTemplate="{StaticResource HotelResultItemTemplate}" ItemsSource="{Binding HotelResultItems}" SelectedItem="{Binding SelectedHotel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <customControls:ResultsHeaderControl DataContext="{Binding SearchInput, Mode=OneWay}" Grid.Row="0"
+                                     x:Uid="HotelsIn"
+                                     Style="{StaticResource HotelsHeaderControlStyle}"
+									 DepartureDate="{Binding CheckInDate, Converter={StaticResource LocalizedStringConverter}, ConverterParameter='CheckInDateFormat'}"
+                                     ArrivalDate="{Binding CheckOutDate, Converter={StaticResource LocalizedStringConverter}, ConverterParameter='CheckInDateFormat'}"
+                                     NumberOfPerson="{Binding TotalGuestsCount}"
+									 City="{Binding LocationName}"
+									 ResultType="Hotels in "
+									 GuestVisibility="Visible"/>
+            
+            <ListView x:Name="ResultListView" Grid.Row="1" Margin="0 10 0 0" ItemTemplate="{StaticResource HotelResultItemTemplate}" ItemsSource="{Binding HotelResultItems}" SelectedItem="{Binding SelectedHotel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />

@@ -1,0 +1,18 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="using:Expedia.Client.Converters">
+
+    <converters:ReversedBoolToVisibilityConverter x:Key="ReversedBoolToVisibilityConverter"/>
+    <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    <converters:CurrencyCodeToVisibilityConverter x:Key="CurrencyCodeToVisibilityConverter"/>
+    <converters:IntBetweenOneAndThreeToVisibilityConverter x:Key="IntBetweenOneAndThreeToVisibilityConverter"/>
+    <converters:IntBetweenOneAndFiveToVisibilityConverter x:Key="IntBetweenOneAndFiveToVisibilityConverter"/>
+    <converters:ReversedNullToBoolConverter x:Key="ReversedNullToBoolConverter"/>
+    <converters:CurrencyConverter x:Name="CurrencyConverter"/>
+    <converters:LocalizedStringConverter x:Key="LocalizedStringConverter"/>
+    <converters:IndexToPivotBackgroundColorConverter x:Key="IndexToPivotBackgroundColorConverter"/>
+    <converters:SignInSignOutTextConverter x:Name="SignInSignOutTextConverter"/>
+    <converters:IndexToPivotColorConverter x:Name="IndexToPivotColorConverter"/>
+
+</ResourceDictionary>

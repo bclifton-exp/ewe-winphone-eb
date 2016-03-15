@@ -1,0 +1,365 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:customControls="using:Expedia.Client.CustomControls">
+
+    <Style x:Key="DefaultHeaderControlStyle"
+		   TargetType="customControls:ResultsHeaderControl">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="customControls:ResultsHeaderControl">
+
+                    <Grid Background="{StaticResource SecondaryColor1Brush}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="58" />
+                            <RowDefinition Height="33" />
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Margin="20,33,20,0"
+									Orientation="Horizontal"
+									VerticalAlignment="Center">
+                            <TextBlock Text="{TemplateBinding ResultType}"
+									   Style="{StaticResource ResultsHeaderTextStyle}"
+									   VerticalAlignment="Center" />
+
+                            <TextBlock Text="{TemplateBinding City}"
+									   Style="{StaticResource ResultsHeaderBoldTextStyle}"
+									   VerticalAlignment="Center"
+									   Margin="3,0,40,0" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"
+									Grid.Row="1"
+									Margin="20,0,0,12">
+                            <ContentPresenter ContentTemplate="{StaticResource CalendarIcon}"
+											  VerticalAlignment="Center" />
+                            <StackPanel Orientation="Horizontal"
+										VerticalAlignment="Center"
+										Margin="6,0,18,0">
+                                <TextBlock Style="{StaticResource DateHeaderStyle}"
+										   Text="{TemplateBinding DepartureDate}"
+										   VerticalAlignment="Center"/>
+                                <TextBlock Text="–"
+										   x:Uid="Dash"
+										   Style="{StaticResource DateHeaderStyle}"
+										   VerticalAlignment="Center" 
+										   Margin="5,0"/>
+                                <TextBlock Style="{StaticResource DateHeaderStyle}"
+										   Text="{TemplateBinding ArrivalDate}"
+										   VerticalAlignment="Center"/>
+                            </StackPanel>
+
+                            <ContentPresenter ContentTemplate="{StaticResource PersonIcon}"
+                                              Visibility="{TemplateBinding PersonVisibility}"
+											  Margin="0,0,4,0" />
+
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding NumberOfPerson, RelativeSource={RelativeSource TemplatedParent}}"
+										   VerticalAlignment="Center"
+                                           Visibility="{TemplateBinding PersonVisibility}"
+									       Style="{StaticResource DateHeaderStyle}"
+										   Margin="0,0,4,0"/>
+
+                                <customControls:PluralityChooser Source="{Binding NumberOfPerson, RelativeSource={RelativeSource TemplatedParent}}"
+													ZeroValue="Guest"
+													SingularValue="Guest"
+													PluralValue="Guests"
+													TextBlockStyle="{StaticResource DateHeaderStyle}"
+													x:Uid="NumberOfGuests" 
+													Visibility="{TemplateBinding GuestVisibility}"
+													VerticalContentAlignment="Center"/>
+
+                                <customControls:PluralityChooser Source="{Binding NumberOfPerson, RelativeSource={RelativeSource TemplatedParent}}"
+													ZeroValue="Travelers"
+													SingularValue="Traveler"
+													PluralValue="Travelers"
+													TextBlockStyle="{StaticResource DateHeaderStyle}"
+													x:Uid="NumberOfTravelers" 
+													Visibility="{TemplateBinding TravelerVisibility}"
+													VerticalContentAlignment="Center"/>
+                            </StackPanel>
+
+                        </StackPanel>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="FlightsHeaderControlStyle"
+		   TargetType="customControls:ResultsHeaderControl">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="customControls:ResultsHeaderControl">
+
+                    <Grid Background="{StaticResource FlightBlue}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Margin="20,23,20,0"
+									Orientation="Horizontal"
+									VerticalAlignment="Center">
+                            <TextBlock Text="{TemplateBinding ResultType}"
+									   Style="{StaticResource ResultsHeaderTextStyle}"
+                                       Foreground="{StaticResource SecondaryColor1Brush}"
+									   VerticalAlignment="Center" />
+
+                            <TextBlock Text="{TemplateBinding City}"
+									   Style="{StaticResource ResultsHeaderBoldTextStyle}"
+                                       Foreground="{StaticResource SecondaryColor1Brush}"
+									   VerticalAlignment="Center"
+									   Margin="3,0,40,0" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"
+									Grid.Row="1"
+									Margin="20,10,0,22">
+                            <ContentPresenter ContentTemplate="{StaticResource CalendarIcon}"
+											  VerticalAlignment="Center" />
+                            <StackPanel Orientation="Horizontal"
+										VerticalAlignment="Center"
+										Margin="6,0,18,0">
+                                <TextBlock Style="{StaticResource DateHeaderStyle}"
+										   Text="{TemplateBinding DepartureDate}"
+                                           Foreground="{StaticResource SecondaryColor1Brush}"
+										   VerticalAlignment="Center"/>
+                                <TextBlock Text="–"
+										   x:Uid="Dash"
+										   Style="{StaticResource DateHeaderStyle}"
+                                           Foreground="{StaticResource SecondaryColor1Brush}"
+										   VerticalAlignment="Center" 
+										   Margin="5,0"/>
+                                <TextBlock Style="{StaticResource DateHeaderStyle}"
+                                           Foreground="{StaticResource SecondaryColor1Brush}"
+										   Text="{TemplateBinding ArrivalDate}"
+										   VerticalAlignment="Center"/>
+                            </StackPanel>
+
+                            <ContentPresenter ContentTemplate="{StaticResource PersonIcon}"
+                                              Visibility="{TemplateBinding PersonVisibility}"
+											  Margin="0,0,4,0" />
+
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding NumberOfPerson, RelativeSource={RelativeSource TemplatedParent}}"
+										   VerticalAlignment="Center"
+                                           Visibility="{TemplateBinding PersonVisibility}"
+									       Style="{StaticResource DateHeaderStyle}"
+                                           Foreground="{StaticResource SecondaryColor1Brush}"
+										   Margin="0,0,4,0"/>
+
+                                <customControls:PluralityChooser Source="{Binding NumberOfPerson, RelativeSource={RelativeSource TemplatedParent}}"
+													ZeroValue="Guest"
+													SingularValue="Guest"
+													PluralValue="Guests"
+													TextBlockStyle="{StaticResource HotelDateHeaderStyle}"
+                                                    Foreground="{StaticResource SecondaryColor1Brush}"
+													x:Uid="NumberOfGuests" 
+													Visibility="{TemplateBinding GuestVisibility}"
+													VerticalContentAlignment="Center"/>
+
+                                <customControls:PluralityChooser Source="{Binding NumberOfPerson, RelativeSource={RelativeSource TemplatedParent}}"
+													ZeroValue="Travelers"
+													SingularValue="Traveler"
+													PluralValue="Travelers"
+													TextBlockStyle="{StaticResource HotelDateHeaderStyle}"
+                                                    Foreground="{StaticResource SecondaryColor1Brush}"
+													x:Uid="NumberOfTravelers" 
+													Visibility="{TemplateBinding TravelerVisibility}"
+													VerticalContentAlignment="Center"/>
+                            </StackPanel>
+
+                        </StackPanel>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="HotelsHeaderControlStyle"
+		   TargetType="customControls:ResultsHeaderControl">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="customControls:ResultsHeaderControl">
+
+                    <Grid Background="{StaticResource HotelDarkGreen}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Margin="20,23,20,0"
+									Orientation="Horizontal"
+									VerticalAlignment="Center">
+                            <TextBlock Text="{TemplateBinding ResultType}"
+									   Style="{StaticResource ResultsHeaderTextStyle}"
+                                       Foreground="{StaticResource SecondaryColor1Brush}"
+									   VerticalAlignment="Center" />
+
+                            <TextBlock Text="{TemplateBinding City}"
+									   Style="{StaticResource ResultsHeaderBoldTextStyle}"
+                                       Foreground="{StaticResource SecondaryColor1Brush}"
+									   VerticalAlignment="Center"
+									   Margin="3,0,40,0" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"
+									Grid.Row="1"
+									Margin="20,10,0,22">
+                            <ContentPresenter ContentTemplate="{StaticResource CalendarIcon}"
+											  VerticalAlignment="Center" />
+                            <StackPanel Orientation="Horizontal"
+										VerticalAlignment="Center"
+										Margin="6,0,18,0">
+                                <TextBlock Style="{StaticResource DateHeaderStyle}"
+										   Text="{TemplateBinding DepartureDate}"
+                                           Foreground="{StaticResource SecondaryColor1Brush}"
+										   VerticalAlignment="Center"/>
+                                <TextBlock Text="–"
+										   x:Uid="Dash"
+										   Style="{StaticResource DateHeaderStyle}"
+                                           Foreground="{StaticResource SecondaryColor1Brush}"
+										   VerticalAlignment="Center" 
+										   Margin="5,0"/>
+                                <TextBlock Style="{StaticResource DateHeaderStyle}"
+                                           Foreground="{StaticResource SecondaryColor1Brush}"
+										   Text="{TemplateBinding ArrivalDate}"
+										   VerticalAlignment="Center"/>
+                            </StackPanel>
+
+                            <ContentPresenter ContentTemplate="{StaticResource PersonIcon}"
+                                              Visibility="{TemplateBinding PersonVisibility}"
+											  Margin="0,0,4,0" />
+
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding NumberOfPerson, RelativeSource={RelativeSource TemplatedParent}}"
+										   VerticalAlignment="Center"
+                                           Visibility="{TemplateBinding PersonVisibility}"
+									       Style="{StaticResource DateHeaderStyle}"
+                                           Foreground="{StaticResource SecondaryColor1Brush}"
+										   Margin="0,0,4,0"/>
+
+                                <customControls:PluralityChooser Source="{Binding NumberOfPerson, RelativeSource={RelativeSource TemplatedParent}}"
+													ZeroValue="Guest"
+													SingularValue="Guest"
+													PluralValue="Guests"
+													TextBlockStyle="{StaticResource HotelDateHeaderStyle}"
+                                                    Foreground="{StaticResource SecondaryColor1Brush}"
+													x:Uid="NumberOfGuests" 
+													Visibility="{TemplateBinding GuestVisibility}"
+													VerticalContentAlignment="Center"/>
+
+                                <customControls:PluralityChooser Source="{Binding NumberOfPerson, RelativeSource={RelativeSource TemplatedParent}}"
+													ZeroValue="Travelers"
+													SingularValue="Traveler"
+													PluralValue="Travelers"
+													TextBlockStyle="{StaticResource HotelDateHeaderStyle}"
+                                                    Foreground="{StaticResource SecondaryColor1Brush}"
+													x:Uid="NumberOfTravelers" 
+													Visibility="{TemplateBinding TravelerVisibility}"
+													VerticalContentAlignment="Center"/>
+                            </StackPanel>
+
+                        </StackPanel>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CarsHeaderControlStyle"
+		   TargetType="customControls:ResultsHeaderControl">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="customControls:ResultsHeaderControl">
+
+                    <Grid Background="{StaticResource CarsPurple}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Margin="20,23,20,0"
+									Orientation="Horizontal"
+									VerticalAlignment="Center">
+                            <TextBlock Text="{TemplateBinding ResultType}"
+									   Style="{StaticResource ResultsHeaderTextStyle}"
+                                       Foreground="{StaticResource SecondaryColor1Brush}"
+									   VerticalAlignment="Center" />
+
+                            <TextBlock Text="{TemplateBinding City}"
+									   Style="{StaticResource ResultsHeaderBoldTextStyle}"
+                                       Foreground="{StaticResource SecondaryColor1Brush}"
+                                       FontSize="24"
+                                       FontWeight="SemiBold"
+									   VerticalAlignment="Center"
+									   Margin="0,0,40,0" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"
+									Grid.Row="1"
+									Margin="20,10,0,22">
+                            <ContentPresenter ContentTemplate="{StaticResource CalendarIcon}" Foreground="{StaticResource SecondaryColor1Brush}"
+											  VerticalAlignment="Center" />
+                            <StackPanel Orientation="Horizontal"
+										VerticalAlignment="Center"
+										Margin="6,0,18,0">
+                                <TextBlock Style="{StaticResource DateHeaderStyle}"
+										   Text="{TemplateBinding DepartureDate}"
+                                           Foreground="{StaticResource SecondaryColor1Brush}"
+										   VerticalAlignment="Center"/>
+                                <TextBlock Text="–"
+										   x:Uid="Dash"
+										   Style="{StaticResource DateHeaderStyle}"
+                                           Foreground="{StaticResource SecondaryColor1Brush}"
+										   VerticalAlignment="Center" 
+										   Margin="5,0"/>
+                                <TextBlock Style="{StaticResource DateHeaderStyle}"
+										   Text="{TemplateBinding ArrivalDate}"
+                                           Foreground="{StaticResource SecondaryColor1Brush}"
+										   VerticalAlignment="Center"/>
+                            </StackPanel>
+
+                            <ContentPresenter ContentTemplate="{StaticResource PersonIcon}"
+                                              Visibility="{TemplateBinding PersonVisibility}"
+                                              Foreground="{StaticResource SecondaryColor1Brush}"
+											  Margin="0,0,4,0" />
+
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding NumberOfPerson, RelativeSource={RelativeSource TemplatedParent}}"
+										   VerticalAlignment="Center"
+                                           Foreground="{StaticResource SecondaryColor1Brush}"
+                                           Visibility="{TemplateBinding PersonVisibility}"
+									       Style="{StaticResource DateHeaderStyle}"
+										   Margin="0,0,4,0"/>
+
+                                <customControls:PluralityChooser Source="{Binding NumberOfPerson, RelativeSource={RelativeSource TemplatedParent}}"
+													ZeroValue="Guest"
+													SingularValue="Guest"
+													PluralValue="Guests"
+													TextBlockStyle="{StaticResource DateHeaderStyle}"
+                                                    Foreground="{StaticResource SecondaryColor1Brush}"
+													x:Uid="NumberOfGuests" 
+													Visibility="{TemplateBinding GuestVisibility}"
+													VerticalContentAlignment="Center"/>
+
+                                <customControls:PluralityChooser Source="{Binding NumberOfPerson, RelativeSource={RelativeSource TemplatedParent}}"
+													ZeroValue="Travelers"
+													SingularValue="Traveler"
+													PluralValue="Travelers"
+													TextBlockStyle="{StaticResource DateHeaderStyle}"
+                                                    Foreground="{StaticResource SecondaryColor1Brush}"
+													x:Uid="NumberOfTravelers" 
+													Visibility="{TemplateBinding TravelerVisibility}"
+													VerticalContentAlignment="Center"/>
+                            </StackPanel>
+
+                        </StackPanel>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="customControls:ResultsHeaderControl"
+		   BasedOn="{StaticResource DefaultHeaderControlStyle}">
+    </Style>
+
+</ResourceDictionary>

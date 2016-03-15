@@ -86,6 +86,17 @@ namespace Expedia.Client.ViewModels
             }
         }
 
+        private SearchHotelsLocalParameters _searchInput;
+        public SearchHotelsLocalParameters SearchInput
+        {
+            get { return _searchInput; }
+            set
+            {
+                _searchInput = value;
+                OnPropertyChanged("SearchInput");
+            }
+        }
+
 
         public HotelResultsViewModel(IHotelService hotelService, ISettingsService settingsService, IPointOfSaleService pointOfSaleService)
         {
@@ -96,6 +107,7 @@ namespace Expedia.Client.ViewModels
 
         public async void GetHotelResults(SearchHotelsLocalParameters searchCriteria)
         {
+            SearchInput = searchCriteria;
             HotelResultItems = null;
             ClearPushPins();
             CurrentSearchCriteria = searchCriteria;
@@ -191,6 +203,11 @@ namespace Expedia.Client.ViewModels
                     Longitude = selectedHotel.Longitude
                 };
                 MapControl.Center = new Geopoint(geoPoint);
+
+                foreach (MapElement selected in MapControl.MapElements.Where(selected => ((dynamic) selected).Title.Contains(selectedHotel.HotelName)))
+                {
+                    ((dynamic) selected).Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/blue_pin.png"));
+                }
             }
         }
     }

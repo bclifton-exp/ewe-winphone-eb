@@ -3,6 +3,7 @@ using Windows.Devices.Geolocation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Maps;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
@@ -71,6 +72,14 @@ namespace Expedia.Client.Views
 
             var context = DataContext as HotelResultsViewModel;
             context.ReplaceHotelImageUrl(source.UriSource.AbsoluteUri);
+        }
+
+        private void MainHotelGrid_OnTapped(object sender, TappedRoutedEventArgs e)
+        {
+            var grid = sender as Grid;
+            var hotel = grid.DataContext as HotelResultItem;
+            var context = DataContext as HotelResultsViewModel;
+            context.BookHotel.Execute(hotel);
         }
     }
 }

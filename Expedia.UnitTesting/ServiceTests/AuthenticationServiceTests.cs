@@ -32,7 +32,7 @@ namespace Expedia.UnitTesting.ServiceTests
         public async Task CanSignIn()
         {
             var signInResult = await AuthenticationService.SignIn(new CancellationToken(false), "WpAppTester@expedia.com", "expedia");
-            Assert.IsTrue(signInResult);
+            Assert.IsTrue(signInResult.IsSuccess);
 
             var accountName = SettingsService.GetRealName();
             Assert.IsTrue(accountName == "Test Test");

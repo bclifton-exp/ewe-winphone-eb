@@ -37,6 +37,41 @@
 				Value="{StaticResource TertiaryColor2Brush}" />
     </Style>
 
+    <Style x:Key="ResultsHeaderBoldTextStyle"
+		   TargetType="TextBlock"
+		   BasedOn="{StaticResource ResultsHeaderTextStyle}">
+        <Setter Property="FontWeight"
+				Value="Bold" />
+        <Setter Property="TextTrimming"
+				Value="CharacterEllipsis" />
+        <Setter Property="TextWrapping"
+				Value="NoWrap" />
+    </Style>
+
+    <Style x:Key="DateHeaderStyle"
+		   TargetType="TextBlock"
+		   BasedOn="{StaticResource LocationHeaderStyle}">
+        <Setter Property="FontFamily"
+				Value="{StaticResource PhoneFontFamilyNormal}" />
+        <Setter Property="FontWeight"
+				Value="Normal" />
+        <Setter Property="VerticalAlignment"
+				Value="Center" />
+    </Style>
+
+    <Style x:Key="HotelDateHeaderStyle"
+		   TargetType="TextBlock"
+		   BasedOn="{StaticResource LocationHeaderStyle}">
+        <Setter Property="FontFamily"
+				Value="{StaticResource PhoneFontFamilyNormal}" />
+        <Setter Property="FontWeight"
+				Value="Normal" />
+        <Setter Property="VerticalAlignment"
+				Value="Center"/>
+        <Setter Property="Foreground" 
+                Value="{StaticResource SecondaryColor1Brush}"/>
+    </Style>
+
     <Style x:Key="LocationHeaderStyle"
 		   TargetType="TextBlock">
         <Setter Property="FontFamily"

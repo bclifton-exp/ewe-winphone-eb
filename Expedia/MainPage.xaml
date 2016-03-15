@@ -9,12 +9,6 @@
     xmlns:converters="using:Expedia.Client.Converters"
     mc:Ignorable="d">
 
-    <Page.Resources>
-        <converters:BoolToVisibilityConverter x:Name="BoolToVisibilityConverter"/>
-        <converters:SignInSignOutTextConverter x:Name="SignInSignOutTextConverter"/>
-        <converters:IndexToPivotColorConverter x:Name="IndexToPivotColorConverter"/>
-    </Page.Resources>
-    
     <Grid>
 
         <VisualStateManager.VisualStateGroups>
@@ -117,8 +111,8 @@
             </Grid>-->
 
                 <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
-                    <Pivot x:Name="PivotControl" Style="{StaticResource PivotStyleDynamicHeader}" >
-                        <PivotItem Margin="0 0 0 0">
+                    <Pivot x:Name="PivotControl" Style="{StaticResource PivotStyleDynamicHeader}" Background="{Binding ElementName=PivotControl, Path=SelectedIndex, Converter={StaticResource IndexToPivotBackgroundColorConverter}}">
+                        <PivotItem x:Name="HotelPivot" Margin="0 0 0 0">
                             <PivotItem.Header>
                                 <StackPanel x:Name="FirstStackPanel" Orientation="Vertical" Margin="70 5 0 5">
                                     <Viewbox Width="55" Height="45">
@@ -132,7 +126,7 @@
                                 <views:SearchHotelsView />
                             </Frame>
                         </PivotItem>
-                        <PivotItem Margin="0 0 0 0">
+                        <PivotItem x:Name="FlightPivot" Margin="0 0 0 0">
                             <PivotItem.Header>
                                 <StackPanel Orientation="Vertical" Margin="30 5 0 5">
                                 <Viewbox Width="55" Height="45">
@@ -145,7 +139,7 @@
                                 <TextBlock Text="planes and flights" />
                             </Frame>
                         </PivotItem>
-                        <PivotItem Margin="0 0 0 0">
+                        <PivotItem x:Name="CarPivot" Margin="0 0 0 0">
                             <PivotItem.Header>
                                 <StackPanel Orientation="Vertical" Margin="30 5 0 5">
                                 <Viewbox Width="55" Height="45" >

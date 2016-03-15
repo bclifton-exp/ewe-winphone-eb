@@ -17,11 +17,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\GeolocationAccessStatusToBoolConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\InbetweenOneAndFiveToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\InbetweenOneAndThreeToVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\IndexToPivotBackgroundColorConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\IndexToPivotColorConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\LocalizedStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ReversedNullToBoolConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ReversedBoolToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\SignInSignOutTextConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CustomControls\PluralityChooser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CustomControls\RatingControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CustomControls\ResultsHeaderControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\DependentRelayCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IAccountMenuViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ICreateAccountViewModel.cs" />

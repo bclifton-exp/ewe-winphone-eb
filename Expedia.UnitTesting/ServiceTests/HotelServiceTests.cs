@@ -23,9 +23,9 @@ namespace Expedia.UnitTesting.ServiceTests
         [TestMethod]
         public async Task GetHotels()
         {
-            var results = await HotelService.GetHotels(new HotelSearchQueryParameters{ CheckInDate = DateTime.Today, CheckOutDate = DateTime.Today.AddDays(1), City = "SFO", Room = new[] { 1 } }, new CancellationToken(false));
+            var results = await HotelService.SearchHotels(new CancellationToken(false),new SearchHotelsLocalParameters{ CheckInDate = DateTime.Today, CheckOutDate = DateTime.Today.AddDays(1), LocationName = "SFO", RoomsCount = 1 });
 
-            Assert.IsTrue(results.HotelList.First().HotelId != null);
+            Assert.IsTrue(results.Hotels.First().HotelId != null);
         }
     }
 }

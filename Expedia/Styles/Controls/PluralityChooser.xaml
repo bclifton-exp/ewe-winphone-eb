@@ -1,0 +1,21 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:customControls="using:Expedia.Client.CustomControls">
+    <Style TargetType="customControls:PluralityChooser">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="customControls:PluralityChooser">
+                    <Border>
+                        <TextBlock x:Name="PART_TextBlock"
+								   Style="{TemplateBinding TextBlockStyle}" 
+								   TextWrapping="{TemplateBinding TextWrapping}"
+								   TextTrimming="{TemplateBinding TextTrimming}"
+								   Visibility="{TemplateBinding Visibility}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>
