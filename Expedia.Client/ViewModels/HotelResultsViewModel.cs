@@ -97,6 +97,84 @@ namespace Expedia.Client.ViewModels
             }
         }
 
+        private bool _sortByPriceLowToHighChecked;
+        public bool SortByPriceLowToHighChecked
+        {
+            get { return _sortByPriceLowToHighChecked; }
+            set
+            {
+                _sortByPriceLowToHighChecked = value;
+                OnPropertyChanged("SortByPriceLowToHighChecked");
+            }
+        }
+
+        private bool _sortByGuestStarRatingChecked;
+        public bool SortByGuestStarRatingChecked
+        {
+            get { return _sortByGuestStarRatingChecked; }
+            set
+            {
+                _sortByGuestStarRatingChecked = value;
+                OnPropertyChanged("SortByGuestStarRatingChecked");
+            }
+        }
+
+        private bool _sortByStarRatingChecked;
+        public bool SortByStarRatingChecked
+        {
+            get { return _sortByStarRatingChecked; }
+            set
+            {
+                _sortByStarRatingChecked = value;
+                OnPropertyChanged("SortByStarRatingChecked");
+            }
+        }
+
+        private bool _sortByBestDealsChecked;
+        public bool SortByBestDealsChecked
+        {
+            get { return _sortByBestDealsChecked; }
+            set
+            {
+                _sortByBestDealsChecked = value;
+                OnPropertyChanged("SortByBestDealsChecked");
+            }
+        }
+
+        private bool _sortByMostPopularChecked;
+        public bool SortByMostPopularChecked
+        {
+            get { return _sortByMostPopularChecked; }
+            set
+            {
+                _sortByMostPopularChecked = value;
+                OnPropertyChanged("SortByMostPopularChecked");
+            }
+        }
+
+        private ICommand _sortResultsCommand;
+        public ICommand SortResultsCommand
+        {
+            get { return _sortResultsCommand; }
+            set
+            {
+                _sortResultsCommand = value;
+                OnPropertyChanged("SortResultsCommand");
+            }
+        }
+
+        private HotelStarRatingFilter[] _starRatingFilters;
+        public HotelStarRatingFilter[] StarRatingFilters
+        {
+            get { return _starRatingFilters; }
+            set
+            {
+                _starRatingFilters = value;
+                OnPropertyChanged("StarRatingFilters");
+            }
+        }
+
+
 
         public HotelResultsViewModel(IHotelService hotelService, ISettingsService settingsService, IPointOfSaleService pointOfSaleService)
         {
@@ -113,11 +191,13 @@ namespace Expedia.Client.ViewModels
             CurrentSearchCriteria = searchCriteria;
             var ct = CancellationTokenManager.Instance().CreateAndSetCurrentToken();
             var results = await _hotelService.SearchHotels(ct, searchCriteria);
+            StarRatingFilters = results.StarRatingFilters;
             HotelResultItems = results.Hotels.ToObservableCollection();
 
             BuildPushpins(HotelResultItems);
 
             BookHotel = new RelayCommand<HotelResultItem>(BuildAndNavigateToHotelUri);
+            SortResultsCommand = new DelegateCommand(SortResults);
         }
 
         private async void BuildAndNavigateToHotelUri(HotelResultItem hotel) //Gone after Native - Web View Connector
@@ -140,6 +220,16 @@ namespace Expedia.Client.ViewModels
                     childrenString));
 
             Navigator.Instance().NavigateForward(SuggestionLob.HOTELS,typeof(HotelBookingWebView),hotelDeeplink);
+        }
+
+        internal void FilterResults()
+        {
+            //TODO
+        }
+
+        internal void SortResults()
+        {
+            //TODO
         }
 
         internal async void ReplaceHotelImageUrl(string badUrl)//Workaround for bad hotel images from the API

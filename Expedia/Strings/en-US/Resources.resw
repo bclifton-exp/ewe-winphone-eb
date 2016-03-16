@@ -307,7 +307,7 @@
     <value>hotels available</value>
     <comment>x hotels available</comment>
   </data>
-  <data name="SortBy.Content" xml:space="preserve">
+  <data name="SortBy.Text" xml:space="preserve">
     <value>Sort by</value>
     <comment>Menu button to enable sorting</comment>
   </data>
@@ -326,7 +326,7 @@
   <data name="SortMostPopular.Content" xml:space="preserve">
     <value>Most Popular</value>
   </data>
-  <data name="FilterBy.Content" xml:space="preserve">
+  <data name="FilterBy.Text" xml:space="preserve">
     <value>Filter by</value>
     <comment>Menu button to enable filtering</comment>
   </data>

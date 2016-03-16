@@ -20,9 +20,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\IndexToPivotBackgroundColorConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\IndexToPivotColorConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\LocalizedStringConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\RadioBackgroundConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ReversedNullToBoolConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ReversedBoolToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\SignInSignOutTextConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CustomControls\ExpandableContentControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CustomControls\PluralityChooser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CustomControls\RatingControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CustomControls\ResultsHeaderControl.cs" />

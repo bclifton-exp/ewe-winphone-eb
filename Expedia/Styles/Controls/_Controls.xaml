@@ -13,6 +13,9 @@
         <ResourceDictionary Source="ToggleButton.xaml"/>
         <ResourceDictionary Source="RatingControl.xaml"/>
         <ResourceDictionary Source="ResultsHeaderControl.xaml"/>
+        <ResourceDictionary Source="MenuFlyout.xaml"/>
+        <ResourceDictionary Source="ExpandableContentControl.xaml"/>
+        <ResourceDictionary Source="CheckBox.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

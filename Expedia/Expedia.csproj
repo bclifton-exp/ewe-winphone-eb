@@ -119,6 +119,18 @@
     <Content Include="Assets\StarRatingEmpty.png" />
     <Content Include="Assets\StarRatingFull.png" />
     <Content Include="Assets\StarRatingHalf.png" />
+    <Content Include="Assets\StarRating\StarRatingEmpty_Dark.scale-100.png" />
+    <Content Include="Assets\StarRating\StarRatingEmpty_Dark.scale-140.png" />
+    <Content Include="Assets\StarRating\StarRatingEmpty_Dark.scale-240.png" />
+    <Content Include="Assets\StarRating\StarRatingFull.scale-100.png" />
+    <Content Include="Assets\StarRating\StarRatingFull.scale-140.png" />
+    <Content Include="Assets\StarRating\StarRatingFull.scale-240.png" />
+    <Content Include="Assets\StarRating\StarRatingFull_Dark.scale-100.png" />
+    <Content Include="Assets\StarRating\StarRatingFull_Dark.scale-140.png" />
+    <Content Include="Assets\StarRating\StarRatingFull_Dark.scale-240.png" />
+    <Content Include="Assets\StarRating\StarRatingHalf.scale-100.png" />
+    <Content Include="Assets\StarRating\StarRatingHalf.scale-140.png" />
+    <Content Include="Assets\StarRating\StarRatingHalf.scale-240.png" />
     <Content Include="Assets\yellow_pin.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
@@ -149,6 +161,19 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Styles\Controls\Button.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Styles\Controls\CheckBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Controls\ExpandableContentControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Controls\MenuFlyout.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -226,6 +251,7 @@
       <Name>Windows Mobile Extensions for the UWP</Name>
     </SDKReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="..\Expedia.Services\Expedia.Services.projitems" Label="Shared" />
   <Import Project="..\Expedia.Entities\Expedia.Entities.projitems" Label="Shared" />
   <Import Project="..\Expedia.Client\Expedia.Client.projitems" Label="Shared" />

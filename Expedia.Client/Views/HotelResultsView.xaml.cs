@@ -81,5 +81,11 @@ namespace Expedia.Client.Views
             var context = DataContext as HotelResultsViewModel;
             context.BookHotel.Execute(hotel);
         }
+
+        private void ToggleButton_OnChecked(object sender, RoutedEventArgs e)
+        {
+            var context = DataContext as HotelResultsViewModel;
+            context.FilterResults();
+        }
     }
 }

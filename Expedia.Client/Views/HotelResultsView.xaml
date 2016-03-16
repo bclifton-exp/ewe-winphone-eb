@@ -11,7 +11,6 @@
     mc:Ignorable="d" NavigationCacheMode="Enabled">
 
     <Page.Resources>
-
         <DataTemplate x:Key="HotelResultItemTemplate">
             <Grid Height="270" Margin="15 10 15 5" Background="White" x:Name="MainHotelGrid">
                 <Grid x:Name="LayoverGrid" Height="190" VerticalAlignment="Top" Background="White">
@@ -137,9 +136,19 @@
                 <StackPanel VerticalAlignment="Bottom" Margin="0 0 5 0" Orientation="Horizontal" HorizontalAlignment="Right">
                     <TextBlock Text="{Binding Price, Converter={StaticResource CurrencyConverter}}" Style="{StaticResource SubheaderTextBlockStyle}" FontWeight="SemiBold" Foreground="{StaticResource IconGrayBrush}"  />
                 </StackPanel>
-
-                <!--<Button VerticalAlignment="Bottom" Command="{Binding DataContext.BookHotel, ElementName=ResultListView}" CommandParameter="{Binding}" Content="View Details" x:Uid="ViewDetailsButton" Style="{StaticResource SearchButtonStyle}" Foreground="White" Background="{StaticResource LogoDarkBlueBrush}"/>-->
             </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="StarRatingFilterTemplate">
+            <CheckBox Margin="0,-8,0,12"
+						  Style="{StaticResource FilterCheckBoxStyle}"
+						  IsChecked="{Binding IsFilterChecked, Mode=TwoWay}"
+						  IsEnabled="{Binding IsFilterEnabled, Mode=OneWay}"
+                      Checked="ToggleButton_OnChecked">
+                <StackPanel Orientation="Horizontal">
+                    <customControls:RatingControl RatingValue="{Binding StarRating}" FullIconUri="/Assets/StarRatingFull.png" HalfIconUri="/Assets/StarRatingHalf.png" EmptyIconUri="/Assets/StarRatingEmpty.png"/>
+                </StackPanel>
+            </CheckBox>
         </DataTemplate>
     </Page.Resources>
 
@@ -148,7 +157,7 @@
             <ColumnDefinition Width="1*" x:Name="ResultColumn"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        
+
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState>
@@ -195,7 +204,7 @@
 
         <Grid Background="{ThemeResource AppBarBackgroundThemeBrush}" Grid.Column="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="90"/>
+                <RowDefinition Height="75"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
@@ -210,16 +219,156 @@
 									 City="{Binding LocationName}"
 									 ResultType="Hotels in "
 									 GuestVisibility="Visible"/>
-            
+
             <ListView x:Name="ResultListView" Grid.Row="1" Margin="0 10 0 0" ItemTemplate="{StaticResource HotelResultItemTemplate}" ItemsSource="{Binding HotelResultItems}" SelectedItem="{Binding SelectedHotel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                    <Setter Property="Margin" Value="0 0 0 0"/>
-                </Style>
-            </ListView.ItemContainerStyle>
-        </ListView>
-    </Grid>
-        <maps:MapControl Grid.Column="1" x:Name="Map" Visibility="Collapsed" MapElementClick="Map_OnMapElementClick" Loading="Map_OnLoading" Margin="0 0 0 0" MapServiceToken="uTSDW7FxvBNrtGPD67ZQ~Cws5kVsbllSUip_fVoHCIQ~AiAsYMbHCnN32naqWWDEeulT3_C1XVy1yPU91wba8Knm9G1D31rZOIMDss4jJFtO" ZoomLevel="14" />
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Setter Property="Margin" Value="0 0 0 0"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
         </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <maps:MapControl Grid.Row="1" Grid.ColumnSpan="3" x:Name="Map" Visibility="Collapsed" MapElementClick="Map_OnMapElementClick" Loading="Map_OnLoading" Margin="0 0 0 0" MapServiceToken="uTSDW7FxvBNrtGPD67ZQ~Cws5kVsbllSUip_fVoHCIQ~AiAsYMbHCnN32naqWWDEeulT3_C1XVy1yPU91wba8Knm9G1D31rZOIMDss4jJFtO" ZoomLevel="14" />
+         
+            <!--Tablet Filter/Sort bar-->
+            <TextBlock Grid.Column="0" Grid.Row="0" Text="XX hotels available" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+            <Grid Grid.Column="1" Grid.Row="0" Background="{StaticResource FilterGrayBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0 0 1 0">
+                <customControls:ExpandableContentControl x:Name="SortDropDown" HorizontalAlignment="Stretch" VerticalAlignment="Center" Style="{StaticResource HotelFilterExpandableStyle}">
+                    <customControls:ExpandableContentControl.ContentTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="Sort by"
+							   x:Uid="SortBy"
+							    Style="{StaticResource FilterTextStyle}"/>
+                        </DataTemplate>
+                    </customControls:ExpandableContentControl.ContentTemplate>
+                </customControls:ExpandableContentControl>
+            </Grid>
+
+            <FlyoutPresenter Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Stretch" MaxWidth="800" Background="{StaticResource FilterGrayBrush}" Visibility="{Binding ElementName=SortDropDown, Path=IsExpanded, Converter={StaticResource BoolToVisibilityConverter}}">
+                <StackPanel Orientation="Vertical">
+                    <Border x:Name="PriceBorder" Background="{Binding ElementName=PriceRadio, Path=IsChecked, Converter={StaticResource RadioBackgroundConverter}}">
+                        <RadioButton x:Name="PriceRadio" Content="Price"
+						 Style="{StaticResource SortRadioButtonStyle}"
+                         Foreground="{StaticResource AppWhiteColorBrush}"
+						 IsChecked="{Binding SortByPriceLowToHighChecked, Mode=TwoWay}"
+                         Command="{Binding SortResultsCommand}"
+						 x:Uid="SortPrice"
+                         GroupName="SortingHotels"
+						 Margin="0,5,0,5" />
+                    </Border>
+                    <Border x:Name="RatingBorder" Background="{Binding ElementName=RatingRadio, Path=IsChecked, Converter={StaticResource RadioBackgroundConverter}}">
+                        <RadioButton x:Name="RatingRadio" Content="Guest Rating"
+						 IsChecked="{Binding SortByGuestStarRatingChecked, Mode=TwoWay}"
+                         Foreground="{StaticResource AppWhiteColorBrush}"
+                         Command="{Binding SortResultsCommand}"
+						 Style="{StaticResource SortRadioButtonStyle}"
+                         GroupName="SortingHotels"
+                         Margin="0,5,0,5"
+						 x:Uid="SortGuestRating" />
+                    </Border>
+                    <Border x:Name="StarBorder" Background="{Binding ElementName=StarRadio, Path=IsChecked, Converter={StaticResource RadioBackgroundConverter}}">
+                        <RadioButton x:Name="StarRadio" Content="Star Rating"
+						 IsChecked="{Binding SortByStarRatingChecked, Mode=TwoWay}"
+                         Foreground="{StaticResource AppWhiteColorBrush}"
+                         Command="{Binding SortResultsCommand}"
+						 Style="{StaticResource SortRadioButtonStyle}"
+                         GroupName="SortingHotels"
+                         Margin="0,5,0,5"
+						 x:Uid="SortStarRating" />
+                    </Border>
+                    <Border x:Name="BestBorder" Background="{Binding ElementName=BestRadio, Path=IsChecked, Converter={StaticResource RadioBackgroundConverter}}">
+                        <RadioButton x:Name="BestRadio" Content="Best Deals"
+						 IsChecked="{Binding SortByBestDealsChecked, Mode=TwoWay}"
+                         Foreground="{StaticResource AppWhiteColorBrush}"
+                         Command="{Binding SortResultsCommand}"
+						 Style="{StaticResource SortRadioButtonStyle}"
+                         GroupName="SortingHotels"
+                         Margin="0,5,0,5"
+						 x:Uid="SortBestDeals"/>
+                    </Border>
+                    <Border x:Name="PopularBorder" Background="{Binding ElementName=PopularRadio, Path=IsChecked, Converter={StaticResource RadioBackgroundConverter}}">
+                        <RadioButton x:Name="PopularRadio" Content="Most Popular"
+						 IsChecked="{Binding SortByMostPopularChecked, Mode=TwoWay}"
+                         Foreground="{StaticResource AppWhiteColorBrush}"
+                         Command="{Binding SortResultsCommand}"
+						 Style="{StaticResource SortRadioButtonStyle}"
+						 x:Uid="SortMostPopular"
+                         GroupName="SortingHotels"
+                         Margin="0,5,0,5"
+						 VerticalAlignment="Top"/>
+                    </Border>
+                </StackPanel>
+            </FlyoutPresenter>
+
+            <Grid Grid.Column="2" Grid.Row="0" Background="{StaticResource FilterGrayBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="1 0 0 0">
+                <customControls:ExpandableContentControl x:Name="FilterDropDown" HorizontalAlignment="Stretch" VerticalAlignment="Center" Style="{StaticResource HotelFilterExpandableStyle}">
+                    <customControls:ExpandableContentControl.ContentTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="Filter by"
+							   x:Uid="FilterBy"
+							   Style="{StaticResource FilterTextStyle}" />
+                    </DataTemplate>
+                </customControls:ExpandableContentControl.ContentTemplate>
+            </customControls:ExpandableContentControl>
+                </Grid>
+
+            <FlyoutPresenter Grid.Column="2" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Stretch" MaxWidth="800" Background="{StaticResource FilterGrayBrush}" Visibility="{Binding ElementName=FilterDropDown, Path=IsExpanded, Converter={StaticResource BoolToVisibilityConverter}}">
+                <StackPanel Orientation="Vertical">
+                    <customControls:ExpandableContentControl Style="{StaticResource HotelFilterExpandableStyle}">
+                        <customControls:ExpandableContentControl.ExpandableContentTemplate>
+                            <DataTemplate>
+                                <ListView ItemTemplate="{StaticResource StarRatingFilterTemplate}"
+					    			  ItemsSource="{Binding StarRatingFilters}"
+                                          IsItemClickEnabled="False"
+                                          SelectionMode="None"
+					    			  Padding="0,0,14,0"
+                                      Margin="20,0,0,0"/>
+                            </DataTemplate>
+                        </customControls:ExpandableContentControl.ExpandableContentTemplate>
+                        <customControls:ExpandableContentControl.ContentTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="Hotel Class"
+							   x:Uid="FilterHotelClass"
+							   Style="{StaticResource FilterTextStyle}" />
+                            </DataTemplate>
+                        </customControls:ExpandableContentControl.ContentTemplate>
+                    </customControls:ExpandableContentControl>
+                    <customControls:ExpandableContentControl Style="{StaticResource HotelFilterExpandableStyle}">
+                        <customControls:ExpandableContentControl.ExpandableContentTemplate>
+                            <DataTemplate>
+                                <ListView ItemTemplate="{StaticResource StarRatingFilterTemplate}"
+					    			  ItemsSource="{Binding StarRatingFilters}"
+                                          IsItemClickEnabled="False"
+                                          SelectionMode="None"
+					    			  Padding="0,0,14,0"
+                                      Margin="20,0,0,0"/>
+                            </DataTemplate>
+                        </customControls:ExpandableContentControl.ExpandableContentTemplate>
+                        <customControls:ExpandableContentControl.ContentTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="Hotel Class"
+							   x:Uid="FilterHotelClass"
+							   Style="{StaticResource FilterTextStyle}" />
+                            </DataTemplate>
+                        </customControls:ExpandableContentControl.ContentTemplate>
+                    </customControls:ExpandableContentControl>
+                </StackPanel>
+            </FlyoutPresenter>
+
+        </Grid>
+    </Grid>
 </Page>

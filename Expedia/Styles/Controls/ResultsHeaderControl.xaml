@@ -97,7 +97,7 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
-                        <StackPanel Margin="20,23,20,0"
+                        <StackPanel Margin="20,13,20,0"
 									Orientation="Horizontal"
 									VerticalAlignment="Center">
                             <TextBlock Text="{TemplateBinding ResultType}"
@@ -187,7 +187,7 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
-                        <StackPanel Margin="20,23,20,0"
+                        <StackPanel Margin="20,13,20,0"
 									Orientation="Horizontal"
 									VerticalAlignment="Center">
                             <TextBlock Text="{TemplateBinding ResultType}"
@@ -277,7 +277,7 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
-                        <StackPanel Margin="20,23,20,0"
+                        <StackPanel Margin="20,13,20,0"
 									Orientation="Horizontal"
 									VerticalAlignment="Center">
                             <TextBlock Text="{TemplateBinding ResultType}"

@@ -7,5 +7,1102 @@
     <x:Double x:Key="TextStyleLargeFontSize">18.14</x:Double>
     <x:Double x:Key="PhoneButtonMinHeight">57.5</x:Double>
     <x:Double x:Key="PhoneButtonMinWidth">109</x:Double>
- 
+
+    <!--<Style x:Key="DefaultToggleButtonStyle"
+		   TargetType="ToggleButton">
+        <Setter Property="Background"
+				Value="Transparent" />
+        <Setter Property="BorderBrush"
+				Value="{ThemeResource ForegroundBrush}" />
+        <Setter Property="Foreground"
+				Value="{ThemeResource PhoneForegroundBrush}" />
+        <Setter Property="BorderThickness"
+				Value="{ThemeResource PhoneBorderThickness}" />
+        <Setter Property="FontFamily"
+				Value="{ThemeResource PhoneFontFamilyNormal}" />
+        <Setter Property="FontWeight"
+				Value="{ThemeResource PhoneButtonFontWeight}" />
+        <Setter Property="FontSize"
+				Value="{ThemeResource TextStyleLargeFontSize}" />
+        <Setter Property="Padding"
+				Value="{ThemeResource PhoneButtonContentPadding}" />
+        <Setter Property="MinHeight"
+				Value="{ThemeResource PhoneButtonMinHeight}" />
+        <Setter Property="MinWidth"
+				Value="{ThemeResource PhoneButtonMinWidth}" />
+        <Setter Property="HorizontalAlignment"
+				Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment"
+				Value="Center" />
+        <Setter Property="VerticalAlignment"
+				Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    --><!-- suppress: NVX002 --><!--
+                    <Grid Background="Transparent">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="PointerOver" />
+                                <VisualState x:Name="Pressed" />
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility"
+																	   Storyboard.TargetName="EnabledBackground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="Collapsed" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility"
+																	   Storyboard.TargetName="DisabledBackground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="Visible" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Checked">
+                                    <Storyboard>
+                                        --><!--<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
+																	   Storyboard.TargetName="EnabledBackground">
+											<DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{ThemeResource PhoneAccentBrush}" />
+										</ObjectAnimationUsingKeyFrames>
+										<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+																	   Storyboard.TargetName="EnabledContent">
+											<DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{ThemeResource PhoneButtonBasePressedForegroundBrush}" />
+										</ObjectAnimationUsingKeyFrames>
+										<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
+																	   Storyboard.TargetName="DisabledBackground">
+											<DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{ThemeResource PhoneDisabledBrush}" />
+										</ObjectAnimationUsingKeyFrames>
+										<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush"
+																	   Storyboard.TargetName="DisabledBackground">
+											<DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{ThemeResource PhoneDisabledBrush}" />
+										</ObjectAnimationUsingKeyFrames>
+										<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+																	   Storyboard.TargetName="DisabledContent">
+											<DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{ThemeResource PhoneBackgroundBrush}" />
+										</ObjectAnimationUsingKeyFrames>--><!--
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="CheckedPointerOver">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
+																	   Storyboard.TargetName="EnabledBackground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{ThemeResource PhoneAccentBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+																	   Storyboard.TargetName="EnabledContent">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{ThemeResource PhoneButtonBasePressedForegroundBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
+																	   Storyboard.TargetName="DisabledBackground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{ThemeResource PhoneDisabledBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush"
+																	   Storyboard.TargetName="DisabledBackground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{ThemeResource PhoneDisabledBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+																	   Storyboard.TargetName="DisabledContent">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{ThemeResource PhoneBackgroundBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="CheckedPressed" />
+                                <VisualState x:Name="CheckedDisabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
+																	   Storyboard.TargetName="EnabledBackground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{ThemeResource PhoneAccentBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity"
+																	   Storyboard.TargetName="EnabledBackground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="0.4" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+																	   Storyboard.TargetName="EnabledContent">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{ThemeResource PhoneButtonBasePressedForegroundBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Indeterminate" />
+                                <VisualState x:Name="IndeterminatePointerOver" />
+                                <VisualState x:Name="IndeterminatePressed" />
+                                <VisualState x:Name="IndeterminateDisabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility"
+																	   Storyboard.TargetName="EnabledBackground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="Collapsed" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility"
+																	   Storyboard.TargetName="DisabledBackground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="Visible" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="EnabledBackground"
+								BorderBrush="{TemplateBinding BorderBrush}"
+								BorderThickness="{TemplateBinding BorderThickness}"
+								Background="{TemplateBinding Background}"
+								Margin="{ThemeResource PhoneTouchTargetOverhang}"
+								HorizontalAlignment="{TemplateBinding HorizontalAlignment}">
+                            <ContentPresenter x:Name="EnabledContent"
+											  AutomationProperties.AccessibilityView="Raw"
+											  ContentTemplate="{TemplateBinding ContentTemplate}"
+											  Content="{TemplateBinding Content}"
+											  Foreground="{TemplateBinding Foreground}"
+											  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+											  Margin="{TemplateBinding Padding}"
+											  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        </Border>
+                        --><!-- suppress: NVX002 --><!--
+                        <Border x:Name="DisabledBackground"
+								BorderBrush="{ThemeResource ButtonDisabledBorderThemeBrush}"
+								BorderThickness="{TemplateBinding BorderThickness}"
+								Background="Transparent"
+								IsHitTestVisible="False"
+								Margin="{ThemeResource PhoneTouchTargetOverhang}"
+								Visibility="Collapsed">
+                            <ContentPresenter x:Name="DisabledContent"
+											  AutomationProperties.AccessibilityView="Raw"
+											  ContentTemplate="{TemplateBinding ContentTemplate}"
+											  Content="{TemplateBinding Content}"
+											  Foreground="{ThemeResource ButtonDisabledForegroundThemeBrush}"
+											  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+											  Margin="{TemplateBinding Padding}"
+											  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>-->
+
+    <Style x:Key="ResultsToggleButtonStyle"
+		   TargetType="ToggleButton">
+        <Setter Property="HorizontalContentAlignment"
+				Value="Center" />
+        <Setter Property="VerticalContentAlignment"
+				Value="Center" />
+        <Setter Property="MinHeight"
+				Value="50" />
+        <Setter Property="MinWidth"
+				Value="0" />
+        <Setter Property="Height"
+				Value="50" />
+        <Setter Property="BorderThickness"
+				Value="0,1" />
+        <Setter Property="FontWeight"
+				Value="SemiBold" />
+        <Setter Property="FontFamily"
+				Value="{StaticResource PhoneFontFamilyNormal}" />
+        <Setter Property="FontSize"
+				Value="15" />
+        <Setter Property="Background"
+				Value="{StaticResource AppWhiteColor}" />
+        <Setter Property="Foreground"
+				Value="{StaticResource PrimaryColor4Brush}" />
+        <Setter Property="BorderBrush"
+				Value="{StaticResource SecondaryColor7Brush}" />
+        <Setter Property="HorizontalAlignment"
+				Value="Stretch" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <!--suppress: NVX002-->
+                    <Grid Background="Transparent">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver" />
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground"
+																	   Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource TertiaryColor5Brush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+																	   Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource AppWhiteColorBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArrowDown"
+																	   Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource AppWhiteColorBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArrowUp"
+																	   Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource AppWhiteColorBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground"
+																	   Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource PrimaryColor5Brush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+																	   Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource AppBlackColorBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArrowDown"
+																	   Storyboard.TargetProperty="Opacity">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="0.3" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArrowUp"
+																	   Storyboard.TargetProperty="Opacity">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="0.3" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+
+                                <VisualState x:Name="Checked">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground"
+																	   Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource PrimaryColor3Brush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+																	   Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource AppWhiteColorBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArrowDown"
+																	   Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="Collapsed" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArrowUp"
+																	   Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="Visible" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="CheckedPointerOver">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground"
+																	   Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource PrimaryColor3Brush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+																	   Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource AppWhiteColorBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArrowDown"
+																	   Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="Collapsed" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArrowUp"
+																	   Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="Visible" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="CheckedPressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground"
+																	   Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource TertiaryColor5Brush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+																	   Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource AppWhiteColorBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArrowDown"
+																	   Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="Collapsed" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArrowUp"
+																	   Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="Visible" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="CheckedDisabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground"
+																	   Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource PrimaryColor3Brush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+																	   Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource AppWhiteColorBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArrowDown"
+																	   Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="Collapsed" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArrowUp"
+																	   Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="Visible" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Indeterminate" />
+                                <VisualState x:Name="IndeterminatePointerOver" />
+                                <VisualState x:Name="IndeterminatePressed" />
+                                <VisualState x:Name="IndeterminateDisabled" />
+
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="ButtonBackground"
+								BorderBrush="{TemplateBinding BorderBrush}"
+								BorderThickness="{TemplateBinding BorderThickness}"
+								HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+								Background="{TemplateBinding Background}">
+                            <!--suppress: NVX010-->
+                            <StackPanel Orientation="Horizontal"
+										HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+										VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        Width="100%"
+                                >
+                                <!--suppress: NVX002-->
+                                <TextBlock x:Name="ContentPresenter"
+										   Foreground="{TemplateBinding Foreground}"
+										   FontWeight="{TemplateBinding FontWeight}"
+										   FontFamily="{TemplateBinding FontFamily}"
+                                           HorizontalAlignment="Right"
+                                           TextAlignment="Center"
+										   FontSize="{TemplateBinding FontSize}"
+                                           Padding="8,0,0,0"
+                                           Width="80%"
+                                           TextWrapping="WrapWholeWords"
+										   Text="{TemplateBinding Content}" />
+                                <PathIcon x:Name="ArrowDown"
+										  Data="F1M5.999,4.844L1.155,0 0,1.158 5.999,7.155 11.999,1.158 10.843,0z"
+										  Foreground="{StaticResource PrimaryColor4Brush}"
+										  Height="7.155"
+										  Width="11.999"
+										  Margin="0,2,0,0"
+                                          HorizontalAlignment="Left"
+										  VerticalAlignment="Center" />
+                                <PathIcon x:Name="ArrowUp"
+										  Data="F1M0,5.998L1.156,7.155 6.001,2.312 10.844,7.155 12,5.998 6.001,0z"
+										  Foreground="{StaticResource AppWhiteColorBrush}"
+										  Height="7.155"
+										  Margin="0,2,0,0"
+										  Visibility="Collapsed"
+                                          HorizontalAlignment="Left"
+										  Width="12" />
+                            </StackPanel>
+
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CarsResultsToggleButtonStyle"
+		   TargetType="ToggleButton">
+        <Setter Property="HorizontalContentAlignment"
+				Value="Center" />
+        <Setter Property="VerticalContentAlignment"
+				Value="Center" />
+        <Setter Property="MinHeight"
+				Value="50" />
+        <Setter Property="MinWidth"
+				Value="0" />
+        <Setter Property="Height"
+				Value="50" />
+        <Setter Property="BorderThickness"
+				Value="0" />
+        <Setter Property="FontWeight"
+				Value="SemiBold" />
+        <Setter Property="FontFamily"
+				Value="{StaticResource PhoneFontFamilyNormal}" />
+        <Setter Property="FontSize"
+				Value="15" />
+        <Setter Property="Background"
+				Value="{StaticResource AppWhiteColor}" />
+        <Setter Property="Foreground"
+				Value="{StaticResource FilterGrayBrush}" />
+        <Setter Property="BorderBrush"
+				Value="{StaticResource SecondaryColor7Brush}" />
+        <Setter Property="HorizontalAlignment"
+				Value="Stretch" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <!--suppress: NVX002-->
+                    <Grid Background="Transparent">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver" />
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground"
+																	   Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource FilterGrayBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+																	   Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource AppWhiteColorBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArrowDown"
+																	   Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource AppWhiteColorBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArrowUp"
+																	   Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource AppWhiteColorBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground"
+																	   Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource PrimaryColor5Brush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+																	   Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource AppBlackColorBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArrowDown"
+																	   Storyboard.TargetProperty="Opacity">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="0.3" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArrowUp"
+																	   Storyboard.TargetProperty="Opacity">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="0.3" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+
+                                <VisualState x:Name="Checked">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground"
+																	   Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource FilterGrayBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+																	   Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource AppWhiteColorBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArrowDown"
+																	   Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="Collapsed" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArrowUp"
+																	   Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="Visible" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="CheckedPointerOver">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground"
+																	   Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource FilterGrayBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+																	   Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource AppWhiteColorBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArrowDown"
+																	   Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="Collapsed" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArrowUp"
+																	   Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="Visible" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="CheckedPressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground"
+																	   Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource FilterGrayBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+																	   Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource AppWhiteColorBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArrowDown"
+																	   Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="Collapsed" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArrowUp"
+																	   Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="Visible" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="CheckedDisabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground"
+																	   Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource PrimaryColor3Brush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+																	   Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource AppWhiteColorBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArrowDown"
+																	   Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="Collapsed" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArrowUp"
+																	   Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="Visible" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Indeterminate" />
+                                <VisualState x:Name="IndeterminatePointerOver" />
+                                <VisualState x:Name="IndeterminatePressed" />
+                                <VisualState x:Name="IndeterminateDisabled" />
+
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="ButtonBackground"
+								BorderBrush="{TemplateBinding BorderBrush}"
+								BorderThickness="{TemplateBinding BorderThickness}"
+								HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+								Background="{TemplateBinding Background}">
+                            <!--suppress: NVX010-->
+                            <StackPanel Orientation="Horizontal"
+										HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+										VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        Width="100%"
+                                >
+                                <!--suppress: NVX002-->
+                                <TextBlock x:Name="ContentPresenter"
+										   Foreground="{TemplateBinding Foreground}"
+										   FontWeight="{TemplateBinding FontWeight}"
+										   FontFamily="{TemplateBinding FontFamily}"
+                                           HorizontalAlignment="Right"
+                                           TextAlignment="Center"
+										   FontSize="{TemplateBinding FontSize}"
+                                           Padding="8,0,0,0"
+                                           Width="80%"
+                                           TextWrapping="WrapWholeWords"
+										   Text="{TemplateBinding Content}" />
+                                <PathIcon x:Name="ArrowDown"
+										  Data="F1M5.999,4.844L1.155,0 0,1.158 5.999,7.155 11.999,1.158 10.843,0z"
+										  Foreground="{StaticResource FilterGrayBrush}"
+										  Height="7.155"
+										  Width="11.999"
+										  Margin="0,2,0,0"
+                                          HorizontalAlignment="Left"
+										  VerticalAlignment="Center" />
+                                <PathIcon x:Name="ArrowUp"
+										  Data="F1M0,5.998L1.156,7.155 6.001,2.312 10.844,7.155 12,5.998 6.001,0z"
+										  Foreground="{StaticResource AppWhiteColorBrush}"
+										  Height="7.155"
+										  Margin="0,2,0,0"
+										  Visibility="Collapsed"
+                                          HorizontalAlignment="Left"
+										  Width="12" />
+                            </StackPanel>
+
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--<Style x:Key="InvisibleToggleButtonStyle"
+		   TargetType="ToggleButton"
+		   BasedOn="{StaticResource DefaultToggleButtonStyle}">
+        <Setter Property="BorderThickness"
+				Value="0" />
+        <Setter Property="Background"
+				Value="Transparent" />
+        <Setter Property="HorizontalAlignment"
+				Value="Stretch" />
+        <Setter Property="VerticalAlignment"
+				Value="Stretch" />
+    </Style>-->
+
+    <Style x:Key="ChooseToolbarButtonStyle"
+		   TargetType="ToggleButton">
+        <Setter Property="HorizontalContentAlignment"
+				Value="Center" />
+        <Setter Property="VerticalContentAlignment"
+				Value="Center" />
+        <Setter Property="HorizontalAlignment"
+				Value="Stretch" />
+        <Setter Property="VerticalAlignment"
+				Value="Stretch" />
+        <Setter Property="FontSize"
+				Value="20" />
+        <Setter Property="Foreground"
+				Value="{StaticResource TertiaryColor4Brush}" />
+        <Setter Property="BorderThickness"
+				Value="0,1" />
+        <Setter Property="BorderBrush"
+				Value="{StaticResource PrimaryColor8Brush}" />
+        <Setter Property="Padding"
+				Value="0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <!-- suppress: NVX002 -->
+                    <Grid Background="Transparent">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver" />
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground"
+																	   Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource PrimaryColor3Brush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+																	   Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource AppWhiteColorBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground"
+																	   Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource PrimaryColor5Brush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+																	   Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource AppBlackColorBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Checked">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground"
+																		   Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																		Value="{StaticResource PrimaryColor3Brush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+																		   Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																		Value="{StaticResource AppWhiteColorBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="CheckedPointerOver" />
+                                <VisualState x:Name="CheckedPressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground"
+																	   Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource PrimaryColor3Brush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+																	   Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource AppWhiteColorBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="CheckedDisabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground"
+																	   Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource PrimaryColor5Brush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+																	   Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource AppBlackColorBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Indeterminate" />
+                                <VisualState x:Name="IndeterminatePointerOver" />
+                                <VisualState x:Name="IndeterminatePressed" />
+                                <VisualState x:Name="IndeterminateDisabled" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="ButtonBackground"
+								BorderBrush="{TemplateBinding BorderBrush}"
+								BorderThickness="{TemplateBinding BorderThickness}"
+								Background="{StaticResource AppLightGrayColorBrush}"
+								HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+								VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                            <ContentPresenter x:Name="ContentPresenter"
+											  AutomationProperties.AccessibilityView="Raw"
+											  ContentTemplate="{TemplateBinding ContentTemplate}"
+											  Content="{TemplateBinding Content}"
+											  Foreground="{TemplateBinding Foreground}"
+											  FontSize="{TemplateBinding FontSize}"
+											  FontFamily="{TemplateBinding FontFamily}"
+											  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+											  Margin="{TemplateBinding Padding}"
+											  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ChooseToolbarButtonStyleMainPage"
+		   TargetType="ToggleButton">
+        <Setter Property="HorizontalContentAlignment"
+				Value="Center" />
+        <Setter Property="VerticalContentAlignment"
+				Value="Center" />
+        <Setter Property="Background"
+                Value="Transparent"/>
+        <Setter Property="HorizontalAlignment"
+				Value="Stretch" />
+        <Setter Property="VerticalAlignment"
+				Value="Stretch" />
+        <Setter Property="FontSize"
+				Value="20" />
+        <Setter Property="Foreground"
+				Value="{StaticResource AppWhiteColorBrush}" />
+        <Setter Property="BorderThickness"
+				Value="0,0,0,11" />
+        <Setter Property="BorderBrush"
+				Value="Transparent" />
+        <Setter Property="Padding"
+				Value="0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <!-- suppress: NVX002 -->
+                    <Grid Background="Transparent">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver" />
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground"
+																	   Storyboard.TargetProperty="Background">
+                                            <!--<DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource HotelGreen}" />-->
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+																	   Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource AppWhiteColorBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground"
+																	   Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource PrimaryColor5Brush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+																	   Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource AppBlackColorBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Checked">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground"
+																		   Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource LogoYellowBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+																		   Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																		Value="{StaticResource AppWhiteColorBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ContentPresenter">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="1" />
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="CheckedPointerOver" />
+                                <VisualState x:Name="CheckedPressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground"
+																	   Storyboard.TargetProperty="Background">
+                                            <!--<DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource PrimaryColor3Brush}" />-->
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+																	   Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource AppWhiteColorBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="CheckedDisabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground"
+																	   Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource PrimaryColor5Brush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+																	   Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource AppBlackColorBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Indeterminate" />
+                                <VisualState x:Name="IndeterminatePointerOver" />
+                                <VisualState x:Name="IndeterminatePressed" />
+                                <VisualState x:Name="IndeterminateDisabled" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="ButtonBackground"
+								BorderBrush="Transparent"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+								Background="Transparent"
+								HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+								VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                            <ContentPresenter x:Name="ContentPresenter"
+											  AutomationProperties.AccessibilityView="Raw"
+											  ContentTemplate="{TemplateBinding ContentTemplate}"
+											  Content="{TemplateBinding Content}"
+											  Foreground="{TemplateBinding Foreground}"
+                                              Opacity=".7"
+											  FontSize="{TemplateBinding FontSize}"
+											  FontFamily="{TemplateBinding FontFamily}"
+											  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+											  Margin="{TemplateBinding Padding}"
+											  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="FilterToggleButtonStyle"
+		   TargetType="ToggleButton">
+        <Setter Property="HorizontalContentAlignment"
+				Value="Center" />
+        <Setter Property="VerticalContentAlignment"
+				Value="Center" />
+        <Setter Property="Background"
+                Value="Transparent"/>
+        <Setter Property="HorizontalAlignment"
+				Value="Stretch" />
+        <Setter Property="VerticalAlignment"
+				Value="Stretch" />
+        <Setter Property="FontSize"
+				Value="20" />
+        <Setter Property="Foreground"
+				Value="{StaticResource AppWhiteColorBrush}" />
+        <Setter Property="BorderThickness"
+				Value="0,0,0,11" />
+        <Setter Property="BorderBrush"
+				Value="Transparent" />
+        <Setter Property="Padding"
+				Value="0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <!-- suppress: NVX002 -->
+                    <Grid Background="Transparent">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver" />
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground"
+																	   Storyboard.TargetProperty="Background">
+                                            <!--<DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource HotelGreen}" />-->
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+																	   Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource AppWhiteColorBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground"
+																	   Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource PrimaryColor5Brush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+																	   Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource AppBlackColorBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Checked">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground"
+																		   Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource LogoYellowBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+																		   Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																		Value="{StaticResource AppWhiteColorBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ContentPresenter">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="1" />
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="CheckedPointerOver" />
+                                <VisualState x:Name="CheckedPressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground"
+																	   Storyboard.TargetProperty="Background">
+                                            <!--<DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource PrimaryColor3Brush}" />-->
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+																	   Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource AppWhiteColorBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="CheckedDisabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground"
+																	   Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource PrimaryColor5Brush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+																	   Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource AppBlackColorBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Indeterminate" />
+                                <VisualState x:Name="IndeterminatePointerOver" />
+                                <VisualState x:Name="IndeterminatePressed" />
+                                <VisualState x:Name="IndeterminateDisabled" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="ButtonBackground"
+								BorderBrush="Transparent"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+								Background="Transparent"
+								HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+								VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                            <ContentPresenter x:Name="ContentPresenter"
+											  AutomationProperties.AccessibilityView="Raw"
+											  ContentTemplate="{TemplateBinding ContentTemplate}"
+											  Content="{TemplateBinding Content}"
+											  Foreground="{TemplateBinding Foreground}"
+                                              Opacity=".7"
+											  FontSize="{TemplateBinding FontSize}"
+											  FontFamily="{TemplateBinding FontFamily}"
+											  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+											  Margin="{TemplateBinding Padding}"
+											  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--<Style TargetType="ToggleButton"
+		   BasedOn="{StaticResource DefaultToggleButtonStyle}" />-->
+
 </ResourceDictionary>
