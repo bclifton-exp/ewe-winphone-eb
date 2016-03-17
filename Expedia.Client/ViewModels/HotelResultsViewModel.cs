@@ -250,7 +250,7 @@ namespace Expedia.Client.ViewModels
             NeighborhoodFilters = results.NeighborhoodFilters;
             AmenityFilters = results.AmenityFilters;
             AccessibilityFilters = results.AccessibilityFilters;
-            ResultsCount = results.TotalHotelCount;
+            ResultsCount = results.Hotels.Count();
             HotelResultItems = results.Hotels.ToObservableCollection();
 
             BuildPushpins(HotelResultItems);
@@ -305,7 +305,7 @@ namespace Expedia.Client.ViewModels
                 NeighborhoodFilters = filteredResults.NeighborhoodFilters;
                 AmenityFilters = filteredResults.AmenityFilters;
                 AccessibilityFilters = filteredResults.AccessibilityFilters;
-                ResultsCount = filteredResults.TotalHotelCount;
+                ResultsCount = filteredResults.Hotels.Count();
             }
             catch (Exception ex)
             {
