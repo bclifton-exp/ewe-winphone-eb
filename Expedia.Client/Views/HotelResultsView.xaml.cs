@@ -87,5 +87,17 @@ namespace Expedia.Client.Views
             var context = DataContext as HotelResultsViewModel;
             context.FilterResults();
         }
+
+        private void ToggleButton_OnUnchecked(object sender, RoutedEventArgs e)
+        {
+            var context = DataContext as HotelResultsViewModel;
+            context.FilterResults();
+        }
+
+        private void UIElement_OnLostFocus(object sender, RoutedEventArgs e)
+        {
+            FilterDropDown.IsExpanded = false;
+            SortDropDown.IsExpanded = false;
+        }
     }
 }

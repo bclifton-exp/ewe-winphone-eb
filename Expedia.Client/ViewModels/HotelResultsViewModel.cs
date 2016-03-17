@@ -174,6 +174,60 @@ namespace Expedia.Client.ViewModels
             }
         }
 
+        private HotelPriceBucketFilter[] _priceFilters;
+        public HotelPriceBucketFilter[] PriceFilters
+        {
+            get { return _priceFilters; }
+            set
+            {
+                _priceFilters = value;
+                OnPropertyChanged("PriceFilters");
+            }
+        }
+
+        private HotelNeighborhoodFilter[] _neighborhoodFilters;
+        public HotelNeighborhoodFilter[] NeighborhoodFilters
+        {
+            get { return _neighborhoodFilters; }
+            set
+            {
+                _neighborhoodFilters = value;
+                OnPropertyChanged("NeighborhoodFilters");
+            }
+        }
+
+        private HotelFilter[] _amenityFilters;
+        public HotelFilter[] AmenityFilters
+        {
+            get { return _amenityFilters; }
+            set
+            {
+                _amenityFilters = value;
+                OnPropertyChanged("AmenityFilters");
+            }
+        }
+
+        private HotelFilter[] _accessibilityFilters;
+        public HotelFilter[] AccessibilityFilters
+        {
+            get { return _accessibilityFilters; }
+            set
+            {
+                _accessibilityFilters = value;
+                OnPropertyChanged("AccessibilityFilters");
+            }
+        }
+
+        private int _resultsCount;
+        public int ResultsCount
+        {
+            get { return _resultsCount; }
+            set
+            {
+                _resultsCount = value;
+                OnPropertyChanged("ResultsCount");
+            }
+        }
 
 
         public HotelResultsViewModel(IHotelService hotelService, ISettingsService settingsService, IPointOfSaleService pointOfSaleService)
@@ -192,6 +246,11 @@ namespace Expedia.Client.ViewModels
             var ct = CancellationTokenManager.Instance().CreateAndSetCurrentToken();
             var results = await _hotelService.SearchHotels(ct, searchCriteria);
             StarRatingFilters = results.StarRatingFilters;
+            PriceFilters = results.PriceFilters;
+            NeighborhoodFilters = results.NeighborhoodFilters;
+            AmenityFilters = results.AmenityFilters;
+            AccessibilityFilters = results.AccessibilityFilters;
+            ResultsCount = results.TotalHotelCount;
             HotelResultItems = results.Hotels.ToObservableCollection();
 
             BuildPushpins(HotelResultItems);
@@ -222,28 +281,97 @@ namespace Expedia.Client.ViewModels
             Navigator.Instance().NavigateForward(SuggestionLob.HOTELS,typeof(HotelBookingWebView),hotelDeeplink);
         }
 
-        internal void FilterResults()
+        internal async void FilterResults()
         {
-            //TODO
+            try
+            {
+                HotelResultItems = null;
+                CurrentSearchCriteria.StarRatingFilters = StarRatingFilters;
+                CurrentSearchCriteria.AmenityFilters = AmenityFilters;
+                CurrentSearchCriteria.AccessibilityFilters = AccessibilityFilters;
+                CurrentSearchCriteria.PriceFilters = PriceFilters;
+                CurrentSearchCriteria.NeighborhoodFilters = NeighborhoodFilters;
+
+                var filteredRegion = CurrentSearchCriteria.NeighborhoodFilters.FirstOrDefault(n => n.IsFilterChecked);
+                if (filteredRegion != null)
+                    CurrentSearchCriteria.LocationRegionId = filteredRegion.Id;
+
+                var ct = CancellationTokenManager.Instance().CreateAndSetCurrentToken();
+                var filteredResults = await _hotelService.SearchHotels(ct, CurrentSearchCriteria);
+                HotelResultItems = filteredResults.Hotels.ToObservableCollection();
+
+                StarRatingFilters = filteredResults.StarRatingFilters;
+                PriceFilters = filteredResults.PriceFilters;
+                NeighborhoodFilters = filteredResults.NeighborhoodFilters;
+                AmenityFilters = filteredResults.AmenityFilters;
+                AccessibilityFilters = filteredResults.AccessibilityFilters;
+                ResultsCount = filteredResults.TotalHotelCount;
+            }
+            catch (Exception ex)
+            {
+                //eating exceptions for when filters are clicked too quickly, doesn't matter
+            }
         }
 
         internal void SortResults()
         {
-            //TODO
+            if (SortByBestDealsChecked)
+            {
+                GetSortedHotelResults(SortHotelsByType.MobileDeals);
+            }
+
+            if (SortByGuestStarRatingChecked)
+            {
+                GetSortedHotelResults(SortHotelsByType.GuestStarRatingDesc);
+            }
+
+            if (SortByMostPopularChecked)
+            {
+                GetSortedHotelResults(SortHotelsByType.ExpertPicks);
+            }
+
+            if (SortByPriceLowToHighChecked)
+            {
+                GetSortedHotelResults(SortHotelsByType.PriceAsc);
+            }
+
+            if (SortByStarRatingChecked)
+            {
+                GetSortedHotelResults(SortHotelsByType.StarRatingDesc);
+            }
+        }
+
+        private async void GetSortedHotelResults(SortHotelsByType sortType)
+        {
+            HotelResultItems = null;
+            CurrentSearchCriteria.SortBy = sortType;
+            var ct = CancellationTokenManager.Instance().CreateAndSetCurrentToken();
+            var sortedResults = await _hotelService.SearchHotels(ct, CurrentSearchCriteria);
+            HotelResultItems = sortedResults.Hotels.ToObservableCollection();
         }
 
         internal async void ReplaceHotelImageUrl(string badUrl)//Workaround for bad hotel images from the API
         {
-            var badHotel = HotelResultItems.First(h => h.ImageUrl == badUrl);
+            try
+            {
+                if (HotelResultItems != null)
+                {
+                    var badHotel = HotelResultItems.First(h => h.ImageUrl == badUrl);
 
-            HotelResultItems.Remove(badHotel);
+                    HotelResultItems.Remove(badHotel);
 
-            var hotelInfo = await _hotelService.GetHotelInformation(new CancellationToken(false), badHotel.HotelId);
+                    var hotelInfo = await _hotelService.GetHotelInformation(new CancellationToken(false), badHotel.HotelId);
 
-            var goodUrl = Constants.HotelImagesUrl + hotelInfo.Photos.First().Url;
+                    var goodUrl = Constants.HotelImagesUrl + hotelInfo.Photos.First().Url;
 
-            badHotel.ImageUrl = goodUrl;
-            HotelResultItems.Add(badHotel);
+                    badHotel.ImageUrl = goodUrl;
+                    HotelResultItems.Add(badHotel);
+                }
+            }
+            catch (Exception ex)
+            {
+                //eating exceptions for when filters are clicked too quickly, doesn't matter
+            }
         }
 
         internal void PushPinSelected(MapIcon selectedPushPin, ListView resultListView)

@@ -32,7 +32,12 @@ namespace Expedia.Services
 
                 var results = await GetHotels(clientSearchParameters, ct);
 
-                return await CreateHotelResultsFromClientResponse(ct, searchInput, results);
+                var hotelResults = await CreateHotelResultsFromClientResponse(ct, searchInput, results);
+
+                hotelResults.PriceFilters.Safe().ForEach(GetLocalizedPriceFilterTitle);
+
+                return hotelResults;
+
             }
             catch (Exception ex)
             {
@@ -145,6 +150,50 @@ namespace Expedia.Services
                     }).ToArray()
                 };
             }, ct);
+        }
+
+        private static void GetLocalizedPriceFilterTitle(HotelPriceBucketFilter priceFilter)
+        {
+            if (priceFilter == null)
+            {
+                return;
+            }
+
+            var currencyCode = string.Empty;
+
+            var loader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+
+            if (priceFilter.MinPrice == 0)
+            {
+                string formatString = loader.GetString("LessThanPrice");
+                priceFilter.Title = formatString
+                    .CurrentCultureFormat(
+                        currencyCode,
+                        priceFilter.CurrencySymbol,
+                        priceFilter.MaxPrice
+                    );
+            }
+            else if (priceFilter.MaxPrice == 0)
+            {
+                string formatString = loader.GetString("GreaterThanPrice");
+                priceFilter.Title = formatString
+                    .CurrentCultureFormat(
+                        currencyCode,
+                        priceFilter.CurrencySymbol,
+                        priceFilter.MinPrice
+                    );
+            }
+            else
+            {
+                string formatString = loader.GetString("PriceToPrice");
+                priceFilter.Title = formatString
+                    .CurrentCultureFormat(
+                        currencyCode,
+                        priceFilter.CurrencySymbol,
+                        priceFilter.MinPrice,
+                        priceFilter.MaxPrice
+                    );
+            }
         }
 
         private static HotelFilter[] GetAccessibilityFilters(HotelSearchResponse results)
