@@ -362,10 +362,13 @@ namespace Expedia.Client.ViewModels
 
                     var hotelInfo = await _hotelService.GetHotelInformation(new CancellationToken(false), badHotel.HotelId);
 
-                    var goodUrl = Constants.HotelImagesUrl + hotelInfo.Photos.First().Url;
+                    if (hotelInfo.Photos.Any())
+                    {
+                        var goodUrl = Constants.HotelImagesUrl + hotelInfo.Photos.First().Url;
 
-                    badHotel.ImageUrl = goodUrl;
-                    HotelResultItems.Add(badHotel);
+                        badHotel.ImageUrl = goodUrl;
+                        HotelResultItems.Add(badHotel);
+                    }
                 }
             }
             catch (Exception ex)
