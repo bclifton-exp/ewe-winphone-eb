@@ -50,7 +50,9 @@ namespace Expedia.Client
 
 	    public static class UrlActions
 	    {
-	        public const string HotelSearch = "search?";
+	        public const string Search = "search?";
+	        public const string Details = "details?";
+	        public const string Image = "image?";
 	        public const string HotelInfo = "info?";
 	    }
 

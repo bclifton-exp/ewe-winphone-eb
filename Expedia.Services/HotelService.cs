@@ -52,7 +52,7 @@ namespace Expedia.Services
 
             var request = new ApiRequest(urlBase);
             request.AppendPath(Constants.Urls.MobileHotelsApiRoot);
-            request.AppendPath(Constants.UrlActions.HotelSearch);
+            request.AppendPath(Constants.UrlActions.Search);
             request.AppendPath(query);
             var result = await ExecuteGet(request.GetFullUri(), ct);
 
