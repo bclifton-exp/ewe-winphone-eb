@@ -117,6 +117,18 @@ namespace Expedia.Client.ViewModels
             }
         }
 
+        private SuggestionResult _selectedSearchSuggestion2;
+        public SuggestionResult SelectedSearchSuggestion2
+        {
+            get { return _selectedSearchSuggestion2; }
+            set
+            {
+                _selectedSearchSuggestion2 = value;
+                UpdateMapVisibility(value);
+                OnPropertyChanged("SelectedSearchSuggestion2");
+            }
+        }
+
         private ObservableCollection<SuggestionResult> _searchSuggestions;
         public ObservableCollection<SuggestionResult> SearchSuggestions
         {
@@ -128,6 +140,17 @@ namespace Expedia.Client.ViewModels
             }
         }
 
+        private ObservableCollection<SuggestionResult> _searchSuggestions2;
+        public ObservableCollection<SuggestionResult> SearchSuggestions2
+        {
+            get { return _searchSuggestions2; }
+            set
+            {
+                _searchSuggestions2 = value;
+                OnPropertyChanged("SearchSuggestions2");
+            }
+        }
+
         private bool _isSuggestionListOpen;
         public bool IsSuggestionListOpen
         {
@@ -136,6 +159,17 @@ namespace Expedia.Client.ViewModels
             {
                 _isSuggestionListOpen = value;
                 OnPropertyChanged("IsSuggestionListOpen");
+            }
+        }
+
+        private bool _isSuggestionListOpen2;
+        public bool IsSuggestionListOpen2
+        {
+            get { return _isSuggestionListOpen2; }
+            set
+            {
+                _isSuggestionListOpen2 = value;
+                OnPropertyChanged("IsSuggestionListOpen2");
             }
         }
 
@@ -189,6 +223,7 @@ namespace Expedia.Client.ViewModels
             SuggestionService = ExpediaKernel.Instance().Get<ISuggestionService>();
             SettingsService = ExpediaKernel.Instance().Get<ISettingsService>();
             Lob = lob;
+            MapCenter = GeoLocationMemory.Instance().GetCurrentGeoposition();
             AdultCountSource = new ObservableCollection<int> { 1, 2, 3, 4, 5, 6 };
             ChildCountSource = new ObservableCollection<int> { 0, 1, 2, 3, 4, 5 };
             AdultCount = 1;
@@ -223,6 +258,25 @@ namespace Expedia.Client.ViewModels
             }
         }
 
+        public async void GetNearbySuggestions2()
+        {
+            var location = GeoLocationMemory.Instance().GetCurrentGeoposition();
+            if (location != null)
+            {
+                var results = await SuggestionService.Suggest(new CancellationToken(false), location.Coordinate.Point.Position.Latitude, location.Coordinate.Point.Position.Longitude, Lob);
+
+                var orderedSuggestions = new ObservableCollection<SuggestionResult>();
+                foreach (var suggestion in results.SortedSuggestionsList.SelectMany(suggestionList => suggestionList))
+                {
+                    orderedSuggestions.Add(suggestion);
+                }
+
+                SearchSuggestions2 = orderedSuggestions;
+
+                SelectedSearchSuggestion2 = null;
+            }
+        }
+
         public async void GetTypeaheadSuggestions(string inputQuery)
         {
             var results = await SuggestionService.Suggest(new CancellationToken(false), inputQuery, Lob);
@@ -241,6 +295,24 @@ namespace Expedia.Client.ViewModels
             SelectedSearchSuggestion = null;
         }
 
+        public async void GetTypeaheadSuggestions2(string inputQuery)
+        {
+            var results = await SuggestionService.Suggest(new CancellationToken(false), inputQuery, Lob);
+
+            if (results == null)
+                return;
+
+            var orderedSuggestions = new ObservableCollection<SuggestionResult>();
+            foreach (var suggestion in results.SortedSuggestionsList.SelectMany(suggestionList => suggestionList))
+            {
+                orderedSuggestions.Add(suggestion);
+            }
+
+            SearchSuggestions2 = orderedSuggestions;
+
+            SelectedSearchSuggestion2 = null;
+        }
+
         public void SetSearchSuggestion(SuggestionResult suggestionResult)
         {
             SelectedSearchSuggestion = suggestionResult;
@@ -250,6 +322,17 @@ namespace Expedia.Client.ViewModels
                 MapControl.Center = new Geopoint(geoPoint);
             }
             IsSuggestionListOpen = false;
+        }
+
+        public void SetSearchSuggestion2(SuggestionResult suggestionResult)
+        {
+            SelectedSearchSuggestion2 = suggestionResult;
+            var geoPoint = new BasicGeoposition { Latitude = double.Parse(suggestionResult.Coordinates.Latitude), Longitude = double.Parse(suggestionResult.Coordinates.Longitude) };
+            if (MapControl != null)
+            {
+                MapControl.Center = new Geopoint(geoPoint);
+            }
+            IsSuggestionListOpen2 = false;
         }
 
         public void SuggestionTextChanged(string input)
@@ -263,6 +346,20 @@ namespace Expedia.Client.ViewModels
             if (string.IsNullOrEmpty(input))
             {
                 GetNearbySuggestions();
+            }
+        }
+
+        public void SuggestionTextChanged2(string input)
+        {
+            if (input.Length > 2)
+            {
+                if (SelectedSearchSuggestion2 == null || input != SelectedSearchSuggestion2.Display)
+                    GetTypeaheadSuggestions2(input);
+            }
+
+            if (string.IsNullOrEmpty(input))
+            {
+                GetNearbySuggestions2();
             }
         }
 

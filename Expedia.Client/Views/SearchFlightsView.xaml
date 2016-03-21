@@ -2,28 +2,178 @@
     x:Class="Expedia.Client.Views.SearchFlightsView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Expedia.Client.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:Expedia.Client.Converters"
+    xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
     mc:Ignorable="d" NavigationCacheMode="Enabled">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Text="Search Flights Page"/>
+    <Page.Resources>
+        <converters:DateTimeToDateTimeOffsetConverter x:Name="DateTimeToDateTimeOffsetConverter"/>
+        <converters:ChildAgeHeaderConverter x:Name="ChildAgeHeaderConverter"/>
+        <converters:BoolToVisibilityConverter x:Name="BoolToVisibilityConverter"/>
+        <converters:ReversedBoolToVisibilityConverter x:Name="ReversedBoolToVisibilityConverter"/>
 
-        <DatePicker x:Name="DPicker" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 -150 0 0"></DatePicker>
+        <ItemsPanelTemplate x:Key="ChildAgePanel">
+            <WrapGrid Orientation="Horizontal" MaximumRowsOrColumns="4" />
+        </ItemsPanelTemplate>
 
-        <AutoSuggestBox HorizontalAlignment="Center" VerticalAlignment="Center" Width="350" 
+        <DataTemplate x:Key="ChildAgeTemplate">
+            <ComboBox Header="{Binding Rank, Converter={StaticResource ChildAgeHeaderConverter}}"
+                      
+					  PlaceholderText="Age"
+					  x:Uid="Age"
+					  ItemsSource="{Binding AgeRange}"
+					  SelectedIndex="{Binding Age, Mode=TwoWay}"
+					  Margin="1,0,12,20"/>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource AppBarBackgroundThemeBrush}" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" x:Name="SearchColumn"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="320" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="SearchColumn.MinWidth" Value="320" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="360" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="SearchColumn.MinWidth" Value="360" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="432" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="SearchColumn.MinWidth" Value="432" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="Map.Visibility" Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Grid Grid.Column="0" Margin="10 20 10 10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Margin="0,0,0,18"
+						Orientation="Horizontal"
+						HorizontalAlignment="Left"
+						Grid.ColumnSpan="2"
+						Grid.Row="0">
+                <RadioButton Content="Roundtrip"
+							 Style="{StaticResource ReturnButtonStyle}"
+							 IsChecked="{Binding IsRoundTrip, Mode=TwoWay}"
+                             GroupName="Trip"
+							 x:Uid="RoundtripButton" />
+                <RadioButton Content="One way"
+							 Style="{StaticResource ReturnButtonStyle}"
+							 IsChecked="{Binding IsOneWay, Mode=TwoWay}"
+                             GroupName="Trip"
+							 x:Uid="OneWayButton"
+							 Margin="10,0,0,0" />
+            </StackPanel>
+
+            <TextBlock Grid.Row="1" Grid.Column="0" x:Uid="FlyingFrom" Text="Flying from" Margin="0 0 0 5"/>
+
+            <AutoSuggestBox x:Name="DepartureSuggestBox" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 0 0 25"
                         ItemsSource="{Binding SearchSuggestions}"
                         TextMemberPath="Display"
                         UpdateTextOnSelect="True"
                         IsSuggestionListOpen="{Binding IsSuggestionListOpen, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                        SuggestionChosen="AutoSuggestBox_OnSuggestionChosen"
-                        TextChanged="AutoSuggestBox_OnTextChanged"
+                        SuggestionChosen="DepartureSuggestBox_OnSuggestionChosen"
+                        TextChanged="DepartureSuggestBox_OnTextChanged"
                         GotFocus="UIElement_OnGotFocus"
-                         >
-        </AutoSuggestBox>
+                        x:Uid="AutoSuggest">
+            </AutoSuggestBox>
 
+            <TextBlock Grid.Row="3" Grid.Column="0" x:Uid="FlyingTo" Text="Flying to" Margin="0 0 0 5"/>
 
+            <AutoSuggestBox x:Name="ArrivalSuggestBox" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 0 0 25"
+                        ItemsSource="{Binding SearchSuggestions2}"
+                        TextMemberPath="Display"
+                        UpdateTextOnSelect="True"
+                        IsSuggestionListOpen="{Binding IsSuggestionListOpen2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        SuggestionChosen="ArrivalSuggestBox_OnSuggestionChosen"
+                        TextChanged="ArrivalSuggestBox_OnTextChanged"
+                        GotFocus="UIElement_OnGotFocus"
+                        x:Uid="AutoSuggest">
+            </AutoSuggestBox>
+
+            <TextBlock Grid.Row="5" Grid.Column="0" Text="Departing" x:Uid="DepartingText" Margin="0 0 10 5"/>
+            <CalendarDatePicker Grid.Row="6" Grid.Column="0" HorizontalAlignment="Stretch" DateChanged="CalendarDatePicker_OnStartDateChanged" Loaded="StartDateLoaded" Margin="0 0 10 0"/>
+            <!--These calendar controls are really broken-->
+
+            <TextBlock Grid.Row="5" Grid.Column="1" Text="Returning" x:Uid="ReturningText" Margin="10 0 0 5"/>
+            <CalendarDatePicker x:Name="EndDatePicker" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Stretch" DateChanged="CalendarDatePicker_OnEndDateChanged" Loaded="EndDateLoaded" Margin="10 0 0 0"/>
+
+            <ComboBox Grid.Row="7" Grid.Column="0" Header="Adults (18+)" ItemsSource="{Binding AdultCountSource}" SelectedItem="{Binding AdultCount, Mode=TwoWay}" Width="140" Margin="0 10 10 0" x:Uid="Adults"/>
+
+            <ComboBox Grid.Row="7" Grid.Column="1" Header="Children (0-17)" ItemsSource="{Binding ChildCountSource}" SelectedItem="{Binding ChildCount, Mode=TwoWay}" Width="140" Margin="10 10 0 0" x:Uid="Children"/>
+
+            <ItemsControl Grid.Row="8" Grid.Column="0"
+                    Grid.ColumnSpan="2" ItemsSource="{Binding ChildAges}"
+					  ItemTemplate="{StaticResource ChildAgeTemplate}"
+					  ItemsPanel="{StaticResource ChildAgePanel}"
+					  Margin="0,10,0,0"/>
+
+            <Button Command="{Binding SearchHotels}"
+					Content="Search"
+					x:Uid="SearchButton"
+					Grid.Row="9"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+					Margin="10 0 10 15"
+                    HorizontalAlignment="Stretch"
+					VerticalAlignment="Bottom"/>
+
+        </Grid>
+        <Grid Grid.Column="1" Visibility="{Binding IsMapVisible, Converter={StaticResource BoolToVisibilityConverter}}">
+            <maps:MapControl x:Name="Map" Visibility="Collapsed" Loading="Map_OnLoading" Margin="0 0 0 0" MapServiceToken="uTSDW7FxvBNrtGPD67ZQ~Cws5kVsbllSUip_fVoHCIQ~AiAsYMbHCnN32naqWWDEeulT3_C1XVy1yPU91wba8Knm9G1D31rZOIMDss4jJFtO" ZoomLevel="5" />
+        </Grid>
+
+        <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding IsMapVisible, Converter={StaticResource ReversedBoolToVisibilityConverter}}">
+            <Path Width="100" Height="100" Fill="Gray" Stretch="Fill" Data="F1 M 371.982,300.971C 371.175,300.359 369.394,298.857 366.988,298.857C 365.551,298.859 363.932,298.534 362.667,298.119L 362.667,285.018L 371.347,288.769C 372.103,290.179 372.988,290.605 373.324,291.758C 374.042,294.221 372.35,295.291 372,294.485C 371.355,292.998 368.967,293.341 367.806,293.717C 366.05,294.286 365.338,295.383 366.667,295.974C 367.999,296.565 367.622,296.381 368,295.974C 368.376,295.567 368.811,295.425 369.238,295.791C 369.664,296.159 370.679,296.395 370.799,297.307C 370.926,298.219 370.971,298.649 372,298.641C 373.247,298.63 372.879,298.307 373.734,298.529C 374.58,298.753 375.427,298.307 376.094,298.302C 376.764,298.294 378.038,299.091 378.038,299.091C 379.983,299.299 380.632,299.411 381.238,299.807C 381.844,300.203 382.572,301.583 382.572,302.674C 382.572,303.659 382.276,304.37 381.112,305.331C 380.463,305.867 380.222,306.453 379.631,307.605C 379.12,308.602 378.866,309.089 377.516,310.594C 376.287,311.974 375.975,310.821 375.71,310.206C 375.444,309.594 375.219,307.654 375.219,307.654C 375.219,307.654 374.975,306.43 373.719,306.226C 370.592,305.722 371.982,300.971 371.982,300.971 Z M 392.782,305.281C 391.954,305.234 391.239,304.346 391.162,304.157C 390.848,303.406 390.326,300.659 390.4,299.833C 390.678,296.81 389.922,296.461 387.51,296.002C 386.504,295.813 385.063,295.61 384.319,294.731C 381.744,291.698 381.93,289.922 384.252,287.974C 385.074,287.286 386.838,286.513 388.086,285.977L 394.667,288.789L 394.667,303.953C 393.904,304.807 393.116,305.321 392.782,305.281 Z M 397.454,285.627L 384.596,280.135C 384.275,279.999 383.931,279.961 383.527,280.007C 383.296,280.039 383.07,280.102 382.859,280.214L 373.427,285.31L 361.459,280.138C 360.843,279.873 360.132,279.933 359.567,280.302C 359.006,280.671 358.667,281.302 358.667,281.974L 358.667,309.753C 358.667,310.55 359.14,311.271 359.874,311.589L 372.731,317.143C 372.984,317.253 373.254,317.307 373.523,317.307C 373.851,317.307 374.178,317.226 374.474,317.067L 383.911,311.971L 395.882,317.083C 396.498,317.346 397.207,317.283 397.768,316.914C 398.33,316.545 398.667,315.917 398.667,315.245L 398.667,294.302L 398.667,287.469C 398.667,286.666 398.188,285.943 397.454,285.627 Z "/>
+            <TextBlock Margin="0 10 0 0"  HorizontalAlignment="Center" VerticalAlignment="Center" x:Uid="MapPlaceHolder" Text="Search a destination, airport, landmark, or hotel name"/>
+        </StackPanel>
 
     </Grid>
 </Page>

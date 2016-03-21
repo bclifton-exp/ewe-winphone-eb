@@ -35,7 +35,6 @@ namespace Expedia.Client.ViewModels
             _hotelService = hotelService;
             _locationService = locationService;
             GetNearbySuggestions();
-            MapCenter = GeoLocationMemory.Instance().GetCurrentGeoposition();
             SearchHotels = new DependentRelayCommand(ExecuteHotelSearch, CanExecuteSearch, this, () => SelectedSearchSuggestion);
         }
 

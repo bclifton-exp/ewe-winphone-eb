@@ -136,7 +136,7 @@
                                 </StackPanel>
                             </PivotItem.Header>
                             <Frame x:Name="FlightFrame">
-                                <TextBlock Text="planes and flights" />
+                                <views:SearchFlightsView/>
                             </Frame>
                         </PivotItem>
                         <PivotItem x:Name="CarPivot" Margin="0 0 0 0">
