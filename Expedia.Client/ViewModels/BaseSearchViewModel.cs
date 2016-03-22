@@ -327,11 +327,11 @@ namespace Expedia.Client.ViewModels
         public void SetSearchSuggestion2(SuggestionResult suggestionResult)
         {
             SelectedSearchSuggestion2 = suggestionResult;
-            var geoPoint = new BasicGeoposition { Latitude = double.Parse(suggestionResult.Coordinates.Latitude), Longitude = double.Parse(suggestionResult.Coordinates.Longitude) };
-            if (MapControl != null)
-            {
-                MapControl.Center = new Geopoint(geoPoint);
-            }
+            //var geoPoint = new BasicGeoposition { Latitude = double.Parse(suggestionResult.Coordinates.Latitude), Longitude = double.Parse(suggestionResult.Coordinates.Longitude) };
+            //if (MapControl != null)
+            //{
+            //    MapControl.Center = new Geopoint(geoPoint);
+            //}
             IsSuggestionListOpen2 = false;
         }
 

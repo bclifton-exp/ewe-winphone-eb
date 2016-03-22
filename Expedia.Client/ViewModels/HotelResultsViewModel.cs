@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Input;
 using Windows.Devices.Geolocation;
+using Windows.Foundation;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -50,17 +51,6 @@ namespace Expedia.Client.ViewModels
                 _selectedHotel = value;
                 SetPushPinFocus(_selectedHotel);
                 OnPropertyChanged("SelectedHotel");
-            }
-        }
-
-        private Geopoint _mapCenter;
-        public Geopoint MapCenter
-        {
-            get { return _mapCenter; }
-            set
-            {
-                _mapCenter = value;
-                OnPropertyChanged("MapCenter");
             }
         }
 
@@ -399,7 +389,8 @@ namespace Expedia.Client.ViewModels
                     var mapIcon = new MapIcon
                     {
                         Title = hotel.HotelName + "(" + "$" + hotel.Price + ")", //TODO PoS based currency symbol
-                        Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/yellow_pin.png")),
+                        Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/green_pin.png")),
+                        NormalizedAnchorPoint = new Point(0.5,1)
                     };
 
                     var geoPoint = new BasicGeoposition
@@ -427,7 +418,7 @@ namespace Expedia.Client.ViewModels
 
                 foreach (MapElement selected in MapControl.MapElements.Where(selected => ((dynamic) selected).Title.Contains(selectedHotel.HotelName)))
                 {
-                    ((dynamic) selected).Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/blue_pin.png"));
+                    ((dynamic) selected).Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/gray_pin.png"));
                 }
             }
         }

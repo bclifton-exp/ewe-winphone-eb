@@ -1,6 +1,7 @@
 ﻿using Expedia.Entities.Flights;
 using System;
 using System.Collections.Generic;
+using Windows.Devices.Geolocation;
 
 namespace Expedia.Entities.Flights
 {
@@ -41,18 +42,20 @@ namespace Expedia.Entities.Flights
 		public FlightFilter[] ReturnAirlineFilters { get; set; }
 		public FlightFilter[] ReturnStopCountFilters { get; set; }
 
+        public Geopoint SelectedMapCenter { get; set; }
 
-		//public override int GetHashCode()
-		//{
-		//	return this.Equality().GetHashCode(Fields);
-		//}
 
-		//public override bool Equals(object obj)
-		//{
-		//	return this.Equality().Equal(obj, Fields);
-		//}
+        //public override int GetHashCode()
+        //{
+        //	return this.Equality().GetHashCode(Fields);
+        //}
 
-		private static readonly Func<SearchFlightsLocalParameters, IEnumerable<object>> Fields = obj => new object[] 
+        //public override bool Equals(object obj)
+        //{
+        //	return this.Equality().Equal(obj, Fields);
+        //}
+
+        private static readonly Func<SearchFlightsLocalParameters, IEnumerable<object>> Fields = obj => new object[] 
 		{
 			obj.IsOneWay,
 			obj.DepartureDate,

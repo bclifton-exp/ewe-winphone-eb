@@ -31,6 +31,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\DependentRelayCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IAccountMenuViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ICreateAccountViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IFlightResultsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IHotelResultsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ILinkFacebookAccountViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IMainPageViewModel.cs" />
@@ -38,6 +39,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISearchHotelsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISettingsMenuViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\CancellationTokenManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\Geodesic.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\GeoLocationMemory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\Navigator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\SearchParamsMemory.cs" />
@@ -46,6 +48,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseResultViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseSearchViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CreateAccountViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\FlightResultsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\HotelResultsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\LinkFacebookAccountViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPageViewModel.cs" />
@@ -60,6 +63,9 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\FacebookSignInWebView.xaml.cs">
       <DependentUpon>FacebookSignInWebView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\FlightResultsView.xaml.cs">
+      <DependentUpon>FlightResultsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\HotelBookingWebView.xaml.cs">
       <DependentUpon>HotelBookingWebView.xaml</DependentUpon>
@@ -93,6 +99,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\FlightResultsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\HotelBookingWebView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -117,5 +127,8 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Animations\" />
   </ItemGroup>
 </Project>
