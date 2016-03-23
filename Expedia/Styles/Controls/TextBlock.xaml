@@ -37,6 +37,26 @@
 				Value="{StaticResource TertiaryColor2Brush}" />
     </Style>
 
+    <Style x:Key="TotalNumberOfDaysStyle"
+		   TargetType="TextBlock"
+		   BasedOn="{StaticResource LocationHeaderStyle}">
+        <Setter Property="FontFamily"
+				Value="{StaticResource AppSemiLightFontFamily}" />
+        <Setter Property="FontWeight"
+				Value="SemiLight" />
+    </Style>
+
+    <Style x:Key="ResultTimeStyle"
+		   TargetType="TextBlock"
+		   BasedOn="{StaticResource SearchLocationItemStyle}">
+        <Setter Property="Foreground"
+				Value="{StaticResource PrimaryColor6Brush}" />
+        <Setter Property="FontSize"
+				Value="16.66" />
+        <Setter Property="LineHeight"
+				Value="16.66" />
+    </Style>
+
     <Style x:Key="ResultsHeaderBoldTextStyle"
 		   TargetType="TextBlock"
 		   BasedOn="{StaticResource ResultsHeaderTextStyle}">

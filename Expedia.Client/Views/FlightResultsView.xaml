@@ -5,9 +5,226 @@
     xmlns:local="using:Expedia.Client.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:Expedia.Client.Converters"
+    xmlns:customControls="using:Expedia.Client.CustomControls"
+    xmlns:templates="using:Expedia.Styles.Templates"
     mc:Ignorable="d">
+    
+    <Page.Resources>
+        <converters:FromNullableToDefaultValueConverter x:Key="fromHasFlightToPlaneIcon" ValueIfNull="{StaticResource DepartureFlightIcon}" ValueIfNotNull="{StaticResource ArrivalFlightIcon}" />
+        <converters:FromNullableToDefaultValueConverter x:Key="fromHasFlightToGradientShadow" ValueIfNull="{StaticResource BottomBandGradientFlight}" ValueIfNotNull="{StaticResource UpAndBottomBandGradientFlight}" />
+        <converters:FromNullableToDefaultValueConverter x:Key="fromNullToImageSource" ValueIfNull="/Assets/placeholder_city.scale-240.png"/>
+        <converters:FromNullOrEmptyAirlineToMultipleAirlinesLabelConverter x:Key="fromNullOrEmptyAirlineToMultipleAirlinesLabel" />
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-<TextBlock Text="Flight Results"/>
+        <DataTemplate x:Key="FlightResultItemTemplate">
+            <Grid Height="190" Margin="15 10 15 5" Background="White" x:Name="MainFlightGrid">
+                
+                <TextBlock Text="{Binding Duration}"/>
+
+                <customControls:SearchResultItemControl AirlineName="{Binding AirlineName, Mode=OneWay, Converter={StaticResource fromNullOrEmptyAirlineToMultipleAirlinesLabel}}"
+											DepartTime="{Binding DepartureTimeRaw, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter='\{0:h:mm tt​\}'}"
+											ArrivalTime="{Binding ArrivalTimeRaw, Converter={StaticResource StringFormatConverter}, ConverterParameter='\{0:h:mm tt​\}', Mode=OneWay}"
+											TicketPrice="{Binding FormattedWholePrice, Mode=OneWay}"
+											NumberOfDays="{Binding LegDurationInDays, Mode=OneWay}"
+											ListOfSegments="{Binding ListOfSegments, Mode=OneWay}"
+											IsDayVisible="{Binding LegDurationInDays, Converter={StaticResource IntGreaterThanOneToBoolConverter}}" />
+
+                <Button VerticalAlignment="Bottom" Command="{Binding DataContext.SelectDepartureFlight, ElementName=ResultListView}" CommandParameter="{Binding}" Content="Select Flight" x:Uid="SelectFlightButton" Style="{StaticResource SearchButtonStyle}" Foreground="White" Background="{StaticResource LogoDarkBlueBrush}"/>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" x:Name="ResultColumn"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="320" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="ResultColumn.MinWidth" Value="320" />
+                        <!--<Setter Target="ResultListView.ItemTemplate" Value="{StaticResource HotelResultItemTemplatePhone}"/>-->
+                        <Setter Target="ResultListView.Margin" Value="0 0 0 0"/>
+                        <!--<Setter Target="HotelsAvailableTextBlockPhone.Visibility" Value="Visible"/>
+                        <Setter Target="SortByControlPhone.Visibility" Value="Visible"/>
+                        <Setter Target="FilterByControlPhone.Visibility" Value="Visible"/>-->
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="360" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="ResultColumn.MinWidth" Value="360" />
+                        <!--<Setter Target="ResultListView.ItemTemplate" Value="{StaticResource HotelResultItemTemplatePhone}"/>-->
+                        <Setter Target="ResultListView.Margin" Value="0 0 0 0"/>
+                        <!--<Setter Target="HotelsAvailableTextBlockPhone.Visibility" Value="Visible"/>
+                        <Setter Target="SortByControlPhone.Visibility" Value="Visible"/>
+                        <Setter Target="FilterByControlPhone.Visibility" Value="Visible"/>-->
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="432" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="ResultColumn.MinWidth" Value="432" />
+                        <!--<Setter Target="ResultListView.ItemTemplate" Value="{StaticResource HotelResultItemTemplatePhone}"/>-->
+                        <Setter Target="ResultListView.Margin" Value="0 0 0 0"/>
+                        <!--<Setter Target="HotelsAvailableTextBlockPhone.Visibility" Value="Visible"/>
+                        <Setter Target="SortByControlPhone.Visibility" Value="Visible"/>
+                        <Setter Target="FilterByControlPhone.Visibility" Value="Visible"/>-->
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <!--<Setter Target="Map.Visibility" Value="Visible" />-->
+
+                        <Setter Target="ResultListView.Margin" Value="0 -60 0 0"/>
+                        <!--<Setter Target="HotelsAvailableTextBlockPhone.Visibility" Value="Collapsed"/>
+                        <Setter Target="SortByControlPhone.Visibility" Value="Collapsed"/>
+                        <Setter Target="FilterByControlPhone.Visibility" Value="Collapsed"/>-->
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Grid Background="{ThemeResource AppBarBackgroundThemeBrush}" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <customControls:ResultsHeaderControl DataContext="{Binding SearchInput, Mode=OneWay}" Grid.Row="0" Grid.ColumnSpan="3" Grid.Column="0"
+                                     Style="{StaticResource FlightsHeaderControlStyle}"
+									 DepartureDate="{Binding DepartureDate, Converter={StaticResource LocalizedStringConverter}, ConverterParameter='CheckInDateFormat'}"
+                                     ArrivalDate="{Binding ReturnDate, Converter={StaticResource LocalizedStringConverter}, ConverterParameter='CheckInDateFormat'}"
+                                     NumberOfPerson="{Binding TotalTravelersCount}"
+									 City="{Binding ArrivalCityShortName}"
+									 ResultType="Departures to "
+                                     x:Uid="DeparturesTo"
+									 GuestVisibility="Visible"/>
+
+            <!--<Grid Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2">
+                <Grid.Background>
+                    <ImageBrush ImageSource="{Binding DestinationPictureUrl, Converter={StaticResource fromNullToImageSource}}"
+								AlignmentX="Center"
+								AlignmentY="Top"
+								Stretch="UniformToFill" />
+                </Grid.Background>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" MinHeight="175" />
+                    <RowDefinition Height="47" />
+                </Grid.RowDefinitions>
+
+                --><!--Shadows for background image--><!--
+                <Rectangle Fill="{Binding Flight, Converter={StaticResource fromHasFlightToGradientShadow}}"
+						   Grid.RowSpan="3"/>
+
+                --><!-- The top band --><!--
+                <Border BorderThickness="0"						
+						HorizontalAlignment="Stretch"
+						VerticalAlignment="Stretch"
+						Height="44"
+						Visibility="{Binding Flight, Converter={StaticResource FromNotNullToVisible}}">
+                    <StackPanel Orientation="Horizontal"
+									  HorizontalAlignment="Left"
+									  VerticalAlignment="Center"
+									  Margin="20,0">
+                        <ContentPresenter ContentTemplate="{StaticResource DepartureFlightIcon}"
+										  VerticalAlignment="Center"
+										  Margin="0,0,8.33,0" />
+                        <TextBlock Text="Your selected departure"
+								   Style="{StaticResource LightFlightResultsTitleStyle}"
+								   x:Uid="YourSelectedDeparture"/>
+                    </StackPanel>
+                </Border>
+
+                --><!-- The selected flight -->
+                <!--
+                    <Grid Grid.Row="1" 
+					  Margin="20,17.5"
+					  HorizontalAlignment="Stretch"
+					  VerticalAlignment="Stretch"
+					  Visibility="{Binding Flight, Converter={StaticResource FromNotNullToVisible}}"
+					  Background="{StaticResource WhiteBrushOpacity90}">
+                        <customControls:SearchResultItemControl DataContext="{Binding Flight}"
+													AirlineName="{Binding AirlineName, Mode=OneWay,Converter={StaticResource fromNullOrEmptyAirlineToMultipleAirlinesLabel}}"
+													DepartTime="{Binding DepartureTimeRaw, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter='\{0:h:mm tt​\}'}"
+													ArrivalTime="{Binding ArrivalTimeRaw, Converter={StaticResource StringFormatConverter}, ConverterParameter='\{0:h:mm tt​\}', Mode=OneWay}"
+													TicketPrice="{Binding FormattedWholePrice, Mode=OneWay}"
+													NumberOfDays="{Binding LegDurationInDays, Mode=OneWay}"
+													ListOfSegments="{Binding ListOfSegments, Mode=OneWay}"
+													IsDayVisible="{Binding LegDurationInDays, Converter={StaticResource IntGreaterThanOneToBoolConverter}}" />
+                        <Button Content="Change"
+							x:Uid="Change"
+							HorizontalAlignment="Right"
+							VerticalAlignment="Bottom"
+							Command="{Binding CustomData}"
+							Style="{StaticResource ChangeButtonStyle}"/>
+                    </Grid>-->
+
+                <!-- The bottom band --><!--
+                <Border Grid.Row="2" 
+						BorderThickness="0,0,0,4"
+						HorizontalAlignment="Stretch"
+						VerticalAlignment="Stretch"
+						BorderBrush="{StaticResource SecondaryColor8Brush}">
+                    <StackPanel Orientation="Horizontal"
+									  VerticalAlignment="Center"
+									  HorizontalAlignment="Left"
+									  Margin="20,0">
+                        <ContentPresenter ContentTemplate="{Binding Flight, Converter={StaticResource fromHasFlightToPlaneIcon}}"
+										  Margin="0,0,8.33,0" />
+                        <TextBlock Visibility="{Binding Flight, Converter={StaticResource FromNullToVisible}}"
+								   Style="{StaticResource LightFlightResultsTitleStyle}">
+							<Run Text="Select a flight to"
+								 x:Uid="SelectAFlightTo" />
+							<Run FontWeight="Bold"
+								 Text="{Binding DestinationName}" />
+                        </TextBlock>
+                        --><!--<TextBlock Visibility="{Binding Flight, Converter={StaticResource FromNotNullToVisible}}"
+								   Style="{StaticResource LightFlightResultsTitleStyle}">
+							<Run Text="Select your return flight to"
+								 x:Uid="SelectYourReturnFlightTo"/>
+							<Run FontWeight="Bold"
+								 Text="{Binding ReturnName}" />
+                            </TextBlock>--><!--
+                    </StackPanel>
+                </Border>
+            </Grid>-->
+
+            <ListView x:Name="ResultListView" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" ItemsSource="{Binding FlightResultItems}"
+                      ItemTemplate="{StaticResource FlightResultItemTemplate}"
+					  Padding="0,0,0,72">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Setter Property="Margin" Value="0 0 0 0"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
+
+            <ProgressRing x:Name="ProgressRing" Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="2" IsActive="{Binding FlightResultItems, Converter={StaticResource ReversedNullToBoolConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Visibility="{Binding ElementName=ProgressRing, Path=IsActive, Converter={StaticResource BoolToVisibilityConverter}}" Width="100" Height="100" />
+        </Grid>
     </Grid>
 </Page>

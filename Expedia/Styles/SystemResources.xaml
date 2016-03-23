@@ -15,5 +15,26 @@
     <converters:SignInSignOutTextConverter x:Name="SignInSignOutTextConverter"/>
     <converters:IndexToPivotColorConverter x:Name="IndexToPivotColorConverter"/>
     <converters:RadioBackgroundConverter x:Name="RadioBackgroundConverter"/>
+    <converters:NullableBoolToVisibilityConverter x:Name="NullableBoolToVisibilityConverter"/>
+    <converters:StringFormatConverter x:Name="StringFormatConverter"/>
+    <converters:IntGreaterThanOneToBoolConverter x:Name="IntGreaterThanOneToBoolConverter"/>
+
+    <converters:FromNullableToDefaultValueConverter x:Key="FromNotNullToVisible">
+        <converters:FromNullableToDefaultValueConverter.ValueIfNull>
+            <Visibility>Collapsed</Visibility>
+        </converters:FromNullableToDefaultValueConverter.ValueIfNull>
+        <converters:FromNullableToDefaultValueConverter.ValueIfNotNull>
+            <Visibility>Visible</Visibility>
+        </converters:FromNullableToDefaultValueConverter.ValueIfNotNull>
+    </converters:FromNullableToDefaultValueConverter>
+
+    <converters:FromNullableToDefaultValueConverter x:Key="FromNullToVisible">
+        <converters:FromNullableToDefaultValueConverter.ValueIfNull>
+            <Visibility>Visible</Visibility>
+        </converters:FromNullableToDefaultValueConverter.ValueIfNull>
+        <converters:FromNullableToDefaultValueConverter.ValueIfNotNull>
+            <Visibility>Collapsed</Visibility>
+        </converters:FromNullableToDefaultValueConverter.ValueIfNotNull>
+    </converters:FromNullableToDefaultValueConverter>
 
 </ResourceDictionary>

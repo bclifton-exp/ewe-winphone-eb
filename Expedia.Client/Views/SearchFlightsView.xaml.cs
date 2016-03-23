@@ -116,13 +116,19 @@ namespace Expedia.Client.Views
         private void StartDateLoaded(object sender, RoutedEventArgs e)
         {
             var calendar = sender as CalendarDatePicker;
+            var context = DataContext as SearchFlightsViewModel;
             calendar.Date = DateTime.Now;
+            calendar.MinDate = context.MinimumDate;
+            calendar.MaxDate = context.MaximumDate;
         }
 
         private void EndDateLoaded(object sender, RoutedEventArgs e)
         {
             var calendar = sender as CalendarDatePicker;
+            var context = DataContext as SearchFlightsViewModel;
             calendar.Date = DateTime.Now.AddDays(1);
+            calendar.MinDate = context.MinimumDate;
+            calendar.MaxDate = context.MaximumDate;
         }
     }
 }

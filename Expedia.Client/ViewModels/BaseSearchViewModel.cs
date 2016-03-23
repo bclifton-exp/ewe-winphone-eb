@@ -49,6 +49,29 @@ namespace Expedia.Client.ViewModels
             }
         }
 
+        private DateTime _minimumDate;
+        public DateTime MinimumDate
+        {
+            get { return _minimumDate; }
+            set
+            {
+                _minimumDate = value;
+                OnPropertyChanged("MinimumDate");
+            }
+        }
+
+        private DateTime _maximumDate;
+        public DateTime MaximumDate
+        {
+            get { return _maximumDate; }
+            set
+            {
+                _maximumDate = value;
+                OnPropertyChanged("MaximumDate");
+            }
+        }
+
+
         private int _adultCount;
         public int AdultCount
         {
@@ -230,7 +253,9 @@ namespace Expedia.Client.ViewModels
             ChildCount = 0;
             ChildAges = new ObservableCollection<ChildAgeItem>();
             SetGPS();
-        }
+            MinimumDate = DateTimeOffset.Now.Date;
+            MaximumDate = GetLastDayOfPreviousMonthOneYearFromNow().Date;
+    }
 
         private void SetGPS()
         {
@@ -393,6 +418,14 @@ namespace Expedia.Client.ViewModels
             {
                 IsMapVisible = suggestionValue != null;
             }
+        }
+
+        internal static DateTime GetLastDayOfPreviousMonthOneYearFromNow()
+        {
+            var oneYearFromToday = DateTimeOffset.Now.Date.AddDays(365);
+            var endOfPreviousMonth = oneYearFromToday.AddDays(-oneYearFromToday.Day).Subtract(TimeSpan.FromHours(-1)).Date;
+
+            return endOfPreviousMonth;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

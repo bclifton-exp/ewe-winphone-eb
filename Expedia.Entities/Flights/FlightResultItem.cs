@@ -11,6 +11,7 @@ namespace Expedia.Entities.Flights
 		public string AirlineName { get; set; }
 		public string DepartureTime { get; set; }
 		public string ArrivalTime { get; set; }
+        public string Duration { get; set; }
 		public DateTimeOffset DepartureTimeRaw { get; set; }
 		public DateTimeOffset ArrivalTimeRaw { get; set; }
 

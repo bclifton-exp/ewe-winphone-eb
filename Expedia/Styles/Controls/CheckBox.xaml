@@ -28,7 +28,7 @@
 		<Setter Property="BorderBrush"
 				Value="{ThemeResource CheckBoxBorderThemeBrush}" />
 		<Setter Property="BorderThickness"
-				Value="{ThemeResource PhoneBorderThickness}" />
+				Value="2.5" />
 		<Setter Property="FontSize"
 				Value="{ThemeResource TextStyleLargeFontSize}" />
 		<Setter Property="FontFamily"
@@ -146,7 +146,7 @@
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
 						<Grid x:Name="Grid"
-							  Margin="{ThemeResource PhoneTouchTargetLargeOverhang}">
+							  Margin="0,16">
 							<Grid.ColumnDefinitions>
 								<ColumnDefinition Width="25.5" />
 								<ColumnDefinition Width="*" />

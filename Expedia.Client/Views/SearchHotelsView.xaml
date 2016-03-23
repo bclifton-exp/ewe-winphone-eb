@@ -112,7 +112,7 @@
             <!--These calendar controls are really broken-->
 
             <TextBlock Grid.Row="2" Grid.Column="1" Text="Check Out" x:Uid="CheckoutLabel" Margin="10 0 0 5"/>
-            <CalendarDatePicker x:Name="EndDatePicker" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" DateChanged="CalendarDatePicker_OnEndDateChanged" Loaded="EndDateLoaded" Margin="10 0 0 0"/>
+            <CalendarDatePicker x:Name="EndDatePicker" Grid.Row="3" Grid.Column="1" IsTodayHighlighted="False" HorizontalAlignment="Stretch" DateChanged="CalendarDatePicker_OnEndDateChanged" Loaded="EndDateLoaded" Margin="10 0 0 0"/>
 
             <ComboBox Grid.Row="4" Grid.Column="0" Header="Adults (18+)" ItemsSource="{Binding AdultCountSource}" SelectedItem="{Binding AdultCount, Mode=TwoWay}" Width="140" Margin="0 10 10 0" x:Uid="Adults"/>
 

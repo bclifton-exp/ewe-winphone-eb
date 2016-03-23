@@ -147,7 +147,8 @@ namespace Expedia.Client.ViewModels
                     Title = airportSuggestion.Display,
                     Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/blue_pin.png")),
                     MapTabIndex = 0,
-                    NormalizedAnchorPoint = new Point(0.5,0.9)
+                    NormalizedAnchorPoint = new Point(0.5,0.9),
+                    ZIndex = 1
                 };
 
                 var geoPoint = new BasicGeoposition
@@ -179,7 +180,8 @@ namespace Expedia.Client.ViewModels
                     Title = airportSuggestion.Display,
                     Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/blue_pin.png")),
                     MapTabIndex = 1,
-                    NormalizedAnchorPoint = new Point(0.5,0.9)
+                    NormalizedAnchorPoint = new Point(0.5,0.9),
+                    ZIndex = 1
                 };
 
                 var geoPoint = new BasicGeoposition
@@ -205,6 +207,9 @@ namespace Expedia.Client.ViewModels
                     var indexToRemove = MapControl.MapElements.IndexOf(mapLine);
                     MapControl.MapElements.RemoveAt(indexToRemove);
                 }
+
+                if (StartPoint.Latitude == EndPoint.Latitude && StartPoint.Longitude == EndPoint.Longitude)
+                    return;
                 
                 var geodesic = Geodesic.ToGeodesic(StartPoint, EndPoint);
 
@@ -213,7 +218,10 @@ namespace Expedia.Client.ViewModels
                 line.StrokeColor = brush.Color;
                 line.StrokeThickness = 5;
                 line.StrokeDashed = true;
+                line.ZIndex = 0;
 
+                var newMapCenter = geodesic[geodesic.Count/2];
+                MapControl.Center = new Geopoint(newMapCenter);
                 MapControl.MapElements.Add(line);
             }
         }

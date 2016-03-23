@@ -10,7 +10,7 @@ namespace Expedia.Entities.Flights
 		public string DestinationPictureUrl { get; set; }
 		public string ReturnName { get; set; }
 
-		// Used for storing the ICommand for resetting the selection. Left the property weakly typed to avoid dependances.
+		// Used for storing the ICommand for resetting the selection.
 		public object CustomData { get; set; }
 
 		public FlightResultItem Flight { get; set; }

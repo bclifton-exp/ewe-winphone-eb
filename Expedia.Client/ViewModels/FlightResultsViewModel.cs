@@ -51,6 +51,57 @@ namespace Expedia.Client.ViewModels
             }
         }
 
+        //private FlightResultSelection _flightResultSelection;
+        //public FlightResultSelection FlightResultSelection
+        //{
+        //    get { return _flightResultSelection; }
+        //    set
+        //    {
+        //        _flightResultSelection = value;
+        //        OnPropertyChanged("FlightResultSelection");
+        //    }
+        //}
+
+        private string _destinationPictureUrl;
+        public string DestinationPictureUrl
+        {
+            get { return _destinationPictureUrl; }
+            set
+            {
+                _destinationPictureUrl = value;
+                OnPropertyChanged("DestinationPictureUrl");
+            }
+        }
+
+        private string _returnName;
+        public string ReturnName
+        {
+            get { return _returnName; }
+            set
+            {
+                _returnName = value;
+                OnPropertyChanged("ReturnName");
+            }
+        }
+
+        private string _destinationName;
+        public string DestinationName
+        {
+            get { return _destinationName; }
+            set
+            {
+                _destinationName = value;
+                OnPropertyChanged("DestinationName");
+            }
+        }
+
+
+
+        //public FlightResultSelection Selection { get; set; }
+        //public FlightResultItem[] Flights { get; set; }
+
+        //public FlightFilter[] AirlineFilters { get; set; }
+        //public FlightFilter[] StopCountFilters { get; set; }
 
 
 
@@ -76,6 +127,12 @@ namespace Expedia.Client.ViewModels
             //AccessibilityFilters = results.AccessibilityFilters;
             //ResultsCount = results.Hotels.Count();
             FlightResultItems = results.Flights.ToObservableCollection();
+            DestinationPictureUrl = results.Selection.DestinationPictureUrl;
+            DestinationName = results.Selection.DestinationName;
+            ReturnName = results.Selection.ReturnName;
+
+
+            //TODO set duration style and then build out layover times
 
             //BuildPushpins(HotelResultItems);
 

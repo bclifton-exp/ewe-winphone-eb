@@ -135,7 +135,7 @@
                                     <Rectangle Fill="{Binding ElementName=PivotControl, Path=SelectedIndex, Converter={StaticResource IndexToPivotColorConverter}, ConverterParameter=1}" Margin="-30 0 -30 -6" Height="5" Width="110"/>
                                 </StackPanel>
                             </PivotItem.Header>
-                            <Frame x:Name="FlightFrame">
+                            <Frame x:Name="FlightFrame" SourcePageType="views:SearchFlightsView">
                                 <views:SearchFlightsView/>
                             </Frame>
                         </PivotItem>

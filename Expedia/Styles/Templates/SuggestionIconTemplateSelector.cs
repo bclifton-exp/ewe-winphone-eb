@@ -4,7 +4,7 @@ using Expedia.Entities.Suggestions;
 
 namespace Expedia.Styles.Templates
 {
-    public class SuggestionIconTemplateSelector : DataTemplateSelector
+    public class SuggestionIconTemplateSelector : DataTemplateSelectorExtension
     {
         public DataTemplate MultiCity { get; set; }
         public DataTemplate Neighborhood { get; set; }
@@ -43,7 +43,7 @@ namespace Expedia.Styles.Templates
         }
     }
 
-    public abstract class DataTemplateSelector : ContentControl
+    public abstract class DataTemplateSelectorExtension : ContentControl
     {
         public virtual DataTemplate SelectTemplate(object item, DependencyObject container)
         {

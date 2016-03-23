@@ -16,6 +16,9 @@
         <ResourceDictionary Source="MenuFlyout.xaml"/>
         <ResourceDictionary Source="ExpandableContentControl.xaml"/>
         <ResourceDictionary Source="CheckBox.xaml"/>
+        <ResourceDictionary Source="SearchResultItemControl.xaml"/>
+        <ResourceDictionary Source="ArrivalPointControl.xaml"/>
+        <ResourceDictionary Source="ListViewItem.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

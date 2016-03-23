@@ -97,6 +97,124 @@
 
     </Style>
 
+    <Style x:Key="ChangeButtonStyle"
+		   TargetType="Button">
+        <Setter Property="Background"
+				Value="Transparent" />
+        <Setter Property="Foreground"
+				Value="{ThemeResource SecondaryColor8Brush}" />
+        <Setter Property="BorderThickness"
+				Value="0" />
+        <Setter Property="FontFamily"
+				Value="{ThemeResource PhoneFontFamilyNormal}" />
+        <Setter Property="FontWeight"
+				Value="SemiBold" />
+        <Setter Property="FontWeight"
+				Value="SemiBold" />
+        <Setter Property="FontSize"
+				Value="15" />
+        <Setter Property="Padding"
+				Value="0" />
+        <Setter Property="HorizontalContentAlignment"
+				Value="Right" />
+        <Setter Property="MinHeight"
+				Value="30" />
+        <Setter Property="MinWidth"
+				Value="85" />
+        <Setter Property="HorizontalAlignment"
+				Value="Stretch" />
+        <Setter Property="VerticalAlignment"
+				Value="Top" />
+        <Setter Property="VerticalContentAlignment"
+				Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid x:Name="Grid"
+						  Background="{TemplateBinding Background}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition From="Pressed"
+													  To="PointerOver">
+                                        <Storyboard>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="Grid" />
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    <VisualTransition From="PointerOver"
+													  To="Normal">
+                                        <Storyboard>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="Grid" />
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    <VisualTransition From="Pressed"
+													  To="Normal">
+                                        <Storyboard>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="Grid" />
+                                        </Storyboard>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="PointerOver" />
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <PointerDownThemeAnimation Storyboard.TargetName="Grid" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+																	   Storyboard.TargetName="ContentPresenter">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{ThemeResource ButtonPressedForegroundThemeBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+																	   Storyboard.TargetName="ArrowRight">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{ThemeResource ButtonPressedForegroundThemeBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity"
+																	   Storyboard.TargetName="Border">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="0.5" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="Border"
+								Background="{TemplateBinding Background}"
+								Margin="0,6">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock x:Name="ContentPresenter"
+										   AutomationProperties.AccessibilityView="Raw"
+										   Text="{TemplateBinding Content}"
+										   Foreground="{TemplateBinding Foreground}"
+										   FontFamily="{TemplateBinding FontFamily}"
+										   FontSize="{TemplateBinding FontSize}"
+										   LineHeight="{TemplateBinding FontSize}"
+										   LineStackingStrategy="BlockLineHeight"
+										   FontWeight="{TemplateBinding FontWeight}"
+										   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+										   Margin="{TemplateBinding Padding}"
+										   VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                <PathIcon x:Name="ArrowRight"
+										  Data="F1M1.061,0L0,1.06 4.44,5.501 0,9.941 1.061,11 6.559,5.501z"
+										  Foreground="{TemplateBinding Foreground}"
+										  Height="11"
+										  Width="6.559"
+										  Margin="5,2,0,0"
+										  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                            </StackPanel>
+
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
     <Style x:Key="SearchButtonStyle"
 		   TargetType="Button">
         <Setter Property="BorderThickness"

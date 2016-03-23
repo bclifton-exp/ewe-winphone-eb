@@ -119,6 +119,9 @@
   <data name="ViewDetailsButton.Content" xml:space="preserve">
     <value>View Details</value>
   </data>
+  <data name="SelectFlightButton.Content" xml:space="preserve">
+    <value>Select Flight</value>
+  </data>
   <data name="OfGuestRatingTextBlock.Text" xml:space="preserve">
     <value> of 5 - Guest Rating</value>
   </data>

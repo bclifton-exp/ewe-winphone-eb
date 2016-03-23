@@ -1,0 +1,40 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:customControls="using:Expedia.Client.CustomControls">
+    <Style x:Key="DefaultArrivalPointControlStyle"
+		   TargetType="customControls:ArrivalPointControl">
+        <Setter Property="HorizontalAlignment"
+				Value="Right" />
+        <Setter Property="HorizontalContentAlignment"
+				Value="Right" />
+        <Setter Property="BorderBrush"
+				Value="{StaticResource SegmentBrush}" />
+        <Setter Property="VerticalAlignment"
+				Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="customControls:ArrivalPointControl">
+                    <customControls:StarStackPanel HorizontalAlignment="{TemplateBinding HorizontalAlignment}">
+                        <Ellipse StrokeThickness="2.5"
+								 Width="13"
+								 Height="13"
+								 Stroke="{TemplateBinding BorderBrush}"
+								 Fill="{StaticResource AppWhiteColorBrush}"
+								 VerticalAlignment="{TemplateBinding VerticalAlignment}"
+								 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
+                        
+                        <TextBlock Text="{TemplateBinding ArrivalAirport}"
+								   Style="{StaticResource SegmentDepartureTextStyle}"
+								   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+								   Margin="0,5,-10,0" />
+                    </customControls:StarStackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="customControls:ArrivalPointControl"
+		   BasedOn="{StaticResource DefaultArrivalPointControlStyle}">
+    </Style>
+</ResourceDictionary>

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Expedia.Client;
+using Expedia.Client.Utilities;
 using Expedia.Entites;
 using Expedia.Entities.Extensions;
 using Expedia.Entities.Flights;
@@ -45,9 +46,8 @@ namespace Expedia.Services.Interfaces
                 .SelectOrDefault(_ => new ImageQueryParameters
                 {
                     DestinationCode = _.Code,
-                    // TODO: Looks awkward. Taller than wide?
-                    ImageWidth = 360,
-                    ImageHeight = 520
+                    ImageWidth = 920,
+                    ImageHeight = 310
                 });
 
             string imageUrl = null;
@@ -201,7 +201,9 @@ namespace Expedia.Services.Interfaces
             var lastSegmentArrivalAirportCode = lastSegment.ArrivalAirportCode;
             var isMultipleAirlines = leg.Segments.Select(segment => segment.AirlineName).Distinct().Count() > 1;
 
-            return new FlightResultItem()
+            var duration = TimeFormatter.CalculateDuration(leg.Segments);
+
+            return new FlightResultItem
             {
                 AirlineName = isMultipleAirlines ? string.Empty : firstSegment.AirlineName,
                 IsMultipleAirlines = isMultipleAirlines,
@@ -217,7 +219,8 @@ namespace Expedia.Services.Interfaces
                 LegId = leg.LegId,
                 LegDurationInDays = totalDays,
                 ListOfSegments = airportCodes,
-                LastSegmentArrivalAirportCode = lastSegmentArrivalAirportCode
+                LastSegmentArrivalAirportCode = lastSegmentArrivalAirportCode,
+                Duration = duration
             };
         }
 
