@@ -45,7 +45,7 @@ namespace Expedia.Services
 
             var deserializedResults = result != null ? JsonConvert.DeserializeObject<SuggestionsResponse>(result) : null;
 
-            if (deserializedResults == null) return null;
+            if (deserializedResults == null || deserializedResults.Suggestions == null) return null;
             deserializedResults.SortedSuggestionsList = SortByMulticity(deserializedResults);
 
             return deserializedResults;

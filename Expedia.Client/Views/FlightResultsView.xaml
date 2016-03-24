@@ -17,9 +17,7 @@
         <converters:FromNullOrEmptyAirlineToMultipleAirlinesLabelConverter x:Key="fromNullOrEmptyAirlineToMultipleAirlinesLabel" />
 
         <DataTemplate x:Key="FlightResultItemTemplate">
-            <Grid Height="190" Margin="15 10 15 5" Background="White" x:Name="MainFlightGrid">
-                
-                <TextBlock Text="{Binding Duration}"/>
+            <Grid Height="150" Margin="15 10 15 5" Background="White" x:Name="MainFlightGrid">
 
                 <customControls:SearchResultItemControl AirlineName="{Binding AirlineName, Mode=OneWay, Converter={StaticResource fromNullOrEmptyAirlineToMultipleAirlinesLabel}}"
 											DepartTime="{Binding DepartureTimeRaw, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter='\{0:h:mm tt​\}'}"
@@ -27,7 +25,9 @@
 											TicketPrice="{Binding FormattedWholePrice, Mode=OneWay}"
 											NumberOfDays="{Binding LegDurationInDays, Mode=OneWay}"
 											ListOfSegments="{Binding ListOfSegments, Mode=OneWay}"
-											IsDayVisible="{Binding LegDurationInDays, Converter={StaticResource IntGreaterThanOneToBoolConverter}}" />
+                                            FlightDuration="{Binding Duration, Mode=OneWay}"
+											IsDayVisible="{Binding LegDurationInDays, Converter={StaticResource IntGreaterThanOneToBoolConverter}}" 
+                                                        Margin="20 -10 20 5"/>
 
                 <Button VerticalAlignment="Bottom" Command="{Binding DataContext.SelectDepartureFlight, ElementName=ResultListView}" CommandParameter="{Binding}" Content="Select Flight" x:Uid="SelectFlightButton" Style="{StaticResource SearchButtonStyle}" Foreground="White" Background="{StaticResource LogoDarkBlueBrush}"/>
             </Grid>
