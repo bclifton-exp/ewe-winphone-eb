@@ -2,10 +2,12 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Maps;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using Expedia.Client.Interfaces;
 using Expedia.Client.ViewModels;
 using Expedia.Entities.Flights;
+using Expedia.Entities.Hotels;
 using Expedia.Injection;
 
 
@@ -53,6 +55,38 @@ namespace Expedia.Client.Views
             {
                 map.Center = new Geopoint(new BasicGeoposition());
             }
+        }
+
+        private void MainHotelGrid_OnTapped(object sender, TappedRoutedEventArgs e)
+        {
+            var grid = sender as Grid;
+            var flight = grid.DataContext as FlightResultItem;
+            var context = DataContext as FlightResultsViewModel;
+            context.BookFlight.Execute(flight);
+        }
+
+        private void ToggleButton_OnChecked(object sender, RoutedEventArgs e)
+        {
+            var context = DataContext as FlightResultsViewModel;
+            context.FilterResults();
+        }
+
+        private void ToggleButton_OnUnchecked(object sender, RoutedEventArgs e)
+        {
+            var context = DataContext as FlightResultsViewModel;
+            context.FilterResults();
+        }
+
+        private void UIElement_OnLostFocus(object sender, RoutedEventArgs e)
+        {
+            FilterDropDown.IsExpanded = false;
+            SortDropDown.IsExpanded = false;
+        }
+
+        private void UIElement_OnLostFocusPhone(object sender, RoutedEventArgs e)
+        {
+            FilterDropDownPhone.IsExpanded = false;
+            SortDropDownPhone.IsExpanded = false;
         }
     }
 }

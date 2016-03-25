@@ -34,7 +34,7 @@ namespace Expedia.Entities.Flights
 		public int ChildCount { get { return (ChildrenAges ?? new int[0]).Length; } }
 		public int TotalTravelersCount { get { return AdultsCount + ChildCount; } }
 
-		public OrderFlightsByType OrderBy { get; set; }
+		public SortFlightsByType SortBy { get; set; }
 
 		public FlightFilter[] DepartureAirlineFilters { get; set; }
 		public FlightFilter[] DepartureStopCountFilters { get; set; }

@@ -14,7 +14,7 @@ namespace Expedia.Entities.Flights
 		public int[] ChildTravelersAge { get; set; }
 		public bool InfantSeatingInLap { get; set; }
 
-		public OrderFlightsByType OrderBy { get; set; }
+		public SortFlightsByType OrderBy { get; set; }
 
 		public virtual void AppendParameters(Action<string, string> appender)
 		{

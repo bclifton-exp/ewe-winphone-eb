@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
+using System.Windows.Input;
 using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.Storage.Streams;
@@ -14,6 +15,8 @@ using Expedia.Client.Utilities;
 using Expedia.Entities.Extensions;
 using Expedia.Entities.Flights;
 using Expedia.Services.Interfaces;
+using GalaSoft.MvvmLight.Command;
+using Microsoft.Practices.Prism.Commands;
 
 namespace Expedia.Client.ViewModels
 {
@@ -90,6 +93,17 @@ namespace Expedia.Client.ViewModels
             }
         }
 
+        private int _resultsCount;
+        public int ResultsCount
+        {
+            get { return _resultsCount; }
+            set
+            {
+                _resultsCount = value;
+                OnPropertyChanged("ResultsCount");
+            }
+        }
+
         private FlightResultItem _selectedDeparture;
         public FlightResultItem SelectedDeparture
         {
@@ -124,9 +138,93 @@ namespace Expedia.Client.ViewModels
             }
         }
 
-        //public FlightFilter[] AirlineFilters { get; set; }
-        //public FlightFilter[] StopCountFilters { get; set; }
+        private bool _sortByPriceLowToHighChecked;
+        public bool SortByPriceLowToHighChecked
+        {
+            get { return _sortByPriceLowToHighChecked; }
+            set
+            {
+                _sortByPriceLowToHighChecked = value;
+                OnPropertyChanged("SortByPriceLowToHighChecked");
+            }
+        }
 
+        private bool _sortByDurationChecked;
+        public bool SortByDurationChecked
+        {
+            get { return _sortByDurationChecked; }
+            set
+            {
+                _sortByDurationChecked = value;
+                OnPropertyChanged("SortByDurationChecked");
+            }
+        }
+
+        private bool _sortByArrivalChecked;
+        public bool SortByArrivalChecked
+        {
+            get { return _sortByArrivalChecked; }
+            set
+            {
+                _sortByArrivalChecked = value;
+                OnPropertyChanged("SortByArrivalChecked");
+            }
+        }
+
+        private bool _sortByDepartureChecked;
+        public bool SortByDepartureChecked
+        {
+            get { return _sortByDepartureChecked; }
+            set
+            {
+                _sortByDepartureChecked = value;
+                OnPropertyChanged("SortByDepartureChecked");
+            }
+        }
+
+        private ICommand _sortResultsCommand;
+        public ICommand SortResultsCommand
+        {
+            get { return _sortResultsCommand; }
+            set
+            {
+                _sortResultsCommand = value;
+                OnPropertyChanged("SortResultsCommand");
+            }
+        }
+
+        private FlightFilter[] _airlineFilters;
+        public FlightFilter[] AirlineFilters
+        {
+            get { return _airlineFilters; }
+            set
+            {
+                _airlineFilters = value;
+                OnPropertyChanged("AirlineFilters");
+            }
+        }
+
+        private FlightFilter[] _stopCountFilters;
+        public FlightFilter[] StopCountFilters
+        {
+            get { return _stopCountFilters; }
+            set
+            {
+                _stopCountFilters = value;
+                OnPropertyChanged("StopCountFilters");
+            }
+        }
+
+        private RelayCommand<FlightResultItem> _bookFlight;
+        public RelayCommand<FlightResultItem> BookFlight
+        {
+            get { return _bookFlight; }
+            set
+            {
+                _bookFlight = value;
+                OnPropertyChanged("BookFlight");
+            }
+        }
 
         public FlightResultsViewModel(IFlightService flightService, ISettingsService settingsService,
             IPointOfSaleService pointOfSaleService, ISuggestionService suggestionService)
@@ -145,45 +243,130 @@ namespace Expedia.Client.ViewModels
             CurrentSearchCriteria = searchCriteria;
             var ct = CancellationTokenManager.Instance().CreateAndSetCurrentToken();
             var results = await _flightService.SearchFlights(ct, searchCriteria);
-            //StarRatingFilters = results.StarRatingFilters;
-            //PriceFilters = results.PriceFilters;
-            //NeighborhoodFilters = results.NeighborhoodFilters;
-            //AmenityFilters = results.AmenityFilters;
-            //AccessibilityFilters = results.AccessibilityFilters;
-            //ResultsCount = results.Hotels.Count();
+            StopCountFilters = results.StopCountFilters;
+            AirlineFilters = results.AirlineFilters;
+            ResultsCount = results.Flights.Count();
             FlightResultItems = results.Flights.ToObservableCollection();
             DestinationPictureUrl = results.Selection.DestinationPictureUrl;
             DestinationName = results.Selection.DestinationName;
             ReturnName = results.Selection.ReturnName;
 
-            
+            BookFlight = new RelayCommand<FlightResultItem>(BuildAndNavigateToFlightUri);
+            SortResultsCommand = new DelegateCommand(SortResults);
+        }
 
-            //BookHotel = new RelayCommand<HotelResultItem>(BuildAndNavigateToHotelUri);
-            //SortResultsCommand = new DelegateCommand(SortResults);
+        private async void BuildAndNavigateToFlightUri(FlightResultItem flight) //Gone after Native - Web View Connector
+        {
+            //TODO check for departure flight if round trip first
+
+            //var hostname = _settingsService.GetCurrentDomain();
+            //var childrenString = CurrentSearchCriteria.ChildrenAges.Length > 0
+            //    ? CurrentSearchCriteria.ChildrenAges.Select(_ => ":c{0}".InvariantCultureFormat(_)).JoinBy(String.Empty)
+            //    : string.Empty;
+            //var pos = await _pointOfSaleService.GetCurrentPointOfSale();
+
+            //var hotelDeeplink = new Uri("https://www.{0}/h{1}.Hotel-Information?chkin={2}&chkout={3}&rm1=a{4}{5}&forceNoRedir=1&brandcid=App.Windows.Native"
+            //    .InvariantCultureFormat(
+            //        hostname,
+            //        hotel.HotelId,
+            //        CurrentSearchCriteria.CheckInDate
+            //            .ToString(pos.DateFormatHotel, DateTimeFormatInfo.InvariantInfo),
+            //        CurrentSearchCriteria.CheckOutDate
+            //            .ToString(pos.DateFormatHotel, DateTimeFormatInfo.InvariantInfo),
+            //        CurrentSearchCriteria.AdultsCount,
+            //        childrenString));
+
+            //Navigator.Instance().NavigateForward(SuggestionLob.HOTELS, typeof(HotelBookingWebView), hotelDeeplink);
+        }
+
+        internal void SortResults()
+        {
+            if (SortByArrivalChecked)
+            {
+                GetSortedFlightResults(SortFlightsByType.ArrivalTime);
+            }
+
+            if (SortByDepartureChecked)
+            {
+                GetSortedFlightResults(SortFlightsByType.DepartureTime);
+            }
+
+            if (SortByDurationChecked)
+            {
+                GetSortedFlightResults(SortFlightsByType.Duration);
+            }
+
+            if (SortByPriceLowToHighChecked)
+            {
+                GetSortedFlightResults(SortFlightsByType.PricesLowToHigh);
+            }
+        }
+
+        internal async void FilterResults()
+        {
+            try
+            {
+                if (SelectedDeparture == null)
+                {
+                    CurrentSearchCriteria.DepartureAirlineFilters = AirlineFilters;
+                    CurrentSearchCriteria.DepartureStopCountFilters = StopCountFilters;
+                }
+                else
+                {
+                    CurrentSearchCriteria.ReturnAirlineFilters = AirlineFilters;
+                    CurrentSearchCriteria.ReturnStopCountFilters = StopCountFilters;
+                }
+
+                FlightResultItems = null;
+
+                var ct = CancellationTokenManager.Instance().CreateAndSetCurrentToken();
+                var filteredResults = await _flightService.SearchFlights(ct, CurrentSearchCriteria);
+                FlightResultItems = filteredResults.Flights.ToObservableCollection();
+
+                AirlineFilters = filteredResults.AirlineFilters;
+                StopCountFilters = filteredResults.StopCountFilters;
+                ResultsCount = filteredResults.Flights.Count();
+            }
+            catch (Exception ex)
+            {
+                //eating exceptions for when filters are clicked too quickly, doesn't matter
+            }
+        }
+
+        private async void GetSortedFlightResults(SortFlightsByType sortType)
+        {
+            FlightResultItems = null;
+            CurrentSearchCriteria.SortBy = sortType;
+            var ct = CancellationTokenManager.Instance().CreateAndSetCurrentToken();
+            var sortedResults = await _flightService.SearchFlights(ct, CurrentSearchCriteria);
+            FlightResultItems = sortedResults.Flights.ToObservableCollection();
         }
 
         internal async void GetAirportLegCoordinates(FlightResultItem SelectedFlight)
         {
-            var ct = CancellationTokenManager.Instance().CreateAndSetCurrentToken();
-            var legGeoPoints = new List<BasicGeoposition> {SearchInput.DepartureAirportPosition};
-            var legAiportCodes = new List<string> {SearchInput.DepartureAirportCode};
-
-            foreach (var segment in SelectedFlight.ListOfSegments.Skip(1))
+            if (SelectedFlight != null)
             {
-                var coordinates = await _suggestionService.GetAirportCoordinates(ct, segment);
-                var position = new BasicGeoposition
+                var ct = CancellationTokenManager.Instance().CreateAndSetCurrentToken();
+                var legGeoPoints = new List<BasicGeoposition> { SearchInput.DepartureAirportPosition };
+                var legAiportCodes = new List<string> { SearchInput.DepartureAirportCode };
+
+                foreach (var segment in SelectedFlight.ListOfSegments.Skip(1))
                 {
-                    Latitude = double.Parse(coordinates.Latitude),
-                    Longitude = double.Parse(coordinates.Longitude)
-                };
-                legGeoPoints.Add(position);
-                legAiportCodes.Add(segment);
+                    var coordinates = await _suggestionService.GetAirportCoordinates(ct, segment);
+                    var position = new BasicGeoposition
+                    {
+                        Latitude = double.Parse(coordinates.Latitude),
+                        Longitude = double.Parse(coordinates.Longitude)
+                    };
+                    legGeoPoints.Add(position);
+                    legAiportCodes.Add(segment);
+                }
+
+                legGeoPoints.Add(SearchInput.ArrivalAirportPosition);
+                legAiportCodes.Add(SearchInput.ArrivalAirportCode);
+
+                DrawFlightLine(legGeoPoints, legAiportCodes);
             }
-
-            legGeoPoints.Add(SearchInput.ArrivalAirportPosition);
-            legAiportCodes.Add(SearchInput.ArrivalAirportCode);
-
-            DrawFlightLine(legGeoPoints, legAiportCodes);
         }
 
         internal void DrawFlightLine(List<BasicGeoposition> points, List<string> airportCodes)

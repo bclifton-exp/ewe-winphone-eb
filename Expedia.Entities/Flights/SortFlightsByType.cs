@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Expedia.Entities.Flights
 {
-    public enum OrderFlightsByType
+    public enum SortFlightsByType
     {
 		PricesLowToHigh,
 		Duration,

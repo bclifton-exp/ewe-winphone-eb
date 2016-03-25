@@ -30,8 +30,33 @@
 											IsDayVisible="{Binding LegDurationInDays, Converter={StaticResource IntGreaterThanOneToBoolConverter}}" 
                                                         Margin="20 -10 20 5"/>
 
-                <Button VerticalAlignment="Bottom" Command="{Binding DataContext.SelectDepartureFlight, ElementName=ResultListView}" CommandParameter="{Binding}" Content="Select Flight" x:Uid="SelectFlightButton" Style="{StaticResource SearchButtonStyle}" Foreground="White" Background="{StaticResource LogoDarkBlueBrush}"/>
+                <Button VerticalAlignment="Bottom" Command="{Binding DataContext.BookFlight, ElementName=ResultListView}" CommandParameter="{Binding}" Content="Select Flight" x:Uid="SelectFlightButton" Style="{StaticResource SearchButtonStyle}" Foreground="White" Background="{StaticResource LogoDarkBlueBrush}"/>
             </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="FlightResultItemPhoneTemplate">
+            <Grid Height="120" Margin="15 10 15 5" Background="White" x:Name="MainFlightGrid" Tapped="MainHotelGrid_OnTapped">
+
+                <customControls:SearchResultItemControl AirlineName="{Binding AirlineName, Mode=OneWay, Converter={StaticResource fromNullOrEmptyAirlineToMultipleAirlinesLabel}}"
+											DepartTime="{Binding DepartureTimeRaw, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter='\{0:h:mm tt​\}'}"
+											ArrivalTime="{Binding ArrivalTimeRaw, Converter={StaticResource StringFormatConverter}, ConverterParameter='\{0:h:mm tt​\}', Mode=OneWay}"
+											TicketPrice="{Binding FormattedWholePrice, Mode=OneWay}"
+											NumberOfDays="{Binding LegDurationInDays, Mode=OneWay}"
+											ListOfSegments="{Binding ListOfSegments, Mode=OneWay}"
+                                            FlightDuration="{Binding Duration, Mode=OneWay}"
+											IsDayVisible="{Binding LegDurationInDays, Converter={StaticResource IntGreaterThanOneToBoolConverter}}" 
+                                                        Margin="10 5 10 -20"/>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="FilterTemplate">
+            <CheckBox Margin="0,-8,0,12"
+					  Style="{StaticResource FilterCheckBoxStyle}"
+					  Content="{Binding Title}"
+					  IsChecked="{Binding IsFilterChecked, Mode=TwoWay}"
+					  IsEnabled="{Binding IsFilterEnabled, Mode=OneWay}"
+                       Click="ToggleButton_OnChecked"
+					 />
         </DataTemplate>
     </Page.Resources>
 
@@ -50,11 +75,11 @@
 
                     <VisualState.Setters>
                         <Setter Target="ResultColumn.MinWidth" Value="320" />
-                        <!--<Setter Target="ResultListView.ItemTemplate" Value="{StaticResource HotelResultItemTemplatePhone}"/>-->
+                        <Setter Target="ResultListView.ItemTemplate" Value="{StaticResource FlightResultItemPhoneTemplate}"/>
                         <Setter Target="ResultListView.Margin" Value="0 0 0 0"/>
-                        <!--<Setter Target="HotelsAvailableTextBlockPhone.Visibility" Value="Visible"/>
+                        <Setter Target="FlightsAvailableTextBlockPhone.Visibility" Value="Visible"/>
                         <Setter Target="SortByControlPhone.Visibility" Value="Visible"/>
-                        <Setter Target="FilterByControlPhone.Visibility" Value="Visible"/>-->
+                        <Setter Target="FilterByControlPhone.Visibility" Value="Visible"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>
@@ -64,11 +89,11 @@
 
                     <VisualState.Setters>
                         <Setter Target="ResultColumn.MinWidth" Value="360" />
-                        <!--<Setter Target="ResultListView.ItemTemplate" Value="{StaticResource HotelResultItemTemplatePhone}"/>-->
+                        <Setter Target="ResultListView.ItemTemplate" Value="{StaticResource FlightResultItemPhoneTemplate}"/>
                         <Setter Target="ResultListView.Margin" Value="0 0 0 0"/>
-                        <!--<Setter Target="HotelsAvailableTextBlockPhone.Visibility" Value="Visible"/>
+                        <Setter Target="FlightsAvailableTextBlockPhone.Visibility" Value="Visible"/>
                         <Setter Target="SortByControlPhone.Visibility" Value="Visible"/>
-                        <Setter Target="FilterByControlPhone.Visibility" Value="Visible"/>-->
+                        <Setter Target="FilterByControlPhone.Visibility" Value="Visible"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>
@@ -78,11 +103,11 @@
 
                     <VisualState.Setters>
                         <Setter Target="ResultColumn.MinWidth" Value="432" />
-                        <!--<Setter Target="ResultListView.ItemTemplate" Value="{StaticResource HotelResultItemTemplatePhone}"/>-->
+                        <Setter Target="ResultListView.ItemTemplate" Value="{StaticResource FlightResultItemPhoneTemplate}"/>
                         <Setter Target="ResultListView.Margin" Value="0 0 0 0"/>
-                        <!--<Setter Target="HotelsAvailableTextBlockPhone.Visibility" Value="Visible"/>
+                        <Setter Target="FlightsAvailableTextBlockPhone.Visibility" Value="Visible"/>
                         <Setter Target="SortByControlPhone.Visibility" Value="Visible"/>
-                        <Setter Target="FilterByControlPhone.Visibility" Value="Visible"/>-->
+                        <Setter Target="FilterByControlPhone.Visibility" Value="Visible"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>
@@ -94,9 +119,9 @@
                         <Setter Target="Map.Visibility" Value="Visible" />
 
                         <Setter Target="ResultListView.Margin" Value="0 -60 0 0"/>
-                        <!--<Setter Target="HotelsAvailableTextBlockPhone.Visibility" Value="Collapsed"/>
+                        <Setter Target="FlightsAvailableTextBlockPhone.Visibility" Value="Collapsed"/>
                         <Setter Target="SortByControlPhone.Visibility" Value="Collapsed"/>
-                        <Setter Target="FilterByControlPhone.Visibility" Value="Collapsed"/>-->
+                        <Setter Target="FilterByControlPhone.Visibility" Value="Collapsed"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -114,6 +139,8 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
+            <ProgressRing x:Name="ProgressRing" Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="2" IsActive="{Binding FlightResultItems, Converter={StaticResource ReversedNullToBoolConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Visibility="{Binding ElementName=ProgressRing, Path=IsActive, Converter={StaticResource BoolToVisibilityConverter}}" Width="100" Height="100" />
+
             <customControls:ResultsHeaderControl DataContext="{Binding SearchInput, Mode=OneWay}" Grid.Row="0" Grid.ColumnSpan="3" Grid.Column="0"
                                      Style="{StaticResource FlightsHeaderControlStyle}"
 									 DepartureDate="{Binding DepartureDate, Converter={StaticResource LocalizedStringConverter}, ConverterParameter='CheckInDateFormat'}"
@@ -124,95 +151,40 @@
                                      x:Uid="DeparturesTo"
 									 GuestVisibility="Visible"/>
 
-            <!--<Grid Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2">
-                <Grid.Background>
-                    <ImageBrush ImageSource="{Binding DestinationPictureUrl, Converter={StaticResource fromNullToImageSource}}"
-								AlignmentX="Center"
-								AlignmentY="Top"
-								Stretch="UniformToFill" />
-                </Grid.Background>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" MinHeight="175" />
-                    <RowDefinition Height="47" />
-                </Grid.RowDefinitions>
+            <!--Phone Filters...........................................................-->
+            <Grid x:Name="FlightsAvailableTextBlockPhone" Grid.Column="0" Grid.Row="1" Margin="0 0 0 0" Background="{StaticResource FilterGrayBrush}">
+                <TextBlock Style="{StaticResource LocationHeaderStyle}" Foreground="{StaticResource AppWhiteColorBrush}" FontSize="17"
+					VerticalAlignment="Center"
+					HorizontalAlignment="Center">
+						<Run Text="{Binding ResultsCount}" />
+						<Run Text="flights available" x:Uid="FlightsAvailable" />
+                </TextBlock>
+            </Grid>
 
-                --><!--Shadows for background image--><!--
-                <Rectangle Fill="{Binding Flight, Converter={StaticResource fromHasFlightToGradientShadow}}"
-						   Grid.RowSpan="3"/>
+            <Grid x:Name="SortByControlPhone" Grid.Column="1" Grid.Row="1" Background="{StaticResource FilterGrayBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="1 0 0 0">
+                <customControls:ExpandableContentControl x:Name="SortDropDownPhone" HorizontalAlignment="Stretch" VerticalAlignment="Center" Style="{StaticResource HotelFilterExpandablePhoneStyle}">
+                    <customControls:ExpandableContentControl.ContentTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="Sort by"
+							   x:Uid="SortBy"
+							    Style="{StaticResource FilterTextStyle}"/>
+                        </DataTemplate>
+                    </customControls:ExpandableContentControl.ContentTemplate>
+                </customControls:ExpandableContentControl>
+            </Grid>
 
-                --><!-- The top band --><!--
-                <Border BorderThickness="0"						
-						HorizontalAlignment="Stretch"
-						VerticalAlignment="Stretch"
-						Height="44"
-						Visibility="{Binding Flight, Converter={StaticResource FromNotNullToVisible}}">
-                    <StackPanel Orientation="Horizontal"
-									  HorizontalAlignment="Left"
-									  VerticalAlignment="Center"
-									  Margin="20,0">
-                        <ContentPresenter ContentTemplate="{StaticResource DepartureFlightIcon}"
-										  VerticalAlignment="Center"
-										  Margin="0,0,8.33,0" />
-                        <TextBlock Text="Your selected departure"
-								   Style="{StaticResource LightFlightResultsTitleStyle}"
-								   x:Uid="YourSelectedDeparture"/>
-                    </StackPanel>
-                </Border>
+            <Grid Grid.Column="2" x:Name="FilterByControlPhone" Grid.Row="1" Background="{StaticResource FilterGrayBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="1 0 0 0">
+                <customControls:ExpandableContentControl x:Name="FilterDropDownPhone" HorizontalAlignment="Stretch" VerticalAlignment="Center" Style="{StaticResource HotelFilterExpandablePhoneStyle}">
+                    <customControls:ExpandableContentControl.ContentTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="Filter by"
+							   x:Uid="FilterBy"
+							   Style="{StaticResource FilterTextStyle}" />
+                        </DataTemplate>
+                    </customControls:ExpandableContentControl.ContentTemplate>
+                </customControls:ExpandableContentControl>
+            </Grid>
 
-                --><!-- The selected flight -->
-                <!--
-                    <Grid Grid.Row="1" 
-					  Margin="20,17.5"
-					  HorizontalAlignment="Stretch"
-					  VerticalAlignment="Stretch"
-					  Visibility="{Binding Flight, Converter={StaticResource FromNotNullToVisible}}"
-					  Background="{StaticResource WhiteBrushOpacity90}">
-                        <customControls:SearchResultItemControl DataContext="{Binding Flight}"
-													AirlineName="{Binding AirlineName, Mode=OneWay,Converter={StaticResource fromNullOrEmptyAirlineToMultipleAirlinesLabel}}"
-													DepartTime="{Binding DepartureTimeRaw, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter='\{0:h:mm tt​\}'}"
-													ArrivalTime="{Binding ArrivalTimeRaw, Converter={StaticResource StringFormatConverter}, ConverterParameter='\{0:h:mm tt​\}', Mode=OneWay}"
-													TicketPrice="{Binding FormattedWholePrice, Mode=OneWay}"
-													NumberOfDays="{Binding LegDurationInDays, Mode=OneWay}"
-													ListOfSegments="{Binding ListOfSegments, Mode=OneWay}"
-													IsDayVisible="{Binding LegDurationInDays, Converter={StaticResource IntGreaterThanOneToBoolConverter}}" />
-                        <Button Content="Change"
-							x:Uid="Change"
-							HorizontalAlignment="Right"
-							VerticalAlignment="Bottom"
-							Command="{Binding CustomData}"
-							Style="{StaticResource ChangeButtonStyle}"/>
-                    </Grid>-->
-
-                <!-- The bottom band --><!--
-                <Border Grid.Row="2" 
-						BorderThickness="0,0,0,4"
-						HorizontalAlignment="Stretch"
-						VerticalAlignment="Stretch"
-						BorderBrush="{StaticResource SecondaryColor8Brush}">
-                    <StackPanel Orientation="Horizontal"
-									  VerticalAlignment="Center"
-									  HorizontalAlignment="Left"
-									  Margin="20,0">
-                        <ContentPresenter ContentTemplate="{Binding Flight, Converter={StaticResource fromHasFlightToPlaneIcon}}"
-										  Margin="0,0,8.33,0" />
-                        <TextBlock Visibility="{Binding Flight, Converter={StaticResource FromNullToVisible}}"
-								   Style="{StaticResource LightFlightResultsTitleStyle}">
-							<Run Text="Select a flight to"
-								 x:Uid="SelectAFlightTo" />
-							<Run FontWeight="Bold"
-								 Text="{Binding DestinationName}" />
-                        </TextBlock>
-                        --><!--<TextBlock Visibility="{Binding Flight, Converter={StaticResource FromNotNullToVisible}}"
-								   Style="{StaticResource LightFlightResultsTitleStyle}">
-							<Run Text="Select your return flight to"
-								 x:Uid="SelectYourReturnFlightTo"/>
-							<Run FontWeight="Bold"
-								 Text="{Binding ReturnName}" />
-                            </TextBlock>--><!--
-                    </StackPanel>
-                </Border>
-            </Grid>-->
 
             <ListView x:Name="ResultListView" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" ItemsSource="{Binding FlightResultItems}"
                       ItemTemplate="{StaticResource FlightResultItemTemplate}"
@@ -226,10 +198,250 @@
                 </ListView.ItemContainerStyle>
             </ListView>
 
-            <ProgressRing x:Name="ProgressRing" Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="2" IsActive="{Binding FlightResultItems, Converter={StaticResource ReversedNullToBoolConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Visibility="{Binding ElementName=ProgressRing, Path=IsActive, Converter={StaticResource BoolToVisibilityConverter}}" Width="100" Height="100" />
+            <FlyoutPresenter x:Name="FilterByFlyoutPhone" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalAlignment="Stretch" MaxWidth="800" Background="{StaticResource FilterGrayBrush}" Visibility="{Binding ElementName=FilterDropDownPhone, Path=IsExpanded, Converter={StaticResource BoolToVisibilityConverter}}">
+                <StackPanel Orientation="Vertical">
+                    <customControls:ExpandableContentControl Style="{StaticResource HotelFilterExpandableStyle}">
+                        <customControls:ExpandableContentControl.ExpandableContentTemplate>
+                            <DataTemplate>
+                                <ListView ItemTemplate="{StaticResource FilterTemplate}"
+					    			  ItemsSource="{Binding StopCountFilters}"
+                                          IsItemClickEnabled="False"
+                                          SelectionMode="None"
+					    			  Padding="0,0,14,0"
+                                      Margin="0,0,0,0"/>
+                            </DataTemplate>
+                        </customControls:ExpandableContentControl.ExpandableContentTemplate>
+                        <customControls:ExpandableContentControl.ContentTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="Stops"
+							   x:Uid="FilterStops"
+							   Style="{StaticResource FilterTextStyle}" />
+                            </DataTemplate>
+                        </customControls:ExpandableContentControl.ContentTemplate>
+                    </customControls:ExpandableContentControl>
+                    <customControls:ExpandableContentControl Style="{StaticResource HotelFilterExpandableStyle}">
+                        <customControls:ExpandableContentControl.ExpandableContentTemplate>
+                            <DataTemplate>
+                                <ListView ItemTemplate="{StaticResource FilterTemplate}"
+					    			  ItemsSource="{Binding AirlineFilters}"
+                                          IsItemClickEnabled="False"
+                                          SelectionMode="None"
+					    			  Padding="0,0,14,0"
+                                      Margin="0,0,0,0"/>
+                            </DataTemplate>
+                        </customControls:ExpandableContentControl.ExpandableContentTemplate>
+                        <customControls:ExpandableContentControl.ContentTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="Airlines"
+							   x:Uid="FilterAirlines"
+							   Style="{StaticResource FilterTextStyle}" />
+                            </DataTemplate>
+                        </customControls:ExpandableContentControl.ContentTemplate>
+                    </customControls:ExpandableContentControl>
+                </StackPanel>
+            </FlyoutPresenter>
+
+            <FlyoutPresenter x:Name="SortByFlyoutPhone" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalAlignment="Stretch" MaxWidth="800" LostFocus="UIElement_OnLostFocusPhone" Background="{StaticResource FilterGrayBrush}" Visibility="{Binding ElementName=SortDropDownPhone, Path=IsExpanded, Converter={StaticResource BoolToVisibilityConverter}}">
+                <StackPanel Orientation="Vertical">
+                    <Border x:Name="PriceBorderPhone" Background="{Binding ElementName=PriceRadioPhone, Path=IsChecked, Converter={StaticResource RadioBackgroundConverter}}">
+                        <RadioButton x:Name="PriceRadioPhone" Content="Price"
+						 Style="{StaticResource SortRadioButtonStyle}"
+                         Foreground="{StaticResource AppWhiteColorBrush}"
+						 IsChecked="{Binding SortByPriceLowToHighChecked, Mode=TwoWay}"
+                         Command="{Binding SortResultsCommand}"
+                                        Checked="UIElement_OnLostFocusPhone"
+                                     Tapped="UIElement_OnLostFocusPhone"
+						 x:Uid="SortPrice"
+                         GroupName="SortingFlights"
+						 Margin="0,5,0,5" />
+                    </Border>
+                    <Border x:Name="DurationBorderPhone" Background="{Binding ElementName=DurationRadioPhone, Path=IsChecked, Converter={StaticResource RadioBackgroundConverter}}">
+                        <RadioButton x:Name="DurationRadioPhone" Content="Duration"
+						 IsChecked="{Binding SortByDurationChecked, Mode=TwoWay}"
+                         Foreground="{StaticResource AppWhiteColorBrush}"
+                         Command="{Binding SortResultsCommand}"
+                                        Checked="UIElement_OnLostFocusPhone"
+                                     Tapped="UIElement_OnLostFocusPhone"
+						 Style="{StaticResource SortRadioButtonStyle}"
+                         GroupName="SortingFlights"
+                         Margin="0,5,0,5"
+						 x:Uid="SortDuration" />
+                    </Border>
+                    <Border x:Name="ArrivalBorderPhone" Background="{Binding ElementName=ArrivalRadioPhone, Path=IsChecked, Converter={StaticResource RadioBackgroundConverter}}">
+                        <RadioButton x:Name="ArrivalRadioPhone" Content="Arrival"
+						 IsChecked="{Binding SortByArrivalChecked, Mode=TwoWay}"
+                         Foreground="{StaticResource AppWhiteColorBrush}"
+                         Command="{Binding SortResultsCommand}"
+                                        Checked="UIElement_OnLostFocusPhone"
+                                     Tapped="UIElement_OnLostFocusPhone"
+						 Style="{StaticResource SortRadioButtonStyle}"
+                         GroupName="SortingFlights"
+                         Margin="0,5,0,5"
+						 x:Uid="SortArrival" />
+                    </Border>
+                    <Border x:Name="DepartureBorderPhone" Background="{Binding ElementName=DepartureRadioPhone, Path=IsChecked, Converter={StaticResource RadioBackgroundConverter}}">
+                        <RadioButton x:Name="DepartureRadioPhone" Content="Departure"
+						 IsChecked="{Binding SortByDepartureChecked, Mode=TwoWay}"
+                         Foreground="{StaticResource AppWhiteColorBrush}"
+                         Command="{Binding SortResultsCommand}"
+                                        Checked="UIElement_OnLostFocusPhone"
+                                     Tapped="UIElement_OnLostFocusPhone"
+						 Style="{StaticResource SortRadioButtonStyle}"
+                         GroupName="SortingFlights"
+                         Margin="0,5,0,5"
+						 x:Uid="SortDeparture"/>
+                    </Border>
+                </StackPanel>
+            </FlyoutPresenter>
+            
         </Grid>
 
-        <maps:MapControl Grid.Column="1" x:Name="Map" Visibility="Collapsed" Loading="Map_OnLoading" Margin="0 0 0 0" MapServiceToken="uTSDW7FxvBNrtGPD67ZQ~Cws5kVsbllSUip_fVoHCIQ~AiAsYMbHCnN32naqWWDEeulT3_C1XVy1yPU91wba8Knm9G1D31rZOIMDss4jJFtO" ZoomLevel="4.5" />
+        <!--Tablet/Desktop split-->
+        
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            
+            <maps:MapControl Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" x:Name="Map" Visibility="Collapsed" Loading="Map_OnLoading" Margin="0 0 0 0" MapServiceToken="uTSDW7FxvBNrtGPD67ZQ~Cws5kVsbllSUip_fVoHCIQ~AiAsYMbHCnN32naqWWDEeulT3_C1XVy1yPU91wba8Knm9G1D31rZOIMDss4jJFtO" ZoomLevel="4.5" />
 
+
+            <Grid x:Name="FlightsAvailableTextBlock" Grid.Column="0" Grid.Row="0" Margin="0 0 1 0" Background="{StaticResource FilterGrayBrush}">
+                <TextBlock Style="{StaticResource LocationHeaderStyle}" Foreground="{StaticResource AppWhiteColorBrush}" FontSize="17"
+					VerticalAlignment="Center"
+					HorizontalAlignment="Center">
+						<Run Text="{Binding ResultsCount}" />
+						<Run Text="flights available" x:Uid="FlightsAvailable" />
+                </TextBlock>
+            </Grid>
+
+            <Grid x:Name="SortByControl" Grid.Column="1" Grid.Row="0" Background="{StaticResource FilterGrayBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="1 0 1 0">
+                <customControls:ExpandableContentControl x:Name="SortDropDown" HorizontalAlignment="Stretch" VerticalAlignment="Center" Style="{StaticResource HotelFilterExpandableStyle}">
+                    <customControls:ExpandableContentControl.ContentTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="Sort by"
+							   x:Uid="SortBy"
+							    Style="{StaticResource FilterTextStyle}"/>
+                        </DataTemplate>
+                    </customControls:ExpandableContentControl.ContentTemplate>
+                </customControls:ExpandableContentControl>
+            </Grid>
+
+            <FlyoutPresenter x:Name="SortByFlyout" Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Stretch" MaxWidth="800" LostFocus="UIElement_OnLostFocus" Background="{StaticResource FilterGrayBrush}" Visibility="{Binding ElementName=SortDropDown, Path=IsExpanded, Converter={StaticResource BoolToVisibilityConverter}}">
+                <StackPanel Orientation="Vertical">
+                    <Border x:Name="PriceBorder" Background="{Binding ElementName=PriceRadio, Path=IsChecked, Converter={StaticResource RadioBackgroundConverter}}">
+                        <RadioButton x:Name="PriceRadio" Content="Price"
+						 Style="{StaticResource SortRadioButtonStyle}"
+                         Foreground="{StaticResource AppWhiteColorBrush}"
+						 IsChecked="{Binding SortByPriceLowToHighChecked, Mode=TwoWay}"
+                         Command="{Binding SortResultsCommand}"
+                                     Checked="UIElement_OnLostFocus"
+						 x:Uid="SortPrice"
+                         GroupName="SortingFlights"
+						 Margin="0,5,0,5" />
+                    </Border>
+                    <Border x:Name="DurationBorder" Background="{Binding ElementName=DurationRadio, Path=IsChecked, Converter={StaticResource RadioBackgroundConverter}}">
+                        <RadioButton x:Name="DurationRadio" Content="Duration"
+						 IsChecked="{Binding SortByDurationChecked, Mode=TwoWay}"
+                         Foreground="{StaticResource AppWhiteColorBrush}"
+                         Command="{Binding SortResultsCommand}"
+                                     Checked="UIElement_OnLostFocus"
+						 Style="{StaticResource SortRadioButtonStyle}"
+                         GroupName="SortingFlights"
+                         Margin="0,5,0,5"
+						 x:Uid="SortDuration" />
+                    </Border>
+                    <Border x:Name="ArrivalBorder" Background="{Binding ElementName=ArrivalRadio, Path=IsChecked, Converter={StaticResource RadioBackgroundConverter}}">
+                        <RadioButton x:Name="ArrivalRadio" Content="Arrival"
+						 IsChecked="{Binding SortByArrivalChecked, Mode=TwoWay}"
+                         Foreground="{StaticResource AppWhiteColorBrush}"
+                         Command="{Binding SortResultsCommand}"
+                                     Checked="UIElement_OnLostFocus"
+						 Style="{StaticResource SortRadioButtonStyle}"
+                         GroupName="SortingFlights"
+                         Margin="0,5,0,5"
+						 x:Uid="SortArrival" />
+                    </Border>
+                    <Border x:Name="DepartureBorder" Background="{Binding ElementName=DepartureRadio, Path=IsChecked, Converter={StaticResource RadioBackgroundConverter}}">
+                        <RadioButton x:Name="DepartureRadio" Content="Departure"
+						 IsChecked="{Binding SortByDepartureChecked, Mode=TwoWay}"
+                         Foreground="{StaticResource AppWhiteColorBrush}"
+                         Command="{Binding SortResultsCommand}"
+                                     Checked="UIElement_OnLostFocus"
+						 Style="{StaticResource SortRadioButtonStyle}"
+                         GroupName="SortingFlights"
+                         Margin="0,5,0,5"
+						 x:Uid="SortDeparture"/>
+                    </Border>
+                </StackPanel>
+            </FlyoutPresenter>
+
+            <Grid Grid.Column="2" x:Name="FilterByControl" Grid.Row="0" Background="{StaticResource FilterGrayBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="1 0 0 0">
+                <customControls:ExpandableContentControl x:Name="FilterDropDown" HorizontalAlignment="Stretch" VerticalAlignment="Center" Style="{StaticResource HotelFilterExpandableStyle}">
+                    <customControls:ExpandableContentControl.ContentTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="Filter by"
+							   x:Uid="FilterBy"
+							   Style="{StaticResource FilterTextStyle}" />
+                        </DataTemplate>
+                    </customControls:ExpandableContentControl.ContentTemplate>
+                </customControls:ExpandableContentControl>
+            </Grid>
+
+            <FlyoutPresenter x:Name="FilterByFlyout" Grid.Column="2" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Stretch" MaxWidth="800" Background="{StaticResource FilterGrayBrush}" Visibility="{Binding ElementName=FilterDropDown, Path=IsExpanded, Converter={StaticResource BoolToVisibilityConverter}}">
+                <StackPanel Orientation="Vertical">
+                    <customControls:ExpandableContentControl Style="{StaticResource HotelFilterExpandableStyle}">
+                        <customControls:ExpandableContentControl.ExpandableContentTemplate>
+                            <DataTemplate>
+                                <ListView ItemTemplate="{StaticResource FilterTemplate}"
+					    			  ItemsSource="{Binding StopCountFilters}"
+                                          IsItemClickEnabled="False"
+                                          SelectionMode="None"
+					    			  Padding="0,0,14,0"
+                                      Margin="20,0,0,0"/>
+                            </DataTemplate>
+                        </customControls:ExpandableContentControl.ExpandableContentTemplate>
+                        <customControls:ExpandableContentControl.ContentTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="Stops"
+							   x:Uid="FilterStops"
+							   Style="{StaticResource FilterTextStyle}" />
+                            </DataTemplate>
+                        </customControls:ExpandableContentControl.ContentTemplate>
+                    </customControls:ExpandableContentControl>
+                    <customControls:ExpandableContentControl Style="{StaticResource HotelFilterExpandableStyle}">
+                        <customControls:ExpandableContentControl.ExpandableContentTemplate>
+                            <DataTemplate>
+                                <ListView ItemTemplate="{StaticResource FilterTemplate}"
+					    			  ItemsSource="{Binding AirlineFilters}"
+                                          IsItemClickEnabled="False"
+                                          SelectionMode="None"
+					    			  Padding="0,0,14,0"
+                                      Margin="20,0,0,0"/>
+                            </DataTemplate>
+                        </customControls:ExpandableContentControl.ExpandableContentTemplate>
+                        <customControls:ExpandableContentControl.ContentTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="Airlines"
+							   x:Uid="FilterAirlines"
+							   Style="{StaticResource FilterTextStyle}" />
+                            </DataTemplate>
+                        </customControls:ExpandableContentControl.ContentTemplate>
+                    </customControls:ExpandableContentControl>
+                </StackPanel>
+            </FlyoutPresenter>
+
+
+
+
+
+
+        </Grid>
     </Grid>
 </Page>

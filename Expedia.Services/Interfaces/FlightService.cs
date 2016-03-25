@@ -150,7 +150,7 @@ namespace Expedia.Services.Interfaces
                 filter.IsFilterEnabled = filter.MatchingFlights.Except(excludedByStopCountFilters).Any();
             });
 
-            var flights = flightItems.Except(excludedByAirlineFilters.Concat(excludedByStopCountFilters)).OrderBy(OrderFlightsBy(searchInput.OrderBy)).ToArray();
+            var flights = flightItems.Except(excludedByAirlineFilters.Concat(excludedByStopCountFilters)).OrderBy(OrderFlightsBy(searchInput.SortBy)).ToArray();
 
             return new FlightResults
             {
@@ -224,25 +224,25 @@ namespace Expedia.Services.Interfaces
             };
         }
 
-        private static Func<FlightResultItem, object> OrderFlightsBy(OrderFlightsByType orderBy)
+        private static Func<FlightResultItem, object> OrderFlightsBy(SortFlightsByType sortBy)
         {
             Func<FlightResultItem, object> orderByKeySelectionFunc;
-            switch (orderBy)
+            switch (sortBy)
             {
-                case OrderFlightsByType.PricesLowToHigh:
+                case SortFlightsByType.PricesLowToHigh:
                     orderByKeySelectionFunc = item => item.Price;
                     break;
-                case OrderFlightsByType.Duration:
+                case SortFlightsByType.Duration:
                     orderByKeySelectionFunc = item => item.ArrivalTimeRaw - item.DepartureTimeRaw;
                     break;
-                case OrderFlightsByType.ArrivalTime:
+                case SortFlightsByType.ArrivalTime:
                     orderByKeySelectionFunc = item => item.ArrivalTimeRaw;
                     break;
-                case OrderFlightsByType.DepartureTime:
+                case SortFlightsByType.DepartureTime:
                     orderByKeySelectionFunc = item => item.DepartureTimeRaw;
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException("orderBy");
+                    throw new ArgumentOutOfRangeException("sortBy");
             }
 
             return orderByKeySelectionFunc;
