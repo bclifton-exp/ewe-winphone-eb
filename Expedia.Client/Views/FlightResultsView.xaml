@@ -8,6 +8,7 @@
     xmlns:converters="using:Expedia.Client.Converters"
     xmlns:customControls="using:Expedia.Client.CustomControls"
     xmlns:templates="using:Expedia.Styles.Templates"
+    xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
     mc:Ignorable="d">
     
     <Page.Resources>
@@ -90,7 +91,7 @@
                     </VisualState.StateTriggers>
 
                     <VisualState.Setters>
-                        <!--<Setter Target="Map.Visibility" Value="Visible" />-->
+                        <Setter Target="Map.Visibility" Value="Visible" />
 
                         <Setter Target="ResultListView.Margin" Value="0 -60 0 0"/>
                         <!--<Setter Target="HotelsAvailableTextBlockPhone.Visibility" Value="Collapsed"/>
@@ -215,6 +216,7 @@
 
             <ListView x:Name="ResultListView" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" ItemsSource="{Binding FlightResultItems}"
                       ItemTemplate="{StaticResource FlightResultItemTemplate}"
+                      SelectedItem="{Binding SelectedFlight, Mode=TwoWay}"
 					  Padding="0,0,0,72">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
@@ -226,5 +228,8 @@
 
             <ProgressRing x:Name="ProgressRing" Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="2" IsActive="{Binding FlightResultItems, Converter={StaticResource ReversedNullToBoolConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Visibility="{Binding ElementName=ProgressRing, Path=IsActive, Converter={StaticResource BoolToVisibilityConverter}}" Width="100" Height="100" />
         </Grid>
+
+        <maps:MapControl Grid.Column="1" x:Name="Map" Visibility="Collapsed" Loading="Map_OnLoading" Margin="0 0 0 0" MapServiceToken="uTSDW7FxvBNrtGPD67ZQ~Cws5kVsbllSUip_fVoHCIQ~AiAsYMbHCnN32naqWWDEeulT3_C1XVy1yPU91wba8Knm9G1D31rZOIMDss4jJFtO" ZoomLevel="4.5" />
+
     </Grid>
 </Page>

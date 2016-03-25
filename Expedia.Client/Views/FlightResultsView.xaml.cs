@@ -1,5 +1,7 @@
 ﻿using Windows.Devices.Geolocation;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Maps;
 using Windows.UI.Xaml.Navigation;
 using Expedia.Client.Interfaces;
 using Expedia.Client.ViewModels;
@@ -31,6 +33,26 @@ namespace Expedia.Client.Views
                 context.MapCenter = new Geopoint(geoPoint);
             }
             context.GetFlightResults(flightParams);
+        }
+
+        private void Map_OnLoading(FrameworkElement sender, object args)
+        {
+            var context = DataContext as FlightResultsViewModel;
+            var map = sender as MapControl;
+            context.MapControl = map;
+            if (context.MapCenter != null)
+            {
+                var geoPoint = new BasicGeoposition
+                {
+                    Latitude = context.MapCenter.Position.Latitude,
+                    Longitude = context.MapCenter.Position.Longitude
+                };
+                map.Center = new Geopoint(geoPoint);
+            }
+            else
+            {
+                map.Center = new Geopoint(new BasicGeoposition());
+            }
         }
     }
 }

@@ -20,7 +20,8 @@ namespace Expedia.Client.Utilities
                     var time1 = segment.Duration.Split('T').Last();
                     var time2 = time1.Split('H').Last();
 
-                    int hours = int.Parse(time1.Split('H').First());
+                    int hours;
+                    int.TryParse(time1.Split('H').First(), out hours);
                     int minutes;
                     int.TryParse(time2.Split('M').First(), out minutes);
 

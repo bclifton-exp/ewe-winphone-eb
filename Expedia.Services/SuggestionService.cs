@@ -85,6 +85,28 @@ namespace Expedia.Services
             return deserializedResults;
         }
 
+        public async Task<SuggestionCoordinates> GetAirportCoordinates(CancellationToken ct, string airportCode, SuggestionLob lob = SuggestionLob.FLIGHTS)
+        {
+            string regionTypes = "";
+
+            var request = new ApiRequest(Constants.Urls.BaseSuggestionUrl);
+            request.AppendPath(Constants.Urls.SuggestionsApiRoot);
+            request.AppendPath(Constants.SuggestionServiceApiPath.TypeAhead);
+            request.AppendSearchQuery(airportCode);
+            request.AppendLocaleParam(_settingsService.GetCurrentLocale());
+            request.AppendParam("lob", lob.ToString());
+            request.AppendParam("regiontype", regionTypes);
+            request.AppendParam("client", "App.Windows.Native");//TODO probably will change   
+
+            var result = await ExecuteGet(request.GetFullUri(), ct);
+
+            var deserializedResults = result != null ? JsonConvert.DeserializeObject<SuggestionsResponse>(result) : null;
+
+            if (deserializedResults == null || deserializedResults.Suggestions == null) return null;
+
+            return deserializedResults.Suggestions.First().Coordinates;
+        }
+
         private List<List<SuggestionResult>> SortByMulticity(SuggestionsResponse deserializedResults)
         {
             var multiCityResults = deserializedResults.Suggestions.Where(suggestion => suggestion.Type == SuggestionType.Multicity).ToList();

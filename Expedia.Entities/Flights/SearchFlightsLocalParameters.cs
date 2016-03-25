@@ -12,6 +12,8 @@ namespace Expedia.Entities.Flights
 		public DateTimeOffset? ReturnDate { get; set; }
 		public string DepartureAirportCode { get; set; }
 		public string DepartureCityShortName { get; set; }
+        public BasicGeoposition DepartureAirportPosition { get; set; }
+        public BasicGeoposition ArrivalAirportPosition { get; set; }
 		public string ArrivalAirportCode { get; set; }
 		public string ArrivalCityShortName { get; set; }
 		public string ArrivalCityShorterName 

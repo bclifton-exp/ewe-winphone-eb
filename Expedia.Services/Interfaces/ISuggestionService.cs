@@ -8,5 +8,6 @@ namespace Expedia.Services.Interfaces
     {
         Task<SuggestionsResponse> Suggest(CancellationToken ct, string query, SuggestionLob lob);
         Task<SuggestionsResponse> Suggest(CancellationToken ct, double latitude, double longitude, SuggestionLob lob);
+        Task<SuggestionCoordinates> GetAirportCoordinates(CancellationToken ct, string airportCode, SuggestionLob lob = SuggestionLob.FLIGHTS);
     }
 }

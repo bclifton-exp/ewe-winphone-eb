@@ -105,7 +105,9 @@ namespace Expedia.Client.ViewModels
                 ArrivalCityShortName = SelectedSearchSuggestion2.RegionNames.ShortName,
                 AdultsCount = AdultCount,
                 ChildrenAges = childrenAges,
-                IsOneWay = IsOneWay
+                IsOneWay = IsOneWay,
+                DepartureAirportPosition = StartPoint,
+                ArrivalAirportPosition = EndPoint
             };
 
             if (!IsOneWay)
