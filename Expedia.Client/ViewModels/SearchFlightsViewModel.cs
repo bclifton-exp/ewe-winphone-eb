@@ -80,8 +80,6 @@ namespace Expedia.Client.ViewModels
             }
         }
 
-
-
         public SearchFlightsViewModel(IFlightService flightService, ILocationService locationService) : base(SuggestionLob.FLIGHTS)
         {
             _flightService = flightService;
@@ -122,14 +120,15 @@ namespace Expedia.Client.ViewModels
             Navigator.Instance().NavigateForward(SuggestionLob.FLIGHTS, typeof(FlightResultsView), flightSearchParams);
         }
 
-
         private bool CanExecuteSearch()
         {
             if (IsRoundTrip)
             {
-                return SelectedSearchSuggestion != null && SelectedSearchSuggestion2 != null;
+                var tripOkay = SelectedSearchSuggestion != null && SelectedSearchSuggestion2 != null && SelectedSearchSuggestion.HierarchyInfo.Airport != SelectedSearchSuggestion2.HierarchyInfo.Airport;
+                return tripOkay;
             }
             return SelectedSearchSuggestion != null;
+
             //TODO valid date stuff too
         }
 
