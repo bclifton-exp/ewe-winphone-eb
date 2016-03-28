@@ -18,6 +18,8 @@
     <converters:NullableBoolToVisibilityConverter x:Name="NullableBoolToVisibilityConverter"/>
     <converters:StringFormatConverter x:Name="StringFormatConverter"/>
     <converters:IntGreaterThanOneToBoolConverter x:Name="IntGreaterThanOneToBoolConverter"/>
+    <converters:NullToVisibilityConverter x:Name="NullToVisibilityConverter"/>
+    <converters:ReversedNullToVisibilityConverter x:Name="ReversedNullToVisibilityConverter"/>
 
     <converters:FromNullableToDefaultValueConverter x:Key="FromNotNullToVisible">
         <converters:FromNullableToDefaultValueConverter.ValueIfNull>

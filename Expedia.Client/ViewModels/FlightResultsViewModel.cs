@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Input;
@@ -12,8 +13,11 @@ using Windows.UI.Xaml.Controls.Maps;
 using Windows.UI.Xaml.Media;
 using Expedia.Client.Interfaces;
 using Expedia.Client.Utilities;
+using Expedia.Client.Views;
+using Expedia.Entites;
 using Expedia.Entities.Extensions;
 using Expedia.Entities.Flights;
+using Expedia.Entities.Suggestions;
 using Expedia.Services.Interfaces;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Practices.Prism.Commands;
@@ -26,17 +30,6 @@ namespace Expedia.Client.ViewModels
         private ISettingsService _settingsService;
         private IPointOfSaleService _pointOfSaleService;
         private ISuggestionService _suggestionService;
-
-        private SearchFlightsLocalParameters _searchInput;
-        public SearchFlightsLocalParameters SearchInput
-        {
-            get { return _searchInput; }
-            set
-            {
-                _searchInput = value;
-                OnPropertyChanged("SearchInput");
-            }
-        }
 
         private SearchFlightsLocalParameters _currentSearchCriteria;
         public SearchFlightsLocalParameters CurrentSearchCriteria
@@ -237,10 +230,9 @@ namespace Expedia.Client.ViewModels
 
         public async void GetFlightResults(SearchFlightsLocalParameters searchCriteria)
         {
-            SearchInput = searchCriteria;
-            FlightResultItems = null;
-            
+            searchCriteria.SelectedDeparture = null; //might be temp
             CurrentSearchCriteria = searchCriteria;
+            FlightResultItems = null;
             var ct = CancellationTokenManager.Instance().CreateAndSetCurrentToken();
             var results = await _flightService.SearchFlights(ct, searchCriteria);
             StopCountFilters = results.StopCountFilters;
@@ -257,26 +249,65 @@ namespace Expedia.Client.ViewModels
 
         private async void BuildAndNavigateToFlightUri(FlightResultItem flight) //Gone after Native - Web View Connector
         {
-            //TODO check for departure flight if round trip first
+            if (SelectedDeparture == null && !CurrentSearchCriteria.IsOneWay)
+            {
+                SelectedDeparture = flight;
+                CurrentSearchCriteria.SelectedDeparture = flight;
 
-            //var hostname = _settingsService.GetCurrentDomain();
-            //var childrenString = CurrentSearchCriteria.ChildrenAges.Length > 0
-            //    ? CurrentSearchCriteria.ChildrenAges.Select(_ => ":c{0}".InvariantCultureFormat(_)).JoinBy(String.Empty)
-            //    : string.Empty;
-            //var pos = await _pointOfSaleService.GetCurrentPointOfSale();
+                FlightResultItems = null;
+                var ct = CancellationTokenManager.Instance().CreateAndSetCurrentToken();
+                var results = await _flightService.SearchFlights(ct, CurrentSearchCriteria);
+                FlightResultItems = results.Flights.ToObservableCollection();
+                StopCountFilters = results.StopCountFilters;
+                AirlineFilters = results.AirlineFilters;
+                ResultsCount = results.Flights.Count();
+                ClearMapPins();
+            }
+            else
+            {
+                var hostname = _settingsService.GetCurrentDomain();
+                var infantInLap = "N";
 
-            //var hotelDeeplink = new Uri("https://www.{0}/h{1}.Hotel-Information?chkin={2}&chkout={3}&rm1=a{4}{5}&forceNoRedir=1&brandcid=App.Windows.Native"
-            //    .InvariantCultureFormat(
-            //        hostname,
-            //        hotel.HotelId,
-            //        CurrentSearchCriteria.CheckInDate
-            //            .ToString(pos.DateFormatHotel, DateTimeFormatInfo.InvariantInfo),
-            //        CurrentSearchCriteria.CheckOutDate
-            //            .ToString(pos.DateFormatHotel, DateTimeFormatInfo.InvariantInfo),
-            //        CurrentSearchCriteria.AdultsCount,
-            //        childrenString));
+                const string unifiedPageUriTemplate = "https://www.{0}/pubspec/scripts/eap.asp?GOTO=UDP&piid={1}&departTLA=L1:{2}&arrivalTLA=L1:{3}&departDate=L1:{4}&nAdults={5}&tripType={6}&nChildren={7}&infantInLap={8}&productType=air&brandcid=App.Windows.Native";
 
-            //Navigator.Instance().NavigateForward(SuggestionLob.HOTELS, typeof(HotelBookingWebView), hotelDeeplink);
+                var ddte = "{0}"
+                    .InvariantCultureFormat(
+                        flight.DepartureTimeRaw.Date
+                            .ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
+
+                if (!CurrentSearchCriteria.IsOneWay)
+                {
+                    // The date set above is the return leg. We append in front the real departure flight and the above's "L2:" prefix.
+                    ddte = "{0}|L2:{1}"
+                        .InvariantCultureFormat(
+                            CurrentSearchCriteria.SelectedDeparture.DepartureTimeRaw.Date.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture),
+                            ddte);
+                }
+
+                var tripType = CurrentSearchCriteria.IsOneWay ? "OneWay" : "RoundTrip";
+
+                var flightDeepLink = new Uri(unifiedPageUriTemplate
+                    .InvariantCultureFormat(
+                        hostname,
+                        flight.ProductKey,
+                        CurrentSearchCriteria.DepartureAirportCode,
+                        CurrentSearchCriteria.ArrivalAirportCode,
+                        ddte,
+                        CurrentSearchCriteria.AdultsCount,
+                        tripType,
+                        CurrentSearchCriteria.ChildCount,
+                        infantInLap));
+
+                Navigator.Instance().NavigateForward(SuggestionLob.FLIGHTS, typeof(FlightBookingWebView), flightDeepLink);
+            }
+        }
+
+        internal void ClearMapPins()
+        {
+            if (MapControl != null)
+            {
+                MapControl.MapElements.Clear();
+            }
         }
 
         internal void SortResults()
@@ -347,8 +378,8 @@ namespace Expedia.Client.ViewModels
             if (SelectedFlight != null)
             {
                 var ct = CancellationTokenManager.Instance().CreateAndSetCurrentToken();
-                var legGeoPoints = new List<BasicGeoposition> { SearchInput.DepartureAirportPosition };
-                var legAiportCodes = new List<string> { SearchInput.DepartureAirportCode };
+                var legGeoPoints = new List<BasicGeoposition> { CurrentSearchCriteria.DepartureAirportPosition };
+                var legAiportCodes = new List<string> { CurrentSearchCriteria.DepartureAirportCode };
 
                 foreach (var segment in SelectedFlight.ListOfSegments.Skip(1))
                 {
@@ -362,8 +393,8 @@ namespace Expedia.Client.ViewModels
                     legAiportCodes.Add(segment);
                 }
 
-                legGeoPoints.Add(SearchInput.ArrivalAirportPosition);
-                legAiportCodes.Add(SearchInput.ArrivalAirportCode);
+                legGeoPoints.Add(CurrentSearchCriteria.ArrivalAirportPosition);
+                legAiportCodes.Add(CurrentSearchCriteria.ArrivalAirportCode);
 
                 DrawFlightLine(legGeoPoints, legAiportCodes);
             }

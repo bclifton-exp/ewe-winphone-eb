@@ -389,6 +389,9 @@
     <value>Departures to</value>
     <comment>e.g. Departures to San Francisco</comment>
   </data>
+  <data name="ReturnFlightsTo.ResultType" xml:space="preserve">
+    <value>Return flights to</value>
+  </data>
   <data name="FlightsText.Text" xml:space="preserve">
     <value>flights available</value>
   </data>

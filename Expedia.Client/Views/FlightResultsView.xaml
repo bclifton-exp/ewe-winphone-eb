@@ -141,7 +141,7 @@
 
             <ProgressRing x:Name="ProgressRing" Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="2" IsActive="{Binding FlightResultItems, Converter={StaticResource ReversedNullToBoolConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Visibility="{Binding ElementName=ProgressRing, Path=IsActive, Converter={StaticResource BoolToVisibilityConverter}}" Width="100" Height="100" />
 
-            <customControls:ResultsHeaderControl DataContext="{Binding SearchInput, Mode=OneWay}" Grid.Row="0" Grid.ColumnSpan="3" Grid.Column="0"
+            <customControls:ResultsHeaderControl DataContext="{Binding CurrentSearchCriteria, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.ColumnSpan="3" Grid.Column="0" Visibility="{Binding SelectedDeparture, Converter={StaticResource NullToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}"
                                      Style="{StaticResource FlightsHeaderControlStyle}"
 									 DepartureDate="{Binding DepartureDate, Converter={StaticResource LocalizedStringConverter}, ConverterParameter='CheckInDateFormat'}"
                                      ArrivalDate="{Binding ReturnDate, Converter={StaticResource LocalizedStringConverter}, ConverterParameter='CheckInDateFormat'}"
@@ -150,6 +150,18 @@
 									 ResultType="Departures to "
                                      x:Uid="DeparturesTo"
 									 GuestVisibility="Visible"/>
+            
+            <Grid Grid.Row="0" Grid.ColumnSpan="3" Grid.Column="0" Visibility="{Binding SelectedDeparture, Converter={StaticResource ReversedNullToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}">
+                <customControls:ResultsHeaderControl DataContext="{Binding CurrentSearchCriteria, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     Style="{StaticResource FlightsHeaderControlStyle}"
+									 DepartureDate="{Binding DepartureDate, Converter={StaticResource LocalizedStringConverter}, ConverterParameter='CheckInDateFormat'}"
+                                     ArrivalDate="{Binding ReturnDate, Converter={StaticResource LocalizedStringConverter}, ConverterParameter='CheckInDateFormat'}"
+                                     NumberOfPerson="{Binding TotalTravelersCount}"
+									 City="{Binding DepartureCityShortName}"
+									 ResultType="Return flights to "
+                                     x:Uid="ReturnFlightsTo"
+									 GuestVisibility="Visible"/>
+            </Grid>
 
             <!--Phone Filters...........................................................-->
             <Grid x:Name="FlightsAvailableTextBlockPhone" Grid.Column="0" Grid.Row="1" Margin="0 0 0 0" Background="{StaticResource FilterGrayBrush}">

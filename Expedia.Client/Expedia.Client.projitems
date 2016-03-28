@@ -24,9 +24,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\IntGreaterThanOneToBoolConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\LocalizedStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\NullableBoolToVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\NullToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\RadioBackgroundConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ReversedNullToBoolConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ReversedBoolToVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\ReversedNullToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\SignInSignOutTextConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\StringFormatConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CustomControls\ArrivalPointControl.cs" />
@@ -73,6 +75,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\FacebookSignInWebView.xaml.cs">
       <DependentUpon>FacebookSignInWebView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\FlightBookingWebView.xaml.cs">
+      <DependentUpon>FlightBookingWebView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\FlightResultsView.xaml.cs">
       <DependentUpon>FlightResultsView.xaml</DependentUpon>
     </Compile>
@@ -105,6 +110,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\FacebookSignInWebView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\FlightBookingWebView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
