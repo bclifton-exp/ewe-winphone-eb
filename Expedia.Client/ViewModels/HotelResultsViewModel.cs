@@ -30,6 +30,7 @@ namespace Expedia.Client.ViewModels
         private IHotelService _hotelService { get; set; }
         private ISettingsService _settingsService { get; set; }
         private IPointOfSaleService _pointOfSaleService { get; set; }
+        private int SelectedPinCount;
 
         private ObservableCollection<HotelResultItem> _hotelResultItems;
         public ObservableCollection<HotelResultItem> HotelResultItems
@@ -220,6 +221,7 @@ namespace Expedia.Client.ViewModels
         }
 
 
+
         public HotelResultsViewModel(IHotelService hotelService, ISettingsService settingsService, IPointOfSaleService pointOfSaleService)
         {
             _hotelService = hotelService;
@@ -378,6 +380,7 @@ namespace Expedia.Client.ViewModels
         private void ClearPushPins()
         {
             MapControl?.MapElements.Clear();
+            SelectedPinCount = 0;
         }
 
         private void BuildPushpins(ObservableCollection<HotelResultItem> hotelResultItems)
@@ -390,7 +393,8 @@ namespace Expedia.Client.ViewModels
                     {
                         Title = hotel.HotelName + "(" + "$" + hotel.Price + ")", //TODO PoS based currency symbol
                         Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/green_pin.png")),
-                        NormalizedAnchorPoint = new Point(0.5,1)
+                        NormalizedAnchorPoint = new Point(0.5,1),
+                        ZIndex = 0
                     };
 
                     var geoPoint = new BasicGeoposition
@@ -409,6 +413,7 @@ namespace Expedia.Client.ViewModels
         {
             if (selectedHotel != null && MapControl != null)
             {
+                SelectedPinCount++;
                 var geoPoint = new BasicGeoposition
                 {
                     Latitude = selectedHotel.Latitude,
@@ -419,6 +424,7 @@ namespace Expedia.Client.ViewModels
                 foreach (MapElement selected in MapControl.MapElements.Where(selected => ((dynamic) selected).Title.Contains(selectedHotel.HotelName)))
                 {
                     ((dynamic) selected).Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/gray_pin.png"));
+                    ((dynamic)selected).ZIndex = SelectedPinCount;
                 }
             }
         }

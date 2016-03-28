@@ -81,12 +81,16 @@ namespace Expedia.Client.Views
         {
             FilterDropDown.IsExpanded = false;
             SortDropDown.IsExpanded = false;
+            FilterDropDownPhone.IsExpanded = false;
+            SortDropDownPhone.IsExpanded = false;
         }
 
         private void UIElement_OnLostFocusPhone(object sender, RoutedEventArgs e)
         {
             FilterDropDownPhone.IsExpanded = false;
             SortDropDownPhone.IsExpanded = false;
+            FilterDropDown.IsExpanded = false;
+            SortDropDown.IsExpanded = false;
         }
     }
 }
