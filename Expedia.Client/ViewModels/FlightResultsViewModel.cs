@@ -262,6 +262,7 @@ namespace Expedia.Client.ViewModels
                 AirlineFilters = results.AirlineFilters;
                 ResultsCount = results.Flights.Count();
                 ClearMapPins();
+                BuildArrivalPushPin(CurrentSearchCriteria);
             }
             else
             {
@@ -397,6 +398,70 @@ namespace Expedia.Client.ViewModels
                 legAiportCodes.Add(CurrentSearchCriteria.ArrivalAirportCode);
 
                 DrawFlightLine(legGeoPoints, legAiportCodes);
+            }
+        }
+
+        internal void BuildDeparturePushPin(SearchFlightsLocalParameters airport)
+        {
+            if (MapControl != null)
+            {
+                var mapElement = MapControl.MapElements.FirstOrDefault(element => ((dynamic)element).MapTabIndex == 0);
+                if (mapElement != null)
+                {
+                    var indexToRemove = MapControl.MapElements.IndexOf(mapElement);
+                    MapControl.MapElements.RemoveAt(indexToRemove);
+                }
+
+                var mapIcon = new MapIcon
+                {
+                    Title = airport.DepartureCityShortName,
+                    Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/blue_pin.png")),
+                    MapTabIndex = 0,
+                    NormalizedAnchorPoint = new Point(0.5, 0.9),
+                    ZIndex = 1
+                };
+
+                var geoPoint = new BasicGeoposition
+                {
+                    Latitude = airport.DepartureAirportPosition.Latitude,
+                    Longitude = airport.DepartureAirportPosition.Longitude
+                };
+
+                mapIcon.Location = new Geopoint(geoPoint);
+                MapControl.Center = mapIcon.Location;
+                MapControl.MapElements.Add(mapIcon);
+            }
+        }
+
+        internal void BuildArrivalPushPin(SearchFlightsLocalParameters airport)
+        {
+            if (MapControl != null)
+            {
+                var mapElement = MapControl.MapElements.FirstOrDefault(element => ((dynamic)element).MapTabIndex == 0);
+                if (mapElement != null)
+                {
+                    var indexToRemove = MapControl.MapElements.IndexOf(mapElement);
+                    MapControl.MapElements.RemoveAt(indexToRemove);
+                }
+
+                var mapIcon = new MapIcon
+                {
+                    Title = airport.ArrivalCityShortName,
+                    Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/blue_pin.png")),
+                    MapTabIndex = 0,
+                    NormalizedAnchorPoint = new Point(0.5, 0.9),
+                    ZIndex = 1
+                };
+
+                var geoPoint = new BasicGeoposition
+                {
+                    Latitude = airport.ArrivalAirportPosition.Latitude,
+                    Longitude = airport.ArrivalAirportPosition.Longitude
+                };
+
+                mapIcon.Location = new Geopoint(geoPoint);
+                MapControl.Center = mapIcon.Location;
+                MapControl.MapElements.Add(mapIcon);
             }
         }
 

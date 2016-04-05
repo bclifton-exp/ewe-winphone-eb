@@ -42,19 +42,7 @@ namespace Expedia.Client.Views
             var context = DataContext as FlightResultsViewModel;
             var map = sender as MapControl;
             context.MapControl = map;
-            if (context.MapCenter != null)
-            {
-                var geoPoint = new BasicGeoposition
-                {
-                    Latitude = context.MapCenter.Position.Latitude,
-                    Longitude = context.MapCenter.Position.Longitude
-                };
-                map.Center = new Geopoint(geoPoint);
-            }
-            else
-            {
-                map.Center = new Geopoint(new BasicGeoposition());
-            }
+            context.BuildDeparturePushPin(context.CurrentSearchCriteria);
         }
 
         private void MainHotelGrid_OnTapped(object sender, TappedRoutedEventArgs e)
