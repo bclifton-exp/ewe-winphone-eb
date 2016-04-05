@@ -109,5 +109,22 @@ namespace Expedia.Client.Views
             FilterDropDown.IsExpanded = false;
             SortDropDown.IsExpanded = false;
         }
+
+        private void ResultListView_OnTapped(object sender, TappedRoutedEventArgs e)
+        {
+            FilterDropDown.IsExpanded = false;
+            SortDropDown.IsExpanded = false;
+            FilterDropDownPhone.IsExpanded = false;
+            SortDropDownPhone.IsExpanded = false;
+        }
+
+        private void Map_OnMapTapped(MapControl sender, MapInputEventArgs args)
+        {
+            FilterDropDown.IsExpanded = false;
+            SortDropDown.IsExpanded = false;
+            FilterDropDownPhone.IsExpanded = false;
+            SortDropDownPhone.IsExpanded = false;
+        }
+    
     }
 }

@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Windows.Input;
 using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.Storage.Streams;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Maps;
 using Expedia.Client.Interfaces;
@@ -27,6 +24,7 @@ namespace Expedia.Client.ViewModels
 {
     public class HotelResultsViewModel : BaseResultViewModel, IHotelResultsViewModel
     {
+        #region Properties
         private IHotelService _hotelService { get; set; }
         private ISettingsService _settingsService { get; set; }
         private IPointOfSaleService _pointOfSaleService { get; set; }
@@ -219,8 +217,7 @@ namespace Expedia.Client.ViewModels
                 OnPropertyChanged("ResultsCount");
             }
         }
-
-
+        #endregion
 
         public HotelResultsViewModel(IHotelService hotelService, ISettingsService settingsService, IPointOfSaleService pointOfSaleService)
         {
@@ -288,9 +285,11 @@ namespace Expedia.Client.ViewModels
                 if (filteredRegion != null)
                     CurrentSearchCriteria.LocationRegionId = filteredRegion.Id;
 
+                ClearPushPins();
                 var ct = CancellationTokenManager.Instance().CreateAndSetCurrentToken();
                 var filteredResults = await _hotelService.SearchHotels(ct, CurrentSearchCriteria);
                 HotelResultItems = filteredResults.Hotels.ToObservableCollection();
+                BuildPushpins(HotelResultItems);
 
                 StarRatingFilters = filteredResults.StarRatingFilters;
                 PriceFilters = filteredResults.PriceFilters;
@@ -301,7 +300,7 @@ namespace Expedia.Client.ViewModels
             }
             catch (Exception ex)
             {
-                //eating exceptions for when filters are clicked too quickly, doesn't matter
+                //eating exceptions for when filters are clicked too quickly
             }
         }
 
@@ -365,7 +364,7 @@ namespace Expedia.Client.ViewModels
             }
             catch (Exception ex)
             {
-                //eating exceptions for when filters are clicked too quickly, doesn't matter
+                //eating exceptions for when filters are clicked too quickly
             }
         }
 

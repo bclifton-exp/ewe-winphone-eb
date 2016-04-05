@@ -27,6 +27,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Coordinate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\AuthenticationException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\ChildAgeItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\LineOfBusiness.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\RegionActivityBanner.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ErrorCodes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExpediaClientException.cs" />

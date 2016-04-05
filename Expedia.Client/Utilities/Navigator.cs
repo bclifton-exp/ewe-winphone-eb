@@ -2,10 +2,10 @@
 using Windows.Foundation.Metadata;
 using Windows.Phone.UI.Input;
 using Windows.UI.Core;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Expedia.Client.ViewModels;
 using Expedia.Client.Views;
+using Expedia.Entities.Entities;
 using Expedia.Entities.Suggestions;
 
 namespace Expedia.Client.Utilities
@@ -39,6 +39,27 @@ namespace Expedia.Client.Utilities
         public static Navigator Instance()
         {
             return _instance ?? (_instance = new Navigator());
+        }
+
+        public void SetCurrentFrame(LineOfBusiness lob)
+        {
+            switch (lob)
+            {
+                case LineOfBusiness.HOTELS:
+                    _currentFrame = _hotelFrame;
+                    return;
+
+                case LineOfBusiness.FLIGHTS:
+                    _currentFrame = _flightFrame;
+                    return;
+
+                case LineOfBusiness.CARS:
+                    _currentFrame = _carFrame;
+                    return;
+
+                default:
+                    return;
+            }
         }
 
         public void FirstTimeSetup(Frame menuFrame, Frame hotelFrame, Frame flightFrame, Frame carFrame, MainPageViewModel mainViewModel)

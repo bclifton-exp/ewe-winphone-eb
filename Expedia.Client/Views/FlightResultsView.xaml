@@ -198,7 +198,7 @@
             </Grid>
 
 
-            <ListView x:Name="ResultListView" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" ItemsSource="{Binding FlightResultItems}"
+            <ListView x:Name="ResultListView" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" ItemsSource="{Binding FlightResultItems}" Tapped="ResultListView_OnTapped"
                       ItemTemplate="{StaticResource FlightResultItemTemplate}"
                       SelectedItem="{Binding SelectedFlight, Mode=TwoWay}"
 					  Padding="0,0,0,72">
@@ -321,7 +321,7 @@
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
             
-            <maps:MapControl Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" x:Name="Map" Visibility="Collapsed" Loading="Map_OnLoading" Margin="0 0 0 0" MapServiceToken="uTSDW7FxvBNrtGPD67ZQ~Cws5kVsbllSUip_fVoHCIQ~AiAsYMbHCnN32naqWWDEeulT3_C1XVy1yPU91wba8Knm9G1D31rZOIMDss4jJFtO" ZoomLevel="4.5" />
+            <maps:MapControl Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" x:Name="Map" Visibility="Collapsed" MapTapped="Map_OnMapTapped" Loading="Map_OnLoading" Margin="0 0 0 0" MapServiceToken="uTSDW7FxvBNrtGPD67ZQ~Cws5kVsbllSUip_fVoHCIQ~AiAsYMbHCnN32naqWWDEeulT3_C1XVy1yPU91wba8Knm9G1D31rZOIMDss4jJFtO" ZoomLevel="4.5" />
 
 
             <Grid x:Name="FlightsAvailableTextBlock" Grid.Column="0" Grid.Row="0" Margin="0 0 1 0" Background="{StaticResource FilterGrayBrush}">
