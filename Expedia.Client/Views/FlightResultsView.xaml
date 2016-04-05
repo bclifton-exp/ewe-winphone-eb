@@ -80,6 +80,7 @@
                         <Setter Target="FlightsAvailableTextBlockPhone.Visibility" Value="Visible"/>
                         <Setter Target="SortByControlPhone.Visibility" Value="Visible"/>
                         <Setter Target="FilterByControlPhone.Visibility" Value="Visible"/>
+                        <Setter Target="SideGrid.Visibility" Value="Collapsed"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>
@@ -94,6 +95,7 @@
                         <Setter Target="FlightsAvailableTextBlockPhone.Visibility" Value="Visible"/>
                         <Setter Target="SortByControlPhone.Visibility" Value="Visible"/>
                         <Setter Target="FilterByControlPhone.Visibility" Value="Visible"/>
+                        <Setter Target="SideGrid.Visibility" Value="Collapsed"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>
@@ -108,6 +110,7 @@
                         <Setter Target="FlightsAvailableTextBlockPhone.Visibility" Value="Visible"/>
                         <Setter Target="SortByControlPhone.Visibility" Value="Visible"/>
                         <Setter Target="FilterByControlPhone.Visibility" Value="Visible"/>
+                        <Setter Target="SideGrid.Visibility" Value="Collapsed"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>
@@ -122,6 +125,7 @@
                         <Setter Target="FlightsAvailableTextBlockPhone.Visibility" Value="Collapsed"/>
                         <Setter Target="SortByControlPhone.Visibility" Value="Collapsed"/>
                         <Setter Target="FilterByControlPhone.Visibility" Value="Collapsed"/>
+                        <Setter Target="SideGrid.Visibility" Value="Visible"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -130,7 +134,7 @@
         <Grid Background="{ThemeResource AppBarBackgroundThemeBrush}" Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="75"/>
-                <RowDefinition Height="60"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -310,7 +314,7 @@
 
         <!--Tablet/Desktop split-->
         
-        <Grid Grid.Column="1">
+        <Grid Grid.Column="1" x:Name="SideGrid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="75" />
                 <RowDefinition Height="*" />

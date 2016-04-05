@@ -191,6 +191,7 @@
                         <Setter Target="HotelsAvailableTextBlockPhone.Visibility" Value="Visible"/>
                         <Setter Target="SortByControlPhone.Visibility" Value="Visible"/>
                         <Setter Target="FilterByControlPhone.Visibility" Value="Visible"/>
+                        <Setter Target="SideGrid.Visibility" Value="Collapsed"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>
@@ -205,6 +206,7 @@
                         <Setter Target="HotelsAvailableTextBlockPhone.Visibility" Value="Visible"/>
                         <Setter Target="SortByControlPhone.Visibility" Value="Visible"/>
                         <Setter Target="FilterByControlPhone.Visibility" Value="Visible"/>
+                        <Setter Target="SideGrid.Visibility" Value="Collapsed"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>
@@ -219,6 +221,7 @@
                         <Setter Target="HotelsAvailableTextBlockPhone.Visibility" Value="Visible"/>
                         <Setter Target="SortByControlPhone.Visibility" Value="Visible"/>
                         <Setter Target="FilterByControlPhone.Visibility" Value="Visible"/>
+                        <Setter Target="SideGrid.Visibility" Value="Collapsed"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>
@@ -229,10 +232,11 @@
                     <VisualState.Setters>
                         <Setter Target="Map.Visibility" Value="Visible" />
 
-                        <Setter Target="ResultListView.Margin" Value="0 -60 0 0"/>
+                        <Setter Target="ResultListView.Margin" Value="0 -50 0 0"/>
                         <Setter Target="HotelsAvailableTextBlockPhone.Visibility" Value="Collapsed"/>
                         <Setter Target="SortByControlPhone.Visibility" Value="Collapsed"/>
                         <Setter Target="FilterByControlPhone.Visibility" Value="Collapsed"/>
+                        <Setter Target="SideGrid.Visibility" Value="Visible"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -241,7 +245,7 @@
         <Grid Background="{ThemeResource AppBarBackgroundThemeBrush}" Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="75"/>
-                <RowDefinition Height="60"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -473,7 +477,7 @@
 
         </Grid>
 
-        <Grid Grid.Column="1">
+        <Grid x:Name="SideGrid" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="75" />
                 <RowDefinition Height="*" />
