@@ -46,5 +46,22 @@ namespace Expedia.Client.Utilities
             }
             return locs;
         }
+
+        public static BasicGeoposition MidPoint(BasicGeoposition start, BasicGeoposition finish)
+        {
+            double dLon = (finish.Longitude - start.Longitude)*(Math.PI/180);
+
+            //convert to radians
+            var lat1 = start.Latitude * (Math.PI / 180);
+            var lat2 = finish.Latitude * (Math.PI / 180);
+            var lon1 = start.Longitude * (Math.PI / 180);
+
+            double Bx = Math.Cos(lat2) * Math.Cos(dLon);
+            double By = Math.Cos(lat2) * Math.Sin(dLon);
+            double lat3 = Math.Atan2(Math.Sin(lat1) + Math.Sin(lat2), Math.Sqrt((Math.Cos(lat1) + Bx) * (Math.Cos(lat1) + Bx) + By * By));
+            double lon3 = lon1 + Math.Atan2(By, Math.Cos(lat1) + Bx);
+
+            return new BasicGeoposition { Latitude = (lat3) / (Math.PI / 180), Longitude = (lon3) / (Math.PI / 180) };
+        }
     }
 }

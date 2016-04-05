@@ -213,6 +213,7 @@ namespace Expedia.Client.ViewModels
                     return;
                 
                 var geodesic = Geodesic.ToGeodesic(StartPoint, EndPoint);
+                var midPoint = Geodesic.MidPoint(StartPoint, EndPoint);
 
                 var line = new MapPolyline {Path = new Geopath(geodesic)};
                 var brush = Application.Current.Resources["LogoYellowBrush"] as SolidColorBrush;
@@ -221,8 +222,7 @@ namespace Expedia.Client.ViewModels
                 line.StrokeDashed = true;
                 line.ZIndex = 0;
 
-                var newMapCenter = geodesic[geodesic.Count/2];
-                MapControl.Center = new Geopoint(newMapCenter);
+                MapControl.Center = new Geopoint(midPoint);
                 MapControl.MapElements.Add(line);
             }
         }

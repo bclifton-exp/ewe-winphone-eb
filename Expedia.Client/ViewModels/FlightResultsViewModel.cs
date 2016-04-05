@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Windows.Input;
 using Windows.Devices.Geolocation;
@@ -499,8 +500,8 @@ namespace Expedia.Client.ViewModels
                             line.StrokeDashed = true;
                             line.ZIndex = 0;
 
-                            var newMapCenter = geodesic[geodesic.Count/2];
-                            MapControl.Center = new Geopoint(newMapCenter);
+                            var midPoint = Geodesic.MidPoint(points.First(), points.Last());
+                            MapControl.Center = new Geopoint(midPoint);
                             MapControl.MapElements.Add(line);
                         }
                     }
