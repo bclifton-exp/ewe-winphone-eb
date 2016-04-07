@@ -9,6 +9,7 @@ namespace Expedia.Injection
         public override void Load()
         {
             Bind<IMainPageViewModel>().To<MainPageViewModel>();
+            Bind<ISearchCarsViewModel>().To<SearchCarsViewModel>();
             Bind<IAccountMenuViewModel>().To<AccountMenuViewModel>();
             Bind<ISearchHotelsViewModel>().To<SearchHotelsViewModel>();
             Bind<IHotelResultsViewModel>().To<HotelResultsViewModel>();

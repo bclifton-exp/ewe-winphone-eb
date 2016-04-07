@@ -46,6 +46,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IHotelResultsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ILinkFacebookAccountViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IMainPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISearchCarsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISearchFlightsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISearchHotelsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISettingsMenuViewModel.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\HotelResultsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\LinkFacebookAccountViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SearchCarsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SearchFlightsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SearchHotelsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SettingsMenuViewModel.cs" />
@@ -90,6 +92,9 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\LinkFacebookAccountView.xaml.cs">
       <DependentUpon>LinkFacebookAccountView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SearchCarsView.xaml.cs">
+      <DependentUpon>SearchCarsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\SearchFlightsView.xaml.cs">
       <DependentUpon>SearchFlightsView.xaml</DependentUpon>
@@ -131,6 +136,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\LinkFacebookAccountView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\SearchCarsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

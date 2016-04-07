@@ -35,7 +35,7 @@
         </DataTemplate>
 
         <DataTemplate x:Key="FlightResultItemPhoneTemplate">
-            <Grid Height="120" Margin="15 10 15 5" Background="White" x:Name="MainFlightGrid" Tapped="MainHotelGrid_OnTapped">
+            <Grid Height="120" Margin="5 10 5 5" Background="White" x:Name="MainFlightGrid" Tapped="MainHotelGrid_OnTapped">
 
                 <customControls:SearchResultItemControl AirlineName="{Binding AirlineName, Mode=OneWay, Converter={StaticResource fromNullOrEmptyAirlineToMultipleAirlinesLabel}}"
 											DepartTime="{Binding DepartureTimeRaw, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter='\{0:h:mm tt​\}'}"
@@ -45,7 +45,7 @@
 											ListOfSegments="{Binding ListOfSegments, Mode=OneWay}"
                                             FlightDuration="{Binding Duration, Mode=OneWay}"
 											IsDayVisible="{Binding LegDurationInDays, Converter={StaticResource IntGreaterThanOneToBoolConverter}}" 
-                                                        Margin="10 5 10 -20"/>
+                                                        Margin="5 5 5 -20"/>
             </Grid>
         </DataTemplate>
 
@@ -63,7 +63,7 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" x:Name="ResultColumn"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*" x:Name="MapColumn"/>
         </Grid.ColumnDefinitions>
 
         <VisualStateManager.VisualStateGroups>
@@ -75,6 +75,7 @@
 
                     <VisualState.Setters>
                         <Setter Target="ResultColumn.MinWidth" Value="320" />
+                        <Setter Target="MapColumn.Width" Value="0"/>
                         <Setter Target="ResultListView.ItemTemplate" Value="{StaticResource FlightResultItemPhoneTemplate}"/>
                         <Setter Target="FlightInfoImage.Margin" Value="0 0 0 0"/>
                         <Setter Target="FlightsAvailableTextBlockPhone.Visibility" Value="Visible"/>

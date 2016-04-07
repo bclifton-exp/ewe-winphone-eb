@@ -174,7 +174,7 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" x:Name="ResultColumn"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*" x:Name="MapColumn"/>
         </Grid.ColumnDefinitions>
 
         <VisualStateManager.VisualStateGroups>
@@ -186,6 +186,7 @@
 
                     <VisualState.Setters>
                         <Setter Target="ResultColumn.MinWidth" Value="320" />
+                        <Setter Target="MapColumn.Width" Value="0"/>
                         <Setter Target="ResultListView.ItemTemplate" Value="{StaticResource HotelResultItemTemplatePhone}"></Setter>
                         <Setter Target="ResultListView.Margin" Value="0 0 0 0"/>
                         <Setter Target="HotelsAvailableTextBlockPhone.Visibility" Value="Visible"/>

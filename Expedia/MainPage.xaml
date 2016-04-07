@@ -148,8 +148,8 @@
                                     <Rectangle Fill="{Binding ElementName=PivotControl, Path=SelectedIndex, Converter={StaticResource IndexToPivotColorConverter}, ConverterParameter=2}" Margin="-30 0 -30 -6" Height="5" Width="110"/>
                                 </StackPanel>
                             </PivotItem.Header>
-                            <Frame x:Name="CarFrame">
-                                <TextBlock Text="Cars cars and more cars" />
+                            <Frame x:Name="CarFrame" SourcePageType="views:SearchCarsView">
+                                <views:SearchCarsView/>
                             </Frame>
                         </PivotItem>
                     </Pivot>
