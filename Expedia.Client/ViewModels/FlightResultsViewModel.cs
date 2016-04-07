@@ -243,6 +243,18 @@ namespace Expedia.Client.ViewModels
             }
         }
 
+        private ICommand _changeDepartureFlight;
+        public ICommand ChangeDepartureFlight
+        {
+            get { return _changeDepartureFlight; }
+            set
+            {
+                _changeDepartureFlight = value;
+                OnPropertyChanged("ChangeDepartureFlight");
+            }
+        }
+
+
         public FlightResultsViewModel(IFlightService flightService, ISettingsService settingsService,
             IPointOfSaleService pointOfSaleService, ISuggestionService suggestionService)
         {
@@ -270,6 +282,23 @@ namespace Expedia.Client.ViewModels
 
             BookFlight = new RelayCommand<FlightResultItem>(BuildAndNavigateToFlightUri);
             SortResultsCommand = new DelegateCommand(SortResults);
+            ChangeDepartureFlight = new DelegateCommand(PickNewDepartureFlight);
+        }
+
+        private async void PickNewDepartureFlight()
+        {
+            SelectedDeparture = null;
+            FlightResultItems = null;
+            CurrentSearchCriteria.SelectedDeparture = null;
+
+            var ct = CancellationTokenManager.Instance().CreateAndSetCurrentToken();
+            var results = await _flightService.SearchFlights(ct, CurrentSearchCriteria);
+            FlightResultItems = results.Flights.ToObservableCollection();
+            StopCountFilters = results.StopCountFilters;
+            AirlineFilters = results.AirlineFilters;
+            ResultsCount = results.Flights.Count();
+            ClearMapPins();
+            BuildDeparturePushPin(CurrentSearchCriteria);
         }
 
         private async void BuildAndNavigateToFlightUri(FlightResultItem flight) //Gone after Native - Web View Connector

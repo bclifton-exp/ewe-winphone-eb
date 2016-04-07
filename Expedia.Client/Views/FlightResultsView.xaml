@@ -256,7 +256,7 @@
 							x:Uid="Change"
 							HorizontalAlignment="Right"
 							VerticalAlignment="Bottom"
-							Command="{Binding CustomData}"
+							Command="{Binding ChangeDepartureFlight}"
 							Style="{StaticResource ChangeButtonStyle}"/>
                 </Grid>
 
