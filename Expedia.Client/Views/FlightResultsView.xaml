@@ -134,7 +134,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="75"/>
                 <RowDefinition Height="50"/>
-                <RowDefinition Height="120"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -201,7 +201,7 @@
                 </customControls:ExpandableContentControl>
             </Grid>
 
-            <Grid x:Name="FlightInfoImage" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" Visibility="{Binding IsImageLoaded, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Grid x:Name="FlightInfoImage" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" MinHeight="170" Visibility="{Binding IsImageLoaded, Converter={StaticResource BoolToVisibilityConverter}}">
                 <Grid.Background>
                     <ImageBrush ImageSource="{Binding DestinationImageUri, Converter={StaticResource fromNullToImageSource}}"
 								AlignmentX="Center"
