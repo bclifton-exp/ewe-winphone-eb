@@ -256,7 +256,7 @@ namespace Expedia.Client.ViewModels
                 : string.Empty;
             var pos = await _pointOfSaleService.GetCurrentPointOfSale();
 
-            var hotelDeeplink = new Uri("https://www.{0}/h{1}.Hotel-Information?chkin={2}&chkout={3}&rm1=a{4}{5}&forceNoRedir=1&brandcid=App.Windows.Native"
+            var hotelDeeplink = new Uri("https://www.{0}/h{1}.Hotel-Information?chkin={2}&chkout={3}&rm1=a{4}{5}&forceNoRedir=1&brandcid=App.WindowsUWP.Native"
                 .InvariantCultureFormat(
                     hostname,
                     hotel.HotelId,

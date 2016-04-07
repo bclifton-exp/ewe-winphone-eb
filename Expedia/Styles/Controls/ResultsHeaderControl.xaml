@@ -97,20 +97,25 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
-                        <StackPanel Margin="20,13,20,0"
-									Orientation="Horizontal"
-									VerticalAlignment="Center">
+                        <Grid Margin="20,13,20,0" VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
                             <TextBlock Text="{TemplateBinding ResultType}"
+                                       Grid.Column="0"
 									   Style="{StaticResource ResultsHeaderTextStyle}"
                                        Foreground="{StaticResource SecondaryColor1Brush}"
 									   VerticalAlignment="Center" />
 
                             <TextBlock Text="{TemplateBinding City}"
+                                       Grid.Column="1"
 									   Style="{StaticResource ResultsHeaderBoldTextStyle}"
+                                       TextTrimming="WordEllipsis"
                                        Foreground="{StaticResource SecondaryColor1Brush}"
 									   VerticalAlignment="Center"
 									   Margin="3,0,40,0" />
-                        </StackPanel>
+                        </Grid>
                         <StackPanel Orientation="Horizontal"
 									Grid.Row="1"
 									Margin="20,10,0,22">
@@ -187,20 +192,23 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
-                        <StackPanel Margin="20,13,20,0"
-									Orientation="Horizontal"
-									VerticalAlignment="Center">
-                            <TextBlock Text="{TemplateBinding ResultType}"
+                        <Grid Margin="20,13,20,0" VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{TemplateBinding ResultType}"
 									   Style="{StaticResource ResultsHeaderTextStyle}"
                                        Foreground="{StaticResource SecondaryColor1Brush}"
 									   VerticalAlignment="Center" />
 
-                            <TextBlock Text="{TemplateBinding City}"
+                            <TextBlock Grid.Column="1" Text="{TemplateBinding City}"
 									   Style="{StaticResource ResultsHeaderBoldTextStyle}"
+                                       TextTrimming="WordEllipsis"
                                        Foreground="{StaticResource SecondaryColor1Brush}"
 									   VerticalAlignment="Center"
 									   Margin="3,0,40,0" />
-                        </StackPanel>
+                        </Grid>
                         <StackPanel Orientation="Horizontal"
 									Grid.Row="1"
 									Margin="20,10,0,22">

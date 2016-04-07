@@ -39,7 +39,7 @@ namespace Expedia.Services
             request.AppendLocaleParam(_settingsService.GetCurrentLocale());
             request.AppendParam("lob",lob.ToString());
             request.AppendParam("regiontype",regionTypes);
-            request.AppendParam("client","App.Windows.Native");//TODO probably will change   
+            request.AppendParam("client", "App.WindowsUWP.Native");
 
             var result = await ExecuteGet(request.GetFullUri(), ct);
 
@@ -73,7 +73,7 @@ namespace Expedia.Services
             request.AppendParam("regiontype", regionTypes);
             request.AppendParam("sort", "d"); // Distance
             request.AppendParam("lob", lob.ToString());
-            request.AppendParam("client", "App.Windows.Native");//TODO probably will change   
+            request.AppendParam("client", "App.WindowsUWP.Native"); 
 
             var result = await ExecuteGet(request.GetFullUri(), ct);
 
@@ -96,7 +96,7 @@ namespace Expedia.Services
             request.AppendLocaleParam(_settingsService.GetCurrentLocale());
             request.AppendParam("lob", lob.ToString());
             request.AppendParam("regiontype", regionTypes);
-            request.AppendParam("client", "App.Windows.Native");//TODO probably will change   
+            request.AppendParam("client", "App.WindowsUWP.Native");  
 
             var result = await ExecuteGet(request.GetFullUri(), ct);
 

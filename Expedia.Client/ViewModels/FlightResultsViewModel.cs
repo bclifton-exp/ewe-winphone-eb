@@ -176,6 +176,29 @@ namespace Expedia.Client.ViewModels
             }
         }
 
+        private bool _isImageLoaded;
+        public bool IsImageLoaded
+        {
+            get { return _isImageLoaded; }
+            set
+            {
+                _isImageLoaded = value;
+                OnPropertyChanged("IsImageLoaded");
+            }
+        }
+
+        private Uri _destinationImageUri;
+        public Uri DestinationImageUri
+        {
+            get { return _destinationImageUri; }
+            set
+            {
+                _destinationImageUri = value;
+                IsImageLoaded = value != null;
+                OnPropertyChanged("DestinationImageUri");
+            }
+        }
+
         private ICommand _sortResultsCommand;
         public ICommand SortResultsCommand
         {
@@ -233,16 +256,17 @@ namespace Expedia.Client.ViewModels
         {
             searchCriteria.SelectedDeparture = null; //might be temp
             CurrentSearchCriteria = searchCriteria;
+            DestinationName = searchCriteria.ArrivalCityShorterName;
+            ReturnName = searchCriteria.DepartureCityShorterName;
             FlightResultItems = null;
             var ct = CancellationTokenManager.Instance().CreateAndSetCurrentToken();
             var results = await _flightService.SearchFlights(ct, searchCriteria);
+            DestinationImageUri = new Uri(results.Selection.DestinationPictureUrl);
             StopCountFilters = results.StopCountFilters;
             AirlineFilters = results.AirlineFilters;
             ResultsCount = results.Flights.Count();
             FlightResultItems = results.Flights.ToObservableCollection();
             DestinationPictureUrl = results.Selection.DestinationPictureUrl;
-            DestinationName = results.Selection.DestinationName;
-            ReturnName = results.Selection.ReturnName;
 
             BookFlight = new RelayCommand<FlightResultItem>(BuildAndNavigateToFlightUri);
             SortResultsCommand = new DelegateCommand(SortResults);
@@ -270,7 +294,7 @@ namespace Expedia.Client.ViewModels
                 var hostname = _settingsService.GetCurrentDomain();
                 var infantInLap = "N";
 
-                const string unifiedPageUriTemplate = "https://www.{0}/pubspec/scripts/eap.asp?GOTO=UDP&piid={1}&departTLA=L1:{2}&arrivalTLA=L1:{3}&departDate=L1:{4}&nAdults={5}&tripType={6}&nChildren={7}&infantInLap={8}&productType=air&brandcid=App.Windows.Native";
+                const string unifiedPageUriTemplate = "https://www.{0}/pubspec/scripts/eap.asp?GOTO=UDP&piid={1}&departTLA=L1:{2}&arrivalTLA=L1:{3}&departDate=L1:{4}&nAdults={5}&tripType={6}&nChildren={7}&infantInLap={8}&productType=air&brandcid=App.WindowsUWP.Native";
 
                 var ddte = "{0}"
                     .InvariantCultureFormat(

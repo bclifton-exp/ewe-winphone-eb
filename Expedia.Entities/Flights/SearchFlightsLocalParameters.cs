@@ -28,7 +28,20 @@ namespace Expedia.Entities.Flights
 											   .Trim(' ', ',', '.');
 			} 
 		}
-		public int AdultsCount { get; set; }
+
+        public string DepartureCityShorterName
+        {
+            get
+            {
+                return string.IsNullOrWhiteSpace(DepartureCityShortName) || !DepartureCityShortName.Contains("(")
+                                        ? DepartureCityShortName
+                                        : DepartureCityShortName
+                                               .Remove(DepartureCityShortName
+                                                    .IndexOf("(", StringComparison.OrdinalIgnoreCase))
+                                               .Trim(' ', ',', '.');
+            }
+        }
+        public int AdultsCount { get; set; }
 		public int[] ChildrenAges { get; set; }
 
 		public int ChildCount { get { return (ChildrenAges ?? new int[0]).Length; } }

@@ -17,6 +17,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FromNullableToDefaultValueConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FromNullOrEmptyAirlineToMultipleAirlinesLabelConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\GeolocationAccessStatusToBoolConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\ImageToBrushConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\InbetweenOneAndFiveToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\InbetweenOneAndThreeToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\IndexToPivotBackgroundColorConverter.cs" />
