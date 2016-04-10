@@ -95,7 +95,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0" Grid.Column="0" x:Uid="GoingTo" Text="Goin to" Margin="0 0 0 5"/>
+            <TextBlock Grid.Row="0" Grid.Column="0" x:Uid="GoingTo" Text="Going to" Margin="0 0 0 5"/>
 
             <AutoSuggestBox x:Name="SuggestionBox" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 0 0 25"
                         ItemsSource="{Binding SearchSuggestions}"
@@ -127,6 +127,7 @@
 
             <Button Command="{Binding SearchHotels}"
 					Content="Search"
+                    Style="{StaticResource SearchButtonStyle}"
 					x:Uid="SearchButton"
 					Grid.Row="6"
                     Grid.Column="0"

@@ -158,6 +158,7 @@
 
             <Button Command="{Binding SearchFlights}"
 					Content="Search"
+                    Style="{StaticResource SearchButtonStyle}"
 					x:Uid="SearchButton"
 					Grid.Row="9"
                     Grid.Column="0"

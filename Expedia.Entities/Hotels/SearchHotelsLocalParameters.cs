@@ -43,16 +43,6 @@ namespace Expedia.Entities.Hotels
 
         public Geopoint SelectedMapCenter { get; set; }
 
-		//public override int GetHashCode()
-		//{
-		//	return this.Equality().GetHashCode(Fields);
-		//}
-
-		//public override bool Equals(object obj)
-		//{
-		//	return this.Equality().Equal(obj, Fields);
-		//}
-
 		private static readonly Func<SearchHotelsLocalParameters, IEnumerable<object>> Fields = obj => new object[] 
 		{ 
 			obj.LocationName, 

@@ -235,13 +235,13 @@
   <data name="Droppingoff.Text" xml:space="preserve">
     <value>Dropping off</value>
   </data>
-  <data name="Pickupdate.Header" xml:space="preserve">
+  <data name="Pickupdate.Text" xml:space="preserve">
     <value>Pick up date</value>
   </data>
   <data name="Pickuptime.Header" xml:space="preserve">
     <value>Pick up time</value>
   </data>
-  <data name="Dropoffdate.Header" xml:space="preserve">
+  <data name="Dropoffdate.Text" xml:space="preserve">
     <value>Drop off date</value>
   </data>
   <data name="Dropofftime.Header" xml:space="preserve">

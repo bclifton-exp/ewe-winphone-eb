@@ -104,7 +104,6 @@ namespace Expedia.Client.ViewModels
             return SelectedSearchSuggestion != null; //TODO valid date stuff too
         }
 
-
         private void DirectHotelSearch(HotelResultItem hotel, SearchHotelsLocalParameters hotelSearchParams)
         {
             //TODO this was previously a deeplink to a webview.

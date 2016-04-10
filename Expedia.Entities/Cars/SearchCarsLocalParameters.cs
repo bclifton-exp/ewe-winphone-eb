@@ -1,6 +1,7 @@
 ﻿using Expedia.Entities.Cars;
 using System;
 using System.Collections.Generic;
+using Windows.Devices.Geolocation;
 
 namespace Expedia.Entities.Cars
 {
@@ -16,16 +17,7 @@ namespace Expedia.Entities.Cars
         //TODO separate dropoff locations when API is avail 
 
         public SortCarsByType SortBy { get; set; }
-
-        //public override int GetHashCode()
-        //{
-        //    return this.Equality().GetHashCode(Fields);
-        //}
-
-        //public override bool Equals(object obj)
-        //{
-        //    return this.Equality().Equal(obj, Fields);
-        //}
+        public Geopoint SelectedMapCenter { get; set; }
 
         private static readonly Func<SearchCarsLocalParameters, IEnumerable<object>> Fields = obj => new object[]
         {
