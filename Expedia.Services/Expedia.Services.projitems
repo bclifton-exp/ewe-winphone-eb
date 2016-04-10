@@ -11,10 +11,12 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)AuthenticationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Base\BaseService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CarService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Constants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FlightService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HotelService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IAuthenticationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ICarService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IFlightService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IHotelService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ILocationService.cs" />

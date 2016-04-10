@@ -14,6 +14,7 @@ namespace Expedia.Injection
     {
         public override void Load()
         {
+            Bind<ICarService>().To<CarService>();
             Bind<IHotelService>().To<HotelService>();
             Bind<IFlightService>().To<FlightService>();
             Bind<ISettingsService>().To<SettingsService>();
