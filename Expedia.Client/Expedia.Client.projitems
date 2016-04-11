@@ -10,10 +10,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\CarCategoryToImageConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ChildAgeHeaderConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\CurrencyCodeToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\CurrencyConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\DateTimeToDateTimeOffsetConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\EmptyDataVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FromNullableToDefaultValueConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FromNullOrEmptyAirlineToMultipleAirlinesLabelConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\GeolocationAccessStatusToBoolConverter.cs" />
@@ -24,14 +26,19 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\IndexToPivotColorConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\IntGreaterThanOneToBoolConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\LocalizedStringConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\LocationDescriptionConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\MinimumCarDoorsConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\NullableBoolToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\NullToVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\OrSimilarVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\PassengerConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\RadioBackgroundConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ReversedNullToBoolConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ReversedBoolToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ReversedNullToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\SignInSignOutTextConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\StringFormatConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\TransmissionTextConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CustomControls\ArrivalPointControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CustomControls\ExpandableContentControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CustomControls\PluralityChooser.cs" />
@@ -39,8 +46,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)CustomControls\ResultsHeaderControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CustomControls\SearchResultItemControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CustomControls\StarStackPanel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\DateTimeExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\DependentRelayCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IAccountMenuViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ICarResultsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ICreateAccountViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IFlightResultsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IHotelResultsViewModel.cs" />
@@ -60,6 +69,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseMenuViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseResultViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseSearchViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CarResultsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CreateAccountViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\FlightResultsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\HotelResultsViewModel.cs" />
@@ -71,6 +81,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SettingsMenuViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\AccountMenuView.xaml.cs">
       <DependentUpon>AccountMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\CarResultsView.xaml.cs">
+      <DependentUpon>CarResultsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\CreateAccountView.xaml.cs">
       <DependentUpon>CreateAccountView.xaml</DependentUpon>
@@ -108,6 +121,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)Views\AccountMenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\CarResultsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -87,17 +87,6 @@ namespace Expedia.Client.ViewModels
             }
         }
 
-        private int _resultsCount;
-        public int ResultsCount
-        {
-            get { return _resultsCount; }
-            set
-            {
-                _resultsCount = value;
-                OnPropertyChanged("ResultsCount");
-            }
-        }
-
         private FlightResultItem _selectedDeparture;
         public FlightResultItem SelectedDeparture
         {

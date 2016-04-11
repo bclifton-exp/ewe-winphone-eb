@@ -134,10 +134,10 @@ namespace Expedia.Services
                         var maxBags = cars.OrderByDescending(c => c.vehicleInfo.largeLuggageCapacity).First().vehicleInfo.largeLuggageCapacity;
                         var minBags = cars.Any(c => c.vehicleInfo.largeLuggageCapacity > 0) ?
                             cars.Where(c => c.vehicleInfo.largeLuggageCapacity > 0).OrderByDescending(c => c.vehicleInfo.largeLuggageCapacity).Last().vehicleInfo.largeLuggageCapacity : 0;
-                        var maxDoors = cars.OrderByDescending(c => c.vehicleInfo.maxDoors).First().vehicleInfo.maxDoors;
+                        var maxDoors = cars.OrderByDescending(c => c.vehicleInfo.maxDoors).First().vehicleInfo.maxDoors == 0 ? 2 : cars.OrderByDescending(c => c.vehicleInfo.maxDoors).First().vehicleInfo.maxDoors;
                         var minDoors = cars.Any(c => c.vehicleInfo.minDoors > 0) ?
                             cars.Where(c => c.vehicleInfo.minDoors > 0).OrderByDescending(c => c.vehicleInfo.minDoors).Last().vehicleInfo.minDoors : 2;
-                        var maxPassengers = cars.OrderByDescending(c => c.vehicleInfo.adultCapacity).First().vehicleInfo.adultCapacity;
+                        var maxPassengers = cars.OrderByDescending(c => c.vehicleInfo.adultCapacity).First().vehicleInfo.adultCapacity == 0 ? 2 : cars.OrderByDescending(c => c.vehicleInfo.adultCapacity).First().vehicleInfo.adultCapacity;
                         var minPassengers = cars.Any(c => c.vehicleInfo.adultCapacity > 0) ? cars.Where(c => c.vehicleInfo.adultCapacity > 0).OrderByDescending(c => c.vehicleInfo.adultCapacity).Last().vehicleInfo.adultCapacity : 2;
 
                         carCategoryResult.MinMaxPassengers = minPassengers == maxPassengers ? minPassengers.ToString() : minPassengers + "-" + maxPassengers;

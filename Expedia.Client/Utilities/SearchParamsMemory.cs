@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
+﻿using Expedia.Entities.Cars;
 using Expedia.Entities.Flights;
 using Expedia.Entities.Hotels;
-using Expedia.Entities.Suggestions;
 
 namespace Expedia.Client.Utilities
 {
@@ -13,6 +9,7 @@ namespace Expedia.Client.Utilities
         private static SearchParamsMemory _instance;
         public SearchHotelsLocalParameters HotelParams;
         public SearchFlightsLocalParameters FlightParams;
+        public SearchCarsLocalParameters CarParams;
 
         public static SearchParamsMemory Instance()
         {

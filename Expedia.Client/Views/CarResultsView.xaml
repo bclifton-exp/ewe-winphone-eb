@@ -1,0 +1,485 @@
+﻿<Page
+    x:Class="Expedia.Client.Views.CarResultsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Expedia.Client.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:customControls="using:Expedia.Client.CustomControls"
+    xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
+    mc:Ignorable="d" NavigationCacheMode="Enabled">
+
+    <Page.Resources>
+        <DataTemplate x:Key="CarResultCategoryItemTemplate">
+            <Grid Height="240" Margin="15 10 15 5" Background="White" x:Name="MainCarGrid">
+                <Grid x:Name="TestGrid" Height="190" VerticalAlignment="Top" Background="White">
+                    <Border Visibility="Collapsed">
+                        <Border.Triggers>
+                            <EventTrigger RoutedEvent="Border.Loaded">
+                                <EventTrigger.Actions>
+                                    <BeginStoryboard>
+                                        <Storyboard BeginTime="00:00:00"
+                                    Duration="{Binding AnimationDuration, Mode=TwoWay}"
+                                    RepeatBehavior="Forever"
+                                    AutoReverse="True"
+                                    Storyboard.TargetName="TestGrid" 
+                                    Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
+                                            <ColorAnimation From="White" To="Gray" Duration="0:0:1" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger.Actions>
+                            </EventTrigger>
+
+                        </Border.Triggers>
+                    </Border>
+
+                    <Grid Height="190" VerticalAlignment="Top" Background="{Binding CategoryImageUrlPart, Converter={StaticResource CarCategoryToImageConverter}}">
+                        <Grid Height="190">
+                            <Grid.Background>
+                                <LinearGradientBrush  EndPoint="0.5,1.15" MappingMode="RelativeToBoundingBox"  StartPoint="0.5,0.4">
+                                    <GradientStop Color="Transparent"/>
+                                    <GradientStop Color="Black" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Grid.Background>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="110"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Margin="15 0 0 5" FontWeight="SemiBold" VerticalAlignment="Bottom" Foreground="White" Grid.Column="0" Grid.Row="1" FontSize="22" Text="{Binding CarCategory}" Style="{StaticResource SubheaderTextBlockStyle}" HorizontalAlignment="Left"/>
+
+                            <StackPanel Margin="0 0 15 5" Grid.Column="1" Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                                <TextBlock x:Uid="DailyText" FontWeight="SemiBold" FontSize="22" Text="Daily" Foreground="White" Style="{StaticResource SubheaderTextBlockStyle}"/>
+                                <TextBlock Margin="5 0 0 0" FontWeight="SemiBold" FontSize="22" Text="{Binding LowestDailyRate}" Foreground="White" Style="{StaticResource SubheaderTextBlockStyle}"/>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Grid>
+
+                <StackPanel Margin="15 5 5 15" VerticalAlignment="Bottom" Orientation="Horizontal">
+                    <Viewbox Width="18" Margin="0 0 5 0">
+                        <PathIcon Foreground="{StaticResource IconGrayBrush}" Data="F1 M 32.4463,17.2207C 31.3398,23.8018 33.21,32.0801 38.3643,35.998C 37.7139,36.5898 37.0244,37.1377 36.2842,37.6211C 33.3369,38.0205 28.3096,38.8418 24.9717,40.1377C 16.9531,39.0195 10.7734,32.1504 10.7734,23.8232C 10.7734,14.7168 18.1592,7.33105 27.2656,7.33105C 29.9922,7.33105 32.5576,8.00391 34.8213,9.1748C 33.7402,11.584 32.9404,14.2852 32.4463,17.2207 Z M 3.20605,44.7764C 6.42285,42.5283 16.4922,41.5176 16.4922,41.5176L 22.4336,41.5176C 18.9795,44.3438 18.9707,50.4619 18.9707,50.4619L 18.7773,85.332L 0.777344,85.332L 0,52.5117C 0,52.5117 0,47.0156 3.20605,44.7764 Z M 77.6484,19.6914C 77.6484,30.5137 68.9199,39.2969 58.1182,39.3848L 71.0859,39.3848C 71.0859,39.3848 83.1074,40.5918 86.9502,43.2734C 90.7783,45.9473 90.7783,52.5127 90.7783,52.5127L 90.7783,85.332L 25.1377,85.332L 25.1377,52.5127C 25.1377,52.5127 25.1377,45.9473 28.9658,43.2734C 32.8076,40.5918 44.8291,39.3848 44.8291,39.3848L 57.7939,39.3848C 46.9951,39.2969 38.2646,30.5137 38.2646,19.6914C 38.2646,8.81641 47.082,0 57.9561,0C 68.833,0 77.6484,8.81641 77.6484,19.6914 Z "
+									  VerticalAlignment="Center" />
+                    </Viewbox>
+                    <TextBlock Foreground="{StaticResource IconGrayBrush}" Text="{Binding MinMaxPassengers}" HorizontalAlignment="Left"/>
+
+                    <Viewbox Width="18" Margin="12 0 5 0">
+                        <PathIcon Foreground="{StaticResource IconGrayBrush}"  Data="F1 M 23.2975,110.101L 13.4336,110.101C 6.60281,110.091 0.00653076,105.086 0,96.367L 0,33.9171C 0.00653076,26.2023 6.444,20.341 13.4336,20.3358L 23.2975,20.3358L 23.2975,110.101 Z M 85.3671,20.4876L 103.501,20.4876L 103.501,110.255L 29.9733,110.255L 29.9733,20.4876L 47.957,20.4876L 47.957,7.58389C 47.9478,2.93546 52.1412,-0.0365295 57.1399,-3.05176e-005L 76.2603,-3.05176e-005C 81.2799,-0.0365295 85.4035,2.93546 85.3671,7.58389L 85.3671,20.4876 Z M 78.6145,20.4876L 78.6145,7.20758L 54.5585,7.20758L 54.5585,20.4876L 78.6145,20.4876 Z M 110.104,110.101L 110.104,20.3345L 119.969,20.3345C 126.906,20.3397 133.344,26.201 133.324,33.9159L 133.324,96.3645C 133.342,105.086 126.745,110.088 119.969,110.101L 110.104,110.101 Z "
+									  VerticalAlignment="Center" />
+                    </Viewbox>
+                    <TextBlock Text="{Binding MinMaxBags}" Foreground="{StaticResource IconGrayBrush}"   HorizontalAlignment="Left"/>
+
+                    <Viewbox Width="18" Margin="12 0 5 0">
+                        <PathIcon Foreground="{StaticResource IconGrayBrush}"   Data="F1 M 121.393,1.52588e-005C 127.987,1.52588e-005 133.333,5.34639 133.333,11.9401L 133.333,21.1432L 133.333,40.0495L 133.333,57.4636L 133.333,81.8399L 133.333,89.3034C 133.333,95.8972 127.987,101.245 121.393,101.245L 11.9402,101.245C 5.34641,101.245 0,95.8972 0,89.3034L 0,57.4636C 0,54.6185 0.997345,52.0104 2.65628,49.9596L 2.66013,49.9571C 3.26694,49.2057 51.248,3.00002 52.0429,2.39973L 52.0469,2.39839C 54.0443,0.898392 56.5163,1.52588e-005 59.2037,1.52588e-005L 121.393,1.52588e-005 Z M 116.007,87.776 Z M 126.449,52.1992L 126.448,6.95845L 57.7838,6.95845L 10.8626,52.1992L 126.449,52.1992 Z M 107.706,64.4765 107.706,64.4765 Z "
+									  VerticalAlignment="Center" />
+                    </Viewbox>
+                    <TextBlock Text="{Binding MinMaxDoors}" Foreground="{StaticResource IconGrayBrush}"   HorizontalAlignment="Left"/>
+                </StackPanel>
+
+                <StackPanel VerticalAlignment="Bottom" Orientation="Horizontal" Margin="5 5 15 15" HorizontalAlignment="Right">
+                    <TextBlock x:Uid="TotalText" Text="Total" Foreground="{StaticResource IconGrayBrush}"  />
+                    <TextBlock Margin="5 0 0 0" Text="{Binding LowestTotalRate}" Foreground="{StaticResource IconGrayBrush}"  />
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+        
+        <!--Details Template-->
+        <Style TargetType="Rectangle"
+			   x:Key="LightLineStyle">
+            <Setter Property="Height"
+					Value="1" />
+            <Setter Property="Fill"
+					Value="{StaticResource AppWhiteColorBrush}" />
+            <Setter Property="HorizontalAlignment"
+					Value="Stretch" />
+            <Setter Property="Opacity"
+					Value="0.2" />
+        </Style>
+        <DataTemplate x:Key="CompanyFilterTemplate">
+            <CheckBox Margin="0,-8,0,12"
+					  Style="{StaticResource CarsFilterCheckBoxStyle}"
+					  Content="{Binding CompanyName}"
+					  IsChecked="{Binding IsFilterChecked, Mode=TwoWay}"
+                      Command="{Binding DataContext.SelectFilter, ElementName=CompanyFilterListView}"/>
+        </DataTemplate>
+
+        <DataTemplate x:Key="TransmissionFilterTemplate">
+            <CheckBox Margin="0, 0, 0, 4"
+						  Style="{StaticResource CarsFilterCheckBoxStyle}"
+						  IsChecked="{Binding IsFilterChecked, Mode=TwoWay}"
+                          Content="{Binding FormattedTitle}"
+                          Command="{Binding DataContext.SelectFilter, ElementName=TransFilterListView}">
+            </CheckBox>
+        </DataTemplate>
+
+        <DataTemplate x:Key="CarResultItemTemplate">
+            <customControls:ExpandableContentControl x:Uid="DailyTextExpander" Style="{StaticResource ExpandableCarResultStyle}" Vendor="{Binding vendor.name}" Make="{Binding vehicleInfo.makes[0]}" 
+                                                     Location="{Binding pickUpLocation.locationDescription, Converter={StaticResource LocationDescriptionConverter}}" DailyPrice="{Binding fare.rate.formattedPrice}" 
+                                                     IsExpanded="{Binding IsOfferExpanded, Mode=TwoWay}" Tapped="UIElement_OnTapped">
+                <customControls:ExpandableContentControl.ExpandableContentTemplate>
+                    <DataTemplate>
+                        <Grid HorizontalAlignment="Stretch">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="7*" />
+                                <ColumnDefinition Width="3*" />
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="0" Margin="10 10 5 5">
+                                <TextBlock Text="{Binding vendor.name}"
+						       Style="{StaticResource CarResultsHeaderTextStyle}"
+						       Margin="10,2.5,20,0" />
+
+                                <StackPanel Orientation="Horizontal" Margin="10,5,20,5">
+                                    <TextBlock Text="{Binding vehicleInfo.makes[0]}" Style="{StaticResource CarDetailTextStyle}" FontWeight="SemiBold" />
+
+                                    <TextBlock Text="or similar"
+                                   x:Uid="OrSimilarText"
+                                   Visibility="{Binding vehicleInfo.type, Converter={StaticResource OrSimilarVisibilityConverter}}"
+                               Style="{StaticResource CarDetailTextStyle}" FontWeight="SemiBold"
+						       Margin="4 0 0 0" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="10 5 0 0" Visibility="{Binding vehicleInfo.adultCapacity, Converter={StaticResource EmptyDataVisibilityConverter}}">
+                                    <Viewbox Width="20" Margin="0 0 5 0">
+                                        <PathIcon Foreground="{StaticResource IconGrayBrush}" Data="F1 M 32.4463,17.2207C 31.3398,23.8018 33.21,32.0801 38.3643,35.998C 37.7139,36.5898 37.0244,37.1377 36.2842,37.6211C 33.3369,38.0205 28.3096,38.8418 24.9717,40.1377C 16.9531,39.0195 10.7734,32.1504 10.7734,23.8232C 10.7734,14.7168 18.1592,7.33105 27.2656,7.33105C 29.9922,7.33105 32.5576,8.00391 34.8213,9.1748C 33.7402,11.584 32.9404,14.2852 32.4463,17.2207 Z M 3.20605,44.7764C 6.42285,42.5283 16.4922,41.5176 16.4922,41.5176L 22.4336,41.5176C 18.9795,44.3438 18.9707,50.4619 18.9707,50.4619L 18.7773,85.332L 0.777344,85.332L 0,52.5117C 0,52.5117 0,47.0156 3.20605,44.7764 Z M 77.6484,19.6914C 77.6484,30.5137 68.9199,39.2969 58.1182,39.3848L 71.0859,39.3848C 71.0859,39.3848 83.1074,40.5918 86.9502,43.2734C 90.7783,45.9473 90.7783,52.5127 90.7783,52.5127L 90.7783,85.332L 25.1377,85.332L 25.1377,52.5127C 25.1377,52.5127 25.1377,45.9473 28.9658,43.2734C 32.8076,40.5918 44.8291,39.3848 44.8291,39.3848L 57.7939,39.3848C 46.9951,39.2969 38.2646,30.5137 38.2646,19.6914C 38.2646,8.81641 47.082,0 57.9561,0C 68.833,0 77.6484,8.81641 77.6484,19.6914 Z "
+									  VerticalAlignment="Center" />
+                                    </Viewbox>
+                                    <TextBlock Text="{Binding vehicleInfo.adultCapacity, Converter={StaticResource PassengerConverter}}" Style="{StaticResource CarDetailTextStyle}" Margin="0 3 0 0"/>
+                                    <TextBlock Text="Passengers" x:Uid="PassengersText" Style="{StaticResource CarDetailTextStyle}" Margin="3 3 0 0"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Margin="10 5 0 0" Visibility="{Binding vehicleInfo.maxDoors, Converter={StaticResource EmptyDataVisibilityConverter}}">
+                                    <Viewbox Width="20" Margin="0 0 5 0">
+                                        <PathIcon Foreground="{StaticResource IconGrayBrush}" Data="F1 M 121.393,1.52588e-005C 127.987,1.52588e-005 133.333,5.34639 133.333,11.9401L 133.333,21.1432L 133.333,40.0495L 133.333,57.4636L 133.333,81.8399L 133.333,89.3034C 133.333,95.8972 127.987,101.245 121.393,101.245L 11.9402,101.245C 5.34641,101.245 0,95.8972 0,89.3034L 0,57.4636C 0,54.6185 0.997345,52.0104 2.65628,49.9596L 2.66013,49.9571C 3.26694,49.2057 51.248,3.00002 52.0429,2.39973L 52.0469,2.39839C 54.0443,0.898392 56.5163,1.52588e-005 59.2037,1.52588e-005L 121.393,1.52588e-005 Z M 116.007,87.776 Z M 126.449,52.1992L 126.448,6.95845L 57.7838,6.95845L 10.8626,52.1992L 126.449,52.1992 Z M 107.706,64.4765 107.706,64.4765 Z "
+									  VerticalAlignment="Center" />
+                                    </Viewbox>
+                                    <TextBlock Text="{Binding vehicleInfo.maxDoors, Converter={StaticResource MinimumCarDoorsConverter}}" Style="{StaticResource CarDetailTextStyle}" Margin="0 3 0 0"/>
+                                    <TextBlock Text="Doors" x:Uid="DoorsText" Style="{StaticResource CarDetailTextStyle}" Margin="3 3 0 0"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Margin="10 5 0 0" Visibility="{Binding vehicleInfo.largeLuggageCapacity, Converter={StaticResource EmptyDataVisibilityConverter}}">
+                                    <Viewbox Width="20" Margin="0 0 5 0">
+                                        <PathIcon Foreground="{StaticResource IconGrayBrush}" Data="F1 M 23.2975,110.101L 13.4336,110.101C 6.60281,110.091 0.00653076,105.086 0,96.367L 0,33.9171C 0.00653076,26.2023 6.444,20.341 13.4336,20.3358L 23.2975,20.3358L 23.2975,110.101 Z M 85.3671,20.4876L 103.501,20.4876L 103.501,110.255L 29.9733,110.255L 29.9733,20.4876L 47.957,20.4876L 47.957,7.58389C 47.9478,2.93546 52.1412,-0.0365295 57.1399,-3.05176e-005L 76.2603,-3.05176e-005C 81.2799,-0.0365295 85.4035,2.93546 85.3671,7.58389L 85.3671,20.4876 Z M 78.6145,20.4876L 78.6145,7.20758L 54.5585,7.20758L 54.5585,20.4876L 78.6145,20.4876 Z M 110.104,110.101L 110.104,20.3345L 119.969,20.3345C 126.906,20.3397 133.344,26.201 133.324,33.9159L 133.324,96.3645C 133.342,105.086 126.745,110.088 119.969,110.101L 110.104,110.101 Z "
+									  VerticalAlignment="Center" />
+                                    </Viewbox>
+                                    <TextBlock Text="{Binding vehicleInfo.largeLuggageCapacity}" Style="{StaticResource CarDetailTextStyle}" Margin="0 3 0 0"/>
+                                    <TextBlock Text="Bags" x:Uid="BagsText" Style="{StaticResource CarDetailTextStyle}" Margin="3 3 0 0"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Margin="10 5 0 0">
+                                    <Viewbox Width="21" Margin="0 0 5 0">
+                                        <Canvas Width="25" Height="21">
+                                            <Canvas.RenderTransform>
+                                                <TranslateTransform X="0" Y="0"/>
+                                            </Canvas.RenderTransform>
+                                            <Canvas.Resources/>
+                                            <Canvas>
+                                                <Canvas>
+                                                    <Canvas.RenderTransform>
+                                                        <TranslateTransform X="-47.000000" Y="-742.000000"/>
+                                                    </Canvas.RenderTransform>
+                                                    <Canvas>
+                                                        <Canvas.RenderTransform>
+                                                            <TranslateTransform X="17.000000" Y="496.000000"/>
+                                                        </Canvas.RenderTransform>
+                                                        <Canvas>
+                                                            <Canvas.RenderTransform>
+                                                                <TranslateTransform X="29.000000" Y="122.000000"/>
+                                                            </Canvas.RenderTransform>
+                                                            <Canvas>
+                                                                <Canvas.RenderTransform>
+                                                                    <TranslateTransform X="1.000000" Y="124.000000"/>
+                                                                </Canvas.RenderTransform>
+                                                                <Path Fill="{StaticResource IconGrayBrush}" StrokeThickness="1" Data="M2.24781969e-10 9.44145293 C1.00563755e-10 8.89260959 0.456273573 8.44768415 1.00358391 8.44768415 L1.36285681 8.44768415 C1.9171209 8.44768415 2.68793849 8.12951408 3.07142812 7.74999382 L5.14519642 5.69769033 C5.53455021 5.3123666 6.28917586 5 6.84517142 5 L19.0050124 5 C19.5545289 5 20 5.44882002 20 6.00449184 L20 15.0940015 C20 15.648767 19.677797 16.4200948 19.2964203 16.8007597 L15.7929065 20.2977336 C15.4043301 20.6855846 14.6423801 21 14.0903622 21 L7.07548105 21 C6.52376819 21 5.74727207 20.6957372 5.34352495 20.3226246 L3.09943231 18.248804 C2.69461223 17.8746999 1.91016715 17.5714286 1.36285681 17.5714286 L1.00358391 17.5714286 C0.449319823 17.5714286 1.96522019e-09 17.1313714 1.83990016e-09 16.5776598 L2.24781969e-10 9.44145293 Z M10.0481771 13.694987 L8.12727865 13.6188151 L10.3398438 8.1180013 L13.1129557 8.20133464 L11 12.031901 L13.797526 12.1152344 L8.90104167 17.6816406 L10.0481771 13.694987 Z"/>
+                                                                <Rectangle Canvas.Left="20" Canvas.Top="9" Width="4" Height="4" Fill="{StaticResource IconGrayBrush}" StrokeThickness="1"/>
+                                                                <Rectangle Canvas.Left="0.167" Canvas.Top="-11.167" Width="4" Height="3" Fill="{StaticResource IconGrayBrush}" StrokeThickness="1">
+                                                                    <Rectangle.RenderTransform>
+                                                                        <TransformGroup>
+                                                                            <TranslateTransform X="-13.500000" Y="-4.000000"/>
+                                                                            <RotateTransform Angle="-90.000000"/>
+                                                                            <TranslateTransform X="13.500000" Y="4.000000"/>
+                                                                        </TransformGroup>
+                                                                    </Rectangle.RenderTransform>
+                                                                </Rectangle>
+                                                                <Rectangle Canvas.Left="22" Canvas.Top="7" Width="3" Height="8" RadiusX="2" RadiusY="2" Fill="{StaticResource IconGrayBrush}" StrokeThickness="1"/>
+                                                                <Rectangle Canvas.Left="-6.333" Canvas.Top="-14.334" Width="3" Height="8" RadiusX="2" RadiusY="2" Fill="{StaticResource IconGrayBrush}" StrokeThickness="1">
+                                                                    <Rectangle.RenderTransform>
+                                                                        <TransformGroup>
+                                                                            <TranslateTransform X="-13.500000" Y="-2.000000"/>
+                                                                            <RotateTransform Angle="-90.000000" CenterX="2"/>
+                                                                            <TranslateTransform X="13.500000" Y="2.000000"/>
+                                                                        </TransformGroup>
+                                                                    </Rectangle.RenderTransform>
+                                                                </Rectangle>
+                                                            </Canvas>
+                                                        </Canvas>
+                                                    </Canvas>
+                                                </Canvas>
+                                            </Canvas>
+                                        </Canvas>
+                                        <!--<PathIcon Foreground="{StaticResource IconGrayBrush}" Data="F1 M 79.838,10.4349L 86.9096,17.5703C 88.187,18.8613 88.1556,19.7722 86.9096,21.0703L 78.2924,29.6856L 73.243,24.6373L 68.1935,29.6856L 63.2129,24.7051L 58.3667,29.5533L 53.3171,24.5027L 46.7181,31.1003L 38.4088,31.1003C 34.8633,37.3287 28.2128,41.5223 20.5991,41.5345C 9.2312,41.5163 0.0254517,32.2162 0,20.7331C 0.0254517,9.276 9.2312,-0.0241089 20.5991,0C 28.2329,-0.0162354 34.8985,4.19019 38.4369,10.4349L 79.838,10.4349 Z M 11.5788,26.1868C 14.5684,26.1588 17.011,23.6868 17.0326,20.6653C 17.0098,17.6016 14.567,15.1296 11.5788,15.1452C 8.54034,15.1309 6.09769,17.6016 6.12567,20.6653C 6.09769,23.6868 8.54034,26.1588 11.5788,26.1868 Z "
+									  VerticalAlignment="Center" />-->
+                                    </Viewbox>
+                                    <TextBlock Text="{Binding vehicleInfo.transmission, Converter={StaticResource TransmissionTextConverter}}" Style="{StaticResource CarDetailTextStyle}" Margin="0 3 0 0"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Margin="10 5 0 0" Visibility="{Binding hasUnlimitedMileage, Converter={StaticResource BoolToVisibilityConverter}}">
+                                    <Viewbox Width="20" Margin="0 0 5 0">
+                                        <Path Fill="{StaticResource IconGrayBrush}" Data="M13.5 184 C20.4035594 184 26 178.403559 26 171.5 C26 164.596441 20.4035594 159 13.5 159 C6.59644063 159 1 164.596441 1 171.5 C1 178.403559 6.59644063 184 13.5 184 Z M13.5 181 C18.7467051 181 23 176.746705 23 171.5 C23 166.253295 18.7467051 162 13.5 162 C8.25329488 162 4 166.253295 4 171.5 C4 176.746705 8.25329488 181 13.5 181 Z M20.9217218 173 C20.4989505 176.552424 17.3373967 179.3125 13.5 179.3125 C9.66260326 179.3125 6.50104948 176.552424 6.07827824 173 L10.3368156 173 C10.8985475 174.182474 12.103802 175 13.5 175 C14.896198 175 16.1014525 174.182474 16.6631844 173 L20.9217218 173 Z M20.0472741 165.491851 C20.5776042 166.022181 16.5642713 171.616259 14.7439733 172.916472 C12.9236753 174.216685 11.222942 172.754747 12.6226529 170.795152 C14.0223639 168.835556 19.5169441 164.961521 20.0472741 165.491851 Z"
+                                                  VerticalAlignment="Center" Height="25" Stretch="Fill"  />
+                                    </Viewbox>
+                                    <TextBlock Text="Unlimited Mileage" x:Uid="MileageText" Style="{StaticResource CarDetailTextStyle}" Margin="0 3 0 0"/>
+                                </StackPanel>
+
+                                <TextBlock Margin="10 15 0 0" Text="{Binding pickUpLocation.locationDescription}" Style="{StaticResource CarDetailTextStyle}"/>
+
+                            </StackPanel>
+
+                            <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="0" Margin="0 10 15 5 " HorizontalAlignment="Right">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+                                    <TextBlock Text="Daily" x:Uid="DailyText" Style="{StaticResource CarDetailTextStyle}" Foreground="{StaticResource CarsPurple}" FontWeight="SemiBold"/>
+                                    <TextBlock Text="{Binding fare.rate.formattedPrice}" Foreground="{StaticResource CarsPurple}" Style="{StaticResource CarDetailTextStyle}" FontWeight="SemiBold" Margin="3 0 0 0"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Margin="0 8 0 0" HorizontalAlignment="Right">
+                                    <TextBlock Text="Total" x:Uid="TotalText" Style="{StaticResource CarDetailTextStyle}"/>
+                                    <TextBlock Text="{Binding fare.total.formattedPrice}" Style="{StaticResource CarDetailTextStyle}" Margin="3 0 0 0"/>
+                                </StackPanel>
+
+                                <Button Content="Reserve" Padding="0 0 0 2" VerticalContentAlignment="Center" VerticalAlignment="Center" x:Uid="ReserveButton" Width="124" Height="42" Command="{Binding DataContext[SelectCar], ElementName=ListView}" CommandParameter="{Binding}" HorizontalAlignment="Center" Style="{StaticResource MetroDefaultButton}" Foreground="WhiteSmoke" Background="{StaticResource CarsPurple}"/>
+                            </StackPanel>
+
+                            <Image Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" ImageOpened="Image_OnImageOpened" Stretch="UniformToFill" Margin="0 10 0 0" Grid.Row="2" Height="115" Tapped="MapImage_OnTapped" Source="{Binding MapImageSource}"/>
+                            <ProgressRing  Foreground="{StaticResource CarsPurple}" IsActive="{Binding IsImageLoading, Mode=TwoWay}" Grid.Row="2" Width="50" Height="50" Grid.Column="0" Grid.ColumnSpan="2"/>
+                            <!--<Maps:MapControl ZoomLevel="14" MapTapped="MapControl_OnMapTapped" Loaded="FrameworkElement_OnLoaded" MapServiceToken="0NLBh71VOaOcSGr1TLEVrg" Height="180"/>-->
+
+                            <Rectangle Fill="{StaticResource HotelLineBrush}"
+						   Grid.Row="7"
+						   Grid.ColumnSpan="2"
+						   Grid.Column="0"
+						   HorizontalAlignment="Stretch"
+						   Height="1"
+						   Margin="0,0,1,8" />
+                        </Grid>
+                    </DataTemplate>
+                </customControls:ExpandableContentControl.ExpandableContentTemplate>
+            </customControls:ExpandableContentControl>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" x:Name="ResultColumn"/>
+            <ColumnDefinition Width="2*" x:Name="MapColumn"/>
+        </Grid.ColumnDefinitions>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="320" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="ResultColumn.MinWidth" Value="320" />
+                        <Setter Target="MapColumn.Width" Value="0"/>
+                        <!--<Setter Target="ResultListView.ItemTemplate" Value="{StaticResource HotelResultItemTemplatePhone}"></Setter>-->
+                        <Setter Target="ResultListView.Margin" Value="0 0 0 0"/>
+                        <Setter Target="CarsAvailableTextBlockPhone.Visibility" Value="Visible"/>
+                        <Setter Target="SortByControlPhone.Visibility" Value="Visible"/>
+                        <Setter Target="FilterByControlPhone.Visibility" Value="Visible"/>
+                        <Setter Target="SideGrid.Visibility" Value="Collapsed"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="360" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="ResultColumn.MinWidth" Value="360" />
+                        <!--<Setter Target="ResultListView.ItemTemplate" Value="{StaticResource HotelResultItemTemplatePhone}"></Setter>-->
+                        <Setter Target="ResultListView.Margin" Value="0 0 0 0"/>
+                        <Setter Target="CarsAvailableTextBlockPhone.Visibility" Value="Visible"/>
+                        <Setter Target="SortByControlPhone.Visibility" Value="Visible"/>
+                        <Setter Target="FilterByControlPhone.Visibility" Value="Visible"/>
+                        <Setter Target="SideGrid.Visibility" Value="Collapsed"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="432" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="ResultColumn.MinWidth" Value="432" />
+                        <!--<Setter Target="ResultListView.ItemTemplate" Value="{StaticResource HotelResultItemTemplatePhone}"></Setter>-->
+                        <Setter Target="ResultListView.Margin" Value="0 0 0 0"/>
+                        <Setter Target="CarsAvailableTextBlockPhone.Visibility" Value="Visible"/>
+                        <Setter Target="SortByControlPhone.Visibility" Value="Visible"/>
+                        <Setter Target="FilterByControlPhone.Visibility" Value="Visible"/>
+                        <Setter Target="SideGrid.Visibility" Value="Collapsed"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="Map.Visibility" Value="Visible" />
+
+                        <Setter Target="ResultListView.Margin" Value="0 -50 0 0"/>
+                        <Setter Target="CarsAvailableTextBlockPhone.Visibility" Value="Collapsed"/>
+                        <Setter Target="SortByControlPhone.Visibility" Value="Collapsed"/>
+                        <Setter Target="FilterByControlPhone.Visibility" Value="Collapsed"/>
+                        <Setter Target="SideGrid.Visibility" Value="Visible"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Grid Background="{ThemeResource AppBarBackgroundThemeBrush}" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <ProgressRing x:Name="ProgressRing" Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="2" IsActive="{Binding CarResults, Converter={StaticResource ReversedNullToBoolConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Visibility="{Binding ElementName=ProgressRing, Path=IsActive, Converter={StaticResource BoolToVisibilityConverter}}" Width="100" Height="100" />
+
+            <customControls:ResultsHeaderControl DataContext="{Binding SearchInput, Mode=OneWay}" Grid.Row="0" Grid.ColumnSpan="3" Grid.Column="0"
+                                     x:Uid="CarsCategoryHeader"
+                                     Style="{StaticResource CarsHeaderControlStyle}"
+									 DepartureDate="{Binding PickupTime, Converter={StaticResource LocalizedStringConverter}, ConverterParameter='PickupDropOffTimeFormat'}"
+                                     ArrivalDate="{Binding DropOffTime, Converter={StaticResource LocalizedStringConverter}, ConverterParameter='PickupDropOffTimeFormat'}"
+									 City="{Binding PickupLocationFriendly}"
+									 GuestVisibility="Collapsed"
+                                     PersonVisibility="Collapsed"/>
+
+            <Grid x:Name="CarsAvailableTextBlockPhone" Grid.Column="0" Grid.Row="1" Margin="0 0 0 0" Background="{StaticResource FilterGrayBrush}">
+                <TextBlock Style="{StaticResource LocationHeaderStyle}" Foreground="{StaticResource AppWhiteColorBrush}" FontSize="17"
+					VerticalAlignment="Center"
+					HorizontalAlignment="Center">
+						<Run Text="{Binding ResultsCount}" />
+						<Run Text="cars available" x:Uid="CarsAvailable" />
+                </TextBlock>
+            </Grid>
+
+            <Grid x:Name="SortByControlPhone" Grid.Column="1" Grid.Row="1" Background="{StaticResource FilterGrayBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="1 0 0 0">
+                <customControls:ExpandableContentControl x:Name="SortDropDownPhone" HorizontalAlignment="Stretch" VerticalAlignment="Center" Style="{StaticResource HotelFilterExpandablePhoneStyle}">
+                    <customControls:ExpandableContentControl.ContentTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="Sort by"
+							   x:Uid="SortBy"
+							    Style="{StaticResource FilterTextStyle}"/>
+                        </DataTemplate>
+                    </customControls:ExpandableContentControl.ContentTemplate>
+                </customControls:ExpandableContentControl>
+            </Grid>
+
+            <Grid Grid.Column="2" x:Name="FilterByControlPhone" Grid.Row="1" Background="{StaticResource FilterGrayBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="1 0 0 0">
+                <customControls:ExpandableContentControl x:Name="FilterDropDownPhone" HorizontalAlignment="Stretch" VerticalAlignment="Center" Style="{StaticResource HotelFilterExpandablePhoneStyle}">
+                    <customControls:ExpandableContentControl.ContentTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="Filter by"
+							   x:Uid="FilterBy"
+							   Style="{StaticResource FilterTextStyle}" />
+                        </DataTemplate>
+                    </customControls:ExpandableContentControl.ContentTemplate>
+                </customControls:ExpandableContentControl>
+            </Grid>
+
+            <ListView x:Name="ResultListView" Grid.Row="2" Tapped="ResultListView_OnTapped" Grid.Column="0" Grid.ColumnSpan="3" Margin="0 0 0 0" Visibility="{Binding CarDetailResults, Converter={StaticResource FromNullToVisible}}" ItemTemplate="{StaticResource CarResultCategoryItemTemplate}" ItemsSource="{Binding CarResults.CarCategoryResults}" SelectedItem="{Binding SelectedCarCategory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Setter Property="Margin" Value="0 0 0 0"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
+
+            <ListView x:Name="ResultListViewDetail" Grid.Row="2" Tapped="ResultListViewDetail_OnTapped" Grid.Column="0" Grid.ColumnSpan="3" Margin="0 0 0 0" Visibility="{Binding CarDetailResults, Converter={StaticResource FromNotNullToVisible}}" ItemTemplate="{StaticResource CarResultItemTemplate}" ItemsSource="{Binding CarDetailResults}" SelectedItem="{Binding SelectedCar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Setter Property="Margin" Value="0 0 0 0"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
+
+        </Grid>
+
+        <Grid x:Name="SideGrid" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <maps:MapControl Grid.Row="1" Grid.ColumnSpan="3" x:Name="Map" Visibility="Collapsed" MapTapped="Map_OnMapTapped" MapElementClick="Map_OnMapElementClick" Loading="Map_OnLoading" Margin="0 0 0 0" MapServiceToken="uTSDW7FxvBNrtGPD67ZQ~Cws5kVsbllSUip_fVoHCIQ~AiAsYMbHCnN32naqWWDEeulT3_C1XVy1yPU91wba8Knm9G1D31rZOIMDss4jJFtO" ZoomLevel="14" />
+
+            <!--Tablet Filter/Sort bar-->
+            <Grid x:Name="CarsAvailableTextBlock" Grid.Column="0" Grid.Row="0" Margin="0 0 1 0" Background="{StaticResource FilterGrayBrush}">
+                <TextBlock Style="{StaticResource LocationHeaderStyle}" Foreground="{StaticResource AppWhiteColorBrush}" FontSize="17"
+					VerticalAlignment="Center"
+					HorizontalAlignment="Center">
+						<Run Text="{Binding ResultsCount}" />
+						<Run Text="cars available" x:Uid="CarsAvailable" />
+                </TextBlock>
+            </Grid>
+
+            <Grid x:Name="SortByControl" Grid.Column="1" Grid.Row="0" Background="{StaticResource FilterGrayBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="1 0 1 0">
+                <customControls:ExpandableContentControl x:Name="SortDropDown" HorizontalAlignment="Stretch" VerticalAlignment="Center" Style="{StaticResource HotelFilterExpandableStyle}">
+                    <customControls:ExpandableContentControl.ContentTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="Sort by"
+							   x:Uid="SortBy"
+							    Style="{StaticResource FilterTextStyle}"/>
+                        </DataTemplate>
+                    </customControls:ExpandableContentControl.ContentTemplate>
+                </customControls:ExpandableContentControl>
+            </Grid>
+
+           
+
+            <Grid Grid.Column="2" x:Name="FilterByControl" Grid.Row="0" Background="{StaticResource FilterGrayBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="1 0 0 0">
+                <customControls:ExpandableContentControl x:Name="FilterDropDown" HorizontalAlignment="Stretch" VerticalAlignment="Center" Style="{StaticResource HotelFilterExpandableStyle}">
+                    <customControls:ExpandableContentControl.ContentTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="Filter by"
+							   x:Uid="FilterBy"
+							   Style="{StaticResource FilterTextStyle}" />
+                        </DataTemplate>
+                    </customControls:ExpandableContentControl.ContentTemplate>
+                </customControls:ExpandableContentControl>
+            </Grid>
+
+        </Grid>
+    </Grid>
+
+</Page>

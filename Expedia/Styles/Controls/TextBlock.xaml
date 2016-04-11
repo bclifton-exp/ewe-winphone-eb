@@ -37,6 +37,34 @@
 				Value="{StaticResource TertiaryColor2Brush}" />
     </Style>
 
+    <Style x:Key="CarResultsHeaderTextStyle"
+		   TargetType="TextBlock"
+		   BasedOn="{StaticResource ResultsHeaderTextStyle}">
+        <Setter Property="TextTrimming"
+				Value="CharacterEllipsis" />
+        <Setter Property="FontSize"
+				Value="19.33" />
+        <Setter Property="TextWrapping"
+				Value="NoWrap" />
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Foreground" Value="{StaticResource SystemTrayBrush}"/>
+    </Style>
+
+    <Style x:Key="CarDetailTextStyle"
+		   TargetType="TextBlock"
+		   BasedOn="{StaticResource TextStyle}">
+        <Setter Property="FontSize"
+				Value="16" />
+        <Setter Property="LineHeight"
+				Value="15" />
+        <Setter Property="FontFamily"
+				Value="{StaticResource AppSemiLightFontFamily}" />
+        <Setter Property="FontFamily"
+				Value="Semilight" />
+        <Setter Property="Foreground"
+				Value="{StaticResource PrimaryColor6Brush}" />
+    </Style>
+
     <Style x:Key="TotalNumberOfDaysStyle"
 		   TargetType="TextBlock"
 		   BasedOn="{StaticResource LocationHeaderStyle}">

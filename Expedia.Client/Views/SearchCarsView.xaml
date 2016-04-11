@@ -119,7 +119,7 @@
 
         </Grid>
         <Grid Grid.Column="1" Visibility="{Binding IsMapVisible, Converter={StaticResource BoolToVisibilityConverter}}">
-            <maps:MapControl x:Name="Map" Visibility="Collapsed" Loading="Map_OnLoading" Margin="0 0 0 0" MapServiceToken="uTSDW7FxvBNrtGPD67ZQ~Cws5kVsbllSUip_fVoHCIQ~AiAsYMbHCnN32naqWWDEeulT3_C1XVy1yPU91wba8Knm9G1D31rZOIMDss4jJFtO" ZoomLevel="13" />
+            <maps:MapControl x:Name="Map" Visibility="Collapsed" Loading="Map_OnLoading" MapServiceToken="uTSDW7FxvBNrtGPD67ZQ~Cws5kVsbllSUip_fVoHCIQ~AiAsYMbHCnN32naqWWDEeulT3_C1XVy1yPU91wba8Knm9G1D31rZOIMDss4jJFtO" ZoomLevel="13" />
         </Grid>
 
         <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding IsMapVisible, Converter={StaticResource ReversedBoolToVisibilityConverter}}">

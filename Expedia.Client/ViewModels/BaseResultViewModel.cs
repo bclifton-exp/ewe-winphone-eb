@@ -32,6 +32,18 @@ namespace Expedia.Client.ViewModels
             }
         }
 
+        private int _resultsCount;
+        public int ResultsCount
+        {
+            get { return _resultsCount; }
+            set
+            {
+                _resultsCount = value;
+                OnPropertyChanged("ResultsCount");
+            }
+        }
+
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

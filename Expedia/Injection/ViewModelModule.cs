@@ -10,6 +10,7 @@ namespace Expedia.Injection
         {
             Bind<IMainPageViewModel>().To<MainPageViewModel>();
             Bind<ISearchCarsViewModel>().To<SearchCarsViewModel>();
+            Bind<ICarResultsViewModel>().To<CarResultsViewModel>();
             Bind<IAccountMenuViewModel>().To<AccountMenuViewModel>();
             Bind<ISearchHotelsViewModel>().To<SearchHotelsViewModel>();
             Bind<IHotelResultsViewModel>().To<HotelResultsViewModel>();

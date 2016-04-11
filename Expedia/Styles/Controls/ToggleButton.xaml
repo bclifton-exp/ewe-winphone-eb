@@ -195,6 +195,48 @@
         </Setter>
     </Style>-->
 
+    <Style x:Key="StandardToggleButtonStyle" TargetType="ToggleButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                
+                    <Grid Background="Transparent">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver" />
+                                <VisualState x:Name="Pressed">
+                                    
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                  
+                                </VisualState>
+
+                                <VisualState x:Name="Checked">
+                                   
+                                </VisualState>
+                                <VisualState x:Name="CheckedPointerOver">
+                                  
+                                </VisualState>
+                                <VisualState x:Name="CheckedPressed">
+                                    
+                                </VisualState>
+                                <VisualState x:Name="CheckedDisabled">
+                                    
+                                </VisualState>
+                                <VisualState x:Name="Indeterminate" />
+                                <VisualState x:Name="IndeterminatePointerOver" />
+                                <VisualState x:Name="IndeterminatePressed" />
+                                <VisualState x:Name="IndeterminateDisabled" />
+
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
     <Style x:Key="ResultsToggleButtonStyle"
 		   TargetType="ToggleButton">
         <Setter Property="HorizontalContentAlignment"

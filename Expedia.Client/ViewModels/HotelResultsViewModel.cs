@@ -206,17 +206,6 @@ namespace Expedia.Client.ViewModels
                 OnPropertyChanged("AccessibilityFilters");
             }
         }
-
-        private int _resultsCount;
-        public int ResultsCount
-        {
-            get { return _resultsCount; }
-            set
-            {
-                _resultsCount = value;
-                OnPropertyChanged("ResultsCount");
-            }
-        }
         #endregion
 
         public HotelResultsViewModel(IHotelService hotelService, ISettingsService settingsService, IPointOfSaleService pointOfSaleService)

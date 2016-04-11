@@ -179,19 +179,20 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
-                        <!-- Suppress: NVX014 -->
+                        
                         <ToggleButton x:Name="PART_MainPresenter"
 									  IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
 									  HorizontalContentAlignment="Left"
 									  HorizontalAlignment="Stretch"
 									  BorderThickness="0"
+                                      Style="{StaticResource StandardToggleButtonStyle}"
 									  Content="{TemplateBinding Content}"
+                                      Background="Transparent"
+                                      Foreground="Transparent"
 									  ContentTemplate="{TemplateBinding ContentTemplate}"
 									  ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
 									  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
 
-                        <!-- Will be a Path later -->
-                        <!-- Suppress: NVX018 -->
                         <Grid x:Name="PART_ExpandButton" Grid.Column="0" Grid.ColumnSpan="2">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -233,57 +234,6 @@
 
                         </Grid>
 
-                        <!--<ToggleButton x:Name="PART_ExpandButton"
-									  VerticalAlignment="Stretch"
-									  RenderTransformOrigin="0.5,0.5"
-									  BorderThickness="0"
-                                      IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
-									  MinWidth="50"
-									  MinHeight="50"
-									  Grid.Column="0"
-                                      Grid.ColumnSpan="2">
-                            <ToggleButton.RenderTransform>
-                                <RotateTransform Angle="0" />
-                            </ToggleButton.RenderTransform>
-                            <ToggleButton.ContentTemplate>
-                                -->
-                        <!--suppress: NVX011-->
-                        <!--
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-
-                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
-                                            <TextBlock Text="Alamo" Style="{StaticResource CarResultsHeaderTextStyle}"/>
-                                            <TextBlock Text="Kia Rio" Style="{StaticResource CarDetailTextStyle}" FontWeight="SemiBold"/>
-                                            <TextBlock Text="123 Main St." Style="{StaticResource CarDetailTextStyle}" FontWeight="SemiBold"/>
-                                            -->
-                        <!--<PathIcon Data="F1M5.999,4.844L1.155,0 0,1.158 5.999,7.155 11.999,1.158 10.843,0z"
-											      Foreground="{StaticResource AppWhiteColorBrush}"
-											      Height="7.155"
-											      Width="11.999"
-											      VerticalAlignment="Center" />-->
-                        <!--
-                                        </StackPanel>
-
-
-                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Right">
-                                            <TextBlock Text="Daily $50.00" Style="{StaticResource CarDetailTextStyle}" FontWeight="SemiBold"/>
-                                            <ToggleButton Content="View Details" Background="{StaticResource CarsPurple}" 
-                                                          Width="100" Height="40" Foreground="WhiteSmoke" />
-                                            -->
-                        <!--<PathIcon Data="F1M5.999,4.844L1.155,0 0,1.158 5.999,7.155 11.999,1.158 10.843,0z"
-											      Foreground="{StaticResource AppWhiteColorBrush}"
-											      Height="7.155"
-											      Width="11.999"
-											      VerticalAlignment="Center" />-->
-                        <!--
-                                        </StackPanel>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ToggleButton.ContentTemplate>
-                        </ToggleButton>-->
-
-                        <!-- Suppress: NVX014 -->
                         <ContentPresenter x:Name="PART_ExpandablePresenter"
 										  Grid.Row="1"
 										  Grid.ColumnSpan="2"

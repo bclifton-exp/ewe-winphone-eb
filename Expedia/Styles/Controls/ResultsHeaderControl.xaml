@@ -279,7 +279,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="customControls:ResultsHeaderControl">
 
-                    <Grid Background="{StaticResource CarsPurple}">
+                    <Grid Background="{StaticResource CarsDarkPurple}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
