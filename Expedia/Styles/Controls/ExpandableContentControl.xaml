@@ -221,7 +221,7 @@
                                     <TextBlock Text="{Binding DailyPrice, RelativeSource={RelativeSource TemplatedParent}}" Margin="3 0 0 0" Style="{StaticResource CarDetailTextStyle}" FontWeight="SemiBold" />
                                 </StackPanel>
                                 <ToggleButton Content="View Details" Background="{StaticResource AppGrayColorBrush}" Padding="10 0 10 2" HorizontalAlignment="Right"
-                                                          Width="150" Height="65" FontWeight="SemiBold" Foreground="WhiteSmoke" IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"/>
+                                                          Width="124" Height="42" FontWeight="SemiBold" Foreground="WhiteSmoke" IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"/>
                             </StackPanel>
 
                             <Rectangle Grid.Row="1" 

@@ -1,4 +1,5 @@
-﻿using Windows.Devices.Geolocation;
+﻿using System.Linq;
+using Windows.Devices.Geolocation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Maps;
@@ -57,9 +58,9 @@ namespace Expedia.Client.Views
 
         private void Map_OnMapElementClick(MapControl sender, MapElementClickEventArgs args)
         {
-            //var selectedPushPin = args.MapElements.FirstOrDefault(x => x is MapIcon) as MapIcon;
-            //var context = DataContext as CarResultsViewModel;
-            //context.PushPinSelected(selectedPushPin, ResultListView);
+            var selectedPushPin = args.MapElements.FirstOrDefault(x => x is MapIcon) as MapIcon;
+            var context = DataContext as CarResultsViewModel;
+            context.PushPinSelected(selectedPushPin, ResultListView);
         }
 
         //private void ImageBrush_OnImageFailed(object sender, ExceptionRoutedEventArgs e)

@@ -261,12 +261,11 @@
                                     <TextBlock Text="{Binding fare.total.formattedPrice}" Style="{StaticResource CarDetailTextStyle}" Margin="3 0 0 0"/>
                                 </StackPanel>
 
-                                <Button Content="Reserve" Padding="0 0 0 2" VerticalContentAlignment="Center" VerticalAlignment="Center" x:Uid="ReserveButton" Width="124" Height="42" Command="{Binding DataContext[SelectCar], ElementName=ListView}" CommandParameter="{Binding}" HorizontalAlignment="Center" Style="{StaticResource MetroDefaultButton}" Foreground="WhiteSmoke" Background="{StaticResource CarsPurple}"/>
+                                <Button Content="Reserve" Padding="0 0 0 2" VerticalContentAlignment="Center" x:Uid="ReserveButton" Width="124" Height="42" Command="{Binding DataContext[SelectCar], ElementName=ListView}" CommandParameter="{Binding}" HorizontalAlignment="Center" Style="{StaticResource MetroDefaultButton}" Foreground="WhiteSmoke" Background="{StaticResource CarsPurple}"/>
                             </StackPanel>
 
-                            <Image Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" ImageOpened="Image_OnImageOpened" Stretch="UniformToFill" Margin="0 10 0 0" Grid.Row="2" Height="115" Tapped="MapImage_OnTapped" Source="{Binding MapImageSource}"/>
-                            <ProgressRing  Foreground="{StaticResource CarsPurple}" IsActive="{Binding IsImageLoading, Mode=TwoWay}" Grid.Row="2" Width="50" Height="50" Grid.Column="0" Grid.ColumnSpan="2"/>
-                            <!--<Maps:MapControl ZoomLevel="14" MapTapped="MapControl_OnMapTapped" Loaded="FrameworkElement_OnLoaded" MapServiceToken="0NLBh71VOaOcSGr1TLEVrg" Height="180"/>-->
+                            <Image Grid.Column="0" Grid.ColumnSpan="2" Visibility="{Binding ElementName=Map, Path=Visibility, Converter={StaticResource InvertedVisibilityConverter}}" HorizontalAlignment="Stretch" ImageOpened="Image_OnImageOpened" Stretch="UniformToFill" Margin="0 10 0 0" Grid.Row="2" Height="115" Tapped="MapImage_OnTapped" Source="{Binding MapImageSource}"/>
+                            <ProgressRing Visibility="{Binding ElementName=Map, Path=Visibility, Converter={StaticResource InvertedVisibilityConverter}}" Foreground="{StaticResource CarsPurple}" IsActive="{Binding IsImageLoading, Mode=TwoWay}" Grid.Row="2" Width="50" Height="50" Grid.Column="0" Grid.ColumnSpan="2"/>
 
                             <Rectangle Fill="{StaticResource HotelLineBrush}"
 						   Grid.Row="7"
@@ -299,7 +298,9 @@
                         <Setter Target="ResultColumn.MinWidth" Value="320" />
                         <Setter Target="MapColumn.Width" Value="0"/>
                         <!--<Setter Target="ResultListView.ItemTemplate" Value="{StaticResource HotelResultItemTemplatePhone}"></Setter>-->
-                        <Setter Target="ResultListView.Margin" Value="0 0 0 0"/>
+                        <Setter Target="ResultListView.Margin" Value="0 -110 0 0"/>
+                        <Setter Target="ResultListViewDetail.Margin" Value="0 0 0 0"/>
+                        <Setter Target="CarCategoryImage.Margin" Value="0 0 0 0"/>
                         <Setter Target="CarsAvailableTextBlockPhone.Visibility" Value="Visible"/>
                         <Setter Target="SortByControlPhone.Visibility" Value="Visible"/>
                         <Setter Target="FilterByControlPhone.Visibility" Value="Visible"/>
@@ -314,7 +315,9 @@
                     <VisualState.Setters>
                         <Setter Target="ResultColumn.MinWidth" Value="360" />
                         <!--<Setter Target="ResultListView.ItemTemplate" Value="{StaticResource HotelResultItemTemplatePhone}"></Setter>-->
-                        <Setter Target="ResultListView.Margin" Value="0 0 0 0"/>
+                        <Setter Target="ResultListView.Margin" Value="0 -110 0 0"/>
+                        <Setter Target="ResultListViewDetail.Margin" Value="0 0 0 0"/>
+                        <Setter Target="CarCategoryImage.Margin" Value="0 0 0 0"/>
                         <Setter Target="CarsAvailableTextBlockPhone.Visibility" Value="Visible"/>
                         <Setter Target="SortByControlPhone.Visibility" Value="Visible"/>
                         <Setter Target="FilterByControlPhone.Visibility" Value="Visible"/>
@@ -329,7 +332,9 @@
                     <VisualState.Setters>
                         <Setter Target="ResultColumn.MinWidth" Value="432" />
                         <!--<Setter Target="ResultListView.ItemTemplate" Value="{StaticResource HotelResultItemTemplatePhone}"></Setter>-->
-                        <Setter Target="ResultListView.Margin" Value="0 0 0 0"/>
+                        <Setter Target="ResultListView.Margin" Value="0 -110 0 0"/>
+                        <Setter Target="ResultListViewDetail.Margin" Value="0 0 0 0"/>
+                        <Setter Target="CarCategoryImage.Margin" Value="0 0 0 0"/>
                         <Setter Target="CarsAvailableTextBlockPhone.Visibility" Value="Visible"/>
                         <Setter Target="SortByControlPhone.Visibility" Value="Visible"/>
                         <Setter Target="FilterByControlPhone.Visibility" Value="Visible"/>
@@ -343,8 +348,9 @@
 
                     <VisualState.Setters>
                         <Setter Target="Map.Visibility" Value="Visible" />
-
-                        <Setter Target="ResultListView.Margin" Value="0 -50 0 0"/>
+                        <Setter Target="ResultListView.Margin" Value="0 -160 0 0"/>
+                        <Setter Target="ResultListViewDetail.Margin" Value="0 0 0 0"/>
+                        <Setter Target="CarCategoryImage.Margin" Value="0 -50 0 0"/>
                         <Setter Target="CarsAvailableTextBlockPhone.Visibility" Value="Collapsed"/>
                         <Setter Target="SortByControlPhone.Visibility" Value="Collapsed"/>
                         <Setter Target="FilterByControlPhone.Visibility" Value="Collapsed"/>
@@ -358,6 +364,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="75"/>
                 <RowDefinition Height="50"/>
+                <RowDefinition Height="110"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -366,7 +373,7 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
-            <ProgressRing x:Name="ProgressRing" Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="2" IsActive="{Binding CarResults, Converter={StaticResource ReversedNullToBoolConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Visibility="{Binding ElementName=ProgressRing, Path=IsActive, Converter={StaticResource BoolToVisibilityConverter}}" Width="100" Height="100" />
+            <ProgressRing x:Name="ProgressRing" Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="3" IsActive="{Binding CarResults, Converter={StaticResource ReversedNullToBoolConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Visibility="{Binding ElementName=ProgressRing, Path=IsActive, Converter={StaticResource BoolToVisibilityConverter}}" Width="100" Height="100" />
 
             <customControls:ResultsHeaderControl DataContext="{Binding SearchInput, Mode=OneWay}" Grid.Row="0" Grid.ColumnSpan="3" Grid.Column="0"
                                      x:Uid="CarsCategoryHeader"
@@ -409,8 +416,30 @@
                     </customControls:ExpandableContentControl.ContentTemplate>
                 </customControls:ExpandableContentControl>
             </Grid>
+            
+            <!--CarCategoryPicked-->
+            <Grid x:Name="CarCategoryImage" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" MinHeight="110" Visibility="{Binding ElementName=ResultListViewDetail, Path=Visibility}"
+                  Background="{Binding SelectedCarCategory.CategoryImageUrlPart, Converter={StaticResource CarCategoryToImageConverter}}">
+                <Grid MinHeight="110">
+                    <Grid.Background>
+                        <LinearGradientBrush  EndPoint="0.5,1.15" MappingMode="RelativeToBoundingBox"  StartPoint="0.5,0.4">
+                            <GradientStop Color="Transparent"/>
+                            <GradientStop Color="Black" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                    <Button Content="Change"
+							x:Uid="Change"
+							HorizontalAlignment="Right"
+							VerticalAlignment="Bottom"
+							Command="{Binding ChangeCarCategory}"
+                            FontSize="22"
+                            Margin="0 0 5 0"
+                            Foreground="{StaticResource WhiteBrushOpacity90}"
+							Style="{StaticResource ChangeButtonStyle}"/>
+                </Grid>
+            </Grid>
 
-            <ListView x:Name="ResultListView" Grid.Row="2" Tapped="ResultListView_OnTapped" Grid.Column="0" Grid.ColumnSpan="3" Margin="0 0 0 0" Visibility="{Binding CarDetailResults, Converter={StaticResource FromNullToVisible}}" ItemTemplate="{StaticResource CarResultCategoryItemTemplate}" ItemsSource="{Binding CarResults.CarCategoryResults}" SelectedItem="{Binding SelectedCarCategory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <ListView x:Name="ResultListView" Grid.Row="3" Tapped="ResultListView_OnTapped" Grid.Column="0" Grid.ColumnSpan="3" Margin="0 0 0 0" Visibility="{Binding CarDetailResults, Converter={StaticResource FromNullToVisible}}" ItemTemplate="{StaticResource CarResultCategoryItemTemplate}" ItemsSource="{Binding CarResults.CarCategoryResults}" SelectedItem="{Binding SelectedCarCategory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -419,7 +448,7 @@
                 </ListView.ItemContainerStyle>
             </ListView>
 
-            <ListView x:Name="ResultListViewDetail" Grid.Row="2" Tapped="ResultListViewDetail_OnTapped" Grid.Column="0" Grid.ColumnSpan="3" Margin="0 0 0 0" Visibility="{Binding CarDetailResults, Converter={StaticResource FromNotNullToVisible}}" ItemTemplate="{StaticResource CarResultItemTemplate}" ItemsSource="{Binding CarDetailResults}" SelectedItem="{Binding SelectedCar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <ListView x:Name="ResultListViewDetail" Grid.Row="3" Tapped="ResultListViewDetail_OnTapped" Grid.Column="0" Grid.ColumnSpan="3" Margin="0 0 0 0" Visibility="{Binding CarDetailResults, Converter={StaticResource FromNotNullToVisible}}" ItemTemplate="{StaticResource CarResultItemTemplate}" ItemsSource="{Binding CarDetailResults}" SelectedItem="{Binding SelectedCar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -441,7 +470,7 @@
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
 
-            <maps:MapControl Grid.Row="1" Grid.ColumnSpan="3" x:Name="Map" Visibility="Collapsed" MapTapped="Map_OnMapTapped" MapElementClick="Map_OnMapElementClick" Loading="Map_OnLoading" Margin="0 0 0 0" MapServiceToken="uTSDW7FxvBNrtGPD67ZQ~Cws5kVsbllSUip_fVoHCIQ~AiAsYMbHCnN32naqWWDEeulT3_C1XVy1yPU91wba8Knm9G1D31rZOIMDss4jJFtO" ZoomLevel="14" />
+            <maps:MapControl Grid.Row="1" Grid.ColumnSpan="3" x:Name="Map" Visibility="Collapsed" MapTapped="Map_OnMapTapped" MapElementClick="Map_OnMapElementClick" Loading="Map_OnLoading" Margin="0 0 0 0" MapServiceToken="uTSDW7FxvBNrtGPD67ZQ~Cws5kVsbllSUip_fVoHCIQ~AiAsYMbHCnN32naqWWDEeulT3_C1XVy1yPU91wba8Knm9G1D31rZOIMDss4jJFtO" ZoomLevel="13" />
 
             <!--Tablet Filter/Sort bar-->
             <Grid x:Name="CarsAvailableTextBlock" Grid.Column="0" Grid.Row="0" Margin="0 0 1 0" Background="{StaticResource FilterGrayBrush}">

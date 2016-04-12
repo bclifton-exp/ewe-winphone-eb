@@ -118,6 +118,7 @@
     <Content Include="Assets\blue_pin.png" />
     <Content Include="Assets\gray_pin.png" />
     <Content Include="Assets\green_pin.png" />
+    <Content Include="Assets\purple_pin.png" />
     <Content Include="Assets\StarRatingEmpty.png" />
     <Content Include="Assets\StarRatingFull.png" />
     <Content Include="Assets\StarRatingHalf.png" />

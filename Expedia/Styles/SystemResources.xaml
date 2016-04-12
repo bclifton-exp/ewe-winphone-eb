@@ -28,6 +28,7 @@
     <converters:PassengerConverter x:Name="PassengerConverter"/>
     <converters:MinimumCarDoorsConverter x:Name="MinimumCarDoorsConverter"/>
     <converters:TransmissionTextConverter x:Name="TransmissionTextConverter"/>
+    <converters:InvertedVisibilityConverter x:Name="InvertedVisibilityConverter"/>
 
     <converters:FromNullableToDefaultValueConverter x:Key="FromNotNullToVisible">
         <converters:FromNullableToDefaultValueConverter.ValueIfNull>

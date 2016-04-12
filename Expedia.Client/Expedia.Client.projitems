@@ -25,6 +25,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\IndexToPivotBackgroundColorConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\IndexToPivotColorConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\IntGreaterThanOneToBoolConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\InvertedVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\LocalizedStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\LocationDescriptionConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\MinimumCarDoorsConverter.cs" />
