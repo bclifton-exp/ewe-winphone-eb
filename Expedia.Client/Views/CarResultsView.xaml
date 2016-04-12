@@ -1,5 +1,6 @@
 ﻿<Page
     x:Class="Expedia.Client.Views.CarResultsView"
+    x:Name="CarResultsXamlPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Expedia.Client.Views"
@@ -261,7 +262,7 @@
                                     <TextBlock Text="{Binding fare.total.formattedPrice}" Style="{StaticResource CarDetailTextStyle}" Margin="3 0 0 0"/>
                                 </StackPanel>
 
-                                <Button Content="Reserve" Padding="0 0 0 2" VerticalContentAlignment="Center" x:Uid="ReserveButton" Width="124" Height="42" Command="{Binding DataContext[SelectCar], ElementName=ListView}" CommandParameter="{Binding}" HorizontalAlignment="Center" Style="{StaticResource MetroDefaultButton}" Foreground="WhiteSmoke" Background="{StaticResource CarsPurple}"/>
+                                <Button Content="Reserve" Padding="0 0 0 2" VerticalContentAlignment="Center" x:Uid="ReserveButton" Width="124" Height="42" Command="{Binding DataContext.BookRentalCar, ElementName=CarResultsXamlPage}" CommandParameter="{Binding}" HorizontalAlignment="Center" Style="{StaticResource MetroDefaultButton}" Foreground="WhiteSmoke" Background="{StaticResource CarsPurple}"/>
                             </StackPanel>
 
                             <Image Grid.Column="0" Grid.ColumnSpan="2" Visibility="{Binding ElementName=Map, Path=Visibility, Converter={StaticResource InvertedVisibilityConverter}}" HorizontalAlignment="Stretch" ImageOpened="Image_OnImageOpened" Stretch="UniformToFill" Margin="0 10 0 0" Grid.Row="2" Height="115" Tapped="MapImage_OnTapped" Source="{Binding MapImageSource}"/>

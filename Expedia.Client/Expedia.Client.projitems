@@ -83,6 +83,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\AccountMenuView.xaml.cs">
       <DependentUpon>AccountMenuView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\CarBookingWebView.xaml.cs">
+      <DependentUpon>CarBookingWebView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\CarResultsView.xaml.cs">
       <DependentUpon>CarResultsView.xaml</DependentUpon>
     </Compile>
@@ -122,6 +125,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)Views\AccountMenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\CarBookingWebView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

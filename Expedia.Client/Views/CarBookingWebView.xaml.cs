@@ -1,0 +1,26 @@
+﻿using System;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
+
+namespace Expedia.Client.Views
+{
+    public sealed partial class CarBookingWebView : Page
+    {
+        public CarBookingWebView()
+        {
+            this.InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            ProgressRing.IsActive = true;
+            var sourceUri = e.Parameter as Uri;
+            WebView.Source = sourceUri;
+        }
+
+        private void WebView_OnLoadCompleted(object sender, NavigationEventArgs e)
+        {
+            ProgressRing.IsActive = false;
+        }
+    }
+}

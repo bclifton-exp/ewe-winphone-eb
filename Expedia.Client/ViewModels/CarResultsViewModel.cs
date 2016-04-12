@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,9 +14,13 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Maps;
 using Expedia.Client.Interfaces;
 using Expedia.Client.Utilities;
+using Expedia.Client.Views;
+using Expedia.Entites;
 using Expedia.Entities.Cars;
 using Expedia.Entities.Hotels;
+using Expedia.Entities.Suggestions;
 using Expedia.Services.Interfaces;
+using GalaSoft.MvvmLight.Command;
 using Microsoft.Practices.Prism.Commands;
 
 namespace Expedia.Client.ViewModels
@@ -120,6 +125,17 @@ namespace Expedia.Client.ViewModels
             }
         }
 
+        private RelayCommand<Offer> _bookRentalCar;
+        public RelayCommand<Offer> BookRentalCar
+        {
+            get { return _bookRentalCar; }
+            set
+            {
+                _bookRentalCar = value;
+                OnPropertyChanged("BookRentalCar");
+            }
+        }
+
 
         public CarResultsViewModel(ICarService carService, ISettingsService settingsService, IPointOfSaleService pointOfSaleService)
         {
@@ -128,6 +144,21 @@ namespace Expedia.Client.ViewModels
             _pointOfSaleService = pointOfSaleService;
 
             ChangeCarCategory = new DelegateCommand(ReturnToCarCategorySelection);
+            BookRentalCar = new RelayCommand<Offer>(BuildAndNavigateToCarUri);
+        }
+
+        private async void BuildAndNavigateToCarUri(Offer car) //Gone after Native - Web View Connector
+        {
+            var hostname = _settingsService.GetCurrentDomain();
+            var pos = await _pointOfSaleService.GetCurrentPointOfSale();
+
+            var carDeeplink = new Uri("https://www.{0}/carsearch/book?piid={1}&totalPriceShown={2}"
+                .InvariantCultureFormat(
+                    hostname,
+                    car.productKey,
+                    car.fare.total.amount));
+
+            Navigator.Instance().NavigateForward(SuggestionLob.CARS, typeof(CarBookingWebView), carDeeplink);
         }
 
         public async void GetCarCategoryResults(SearchCarsLocalParameters carParams)

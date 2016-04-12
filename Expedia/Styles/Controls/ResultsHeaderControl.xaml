@@ -296,7 +296,7 @@
                             <TextBlock Text="{TemplateBinding City}"
 									   Style="{StaticResource ResultsHeaderBoldTextStyle}"
                                        Foreground="{StaticResource SecondaryColor1Brush}"
-                                       FontSize="24"
+                                       TextTrimming="WordEllipsis"
                                        FontWeight="SemiBold"
 									   VerticalAlignment="Center"
 									   Margin="0,0,40,0" />
