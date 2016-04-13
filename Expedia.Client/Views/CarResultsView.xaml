@@ -395,7 +395,7 @@
             </Grid>
 
             <Grid x:Name="SortByControlPhone" Grid.Column="1" Grid.Row="1" Background="{StaticResource FilterGrayBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="1 0 0 0">
-                <customControls:ExpandableContentControl x:Name="SortDropDownPhone" HorizontalAlignment="Stretch" VerticalAlignment="Center" Style="{StaticResource HotelFilterExpandablePhoneStyle}">
+                <customControls:ExpandableContentControl x:Name="SortDropDownPhone" HorizontalAlignment="Stretch" IsEnabled="{Binding CarDetailResults, Converter={StaticResource NullToBoolConverter}}" VerticalAlignment="Center" Style="{StaticResource HotelFilterExpandablePhoneStyle}">
                     <customControls:ExpandableContentControl.ContentTemplate>
                         <DataTemplate>
                             <TextBlock Text="Sort by"
@@ -407,7 +407,7 @@
             </Grid>
 
             <Grid Grid.Column="2" x:Name="FilterByControlPhone" Grid.Row="1" Background="{StaticResource FilterGrayBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="1 0 0 0">
-                <customControls:ExpandableContentControl x:Name="FilterDropDownPhone" HorizontalAlignment="Stretch" VerticalAlignment="Center" Style="{StaticResource HotelFilterExpandablePhoneStyle}">
+                <customControls:ExpandableContentControl x:Name="FilterDropDownPhone" HorizontalAlignment="Stretch" IsEnabled="{Binding CarDetailResults, Converter={StaticResource NullToBoolConverter}}" VerticalAlignment="Center" Style="{StaticResource HotelFilterExpandablePhoneStyle}">
                     <customControls:ExpandableContentControl.ContentTemplate>
                         <DataTemplate>
                             <TextBlock Text="Filter by"
@@ -582,7 +582,7 @@
             </Grid>
 
             <Grid x:Name="SortByControl" Grid.Column="1" Grid.Row="0" Background="{StaticResource FilterGrayBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="1 0 1 0">
-                <customControls:ExpandableContentControl x:Name="SortDropDown" HorizontalAlignment="Stretch" VerticalAlignment="Center" Style="{StaticResource HotelFilterExpandableStyle}">
+                <customControls:ExpandableContentControl x:Name="SortDropDown" HorizontalAlignment="Stretch" VerticalAlignment="Center" Style="{StaticResource HotelFilterExpandableStyle}" IsEnabled="{Binding CarDetailResults, Converter={StaticResource NullToBoolConverter}}">
                     <customControls:ExpandableContentControl.ContentTemplate>
                         <DataTemplate>
                             <TextBlock Text="Sort by"
@@ -643,7 +643,7 @@
             </FlyoutPresenter>
 
             <Grid Grid.Column="2" x:Name="FilterByControl" Grid.Row="0" Background="{StaticResource FilterGrayBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="1 0 0 0">
-                <customControls:ExpandableContentControl x:Name="FilterDropDown" HorizontalAlignment="Stretch" VerticalAlignment="Center" Style="{StaticResource HotelFilterExpandableStyle}">
+                <customControls:ExpandableContentControl x:Name="FilterDropDown" HorizontalAlignment="Stretch" VerticalAlignment="Center" IsEnabled="{Binding CarDetailResults, Converter={StaticResource NullToBoolConverter}}" Style="{StaticResource HotelFilterExpandableStyle}">
                     <customControls:ExpandableContentControl.ContentTemplate>
                         <DataTemplate>
                             <TextBlock Text="Filter by"

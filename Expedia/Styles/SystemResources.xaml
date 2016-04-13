@@ -29,6 +29,7 @@
     <converters:MinimumCarDoorsConverter x:Name="MinimumCarDoorsConverter"/>
     <converters:TransmissionTextConverter x:Name="TransmissionTextConverter"/>
     <converters:InvertedVisibilityConverter x:Name="InvertedVisibilityConverter"/>
+    <converters:NullToBoolConverter x:Name="NullToBoolConverter"/>
 
     <converters:FromNullableToDefaultValueConverter x:Key="FromNotNullToVisible">
         <converters:FromNullableToDefaultValueConverter.ValueIfNull>

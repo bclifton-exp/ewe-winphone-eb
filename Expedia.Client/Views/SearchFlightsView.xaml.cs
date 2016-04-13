@@ -75,17 +75,42 @@ namespace Expedia.Client.Views
             {
                 if (!context.IsGPSEnabled)
                 {
-                    var geoPoint = new BasicGeoposition
+                    if (context.SelectedSearchSuggestion != null)
                     {
-                        Latitude = double.Parse(context.SelectedSearchSuggestion.Coordinates.Latitude),
-                        Longitude = double.Parse(context.SelectedSearchSuggestion.Coordinates.Longitude)
-                    };
+                        var geoPoint = new BasicGeoposition
+                        {
+                            Latitude = double.Parse(context.SelectedSearchSuggestion.Coordinates.Latitude),
+                            Longitude = double.Parse(context.SelectedSearchSuggestion.Coordinates.Longitude)
+                        };
 
-                    map.Center = new Geopoint(geoPoint);
+                        map.Center = new Geopoint(geoPoint);
+                    }
+                    else
+                    {
+                        var geoPoint = new BasicGeoposition
+                        {
+                            Latitude = double.Parse(context.SelectedSearchSuggestion2.Coordinates.Latitude),
+                            Longitude = double.Parse(context.SelectedSearchSuggestion2.Coordinates.Longitude)
+                        };
+
+                        map.Center = new Geopoint(geoPoint);
+                    }
                 }
                 else
                 {
                     map.Center = new Geopoint(new BasicGeoposition());
+                }
+            }
+
+            if (context.IsGPSEnabled == false)
+            {
+                if (context.SelectedSearchSuggestion != null)
+                {
+                    context.BuildDeparturePushPin(context.SelectedSearchSuggestion);
+                }
+                if (context.SelectedSearchSuggestion2 != null)
+                {
+                    context.BuildArrivalPushPin(context.SelectedSearchSuggestion2);
                 }
             }
         }

@@ -30,6 +30,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\LocationDescriptionConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\MinimumCarDoorsConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\NullableBoolToVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\NullToBoolConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\NullToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\OrSimilarVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\PassengerConverter.cs" />

@@ -416,7 +416,8 @@ namespace Expedia.Client.ViewModels
         {
             if (!IsGPSEnabled)
             {
-                IsMapVisible = suggestionValue != null;
+                if(!IsMapVisible)
+                    IsMapVisible = suggestionValue != null;
             }
         }
 
