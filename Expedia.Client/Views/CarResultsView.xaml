@@ -107,7 +107,7 @@
 					  Style="{StaticResource CarsFilterCheckBoxStyle}"
 					  Content="{Binding CompanyName}"
 					  IsChecked="{Binding IsFilterChecked, Mode=TwoWay}"
-                      Command="{Binding DataContext.SelectFilter, ElementName=CompanyFilterListView}"/>
+                      Command="{Binding DataContext.SelectFilter, ElementName=CarResultsXamlPage}"/>
         </DataTemplate>
 
         <DataTemplate x:Key="TransmissionFilterTemplate">
@@ -115,7 +115,7 @@
 						  Style="{StaticResource CarsFilterCheckBoxStyle}"
 						  IsChecked="{Binding IsFilterChecked, Mode=TwoWay}"
                           Content="{Binding FormattedTitle}"
-                          Command="{Binding DataContext.SelectFilter, ElementName=TransFilterListView}">
+                          Command="{Binding DataContext.SelectFilter, ElementName=CarResultsXamlPage}">
             </CheckBox>
         </DataTemplate>
 
@@ -458,6 +458,104 @@
                 </ListView.ItemContainerStyle>
             </ListView>
 
+            <FlyoutPresenter x:Name="FilterByFlyoutPhone" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Stretch" MaxWidth="800" Background="{StaticResource FilterGrayBrush}" Visibility="{Binding ElementName=FilterDropDownPhone, Path=IsExpanded, Converter={StaticResource BoolToVisibilityConverter}}">
+                <StackPanel Orientation="Vertical">
+                    <customControls:ExpandableContentControl Style="{StaticResource HotelFilterExpandablePhoneStyle}">
+                        <customControls:ExpandableContentControl.ExpandableContentTemplate>
+                            <DataTemplate>
+                                <ListView ItemTemplate="{StaticResource CompanyFilterTemplate}"
+					    			  ItemsSource="{Binding CarCompanyFilters}"
+                                          IsItemClickEnabled="False"
+                                          SelectionMode="None"
+					    			  Padding="0,0,0,0"
+                                      Margin="0,0,0,0"/>
+                            </DataTemplate>
+                        </customControls:ExpandableContentControl.ExpandableContentTemplate>
+                        <customControls:ExpandableContentControl.ContentTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="Companies"
+							   x:Uid="FilterCompanies"
+							   Style="{StaticResource FilterTextStyle}" />
+                            </DataTemplate>
+                        </customControls:ExpandableContentControl.ContentTemplate>
+                    </customControls:ExpandableContentControl>
+                    <customControls:ExpandableContentControl Style="{StaticResource HotelFilterExpandablePhoneStyle}">
+                        <customControls:ExpandableContentControl.ExpandableContentTemplate>
+                            <DataTemplate>
+                                <ListView ItemTemplate="{StaticResource TransmissionFilterTemplate}"
+					    			  ItemsSource="{Binding TransmissionFilters}"
+                                          IsItemClickEnabled="False"
+                                          SelectionMode="None"
+					    			  Padding="0,0,0,0" 
+                                      Margin="0,0,0,0"/>
+                            </DataTemplate>
+                        </customControls:ExpandableContentControl.ExpandableContentTemplate>
+                        <customControls:ExpandableContentControl.ContentTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="Transmission"
+							   x:Uid="FilterCarTransmission"
+							   Style="{StaticResource FilterTextStyle}" />
+                            </DataTemplate>
+                        </customControls:ExpandableContentControl.ContentTemplate>
+                    </customControls:ExpandableContentControl>
+                    <CheckBox Content="Air Conditioning" x:Uid="AirConditioning" IsChecked="{Binding IsACFilterApplied, Mode=TwoWay}" Style="{StaticResource CarsFilterCheckBoxStyle}" Margin="0 -5 0 20"/>
+                    <CheckBox Content="Unlimited Mileage" x:Uid="UnlimitedMileage" IsChecked="{Binding IsMileageFilterApplied, Mode=TwoWay}" Style="{StaticResource CarsFilterCheckBoxStyle}" Margin="0 -5 0 10"/>
+                </StackPanel>
+            </FlyoutPresenter>
+
+            <FlyoutPresenter x:Name="SortByFlyoutPhone" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Stretch" MaxWidth="800" LostFocus="UIElement_OnLostFocusPhone" Background="{StaticResource FilterGrayBrush}" Visibility="{Binding ElementName=SortDropDownPhone, Path=IsExpanded, Converter={StaticResource BoolToVisibilityConverter}}">
+                <StackPanel Orientation="Vertical">
+                    <Border Background="{Binding ElementName=PriceRadioPhone, Path=IsChecked, Converter={StaticResource RadioBackgroundConverter}}">
+                        <RadioButton x:Name="PriceRadioPhone" Content="Price"
+						 Style="{StaticResource SortRadioButtonStyle}"
+                         Foreground="{StaticResource AppWhiteColorBrush}"
+						 IsChecked="{Binding SortByPriceLowToHighChecked, Mode=TwoWay}"
+                         Command="{Binding SortResultsCommand}"
+                         Checked="UIElement_OnLostFocusPhone"
+                                     Tapped="UIElement_OnLostFocusPhone"
+						 x:Uid="SortPrice"
+                         GroupName="SortingCars"
+						 Margin="0,5,0,5" />
+                    </Border>
+                    <Border Background="{Binding ElementName=PassengerRadioPhone, Path=IsChecked, Converter={StaticResource RadioBackgroundConverter}}">
+                        <RadioButton x:Name="PassengerRadioPhone" Content="Passengers"
+						 IsChecked="{Binding SortByPassengersChecked, Mode=TwoWay}"
+                         Foreground="{StaticResource AppWhiteColorBrush}"
+                         Command="{Binding SortResultsCommand}"
+                                     Checked="UIElement_OnLostFocusPhone"
+                                     Tapped="UIElement_OnLostFocusPhone"
+						 Style="{StaticResource SortRadioButtonStyle}"
+                         GroupName="SortingCars"
+                         Margin="0,5,0,5"
+						 x:Uid="PassengersRadio" />
+                    </Border>
+                    <Border Background="{Binding ElementName=DoorRadioPhone, Path=IsChecked, Converter={StaticResource RadioBackgroundConverter}}">
+                        <RadioButton x:Name="DoorRadioPhone" Content="Doors"
+						 IsChecked="{Binding SortByDoorsChecked, Mode=TwoWay}"
+                         Foreground="{StaticResource AppWhiteColorBrush}"
+                         Command="{Binding SortResultsCommand}"
+                                     Checked="UIElement_OnLostFocusPhone"
+                                     Tapped="UIElement_OnLostFocusPhone"
+						 Style="{StaticResource SortRadioButtonStyle}"
+                         GroupName="SortingCars"
+                         Margin="0,5,0,5"
+						 x:Uid="DoorsRadio" />
+                    </Border>
+                    <Border Background="{Binding ElementName=BagRadioPhone, Path=IsChecked, Converter={StaticResource RadioBackgroundConverter}}">
+                        <RadioButton x:Name="BagRadioPhone" Content="Bags"
+						 IsChecked="{Binding SortByBagsChecked, Mode=TwoWay}"
+                         Foreground="{StaticResource AppWhiteColorBrush}"
+                         Command="{Binding SortResultsCommand}"
+                                     Checked="UIElement_OnLostFocusPhone"
+                                     Tapped="UIElement_OnLostFocusPhone"
+						 Style="{StaticResource SortRadioButtonStyle}"
+                         GroupName="SortingCars"
+                         Margin="0,5,0,5"
+						 x:Uid="BagsRadio"/>
+                    </Border>
+                </StackPanel>
+            </FlyoutPresenter>
+
         </Grid>
 
         <Grid x:Name="SideGrid" Grid.Column="1">
@@ -495,7 +593,54 @@
                 </customControls:ExpandableContentControl>
             </Grid>
 
-           
+            <FlyoutPresenter x:Name="SortByFlyout" Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Stretch" MaxWidth="800" LostFocus="UIElement_OnLostFocus" Background="{StaticResource FilterGrayBrush}" Visibility="{Binding ElementName=SortDropDown, Path=IsExpanded, Converter={StaticResource BoolToVisibilityConverter}}">
+                <StackPanel Orientation="Vertical">
+                    <Border x:Name="PriceBorder" Background="{Binding ElementName=PriceRadio, Path=IsChecked, Converter={StaticResource RadioBackgroundConverter}}">
+                        <RadioButton x:Name="PriceRadio" Content="Price"
+						 Style="{StaticResource SortRadioButtonStyle}"
+                         Foreground="{StaticResource AppWhiteColorBrush}"
+						 IsChecked="{Binding SortByPriceLowToHighChecked, Mode=TwoWay}"
+                         Command="{Binding SortResultsCommand}"
+                                     Checked="UIElement_OnLostFocus"
+						 x:Uid="SortPrice"
+                         GroupName="SortingCars"
+						 Margin="0,5,0,5" />
+                    </Border>
+                    <Border x:Name="RatingBorder" Background="{Binding ElementName=PassengerRadio, Path=IsChecked, Converter={StaticResource RadioBackgroundConverter}}">
+                        <RadioButton x:Name="PassengerRadio" Content="Passengers"
+						 IsChecked="{Binding SortByPassengersChecked, Mode=TwoWay}"
+                         Foreground="{StaticResource AppWhiteColorBrush}"
+                         Command="{Binding SortResultsCommand}"
+                                     Checked="UIElement_OnLostFocus"
+						 Style="{StaticResource SortRadioButtonStyle}"
+                         GroupName="SortingCars"
+                         Margin="0,5,0,5"
+						 x:Uid="PassengersRadio" />
+                    </Border>
+                    <Border x:Name="StarBorder" Background="{Binding ElementName=DoorRadio, Path=IsChecked, Converter={StaticResource RadioBackgroundConverter}}">
+                        <RadioButton x:Name="DoorRadio" Content="Doors"
+						 IsChecked="{Binding SortByDoorsChecked, Mode=TwoWay}"
+                         Foreground="{StaticResource AppWhiteColorBrush}"
+                         Command="{Binding SortResultsCommand}"
+                                     Checked="UIElement_OnLostFocus"
+						 Style="{StaticResource SortRadioButtonStyle}"
+                         GroupName="SortingCars"
+                         Margin="0,5,0,5"
+						 x:Uid="DoorsRadio" />
+                    </Border>
+                    <Border x:Name="BestBorder" Background="{Binding ElementName=BagRadio, Path=IsChecked, Converter={StaticResource RadioBackgroundConverter}}">
+                        <RadioButton x:Name="BagRadio" Content="Bags"
+						 IsChecked="{Binding SortByBagsChecked, Mode=TwoWay}"
+                         Foreground="{StaticResource AppWhiteColorBrush}"
+                         Command="{Binding SortResultsCommand}"
+                                     Checked="UIElement_OnLostFocus"
+						 Style="{StaticResource SortRadioButtonStyle}"
+                         GroupName="SortingCars"
+                         Margin="0,5,0,5"
+						 x:Uid="BagsRadio"/>
+                    </Border>
+                </StackPanel>
+            </FlyoutPresenter>
 
             <Grid Grid.Column="2" x:Name="FilterByControl" Grid.Row="0" Background="{StaticResource FilterGrayBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="1 0 0 0">
                 <customControls:ExpandableContentControl x:Name="FilterDropDown" HorizontalAlignment="Stretch" VerticalAlignment="Center" Style="{StaticResource HotelFilterExpandableStyle}">
@@ -508,6 +653,51 @@
                     </customControls:ExpandableContentControl.ContentTemplate>
                 </customControls:ExpandableContentControl>
             </Grid>
+
+            <FlyoutPresenter x:Name="FilterByFlyout" Grid.Column="2" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Stretch" MaxWidth="800" Background="{StaticResource FilterGrayBrush}" Visibility="{Binding ElementName=FilterDropDown, Path=IsExpanded, Converter={StaticResource BoolToVisibilityConverter}}">
+                <StackPanel Orientation="Vertical">
+                    <customControls:ExpandableContentControl Style="{StaticResource CarFilterExpandableStyle}">
+                        <customControls:ExpandableContentControl.ExpandableContentTemplate>
+                            <DataTemplate>
+                                <ListView ItemTemplate="{StaticResource CompanyFilterTemplate}"
+					    			  ItemsSource="{Binding CarCompanyFilters}"
+                                          IsItemClickEnabled="False"
+                                          SelectionMode="None"
+					    			  Padding="0,0,14,0"
+                                      Margin="20,0,0,0"/>
+                            </DataTemplate>
+                        </customControls:ExpandableContentControl.ExpandableContentTemplate>
+                        <customControls:ExpandableContentControl.ContentTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="Companies"
+							   x:Uid="FilterCompanies"
+							   Style="{StaticResource FilterTextStyle}" />
+                            </DataTemplate>
+                        </customControls:ExpandableContentControl.ContentTemplate>
+                    </customControls:ExpandableContentControl>
+                    <customControls:ExpandableContentControl Style="{StaticResource CarFilterExpandableStyle}">
+                        <customControls:ExpandableContentControl.ExpandableContentTemplate>
+                            <DataTemplate>
+                                <ListView ItemTemplate="{StaticResource TransmissionFilterTemplate}"
+					    			  ItemsSource="{Binding TransmissionFilters}"
+                                          IsItemClickEnabled="False"
+                                          SelectionMode="None"
+					    			  Padding="0,0,14,0" 
+                                      Margin="20,0,0,0"/>
+                            </DataTemplate>
+                        </customControls:ExpandableContentControl.ExpandableContentTemplate>
+                        <customControls:ExpandableContentControl.ContentTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="Transmission"
+							   x:Uid="FilterCarTransmission"
+							   Style="{StaticResource FilterTextStyle}" />
+                            </DataTemplate>
+                        </customControls:ExpandableContentControl.ContentTemplate>
+                    </customControls:ExpandableContentControl>
+                    <CheckBox Content="Air Conditioning" x:Uid="AirConditioning" IsChecked="{Binding IsACFilterApplied, Mode=TwoWay}" Style="{StaticResource CarsFilterCheckBoxStyle}" Margin="25 0 0 20"/>
+                    <CheckBox Content="Unlimited Mileage" x:Uid="UnlimitedMileage" IsChecked="{Binding IsMileageFilterApplied, Mode=TwoWay}" Style="{StaticResource CarsFilterCheckBoxStyle}" Margin="25 0 0 10"/>
+                </StackPanel>
+            </FlyoutPresenter>
 
         </Grid>
     </Grid>

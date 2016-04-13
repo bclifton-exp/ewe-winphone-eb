@@ -289,12 +289,13 @@
   <data name="FilterCarTransmission.Text" xml:space="preserve">
     <value>Transmission</value>
   </data>
-  <data name="AirConditioning.Text" xml:space="preserve">
+  <data name="AirConditioning.Content" xml:space="preserve">
     <value>Air Conditioning</value>
   </data>
-  <data name="UnlimitedMileage.Text" xml:space="preserve">
+  <data name="UnlimitedMileage.Content" xml:space="preserve">
     <value>Unlimited Mileage</value>
   </data>
+
   <data name="AVP_Loading.Text" xml:space="preserve">
     <value>loading</value>
     <comment>Shown while waiting for search results</comment>

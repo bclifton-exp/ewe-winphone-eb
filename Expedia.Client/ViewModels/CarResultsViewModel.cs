@@ -17,6 +17,7 @@ using Expedia.Client.Utilities;
 using Expedia.Client.Views;
 using Expedia.Entites;
 using Expedia.Entities.Cars;
+using Expedia.Entities.Extensions;
 using Expedia.Entities.Hotels;
 using Expedia.Entities.Suggestions;
 using Expedia.Services.Interfaces;
@@ -31,6 +32,9 @@ namespace Expedia.Client.ViewModels
         private ISettingsService _settingsService;
         private IPointOfSaleService _pointOfSaleService;
         private int SelectedPinCount;
+        const string Automatic = "AUTOMATIC";
+        const string Manual = "MANUAL";
+        const string All = "ALL";
 
         private CarResults _carResults;
         public CarResults CarResults
@@ -43,19 +47,19 @@ namespace Expedia.Client.ViewModels
             }
         }
 
-        private CarResults _baseResults;
-        public CarResults BaseResults
+        private ObservableCollection<Offer> _baseDetailResults;
+        public ObservableCollection<Offer> BaseDetailResults
         {
-            get { return _baseResults; }
+            get { return _baseDetailResults; }
             set
             {
-                _baseResults = value;
-                OnPropertyChanged("BaseResults");
+                _baseDetailResults = value;
+                OnPropertyChanged("BaseDetailResults");
             }
         }
 
-        private List<Offer> _carDetailResults;
-        public List<Offer> CarDetailResults
+        private ObservableCollection<Offer> _carDetailResults;
+        public ObservableCollection<Offer> CarDetailResults
         {
             get { return _carDetailResults; }
             set
@@ -103,6 +107,96 @@ namespace Expedia.Client.ViewModels
             }
         }
 
+        private bool _sortByPriceLowToHighChecked;
+        public bool SortByPriceLowToHighChecked
+        {
+            get { return _sortByPriceLowToHighChecked; }
+            set
+            {
+                _sortByPriceLowToHighChecked = value;
+                OnPropertyChanged("SortByPriceLowToHighChecked");
+            }
+        }
+
+        private bool _sortByPassengersChecked;
+        public bool SortByPassengersChecked
+        {
+            get { return _sortByPassengersChecked; }
+            set
+            {
+                _sortByPassengersChecked = value;
+                OnPropertyChanged("SortByPassengersChecked");
+            }
+        }
+
+        private bool _sortByDoorsChecked;
+        public bool SortByDoorsChecked
+        {
+            get { return _sortByDoorsChecked; }
+            set
+            {
+                _sortByDoorsChecked = value;
+                OnPropertyChanged("SortByDoorsChecked");
+            }
+        }
+
+        private bool _sortByBagsChecked;
+        public bool SortByBagsChecked
+        {
+            get { return _sortByBagsChecked; }
+            set
+            {
+                _sortByBagsChecked = value;
+                OnPropertyChanged("SortByBagsChecked");
+            }
+        }
+
+        private bool _isACFilterApplied;
+        public bool IsACFilterApplied
+        {
+            get { return _isACFilterApplied; }
+            set
+            {
+                _isACFilterApplied = value;
+                ApplyFilters();
+                OnPropertyChanged("IsACFilterApplied");
+            }
+        }
+
+        private bool _isMileageFilterApplied;
+        public bool IsMileageFilterApplied
+        {
+            get { return _isMileageFilterApplied; }
+            set
+            {
+                _isMileageFilterApplied = value;
+                ApplyFilters();
+                OnPropertyChanged("IsMileageFilterApplied");
+            }
+        }
+
+        private ObservableCollection<CarTransmissionFilter> _transmissionFilters;
+        public ObservableCollection<CarTransmissionFilter> TransmissionFilters
+        {
+            get { return _transmissionFilters; }
+            set
+            {
+                _transmissionFilters = value;
+                OnPropertyChanged("TransmissionFilters");
+            }
+        }
+
+        private ObservableCollection<CarCompanyFilter> _carCompanyFilters;
+        public ObservableCollection<CarCompanyFilter> CarCompanyFilters
+        {
+            get { return _carCompanyFilters; }
+            set
+            {
+                _carCompanyFilters = value;
+                OnPropertyChanged("CarCompanyFilters");
+            }
+        }
+
         private SearchCarsLocalParameters _searchInput;
         public SearchCarsLocalParameters SearchInput
         {
@@ -136,6 +230,28 @@ namespace Expedia.Client.ViewModels
             }
         }
 
+        private ICommand _sortResultsCommand;
+        public ICommand SortResultsCommand
+        {
+            get { return _sortResultsCommand; }
+            set
+            {
+                _sortResultsCommand = value;
+                OnPropertyChanged("SortResultsCommand");
+            }
+        }
+
+        private ICommand _selectFilter;
+        public ICommand SelectFilter
+        {
+            get { return _selectFilter; }
+            set
+            {
+                _selectFilter = value;
+                OnPropertyChanged("SelectFilter");
+            }
+        }
+    
 
         public CarResultsViewModel(ICarService carService, ISettingsService settingsService, IPointOfSaleService pointOfSaleService)
         {
@@ -145,6 +261,8 @@ namespace Expedia.Client.ViewModels
 
             ChangeCarCategory = new DelegateCommand(ReturnToCarCategorySelection);
             BookRentalCar = new RelayCommand<Offer>(BuildAndNavigateToCarUri);
+            SortResultsCommand = new DelegateCommand(SortResults);
+            SelectFilter = new DelegateCommand(ApplyFilters);
         }
 
         private async void BuildAndNavigateToCarUri(Offer car) //Gone after Native - Web View Connector
@@ -170,14 +288,33 @@ namespace Expedia.Client.ViewModels
 
             HasResults = results.AllCars.Count > 0;
             CarResults = results;
-            BaseResults = results;
             ResultsCount = results.AllCars.Count;
+
+            TransmissionFilters = new ObservableCollection<CarTransmissionFilter> { new CarTransmissionFilter { TransmissionType = Automatic, Title = Automatic.ToTitleCase(), IsFilterEnabled = true},
+                    new CarTransmissionFilter {TransmissionType = Manual, Title = Manual.ToTitleCase(), IsFilterEnabled = true}};
+
+            CarCompanyFilters = new ObservableCollection<CarCompanyFilter>();
         }
 
         private void GetSelectedCars(CarResults carResults, CarCategoryResult selectedCategory)
         {
-            CarDetailResults = carResults.AllCars.Where(c => c.vehicleInfo.carCategoryDisplayLabel == selectedCategory.CarCategory && c.vehicleInfo.type == selectedCategory.CarType).ToList();
+            var carDetails = carResults.AllCars.Where(c => c.vehicleInfo.carCategoryDisplayLabel == selectedCategory.CarCategory && c.vehicleInfo.type == selectedCategory.CarType).ToObservableCollection();
+            BaseDetailResults = carDetails;
+            SetCarCompanyFilters();
+            CarDetailResults = carDetails;
             BuildPushpins(CarDetailResults);
+        }
+
+        private void SetCarCompanyFilters()
+        {
+            var companies = BaseDetailResults.Select(c => c.vendor.name).ToList().Distinct();
+            var filters = new ObservableCollection<CarCompanyFilter>();
+            foreach (var company in companies)
+            {
+                filters.Add(new CarCompanyFilter { CompanyName = company, IsFilterEnabled = true, Title = company });
+            }
+
+            CarCompanyFilters = filters;
         }
 
         private void ReturnToCarCategorySelection()
@@ -188,9 +325,81 @@ namespace Expedia.Client.ViewModels
             ClearPushPins();
         }
 
+        internal void SortResults()
+        {
+            if (SortByBagsChecked)
+            {
+                CarDetailResults = CarDetailResults.OrderBy(c => c.vehicleInfo.largeLuggageCapacity).ToObservableCollection();
+            }
+
+            if (SortByDoorsChecked)
+            {
+                CarDetailResults = CarDetailResults.OrderBy(c => c.vehicleInfo.maxDoors).ToObservableCollection();
+            }
+
+            if (SortByPassengersChecked)
+            {
+                CarDetailResults = CarDetailResults.OrderBy(c => c.vehicleInfo.adultCapacity).ToObservableCollection();
+            }
+
+            if (SortByPriceLowToHighChecked)
+            {
+                CarDetailResults = CarDetailResults.OrderBy(c => double.Parse(c.fare.rate.amount)).ToObservableCollection();
+            }
+        }
+
+        private void ApplyFilters()
+        {
+            CarDetailResults = BaseDetailResults;
+
+            if (CarCompanyFilters != null)
+            {
+                var companyFiltersToApply = CarCompanyFilters.Where(f => f.IsFilterChecked);
+
+                if (companyFiltersToApply.Any())
+                {
+                    CarDetailResults = CarDetailResults.Where(c => companyFiltersToApply.Select(n => n.CompanyName).ToList().Contains(c.vendor.name)).ToObservableCollection();
+                }
+            }
+
+            if (TransmissionFilters != null)
+            {
+                var transmissionFilterToApply = TransmissionFilters.Where(f => f.IsFilterChecked);
+
+                if (transmissionFilterToApply.Any())
+                {
+                    if (transmissionFilterToApply.First().TransmissionType == All)
+                    {
+                        CarDetailResults =
+                            CarDetailResults.Where(
+                                c =>
+                                    c.vehicleInfo.transmission.Contains(Automatic) ||
+                                    c.vehicleInfo.transmission.Contains(Manual)).ToObservableCollection();
+                    }
+                    else
+                    {
+                        CarDetailResults = CarDetailResults.Where(c => c.vehicleInfo.transmission.Contains(transmissionFilterToApply.First().TransmissionType)).ToObservableCollection();
+                    }
+                }
+            }
+
+            if (IsMileageFilterApplied)
+            {
+                CarDetailResults = CarDetailResults.Where(c => c.hasUnlimitedMileage).ToObservableCollection();
+            }
+
+            if (IsACFilterApplied)
+            {
+                CarDetailResults = CarDetailResults.Where(c => c.vehicleInfo.hasAirConditioning).ToObservableCollection();
+            }
+
+            ResultsCount = CarDetailResults.Count;
+        }
+
         public void SelectedMapLoaded()
         {
-            SelectedCar.IsImageLoading = false;
+            if(SelectedCar != null)
+                SelectedCar.IsImageLoading = false;
         }
 
         public void CloseOpenOffers(object sender)
@@ -209,8 +418,11 @@ namespace Expedia.Client.ViewModels
         {
             foreach (var offer in CarDetailResults)
             {
-                if (offer.productKey != SelectedCar.productKey)
-                    offer.IsOfferExpanded = false;
+                if (SelectedCar != null)
+                {
+                    if (offer.productKey != SelectedCar.productKey)
+                        offer.IsOfferExpanded = false;
+                }
             }
         }
 
@@ -229,7 +441,7 @@ namespace Expedia.Client.ViewModels
             SelectedPinCount = 0;
         }
 
-        private void BuildPushpins(List<Offer> cars)
+        private void BuildPushpins(ObservableCollection<Offer> cars)
         {
             if (MapControl != null)
             {

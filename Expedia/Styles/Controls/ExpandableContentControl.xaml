@@ -248,6 +248,13 @@
         </Setter>
     </Style>
 
+    <Style x:Key="CarFilterExpandableStyle"
+		   TargetType="customControls:ExpandableContentControl"
+		   BasedOn="{StaticResource ExpandableDownControlStyle}">
+        <Setter Property="Margin"
+				Value="0,3,0,0" />
+    </Style>
+
     <Style x:Key="HotelFilterExpandableStyle"
 		   TargetType="customControls:ExpandableContentControl"
 		   BasedOn="{StaticResource ExpandableDownControlStyle}">

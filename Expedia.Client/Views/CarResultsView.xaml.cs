@@ -33,6 +33,8 @@ namespace Expedia.Client.Views
                 };
                 context.MapCenter = new Geopoint(geoPoint);
             }
+            context.CarResults = null;
+            context.CarDetailResults = null;
             context.GetCarCategoryResults(carParams);
         }
 

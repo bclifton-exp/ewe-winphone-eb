@@ -41,7 +41,7 @@ namespace Expedia.Services
                 PickupTime = searchInput.PickupTime,
                 PickupLocationLat = searchInput.PickupLocationLat,
                 PickupLocationLon = searchInput.PickupLocationLon,
-                SearchRadius = searchInput.SearchRadius
+                SearchRadius = searchInput.SearchRadius,
             };
 
             return clientSearchParameters;
