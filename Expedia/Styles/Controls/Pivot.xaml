@@ -253,7 +253,7 @@
         </Setter>
     </Style>
 
-    <Style TargetType="PivotHeaderItem">
+    <Style TargetType="PivotHeaderItem"> <!--Actual Pivot Bar-->
         <Setter Property="FontSize" Value="{ThemeResource PivotHeaderItemFontSize}" />
         <Setter Property="FontFamily" Value="{ThemeResource PivotHeaderItemFontFamily}" />
         <Setter Property="FontWeight" Value="{ThemeResource PivotHeaderItemThemeFontWeight}" />
