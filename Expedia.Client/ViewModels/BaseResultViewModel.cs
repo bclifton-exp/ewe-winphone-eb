@@ -39,10 +39,21 @@ namespace Expedia.Client.ViewModels
             set
             {
                 _resultsCount = value;
+                HasResults = value > 0;
                 OnPropertyChanged("ResultsCount");
             }
         }
 
+        private bool _hasResults = true;
+        public bool HasResults
+        {
+            get { return _hasResults; }
+            set
+            {
+                _hasResults = value;
+                OnPropertyChanged("HasResults");
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

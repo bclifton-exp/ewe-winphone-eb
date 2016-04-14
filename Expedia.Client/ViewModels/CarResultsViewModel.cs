@@ -96,17 +96,6 @@ namespace Expedia.Client.ViewModels
             }
         }
 
-        private bool _hasResults;
-        public bool HasResults
-        {
-            get { return _hasResults; }
-            set
-            {
-                _hasResults = value;
-                OnPropertyChanged("HasResults");
-            }
-        }
-
         private bool _sortByPriceLowToHighChecked;
         public bool SortByPriceLowToHighChecked
         {
@@ -286,7 +275,6 @@ namespace Expedia.Client.ViewModels
             var results = await _carService.Search(ct, SearchInput);
             results.CarCategoryResults.RemoveAll(c => c.CarCategory == null);
 
-            HasResults = results.AllCars.Count > 0;
             CarResults = results;
             ResultsCount = results.AllCars.Count;
 

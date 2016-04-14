@@ -124,7 +124,7 @@ namespace Expedia.Client.ViewModels
         {
             if (IsRoundTrip)
             {
-                var tripOkay = SelectedSearchSuggestion != null && SelectedSearchSuggestion2 != null && SelectedSearchSuggestion.HierarchyInfo.Airport != SelectedSearchSuggestion2.HierarchyInfo.Airport;
+                var tripOkay = SelectedSearchSuggestion != null && SelectedSearchSuggestion2 != null && SelectedSearchSuggestion.HierarchyInfo.Airport.AirportCode != SelectedSearchSuggestion2.HierarchyInfo.Airport.AirportCode;
                 return tripOkay;
             }
             return SelectedSearchSuggestion != null;

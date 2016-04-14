@@ -310,6 +310,8 @@
                 </ListView.ItemContainerStyle>
             </ListView>
 
+            <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Text="No Results" x:Uid="NoCarResults" Foreground="Red" Margin="10 150 0 0" HorizontalAlignment="Center" FontSize="20" FontWeight="SemiBold" Visibility="{Binding HasResults, Converter={StaticResource ReversedBoolToVisibilityConverter}, FallbackValue=True}"/>
+
             <FlyoutPresenter x:Name="FilterByFlyoutPhone" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalAlignment="Stretch" MaxWidth="800" Background="{StaticResource FilterGrayBrush}" Visibility="{Binding ElementName=FilterDropDownPhone, Path=IsExpanded, Converter={StaticResource BoolToVisibilityConverter}}">
                 <StackPanel Orientation="Vertical">
                     <customControls:ExpandableContentControl Style="{StaticResource HotelFilterExpandablePhoneStyle}">
