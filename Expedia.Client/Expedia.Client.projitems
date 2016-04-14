@@ -64,6 +64,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\CancellationTokenManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\Geodesic.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\GeoLocationMemory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\MobileMapLauncher.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\Navigator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\SearchParamsMemory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\TimeFormatter.cs" />

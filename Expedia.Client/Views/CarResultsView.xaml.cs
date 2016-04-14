@@ -142,7 +142,7 @@ namespace Expedia.Client.Views
         private void MapImage_OnTapped(object sender, TappedRoutedEventArgs e)
         {
             var vm = this.DataContext as CarResultsViewModel;
-            //vm.LaunchMap(); //TODO this is for phones only
+            vm.LaunchMap();
         }
 
         private void Image_OnImageOpened(object sender, RoutedEventArgs e)

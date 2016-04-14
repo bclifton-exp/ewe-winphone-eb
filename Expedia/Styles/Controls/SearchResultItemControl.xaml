@@ -147,6 +147,150 @@
         </Setter>
     </Style>
 
+    <Style x:Key="PhoneFlightResultItemControlStyle"
+		   TargetType="customControls:SearchResultItemControl">
+        <Setter Property="HorizontalAlignment"
+				Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment"
+				Value="Stretch" />
+        <Setter Property="BorderBrush"
+				Value="{StaticResource SegmentBrush}" />
+        <Setter Property="VerticalAlignment"
+				Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="customControls:SearchResultItemControl">
+                    <Grid Margin="10,0,10,5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="12" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="18" />
+                            <ColumnDefinition Width="78" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="78" />
+                            <ColumnDefinition Width="18" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Orientation="Vertical" Grid.ColumnSpan="3" Margin="0 -10 0 0">
+                            <TextBlock Text="{TemplateBinding AirlineName}"
+								   Style="{StaticResource ResultsHeaderTextStyle}"/>
+                            <TextBlock Text="{TemplateBinding FlightDuration}" Margin="0 2 0 0" Style="{StaticResource LocationHeaderStyle}"/>
+                        </StackPanel>
+
+                        <TextBlock Text="{TemplateBinding TicketPrice}"
+								   Style="{StaticResource TicketPriceTextStyle}"
+								   HorizontalAlignment="Right"
+								   Grid.Column="2"
+								   Grid.ColumnSpan="3" />
+                        <Path Grid.Row="2"
+							  Data="F1M3.526,0.005L1.072,2.376 6.841,2.342 0,8.952 1.979,10.999 8.819,4.39 8.57,10.172 11.025,7.8 11.296,0z"
+							  Fill="{StaticResource IconPathBrush}"
+							  HorizontalAlignment="Left"
+							  Height="10.999"
+							  Stretch="None"
+							  Width="11.296" />
+                        <TextBlock Style="{StaticResource ResultTimeStyle}"
+								   Text="{TemplateBinding DepartTime}"
+								   Grid.Row="2"
+								   Grid.Column="1"
+								   HorizontalAlignment="Left" />
+
+                        <ItemsControl ItemsSource="{TemplateBinding ListOfSegments}"
+									  DataContext="{Binding}"
+									  Grid.Row="2"
+									  Grid.Column="2"
+									  Grid.RowSpan="2"
+									  Margin="0,0,13,0">
+                            <ItemsControl.Template>
+
+                                <ControlTemplate TargetType="ItemsControl">
+                                    <ItemsPresenter HorizontalAlignment="Stretch" />
+                                </ControlTemplate>
+                            </ItemsControl.Template>
+
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <customControls:StarStackPanel Orientation="Horizontal"
+													  HorizontalAlignment="Stretch"
+													  Sizes="*,*,*,*,*,*"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+
+                            <ItemsControl.ItemTemplate>
+
+                                <DataTemplate>
+                                    <customControls:StarStackPanel HorizontalAlignment="Stretch"
+													  customControls:StarStackPanel.Size="*"
+													  VerticalAlignment="Top">
+                                        <customControls:StarStackPanel Orientation="Horizontal"
+														  HorizontalAlignment="Stretch"
+														  customControls:StarStackPanel.Size="*"
+														  VerticalAlignment="Top">
+                                            <Ellipse StrokeThickness="2.5"
+													 Width="13"
+													 Height="13"
+													 Stroke="{StaticResource SegmentBrush}"
+													 Fill="{StaticResource AppWhiteColorBrush}"
+													 VerticalAlignment="Center"
+													 HorizontalAlignment="Left" />
+                                            <Rectangle Height="2.5"
+													   Fill="{StaticResource SegmentBrush}"
+													   HorizontalAlignment="Stretch"
+													   VerticalAlignment="Center"
+													   customControls:StarStackPanel.Size="*"/>
+                                        </customControls:StarStackPanel>
+
+                                        <TextBlock Text="{Binding}"
+												   Style="{StaticResource SegmentDepartureTextStyle}"
+												   HorizontalAlignment="Left"
+												   Margin="-5,4,0,0" />
+                                    </customControls:StarStackPanel>
+
+
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <customControls:ArrivalPointControl ArrivalAirport="{Binding LastSegmentArrivalAirportCode}"
+													  VerticalAlignment="Top"
+													  HorizontalAlignment="Right"
+													  Grid.Row="2"
+													  Grid.RowSpan="2"
+													  Grid.Column="2" />
+                        <TextBlock Style="{StaticResource ResultTimeStyle}"
+								   Text="{TemplateBinding ArrivalTime}"
+								   Grid.Row="2"
+								   Grid.Column="3"
+								   HorizontalAlignment="Right" />
+                        <Path Grid.Row="2"
+							  Grid.Column="4"
+							  Data="F1M0,2.041L6.818,8.665 1.035,8.598 3.482,10.975 11.282,11 11.031,3.239 8.585,0.863 8.801,6.624 1.983,0z"
+							  HorizontalAlignment="Right"
+							  Fill="{StaticResource IconPathBrush}"
+							  Height="11"
+							  Stretch="None"
+							  Width="11.282" />
+                        <TextBlock Style="{StaticResource TotalNumberOfDaysStyle}"
+								   Visibility="{Binding IsDayVisible, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullableBoolToVisibilityConverter}}"
+								   Grid.Row="3"
+								   Grid.Column="3"
+								   Grid.ColumnSpan="2"
+								   HorizontalAlignment="Right">
+							<Run Text="+"
+								 x:Uid="plusText" />
+							<Run Text="{Binding NumberOfDays, RelativeSource={RelativeSource TemplatedParent}}" />		
+							<Run Text="day(s)"
+								 x:Uid="daysText" />
+                        </TextBlock>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style TargetType="customControls:SearchResultItemControl"
 		   BasedOn="{StaticResource DefaultResultItemControlStyle}">
     </Style>

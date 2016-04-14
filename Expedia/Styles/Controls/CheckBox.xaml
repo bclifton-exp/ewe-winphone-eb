@@ -378,6 +378,178 @@
 		</Setter>
 	</Style>
 
+    <Style x:Key="FilterCheckBoxStylePhone"
+		   TargetType="CheckBox">
+        <Setter Property="Background"
+				Value="Transparent" />
+        <Setter Property="BorderBrush"
+				Value="{ThemeResource AppWhiteColorBrush}" />
+        <Setter Property="BorderThickness"
+				Value="2" />
+        <Setter Property="FontSize"
+				Value="10" />
+        <Setter Property="Foreground"
+				Value="{StaticResource AppWhiteColorBrush}" />
+        <Setter Property="FontFamily"
+				Value="{ThemeResource PhoneFontFamilyNormal}" />
+        <Setter Property="HorizontalContentAlignment"
+				Value="Left" />
+        <Setter Property="VerticalContentAlignment"
+				Value="Center" />
+        <Setter Property="HorizontalAlignment"
+				Value="Left" />
+        <Setter Property="VerticalAlignment"
+				Value="Center" />
+        <Setter Property="Padding"
+				Value="8,0,0,0" />
+        <Setter Property="MinWidth"
+				Value="{ThemeResource CheckBoxAndRadioButtonMinWidthSize}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="CheckBox">
+                   
+                    <Grid Background="Transparent">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition From="Pressed"
+													  To="PointerOver">
+                                        <Storyboard>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="Grid" />
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    <VisualTransition From="PointerOver"
+													  To="Normal">
+                                        <Storyboard>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="Grid" />
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    <VisualTransition From="Pressed"
+													  To="Normal">
+                                        <Storyboard>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="Grid" />
+                                        </Storyboard>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver" />
+                                <VisualState x:Name="PointerOver" />
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <PointerDownThemeAnimation Storyboard.TargetName="Grid" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush"
+																	   Storyboard.TargetName="CheckBackground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{ThemeResource TertiaryColor6Brush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
+																	   Storyboard.TargetName="CheckGlyph">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{ThemeResource TertiaryColor6Brush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
+																	   Storyboard.TargetName="NormalRectangle">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{ThemeResource TertiaryColor6Brush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity"
+																	   Storyboard.TargetName="Grid">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="0.5" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="CheckStates">
+                                <VisualState x:Name="Checked">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility"
+																	   Storyboard.TargetName="CheckGlyph">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="Visible" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+																	   Storyboard.TargetName="ContentPresenter">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{ThemeResource TertiaryColor6Brush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unchecked" />
+                                <VisualState x:Name="Indeterminate">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility"
+																	   Storyboard.TargetName="NormalRectangle">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="Visible" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid x:Name="Grid"
+							  Margin="0,8.5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="18" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0"
+								  VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                                <Border x:Name="CheckBackground"
+										BorderBrush="{TemplateBinding BorderBrush}"
+										BorderThickness="{TemplateBinding BorderThickness}"
+										Background="{TemplateBinding Background}"
+										HorizontalAlignment="Left"
+										Height="18"
+										IsHitTestVisible="False"
+										VerticalAlignment="Center"
+										Width="18" />
+                                <Rectangle x:Name="NormalRectangle"
+										   Fill="{ThemeResource CheckBoxBackgroundThemeBrush}"
+										   HorizontalAlignment="Center"
+										   Height="8.83"
+										   IsHitTestVisible="False"
+										   Visibility="Collapsed"
+										   VerticalAlignment="Center"
+										   Width="8.83" />
+                                <Path x:Name="CheckGlyph"
+									  Data="M0,123 L39,93 L124,164 L256,18 L295,49 L124,240 z"
+									  Fill="{TemplateBinding Foreground}"
+									  FlowDirection="LeftToRight"
+									  HorizontalAlignment="Center"
+									  Height="12"
+									  IsHitTestVisible="False"
+									  Stretch="Fill"
+									  StrokeThickness="2"
+									  StrokeLineJoin="Round"
+									  Visibility="Collapsed"
+									  VerticalAlignment="Center"
+									  Width="13.4" />
+                            </Grid>
+
+                            <ContentPresenter x:Name="ContentPresenter"
+											  AutomationProperties.AccessibilityView="Raw"
+											  ContentTemplate="{TemplateBinding ContentTemplate}"
+											  Content="{TemplateBinding Content}"
+											  Grid.Column="1"
+											  Foreground="{TemplateBinding Foreground}"
+											  FontWeight="Normal"
+											  FontSize="{TemplateBinding FontSize}"
+											  FontFamily="{TemplateBinding FontFamily}"
+											  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+											  Margin="{TemplateBinding Padding}"
+											  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="CarsFilterCheckBoxStyle"
 		   TargetType="CheckBox">
         <Setter Property="Background"
@@ -532,6 +704,178 @@
                             </Grid>
                             <!-- Same as in default template -->
                             <!-- suppress: NVX002 -->
+                            <ContentPresenter x:Name="ContentPresenter"
+											  AutomationProperties.AccessibilityView="Raw"
+											  ContentTemplate="{TemplateBinding ContentTemplate}"
+											  Content="{TemplateBinding Content}"
+											  Grid.Column="1"
+											  Foreground="{TemplateBinding Foreground}"
+											  FontWeight="Normal"
+											  FontSize="{TemplateBinding FontSize}"
+											  FontFamily="{TemplateBinding FontFamily}"
+											  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+											  Margin="{TemplateBinding Padding}"
+											  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CarsFilterCheckBoxStylePhone"
+		   TargetType="CheckBox">
+        <Setter Property="Background"
+				Value="Transparent" />
+        <Setter Property="BorderBrush"
+				Value="{ThemeResource AppWhiteColorBrush}" />
+        <Setter Property="BorderThickness"
+				Value="2" />
+        <Setter Property="FontSize"
+				Value="12.66" />
+        <Setter Property="Foreground"
+				Value="{StaticResource AppWhiteColorBrush}" />
+        <Setter Property="FontFamily"
+				Value="{ThemeResource PhoneFontFamilyNormal}" />
+        <Setter Property="HorizontalContentAlignment"
+				Value="Left" />
+        <Setter Property="VerticalContentAlignment"
+				Value="Center" />
+        <Setter Property="HorizontalAlignment"
+				Value="Left" />
+        <Setter Property="VerticalAlignment"
+				Value="Center" />
+        <Setter Property="Padding"
+				Value="8,0,0,0" />
+        <Setter Property="MinWidth"
+				Value="{ThemeResource CheckBoxAndRadioButtonMinWidthSize}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="CheckBox">
+                    
+                    <Grid Background="Transparent">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition From="Pressed"
+													  To="PointerOver">
+                                        <Storyboard>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="Grid" />
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    <VisualTransition From="PointerOver"
+													  To="Normal">
+                                        <Storyboard>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="Grid" />
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    <VisualTransition From="Pressed"
+													  To="Normal">
+                                        <Storyboard>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="Grid" />
+                                        </Storyboard>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver" />
+                                <VisualState x:Name="PointerOver" />
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <PointerDownThemeAnimation Storyboard.TargetName="Grid" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush"
+																	   Storyboard.TargetName="CheckBackground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource CarsLightPurple}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
+																	   Storyboard.TargetName="CheckGlyph">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource CarsLightPurple}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
+																	   Storyboard.TargetName="NormalRectangle">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{StaticResource CarsLightPurple}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity"
+																	   Storyboard.TargetName="Grid">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="0.5" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="CheckStates">
+                                <VisualState x:Name="Checked">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility"
+																	   Storyboard.TargetName="CheckGlyph">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="Visible" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+																	   Storyboard.TargetName="ContentPresenter">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{ThemeResource CarsPurple}" />
+                                        </ObjectAnimationUsingKeyFrames>-->
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unchecked" />
+                                <VisualState x:Name="Indeterminate">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility"
+																	   Storyboard.TargetName="NormalRectangle">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="Visible" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid x:Name="Grid"
+							  Margin="0,8.5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="18" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0"
+								  VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                                <Border x:Name="CheckBackground"
+										BorderBrush="{TemplateBinding BorderBrush}"
+										BorderThickness="{TemplateBinding BorderThickness}"
+										Background="{TemplateBinding Background}"
+										HorizontalAlignment="Left"
+										Height="18"
+										IsHitTestVisible="False"
+										VerticalAlignment="Center"
+										Width="18" />
+                                <Rectangle x:Name="NormalRectangle"
+										   Fill="{ThemeResource CheckBoxBackgroundThemeBrush}"
+										   HorizontalAlignment="Center"
+										   Height="8.83"
+										   IsHitTestVisible="False"
+										   Visibility="Collapsed"
+										   VerticalAlignment="Center"
+										   Width="8.83" />
+                                <Path x:Name="CheckGlyph"
+									  Data="M0,123 L39,93 L124,164 L256,18 L295,49 L124,240 z"
+									  Fill="{TemplateBinding Foreground}"
+									  FlowDirection="LeftToRight"
+									  HorizontalAlignment="Center"
+									  Height="12"
+									  IsHitTestVisible="False"
+									  Stretch="Fill"
+									  StrokeThickness="2"
+									  StrokeLineJoin="Round"
+									  Visibility="Collapsed"
+									  VerticalAlignment="Center"
+									  Width="13.4" />
+                            </Grid>
+                           
                             <ContentPresenter x:Name="ContentPresenter"
 											  AutomationProperties.AccessibilityView="Raw"
 											  ContentTemplate="{TemplateBinding ContentTemplate}"

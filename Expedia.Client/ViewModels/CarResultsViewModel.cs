@@ -474,5 +474,10 @@ namespace Expedia.Client.ViewModels
                 }
             }
         }
+
+        public void LaunchMap()
+        {
+            MobileMapLauncher.LaunchMap(SelectedCar.pickUpLocation.latitude, SelectedCar.pickUpLocation.longitude, 14, SelectedCar.vendor.name);
+        }
     }
 }

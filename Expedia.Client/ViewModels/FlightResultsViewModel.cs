@@ -276,6 +276,9 @@ namespace Expedia.Client.ViewModels
 
         private async void PickNewDepartureFlight()
         {
+            if (FlightResultItems == null)
+                return;
+
             SelectedDeparture = null;
             FlightResultItems = null;
             CurrentSearchCriteria.SelectedDeparture = null;

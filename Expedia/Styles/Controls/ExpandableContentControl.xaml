@@ -248,6 +248,141 @@
         </Setter>
     </Style>
 
+    <Style x:Key="ExpandableCarResultStylePhone"
+		   TargetType="customControls:ExpandableContentControl">
+        <Setter Property="VerticalContentAlignment"
+				Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="customControls:ExpandableContentControl">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="ExpandingStates">
+                                <VisualState x:Name="Collapsed">
+                                    <Storyboard Duration="0:0:0.5">
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
+														 Storyboard.TargetName="PART_ExpandablePresenter"
+														 Duration="0"
+														 To="0" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ExpandablePresenter"
+																	   Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="Collapsed" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetName="PART_ExpandButton"
+														 Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.CenterY)"
+														 Duration="0"
+														 To="1" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Expanded">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
+														 Storyboard.TargetName="PART_ExpandablePresenter"
+														 Duration="0:0:0.3"
+														 To="1" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ExpandablePresenter"
+																	   Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="Visible" />
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ExpandButton"
+																	   Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="Collapsed" />
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_MainPresenter"
+																	   Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+																	Value="Collapsed" />
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+
+                        <ToggleButton x:Name="PART_MainPresenter"
+									  IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+									  HorizontalContentAlignment="Left"
+									  HorizontalAlignment="Stretch"
+									  BorderThickness="0"
+                                      Style="{StaticResource StandardToggleButtonStyle}"
+									  Content="{TemplateBinding Content}"
+                                      Background="Transparent"
+                                      Foreground="Transparent"
+									  ContentTemplate="{TemplateBinding ContentTemplate}"
+									  ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+									  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+
+                        <Grid x:Name="PART_ExpandButton" Grid.Column="0" Grid.ColumnSpan="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.RenderTransform>
+                                <RotateTransform CenterY="0" />
+                            </Grid.RenderTransform>
+
+                            <StackPanel Grid.Column="0" Grid.Row="0"  Margin="20 10 0 5" Orientation="Vertical" HorizontalAlignment="Left">
+                                <TextBlock Text="{Binding Vendor, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource CarResultsHeaderTextStyle}" Margin="0 0 0 10"/>
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
+                                    <TextBlock Text="{Binding Make, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource CarDetailTextStylePhone}" Margin="0 0 3 0" FontWeight="SemiBold"/>
+                                    <TextBlock Text="{Binding OrSimilarText, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource CarDetailTextStylePhone}" FontWeight="SemiBold"/>
+                                </StackPanel>
+                                <TextBlock Text="{Binding Location, RelativeSource={RelativeSource TemplatedParent}}"  Style="{StaticResource CarDetailTextStylePhone}" />
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="1" Grid.Row="0" Margin="0 10 13 5" Orientation="Vertical" HorizontalAlignment="Right">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 2 0">
+                                    <TextBlock Text="{Binding DailyText, RelativeSource={RelativeSource TemplatedParent}}" Margin="0 0 0 0" Style="{StaticResource CarDetailTextStylePhone}" FontWeight="SemiBold" />
+                                    <TextBlock Text="{Binding DailyPrice, RelativeSource={RelativeSource TemplatedParent}}" Margin="3 0 0 0" Style="{StaticResource CarDetailTextStylePhone}" FontWeight="SemiBold" />
+                                </StackPanel>
+                                <ToggleButton Content="View Details" Background="{StaticResource AppGrayColorBrush}" Padding="10 0 10 2" HorizontalAlignment="Right"
+                                                          Width="124" Height="42" FontWeight="SemiBold" Foreground="WhiteSmoke" IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"/>
+                            </StackPanel>
+
+                            <Rectangle Grid.Row="1" 
+                                      Fill="{StaticResource HotelLineBrush}"
+                                      Grid.ColumnSpan="2"
+                                      Grid.Column="0"
+                                      HorizontalAlignment="Stretch"
+                                      Height="1"
+                                      Margin="0,0,1,8" />
+
+                        </Grid>
+
+                        <ContentPresenter x:Name="PART_ExpandablePresenter"
+										  Grid.Row="1"
+										  Grid.ColumnSpan="2"
+										  Content="{TemplateBinding ExpandableContent}"
+										  ContentTemplate="{TemplateBinding ExpandableContentTemplate}"
+										  Visibility="Collapsed"
+										  Opacity="0" />
+
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="CarFilterExpandableStyle"
 		   TargetType="customControls:ExpandableContentControl"
 		   BasedOn="{StaticResource ExpandableDownControlStyle}">
@@ -329,7 +464,7 @@
 									  HorizontalAlignment="Stretch"
 									  BorderThickness="0"
                                       Padding="0"
-                                      Style="{StaticResource FilterToggleButtonStyle}"
+                                      Style="{StaticResource FilterToggleButtonStylePhone}"
 									  Content="{TemplateBinding Content}"
 									  ContentTemplate="{TemplateBinding ContentTemplate}"
 									  ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
@@ -339,7 +474,7 @@
                         <ToggleButton x:Name="PART_ExpandButton"
 									  VerticalAlignment="Center"
 									  IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
-                                      Style="{StaticResource FilterToggleButtonStyle}"
+                                      Style="{StaticResource FilterToggleButtonStylePhone}"
 									  RenderTransformOrigin="0.5,0.5"
 									  BorderThickness="0"
                                       Margin="0 0 -11 0"

@@ -65,6 +65,21 @@
 				Value="{StaticResource PrimaryColor6Brush}" />
     </Style>
 
+    <Style x:Key="CarDetailTextStylePhone"
+		   TargetType="TextBlock"
+		   BasedOn="{StaticResource TextStyle}">
+        <Setter Property="FontSize"
+				Value="12" />
+        <Setter Property="LineHeight"
+				Value="15" />
+        <Setter Property="FontFamily"
+				Value="{StaticResource AppSemiLightFontFamily}" />
+        <Setter Property="FontFamily"
+				Value="Semilight" />
+        <Setter Property="Foreground"
+				Value="{StaticResource PrimaryColor6Brush}" />
+    </Style>
+
     <Style x:Key="TotalNumberOfDaysStyle"
 		   TargetType="TextBlock"
 		   BasedOn="{StaticResource LocationHeaderStyle}">
@@ -96,6 +111,17 @@
 				Value="NoWrap" />
     </Style>
 
+    <Style x:Key="ResultsHeaderBoldTextStylePhone"
+		   TargetType="TextBlock"
+		   BasedOn="{StaticResource ResultsHeaderTextStylePhone}">
+        <Setter Property="FontWeight"
+				Value="Bold" />
+        <Setter Property="TextTrimming"
+				Value="CharacterEllipsis" />
+        <Setter Property="TextWrapping"
+				Value="NoWrap" />
+    </Style>
+
     <Style x:Key="DateHeaderStyle"
 		   TargetType="TextBlock"
 		   BasedOn="{StaticResource LocationHeaderStyle}">
@@ -105,6 +131,32 @@
 				Value="Normal" />
         <Setter Property="VerticalAlignment"
 				Value="Center" />
+    </Style>
+
+    <Style x:Key="DateHeaderStylePhone"
+		   TargetType="TextBlock"
+		   BasedOn="{StaticResource LocationHeaderStyle}">
+        <Setter Property="FontFamily"
+				Value="{StaticResource PhoneFontFamilyNormal}" />
+        <Setter Property="FontWeight"
+				Value="Normal" />
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="VerticalAlignment"
+				Value="Center" />
+    </Style>
+
+    <Style x:Key="HotelDateHeaderStylePhone"
+		   TargetType="TextBlock"
+		   BasedOn="{StaticResource LocationHeaderStyle}">
+        <Setter Property="FontFamily"
+				Value="{StaticResource PhoneFontFamilyNormal}" />
+        <Setter Property="FontWeight"
+				Value="Normal" />
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="VerticalAlignment"
+				Value="Center"/>
+        <Setter Property="Foreground" 
+                Value="{StaticResource SecondaryColor1Brush}"/>
     </Style>
 
     <Style x:Key="HotelDateHeaderStyle"
@@ -139,7 +191,7 @@
         <Setter Property="Foreground"
 				Value="{StaticResource PrimaryColor6Brush}" />
     </Style>
-
+    
     <Style x:Key="ResultsHeaderTextStyle"
 		   TargetType="TextBlock"
 		   BasedOn="{StaticResource SortTextStyle}">
@@ -147,6 +199,17 @@
 				Value="{StaticResource TertiaryColor7Brush}" />
         <Setter Property="FontSize"
 				Value="18.33" />
+        <Setter Property="LineHeight"
+				Value="19" />
+    </Style>
+
+    <Style x:Key="ResultsHeaderTextStylePhone"
+		   TargetType="TextBlock"
+		   BasedOn="{StaticResource SortTextStyle}">
+        <Setter Property="Foreground"
+				Value="{StaticResource TertiaryColor7Brush}" />
+        <Setter Property="FontSize"
+				Value="14.33" />
         <Setter Property="LineHeight"
 				Value="19" />
     </Style>
@@ -299,6 +362,21 @@
 				Value="SemiLight" />
         <Setter Property="FontSize"
 				Value="18.33" />
+        <Setter Property="LineHeight"
+				Value="18.33" />
+        <Setter Property="Foreground"
+				Value="{StaticResource AppWhiteColorBrush}" />
+    </Style>
+
+    <Style x:Key="FilterTextStylePhone"
+		   TargetType="TextBlock"
+		   BasedOn="{StaticResource TextStyle}">
+        <Setter Property="FontFamily"
+				Value="{StaticResource AppSemiLightFontFamily}" />
+        <Setter Property="FontWeight"
+				Value="SemiLight" />
+        <Setter Property="FontSize"
+				Value="12" />
         <Setter Property="LineHeight"
 				Value="18.33" />
         <Setter Property="Foreground"
