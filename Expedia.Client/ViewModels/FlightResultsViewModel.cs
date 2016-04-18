@@ -262,12 +262,21 @@ namespace Expedia.Client.ViewModels
             FlightResultItems = null;
             var ct = CancellationTokenManager.Instance().CreateAndSetCurrentToken();
             var results = await _flightService.SearchFlights(ct, searchCriteria);
-            DestinationImageUri = new Uri(results.Selection.DestinationPictureUrl);
-            StopCountFilters = results.StopCountFilters;
-            AirlineFilters = results.AirlineFilters;
-            ResultsCount = results.Flights.Count();
-            FlightResultItems = results.Flights.ToObservableCollection();
-            DestinationPictureUrl = results.Selection.DestinationPictureUrl;
+
+            if (results.Flights == null)
+            {
+                ResultsCount = 0;
+                FlightResultItems = new ObservableCollection<FlightResultItem>();
+            }
+            else
+            {
+                DestinationImageUri = new Uri(results.Selection.DestinationPictureUrl);
+                StopCountFilters = results.StopCountFilters;
+                AirlineFilters = results.AirlineFilters;
+                ResultsCount = results.Flights.Count();
+                FlightResultItems = results.Flights.ToObservableCollection();
+                DestinationPictureUrl = results.Selection.DestinationPictureUrl;
+            }
 
             BookFlight = new RelayCommand<FlightResultItem>(BuildAndNavigateToFlightUri);
             SortResultsCommand = new DelegateCommand(SortResults);

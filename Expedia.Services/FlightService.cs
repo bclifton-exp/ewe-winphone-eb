@@ -40,6 +40,9 @@ namespace Expedia.Services.Interfaces
 
             var results = await GetFlights(ct, clientParameters);
 
+            if (results.Errors != null && results.Errors.Any())
+                return new FlightResults();
+
             var destinationImageQuery = results.SearchCities
                 .Safe()
                 .LastOrDefault()

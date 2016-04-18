@@ -18,6 +18,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Expedia.Injection;
 using Expedia.Services.Interfaces;
+using Expedia.Services.Tiles;
 using Ninject;
 
 namespace Expedia
@@ -45,6 +46,7 @@ namespace Expedia
         protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
             await ExpediaKernel.Instance().Get<ILocationService>().GetSetCurrentLocation();
+            TileService.Instance().InitializeLiveTile();
             
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)

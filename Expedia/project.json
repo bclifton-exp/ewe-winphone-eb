@@ -1,9 +1,10 @@
 ﻿{
   "dependencies": {
     "Facebook": "7.0.10-beta",
-    "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
+    "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
     "MvvmLight": "5.2.0",
-    "Newtonsoft.Json": "8.0.2",
+    "Newtonsoft.Json": "8.0.3",
+    "NotificationsExtensions.Win10": "14295.0.1",
     "Portable.Ninject": "3.3.1",
     "Prism.Mvvm": "1.1.1",
     "Rx-Linq": "2.3.0-beta2"

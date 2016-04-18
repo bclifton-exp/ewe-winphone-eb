@@ -1,10 +1,13 @@
-﻿using Windows.UI.Xaml;
+﻿using System;
+using Windows.UI.Notifications;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Expedia.Client.Interfaces;
 using Expedia.Client.Utilities;
 using Expedia.Client.ViewModels;
 using Expedia.Entities.Entities;
 using Expedia.Injection;
+using NotificationsExtensions.Tiles;
 
 namespace Expedia
 {
