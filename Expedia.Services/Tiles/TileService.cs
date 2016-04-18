@@ -40,6 +40,8 @@ namespace Expedia.Services.Tiles
                                     "https://images.trvl-media.com/mobiata/mobile/destination/lon_300_250.jpg"),
                                 new TileImageSource(
                                     "https://images.trvl-media.com/mobiata/mobile/destination/mco_300_250.jpg"),
+                                new TileImageSource(
+                                    "https://images.trvl-media.com/mobiata/mobile/destination/pit_300_250.jpg"),
                             }
                         }
                     },
@@ -59,6 +61,8 @@ namespace Expedia.Services.Tiles
                                     "https://images.trvl-media.com/mobiata/mobile/destination/lon_300_250.jpg"),
                                 new TileImageSource(
                                     "https://images.trvl-media.com/mobiata/mobile/destination/mco_300_250.jpg"),
+                                 new TileImageSource(
+                                    "https://images.trvl-media.com/mobiata/mobile/destination/pit_300_250.jpg"),
                             }
                         }
                     }
