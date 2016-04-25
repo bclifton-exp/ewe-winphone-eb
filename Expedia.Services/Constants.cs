@@ -54,6 +54,7 @@ namespace Expedia.Client
 	        public const string Details = "details?";
 	        public const string Image = "image?";
 	        public const string HotelInfo = "info?";
+	        public const string HotelOffers = "offers?";
 	    }
 
         public static class Facebook

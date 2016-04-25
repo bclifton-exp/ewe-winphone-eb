@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
@@ -7,12 +8,15 @@ using System.Windows.Input;
 using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.Storage.Streams;
+using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Maps;
+using Expedia.Client.CustomControls;
 using Expedia.Client.Interfaces;
 using Expedia.Client.Utilities;
 using Expedia.Client.Views;
 using Expedia.Entites;
+using Expedia.Entities.Entities;
 using Expedia.Entities.Extensions;
 using Expedia.Entities.Hotels;
 using Expedia.Entities.Suggestions;
@@ -48,7 +52,7 @@ namespace Expedia.Client.ViewModels
             set
             {
                 _selectedHotel = value;
-                SetPushPinFocus(_selectedHotel);
+                //SetPushPinFocus(_selectedHotel);
                 OnPropertyChanged("SelectedHotel");
             }
         }
@@ -206,6 +210,53 @@ namespace Expedia.Client.ViewModels
                 OnPropertyChanged("AccessibilityFilters");
             }
         }
+
+        private ObservableCollection<MapPushPin> _overlays;
+        public ObservableCollection<MapPushPin> Overlays
+        {
+            get { return _overlays; }
+            set
+            {
+                _overlays = value;
+                OnPropertyChanged("Overlays");
+            }
+        }
+
+        private bool _isHotelFlyoutVisible;
+        public bool IsHotelFlyoutVisible
+        {
+            get { return _isHotelFlyoutVisible; }
+            set
+            {
+                _isHotelFlyoutVisible = value;
+                OnPropertyChanged("IsHotelFlyoutVisible");
+            }
+        }
+
+        //private Geopoint _hotelFlyoutLocation;
+        //public Geopoint HotelFlyoutLocation
+        //{
+        //    get { return _hotelFlyoutLocation; }
+        //    set
+        //    {
+        //        _hotelFlyoutLocation = value;
+        //        OnPropertyChanged("HotelFlyoutLocation");
+        //    }
+        //}
+
+        //private int _flyoutZindex;
+
+        //public int FlyoutZindex
+        //{
+        //    get { return _flyoutZindex; }
+        //    set
+        //    {
+        //        _flyoutZindex = value;
+        //        OnPropertyChanged("FlyoutZindex");
+        //    }
+        //}
+
+
         #endregion
 
         public HotelResultsViewModel(IHotelService hotelService, ISettingsService settingsService, IPointOfSaleService pointOfSaleService)
@@ -217,9 +268,10 @@ namespace Expedia.Client.ViewModels
 
         public async void GetHotelResults(SearchHotelsLocalParameters searchCriteria)
         {
+            Overlays = new ObservableCollection<MapPushPin>();
             SearchInput = searchCriteria;
             HotelResultItems = null;
-            ClearPushPins();
+            //ClearPushPins();
             CurrentSearchCriteria = searchCriteria;
             var ct = CancellationTokenManager.Instance().CreateAndSetCurrentToken();
             var results = await _hotelService.SearchHotels(ct, searchCriteria);
@@ -257,6 +309,18 @@ namespace Expedia.Client.ViewModels
                     childrenString));
 
             Navigator.Instance().NavigateForward(SuggestionLob.HOTELS,typeof(HotelBookingWebView),hotelDeeplink);
+
+            //TESTING TODO IMPLEMENTATION
+            var hotelOffer = await _hotelService.GetHotelOffer(new CancellationToken(false),
+                new HotelOfferQueryParameters
+                {
+                    HotelId = hotel.HotelId,
+                    CheckInDate = SearchInput.CheckInDate,
+                    CheckOutDate = SearchInput.CheckOutDate,
+                    Room1 = new[] {SearchInput.AdultsCount}
+                });
+
+            var test = hotelOffer;
         }
 
         internal async void FilterResults()
@@ -274,7 +338,8 @@ namespace Expedia.Client.ViewModels
                 if (filteredRegion != null)
                     CurrentSearchCriteria.LocationRegionId = filteredRegion.Id;
 
-                ClearPushPins();
+                //ClearPushPins();
+                Overlays = new ObservableCollection<MapPushPin>();
                 var ct = CancellationTokenManager.Instance().CreateAndSetCurrentToken();
                 var filteredResults = await _hotelService.SearchHotels(ct, CurrentSearchCriteria);
                 HotelResultItems = filteredResults.Hotels.ToObservableCollection();
@@ -337,16 +402,20 @@ namespace Expedia.Client.ViewModels
                 if (HotelResultItems != null)
                 {
                     var badHotel = HotelResultItems.First(h => h.ImageUrl == badUrl);
+                    //var badOverlay = Overlays.First(p => p.ImageUrl == badHotel.ImageUrl);
 
                     HotelResultItems.Remove(badHotel);
+                    //Overlays.Remove(badOverlay);
 
                     var hotelInfo = await _hotelService.GetHotelInformation(new CancellationToken(false), badHotel.HotelId);
 
                     if (hotelInfo.Photos.Any())
                     {
                         var goodUrl = Constants.HotelImagesUrl + hotelInfo.Photos.First().Url;
+                        var badOverlay = Overlays.First(p => p.HotelResultItem.ImageUrl == badHotel.ImageUrl);
 
                         badHotel.ImageUrl = goodUrl;
+                        badOverlay.HotelResultItem.ImageUrl = goodUrl;
                         HotelResultItems.Add(badHotel);
                     }
                 }
@@ -357,31 +426,33 @@ namespace Expedia.Client.ViewModels
             }
         }
 
-        internal void PushPinSelected(MapIcon selectedPushPin, ListView resultListView)
-        {
-            selectedPushPin.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/blue_pin.png"));
+        //internal void PushPinSelected(MapIcon selectedPushPin, ListView resultListView)
+        //{
+        //    selectedPushPin.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Pin_Blue.png"));
 
-            SelectedHotel = HotelResultItems.First(h => selectedPushPin.Title.Contains(h.HotelName));
-            resultListView.ScrollIntoView(SelectedHotel, ScrollIntoViewAlignment.Leading);
-        }
+        //    SelectedHotel = HotelResultItems.First(h => selectedPushPin.Title.Contains(h.HotelName));
+        //    resultListView.ScrollIntoView(SelectedHotel, ScrollIntoViewAlignment.Leading);
 
-        private void ClearPushPins()
-        {
-            MapControl?.MapElements.Clear();
-            SelectedPinCount = 0;
-        }
+        //    //new functionality
+        //    //todo visibility build popup
+        //}
+
+        //private void ClearPushPins() //TODO change to children?
+        //{
+        //    MapControl?.MapElements.Clear();
+        //    SelectedPinCount = 0;
+        //}
 
         private void BuildPushpins(ObservableCollection<HotelResultItem> hotelResultItems)
         {
             if (MapControl != null)
             {
+                var mapPins = new ObservableCollection<MapPushPin>();
                 foreach (var hotel in hotelResultItems)
                 {
-                    var mapIcon = new MapIcon
+                    var mapIcon = new MapPushPin()
                     {
-                        Title = hotel.HotelName + "(" + "$" + hotel.Price + ")", //TODO PoS based currency symbol
-                        Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/green_pin.png")),
-                        NormalizedAnchorPoint = new Point(0.5,1),
+                        Title = "$" + hotel.Price, //TODO PoS based currency symbol
                         ZIndex = 0
                     };
 
@@ -391,29 +462,51 @@ namespace Expedia.Client.ViewModels
                         Longitude = hotel.Longitude
                     };
                     mapIcon.Location = new Geopoint(geoPoint);
+                    mapIcon.HotelResultItem = hotel;
+                    
 
-                    MapControl.MapElements.Add(mapIcon);
-                }  
+                    //MapControl.MapElements.Add(mapIcon);
+                    mapPins.Add(mapIcon);
+                }
+
+                Overlays = mapPins;
             }
         }
 
-        private void SetPushPinFocus(HotelResultItem selectedHotel)
-        {
-            if (selectedHotel != null && MapControl != null)
-            {
-                SelectedPinCount++;
-                var geoPoint = new BasicGeoposition
-                {
-                    Latitude = selectedHotel.Latitude,
-                    Longitude = selectedHotel.Longitude
-                };
-                MapControl.Center = new Geopoint(geoPoint);
+        //private void SetPushPinFocus(HotelResultItem selectedHotel) //Repurpose this maybe
+        //{
+        //    if (selectedHotel != null && MapControl != null)
+        //    {
+        //        SelectedPinCount++;
+        //        var geoPoint = new BasicGeoposition
+        //        {
+        //            Latitude = selectedHotel.Latitude,
+        //            Longitude = selectedHotel.Longitude
+        //        };
+        //        MapControl.Center = new Geopoint(geoPoint);
 
-                foreach (MapElement selected in MapControl.MapElements.Where(selected => ((dynamic) selected).Title.Contains(selectedHotel.HotelName)))
-                {
-                    ((dynamic) selected).Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/gray_pin.png"));
-                    ((dynamic)selected).ZIndex = SelectedPinCount;
-                }
+        //        foreach (MapElement selected in MapControl.MapElements.Where(selected => ((dynamic) selected).Title.Contains(selectedHotel.HotelName)))
+        //        {
+        //            ((dynamic) selected).Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Pin_Blue.png"));
+        //            ((dynamic)selected).ZIndex = SelectedPinCount;
+        //        }
+        //    }
+        //}
+
+        public void SetHotelFlyout(MapPushPin pushPin)
+        {
+            CloseHotelFlyouts();
+            var thePin = Overlays.First(p => p == pushPin);
+            Overlays.Remove(thePin);
+            thePin.IsFlyoutVisible = true;
+            Overlays.Add(thePin);
+        }
+
+        public void CloseHotelFlyouts()
+        {
+            foreach (var mapPushPin in Overlays)
+            {
+                mapPushPin.IsFlyoutVisible = false;
             }
         }
     }

@@ -11,5 +11,6 @@ namespace Expedia.Services.Interfaces
     {
         Task<HotelResults> SearchHotels(CancellationToken ct, SearchHotelsLocalParameters searchInput);
         Task<HotelInformationResponse> GetHotelInformation(CancellationToken ct, string hotelId);
+        Task<HotelOfferResponse> GetHotelOffer(CancellationToken ct, HotelOfferQueryParameters parameters);
     }
 }

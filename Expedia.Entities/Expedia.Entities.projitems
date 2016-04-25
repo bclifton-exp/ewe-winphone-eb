@@ -28,6 +28,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\AuthenticationException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\ChildAgeItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\LineOfBusiness.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\MapPushPin.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\RegionActivityBanner.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ErrorCodes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExpediaClientException.cs" />
@@ -88,6 +89,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Hotels\HotelNeighborhoodFilter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Hotels\HotelOffer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Hotels\HotelOfferErrorType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\HotelOfferQueryParameters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hotels\HotelOfferResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Hotels\HotelPriceBucketFilter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Hotels\HotelRateInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Hotels\HotelResultItem.cs" />

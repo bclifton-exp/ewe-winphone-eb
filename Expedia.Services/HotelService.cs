@@ -71,6 +71,20 @@ namespace Expedia.Services
             return result != null ? JsonConvert.DeserializeObject<HotelInformationResponse>(result) : null;
         }
 
+        public async Task<HotelOfferResponse> GetHotelOffer(CancellationToken ct, HotelOfferQueryParameters parameters)
+        {
+            var urlBase = string.Format(Constants.Urls.BaseUrlFormat, _settingsService.GetCurrentDomain());
+            var query = new QueryBuilder(parameters).ReturnQueryUri();
+
+            var request = new ApiRequest(urlBase);
+            request.AppendPath(Constants.Urls.MobileHotelsApiRoot);
+            request.AppendPath(Constants.UrlActions.HotelOffers);
+            request.AppendPath(query);
+
+            var result = await ExecuteGet(request.GetFullUri(), ct);
+            return result != null ? JsonConvert.DeserializeObject<HotelOfferResponse>(result) : null;
+        }
+
         private static HotelSearchQueryParameters CreateClientQueryParameters(SearchHotelsLocalParameters searchInput)
         {
             var clientSearchParameters = new HotelSearchQueryParameters

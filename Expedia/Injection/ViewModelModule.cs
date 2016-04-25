@@ -15,6 +15,7 @@ namespace Expedia.Injection
             Bind<ISearchHotelsViewModel>().To<SearchHotelsViewModel>();
             Bind<IHotelResultsViewModel>().To<HotelResultsViewModel>();
             Bind<ISettingsMenuViewModel>().To<SettingsMenuViewModel>();
+            Bind<IHotelDetailsViewModel>().To<HotelDetailsViewModel>();
             Bind<IFlightResultsViewModel>().To<FlightResultsViewModel>();
             Bind<ISearchFlightsViewModel>().To<SearchFlightsViewModel>();
             Bind<ICreateAccountViewModel>().To<CreateAccountViewModel>();

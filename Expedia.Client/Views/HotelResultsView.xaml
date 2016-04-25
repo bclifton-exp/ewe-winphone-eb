@@ -525,7 +525,65 @@
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
 
-            <maps:MapControl Grid.Row="1" Grid.ColumnSpan="3" x:Name="Map" Visibility="Collapsed" MapTapped="Map_OnMapTapped" MapElementClick="Map_OnMapElementClick" Loading="Map_OnLoading" Margin="0 0 0 0" MapServiceToken="uTSDW7FxvBNrtGPD67ZQ~Cws5kVsbllSUip_fVoHCIQ~AiAsYMbHCnN32naqWWDEeulT3_C1XVy1yPU91wba8Knm9G1D31rZOIMDss4jJFtO" ZoomLevel="14" />
+            <maps:MapControl Grid.Row="1" Grid.ColumnSpan="3" x:Name="Map" Visibility="Collapsed"  MapTapped="Map_OnMapTapped" Loading="Map_OnLoading" Margin="0 0 0 0" 
+                             MapServiceToken="uTSDW7FxvBNrtGPD67ZQ~Cws5kVsbllSUip_fVoHCIQ~AiAsYMbHCnN32naqWWDEeulT3_C1XVy1yPU91wba8Knm9G1D31rZOIMDss4jJFtO" ZoomLevel="14">
+
+                <maps:MapItemsControl ItemsSource="{Binding Overlays}">
+                    <maps:MapItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Canvas Background="Transparent" Tapped="Pin_OnTapped" ZIndex="{Binding ZIndex}">
+                                <StackPanel Orientation="Vertical">
+                                    <Image Source="ms-appx:///Assets/Pin_Blue.png" maps:MapControl.Location="{Binding Location}" Margin="-30 -45 0 0"/>
+                                    <TextBlock Margin="-30 -55 0 0" maps:MapControl.Location="{Binding Location}" Foreground="White" Text="{Binding Title}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18"/>
+                                </StackPanel>
+
+                                <!--<FlyoutPresenter Width="400" Height="120" x:Name="MapFlyout" Padding="5"
+                                                 Visibility="{Binding IsFlyoutVisible, Mode=TwoWay, Converter={StaticResource BoolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}" 
+                                                 maps:MapControl.Location="{Binding Location}" 
+                      Margin="-200 -129 0 0" Background="White">-->
+                                    <Grid Width="400" Height="100" x:Name="MapFlyout" BorderThickness="1" BorderBrush="{StaticResource FilterGrayBrush}"
+                                                 Visibility="{Binding IsFlyoutVisible, Mode=TwoWay, Converter={StaticResource BoolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}" 
+                                                 maps:MapControl.Location="{Binding Location}" 
+                      Margin="-200 -129 0 0" Background="White">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="3*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                    <Image Source="{Binding HotelResultItem.ImageUrl}" Grid.Column="0" Stretch="UniformToFill"/>
+
+                                        <StackPanel Margin="10 0 0 0" Orientation="Vertical" Grid.Column="1">
+                                        <TextBlock Margin="0 0 0 0" FontWeight="SemiBold" VerticalAlignment="Bottom" Foreground="{StaticResource FilterGrayBrush}" FontSize="15" Text="{Binding HotelResultItem.HotelName}" Style="{StaticResource SubheaderTextBlockStyle}" HorizontalAlignment="Left"/>
+
+                                        <customControls:RatingControl Margin="0 0 0 0" RatingValue="{Binding HotelResultItem.Rating}" MaxRatingValue="5" FlowDirection="LeftToRight" FullIconUri="/Assets/StarRatingFull.png" HalfIconUri="/Assets/StarRatingHalf.png" EmptyIconUri="/Assets/StarRatingEmpty.png"/>
+
+                                        <StackPanel VerticalAlignment="Bottom" Margin="0 0 0 0" Orientation="Horizontal">
+                                            <TextBlock Text="{Binding HotelResultItem.GuestRating}" Foreground="{StaticResource LogoYellowBrush}" FontWeight="SemiBold"/>
+                                            <TextBlock Text=" of 5 - Guest Rating" x:Uid="OfGuestRatingTextBlock"/>
+                                        </StackPanel>
+
+                                        <StackPanel VerticalAlignment="Bottom" Margin="0 0 0 0" Orientation="Horizontal" HorizontalAlignment="Right">
+                                            <TextBlock Visibility="{Binding HotelResultItem.StrikeThroughPriceIsHigher, Converter={StaticResource BoolToVisibilityConverter}}" Text="{Binding HotelResultItem.StrikeThroughPrice, Converter={StaticResource CurrencyConverter}}" Style="{StaticResource StrikeThroughTextStyle}"/>
+                                            <TextBlock Text="{Binding HotelResultItem.Price, Converter={StaticResource CurrencyConverter}}" Style="{StaticResource SubheaderTextBlockStyle}" FontSize="14" FontWeight="SemiBold" Foreground="{StaticResource IconGrayBrush}"/>
+                                        </StackPanel>
+
+                                    </StackPanel>
+
+                                    <Button Grid.Column="1"
+							HorizontalAlignment="Right"
+							VerticalAlignment="Center"
+							
+							Style="{StaticResource ChangeButtonStyle}"/>
+
+                                </Grid>
+                                <!--</FlyoutPresenter>-->
+
+                            </Canvas>
+                        </DataTemplate>
+                    </maps:MapItemsControl.ItemTemplate>
+                </maps:MapItemsControl>
+
+            </maps:MapControl>
          
             <!--Tablet Filter/Sort bar-->
             <Grid x:Name="HotelsAvailableTextBlock" Grid.Column="0" Grid.Row="0" Margin="0 0 1 0" Background="{StaticResource FilterGrayBrush}">
