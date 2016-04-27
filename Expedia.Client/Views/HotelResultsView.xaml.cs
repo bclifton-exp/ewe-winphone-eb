@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Windows.Devices.Geolocation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -9,7 +10,6 @@ using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using Expedia.Client.Interfaces;
 using Expedia.Client.ViewModels;
-using Expedia.Entities.Entities;
 using Expedia.Entities.Hotels;
 using Expedia.Injection;
 
@@ -17,6 +17,8 @@ namespace Expedia.Client.Views
 {
     public sealed partial class HotelResultsView : Page
     {
+        private bool pinTapSwitch;
+
         public HotelResultsView()
         {
             this.DataContext = ExpediaKernel.Instance().Get<IHotelResultsViewModel>();
@@ -59,12 +61,13 @@ namespace Expedia.Client.Views
             }
         }
 
-        //private void Map_OnMapElementClick(MapControl sender, MapElementClickEventArgs args)
-        //{
-        //    var selectedPushPin = args.MapElements.FirstOrDefault(x => x is MapIcon) as MapIcon;
-        //    var context = DataContext as HotelResultsViewModel;
-        //    context.PushPinSelected(selectedPushPin, ResultListView);
-        //}
+        private void Map_OnMapElementClick(MapControl sender, MapElementClickEventArgs args)
+        {
+            var selectedPushPin = args.MapElements.FirstOrDefault(x => x is MapIcon) as MapIcon;
+            var context = DataContext as HotelResultsViewModel;
+            context.PushPinSelected(selectedPushPin, ResultListView);
+            pinTapSwitch = true;
+        }
 
         private void ImageBrush_OnImageFailed(object sender, ExceptionRoutedEventArgs e)
         {
@@ -129,19 +132,15 @@ namespace Expedia.Client.Views
             FilterDropDownPhone.IsExpanded = false;
             SortDropDownPhone.IsExpanded = false;
 
-            var context = DataContext as HotelResultsViewModel;
-            context.CloseHotelFlyouts();
-        }
-
-        private void Pin_OnTapped(object sender, TappedRoutedEventArgs e)
-        {
-            var context = DataContext as HotelResultsViewModel;
-            var canvas = sender as Canvas;
-            var stackPanel = canvas?.Children.First() as StackPanel;
-            var image = stackPanel?.Children.First() as Image;
-            var mapIcon = image?.DataContext as MapPushPin;
-
-            context.SetHotelFlyout(mapIcon);
+            if (pinTapSwitch)
+            {
+                pinTapSwitch = false;
+            }
+            else
+            {
+                var context = DataContext as HotelResultsViewModel;
+                context.IsPinSelected = false;
+            }
         }
     }
 }
