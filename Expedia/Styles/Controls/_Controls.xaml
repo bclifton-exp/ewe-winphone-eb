@@ -19,6 +19,7 @@
         <ResourceDictionary Source="SearchResultItemControl.xaml"/>
         <ResourceDictionary Source="ArrivalPointControl.xaml"/>
         <ResourceDictionary Source="ListViewItem.xaml"/>
+        <ResourceDictionary Source="TextBox.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

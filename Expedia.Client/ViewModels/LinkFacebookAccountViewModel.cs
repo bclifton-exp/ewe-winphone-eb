@@ -131,7 +131,7 @@ namespace Expedia.Client.ViewModels
 
             NoThanks = new DelegateCommand(() =>
             {
-                Navigator.Instance().NavigateToMenuView(typeof(AccountMenuView));
+                //Navigator.Instance().NavigateToMenuView(typeof(AccountMenuView));
             });
 
             CreateAccount = new DelegateCommand(CompleteFacebookSignIn);
@@ -169,7 +169,7 @@ namespace Expedia.Client.ViewModels
             }
             else
             {
-                Navigator.Instance().NavigateToMenuView(typeof(AccountMenuView));
+                //Navigator.Instance().NavigateToMenuView(typeof(AccountMenuView));
                 //TODO error message
             }
 

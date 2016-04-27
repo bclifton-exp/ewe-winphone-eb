@@ -92,8 +92,12 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <PRIResource Include="Strings\en-GB\Resources.resw" />
-    <PRIResource Include="Strings\en-US\Resources.resw" />
+    <PRIResource Include="Strings\en-GB\Resources.resw">
+      <SubType>Designer</SubType>
+    </PRIResource>
+    <PRIResource Include="Strings\en-US\Resources.resw">
+      <SubType>Designer</SubType>
+    </PRIResource>
     <PRIResource Include="AppStrings\en-US\Resources.resw" />
     <PRIResource Include="AppStrings\en-GB\Resources.resw" />
     <None Include="project.json" />
@@ -122,6 +126,7 @@
     <Content Include="Assets\blue_pin.png" />
     <Content Include="Assets\gray_pin.png" />
     <Content Include="Assets\green_pin.png" />
+    <Content Include="Assets\login_background.png" />
     <Content Include="Assets\Pin_Blue.png" />
     <Content Include="Assets\purple_pin.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
@@ -153,6 +158,7 @@
     <Content Include="Assets\StarRating\StarRatingHalf.scale-100.png" />
     <Content Include="Assets\StarRating\StarRatingHalf.scale-140.png" />
     <Content Include="Assets\StarRating\StarRatingHalf.scale-240.png" />
+    <Content Include="Assets\white_expedia.PNG" />
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
     <Content Include="Assets\yellow_pin.png" />
@@ -171,6 +177,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Controls\TextBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -1,6 +1,7 @@
 ﻿using Expedia.Client.Interfaces;
 using Expedia.Client.Utilities;
 using Expedia.Client.Views;
+using Expedia.Entities.Entities;
 using Expedia.Entities.Suggestions;
 using Expedia.Services.Interfaces;
 using GalaSoft.MvvmLight.Command;
@@ -111,7 +112,7 @@ namespace Expedia.Client.ViewModels
                 }
                 else
                 {
-                    Navigator.Instance().NavigateToMenuView(typeof(AccountMenuView));
+                    Navigator.Instance().NavigateToSignInView();
                     IsMenuFrameVisible = true;
                 }
             });

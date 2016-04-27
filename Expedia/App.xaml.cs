@@ -16,6 +16,9 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Expedia.Client.Utilities;
+using Expedia.Client.Views;
+using Expedia.Entities.Entities;
 using Expedia.Injection;
 using Expedia.Services.Interfaces;
 using Expedia.Services.Tiles;
@@ -23,9 +26,6 @@ using Ninject;
 
 namespace Expedia
 {
-    /// <summary>
-    /// Provides application-specific behavior to supplement the default Application class.
-    /// </summary>
     sealed partial class App : Application
     {
         /// <summary>
@@ -80,7 +80,21 @@ namespace Expedia
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                rootFrame.Navigate(typeof(MainPage), e.Arguments);
+
+                var userToken = ExpediaKernel.Instance().Get<ISettingsService>().GetUserToken();
+                Navigator.Instance().SetRootFrame(rootFrame);
+
+                if (userToken != null)
+                {
+                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                }
+                else
+                {
+                    rootFrame.Navigate(typeof(SignInView), e.Arguments);
+                    Navigator.Instance().SetCurrentFrame(LineOfBusiness.NONE);
+                }
+
+                
             }
             // Ensure the current window is active
             Window.Current.Activate();

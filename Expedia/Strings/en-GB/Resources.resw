@@ -483,8 +483,23 @@
   <data name="SignIn.Text" xml:space="preserve">
     <value>Sign In</value>
   </data>
+  <data name="NextButton.Content" xml:space="preserve">
+    <value>Next</value>
+  </data>
   <data name="EmailorUserName.PlaceholderText" xml:space="preserve">
     <value>Email or Username</value>
+  </data>
+  <data name="Email.PlaceholderText" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="FirstName.PlaceholderText" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="LastName.PlaceholderText" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="ConfirmPassword.PlaceholderText" xml:space="preserve">
+    <value>Confirm Password</value>
   </data>
   <data name="Password.PlaceholderText" xml:space="preserve">
     <value>Password</value>
@@ -492,9 +507,7 @@
   <data name="EnterPassword.Text" xml:space="preserve">
     <value>Password</value>
   </data>
-  <data name="ConfirmPassword.Text" xml:space="preserve">
-    <value>Confirm Password</value>
-  </data>
+
   <data name="PasswordMatchError.Text" xml:space="preserve">
     <value>*Passwords do not match.</value>
   </data>
@@ -507,6 +520,12 @@
   <data name="SignInButton.Content" xml:space="preserve">
     <value>Sign In</value>
 	<comment>Yellow Sign In button</comment>
+  </data>
+  <data name="ForgotPassword.Text" xml:space="preserve">
+    <value>Forgot your password?</value>
+  </data>
+  <data name="SignInWithFacebook.Content" xml:space="preserve">
+    <value>Sign in with Facebook</value>
   </data>
   <data name="CreateAccountButton.Content" xml:space="preserve">
     <value>Create Account</value>
@@ -545,6 +564,10 @@
   <data name="OrText.Text" xml:space="preserve">
     <value>or</value>
 	<comment>'or' text between 'Continue as a Guest' button and 'Connect' buttons</comment>
+  </data>
+  <data name="CreateExpediaAccount.Text" xml:space="preserve">
+    <value>Create an Expedia account</value>
+    <comment>'or' text between 'Continue as a Guest' button and 'Connect' buttons</comment>
   </data>
   <data name="ConnectButton.Content" xml:space="preserve">
     <value>Connect</value>

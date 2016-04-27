@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Expedia.Client.Interfaces
 {
-    public interface IAccountMenuViewModel
+    public interface ISignInViewModel
     {
     }
 }

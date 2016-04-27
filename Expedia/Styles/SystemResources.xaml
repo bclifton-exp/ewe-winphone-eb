@@ -30,6 +30,8 @@
     <converters:TransmissionTextConverter x:Name="TransmissionTextConverter"/>
     <converters:InvertedVisibilityConverter x:Name="InvertedVisibilityConverter"/>
     <converters:NullToBoolConverter x:Name="NullToBoolConverter"/>
+    <converters:EmptyStringToVisibilityConverter x:Name="EmptyStringToVisibilityConverter"/>
+    <converters:ReversedEmptyStringToVisibilityConverter x:Name="ReversedEmptyStringToVisibilityConverter"/>
 
     <converters:FromNullableToDefaultValueConverter x:Key="FromNotNullToVisible">
         <converters:FromNullableToDefaultValueConverter.ValueIfNull>

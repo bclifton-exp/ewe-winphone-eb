@@ -13,6 +13,7 @@ namespace Expedia.Client.Utilities
     public class Navigator
     {
         private static Navigator _instance;
+        private Frame _rootFrame;
         private Frame _currentFrame;
         private Frame _menuFrame;
         private Frame _hotelFrame;
@@ -20,6 +21,7 @@ namespace Expedia.Client.Utilities
         private Frame _carFrame;
 
         private MainPageViewModel _mainViewModel;
+        private SignInViewModel _signInViewModel;
         //private Frame _activitiesFrame;
         //private Frame _packagesFrame;
 
@@ -57,6 +59,10 @@ namespace Expedia.Client.Utilities
                     _currentFrame = _carFrame;
                     return;
 
+                case LineOfBusiness.NONE:
+                    _currentFrame = _rootFrame;
+                    return;
+
                 default:
                     return;
             }
@@ -73,51 +79,65 @@ namespace Expedia.Client.Utilities
 
         private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
         {
-            if (_mainViewModel.IsMenuFrameVisible)
+            if (_currentFrame == _rootFrame && _rootFrame.CurrentSourcePageType == typeof(SignInView)) //sign in logic
             {
-                if (_menuFrame.CurrentSourcePageType == typeof(CreateAccountView))
-                {
-                    _menuFrame.GoBack();
-                    e.Handled = true;
-                }
-                else
-                {
-                    _mainViewModel.IsMenuFrameVisible = false;
-                    e.Handled = true;
-                }
+                _signInViewModel.BackPressed();
             }
             else
             {
-                if (_currentFrame != null && _currentFrame.CanGoBack)
+                if (_mainViewModel != null && _mainViewModel.IsMenuFrameVisible) //menu logic
                 {
-                    CancellationTokenManager.Instance().CancelCurrentToken();
-                    _currentFrame.GoBack();
-                    e.Handled = true;
+                    if (_menuFrame.CurrentSourcePageType == typeof(CreateAccountView))
+                    {
+                        _menuFrame.GoBack();
+                        e.Handled = true;
+                    }
+                    else
+                    {
+                        _mainViewModel.IsMenuFrameVisible = false;
+                        e.Handled = true;
+                    }
+                }
+                else
+                {
+                    if (_currentFrame != null && _currentFrame.CanGoBack) //standard logic
+                    {
+                        CancellationTokenManager.Instance().CancelCurrentToken();
+                        _currentFrame.GoBack();
+                        e.Handled = true;
+                    }
                 }
             }
         }
 
         private void CurrentViewOnBackRequested(object sender, BackRequestedEventArgs e)
         {
-            if (_mainViewModel.IsMenuFrameVisible)
+            if (_currentFrame == _rootFrame && _rootFrame.CurrentSourcePageType == typeof(SignInView)) //sign in logic
             {
-                if (_menuFrame.CurrentSourcePageType == typeof (CreateAccountView))
-                {
-                    _menuFrame.GoBack();
-                }
-                else
-                {
-                    _mainViewModel.IsMenuFrameVisible = false;
-                }
-                e.Handled = true;
+                _signInViewModel.BackPressed();
             }
             else
             {
-                if (_currentFrame != null && _currentFrame.CanGoBack)
+                if (_mainViewModel != null && _mainViewModel.IsMenuFrameVisible) //menu logic
                 {
-                    CancellationTokenManager.Instance().CancelCurrentToken();
-                    _currentFrame.GoBack();
+                    if (_menuFrame.CurrentSourcePageType == typeof(CreateAccountView))
+                    {
+                        _menuFrame.GoBack();
+                    }
+                    else
+                    {
+                        _mainViewModel.IsMenuFrameVisible = false;
+                    }
                     e.Handled = true;
+                }
+                else
+                {
+                    if (_currentFrame != null && _currentFrame.CanGoBack) //standard logic
+                    {
+                        CancellationTokenManager.Instance().CancelCurrentToken();
+                        _currentFrame.GoBack();
+                        e.Handled = true;
+                    }
                 }
             }
         }
@@ -147,9 +167,41 @@ namespace Expedia.Client.Utilities
             }
         }
 
+        public void NavigateToMainPage()
+        {
+            _rootFrame.Navigate(typeof(MainPage));
+            SetCurrentFrame(LineOfBusiness.HOTELS);
+        }
+
+        public void NavigateToSignInView()
+        {
+            SetCurrentFrame(LineOfBusiness.NONE);
+            _rootFrame.Navigate(typeof(SignInView));
+        }
+
+        public void NavigateToForgotPassword(object param = null)
+        {
+            _rootFrame.Navigate(typeof(ForgotPasswordWebView), param);
+        }
+
         public void NavigateToMenuView(Type view, object param = null)
         {
             _menuFrame.Navigate(view, param);
+        }
+
+        public void NavigateToFacebookView(Type view, object param = null)
+        {
+            _rootFrame.Navigate(typeof(FacebookSignInWebView), param);
+        }
+
+        public void SetRootFrame(Frame frame)
+        {
+            _rootFrame = frame;
+        }
+
+        public void SetSignInViewModel(SignInViewModel signInViewModel)
+        {
+            _signInViewModel = signInViewModel;
         }
 
         public void CloseMenu(bool isSignedIn = false)
