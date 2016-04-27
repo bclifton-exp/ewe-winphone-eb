@@ -87,16 +87,8 @@ namespace Expedia.Client.Utilities
             {
                 if (_mainViewModel != null && _mainViewModel.IsMenuFrameVisible) //menu logic
                 {
-                    if (_menuFrame.CurrentSourcePageType == typeof(CreateAccountView))
-                    {
-                        _menuFrame.GoBack();
-                        e.Handled = true;
-                    }
-                    else
-                    {
-                        _mainViewModel.IsMenuFrameVisible = false;
-                        e.Handled = true;
-                    }
+                    _mainViewModel.IsMenuFrameVisible = false;
+                    e.Handled = true;
                 }
                 else
                 {
@@ -120,14 +112,7 @@ namespace Expedia.Client.Utilities
             {
                 if (_mainViewModel != null && _mainViewModel.IsMenuFrameVisible) //menu logic
                 {
-                    if (_menuFrame.CurrentSourcePageType == typeof(CreateAccountView))
-                    {
-                        _menuFrame.GoBack();
-                    }
-                    else
-                    {
-                        _mainViewModel.IsMenuFrameVisible = false;
-                    }
+                   _mainViewModel.IsMenuFrameVisible = false;
                     e.Handled = true;
                 }
                 else
