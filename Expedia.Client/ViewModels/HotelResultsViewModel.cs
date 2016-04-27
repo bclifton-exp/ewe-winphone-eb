@@ -311,16 +311,16 @@ namespace Expedia.Client.ViewModels
             Navigator.Instance().NavigateForward(SuggestionLob.HOTELS,typeof(HotelBookingWebView),hotelDeeplink);
 
             //TESTING TODO IMPLEMENTATION
-            var hotelOffer = await _hotelService.GetHotelOffer(new CancellationToken(false),
-                new HotelOfferQueryParameters
-                {
-                    HotelId = hotel.HotelId,
-                    CheckInDate = SearchInput.CheckInDate,
-                    CheckOutDate = SearchInput.CheckOutDate,
-                    Room1 = new[] {SearchInput.AdultsCount}
-                });
+            //var hotelOffer = await _hotelService.GetHotelOffer(new CancellationToken(false),
+            //    new HotelOfferQueryParameters
+            //    {
+            //        HotelId = hotel.HotelId,
+            //        CheckInDate = SearchInput.CheckInDate,
+            //        CheckOutDate = SearchInput.CheckOutDate,
+            //        Room1 = new[] {SearchInput.AdultsCount}
+            //    });
 
-            var test = hotelOffer;
+            //var test = hotelOffer;
         }
 
         internal async void FilterResults()
@@ -497,9 +497,10 @@ namespace Expedia.Client.ViewModels
         {
             CloseHotelFlyouts();
             var thePin = Overlays.First(p => p == pushPin);
-            Overlays.Remove(thePin);
+            //Overlays.Remove(thePin);
+            thePin.ZIndex++;
             thePin.IsFlyoutVisible = true;
-            Overlays.Add(thePin);
+            //Overlays.Add(thePin);
         }
 
         public void CloseHotelFlyouts()

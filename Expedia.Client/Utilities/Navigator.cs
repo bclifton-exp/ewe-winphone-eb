@@ -160,7 +160,7 @@ namespace Expedia.Client.Utilities
 
         public void NavigateToSignInView()
         {
-            SetCurrentFrame(LineOfBusiness.NONE);
+            //SetCurrentFrame(LineOfBusiness.NONE);
             _rootFrame.Navigate(typeof(SignInView));
         }
 
