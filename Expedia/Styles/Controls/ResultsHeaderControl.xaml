@@ -281,7 +281,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="customControls:ResultsHeaderControl">
 
-                    <Grid Background="{StaticResource HotelDarkGreen}">
+                    <Grid Background="{StaticResource FlightDarkBlue}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
@@ -374,7 +374,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="customControls:ResultsHeaderControl">
 
-                    <Grid Background="{StaticResource HotelDarkGreen}">
+                    <Grid Background="{StaticResource FlightDarkBlue}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
@@ -467,7 +467,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="customControls:ResultsHeaderControl">
 
-                    <Grid Background="{StaticResource CarsDarkPurple}">
+                    <Grid Background="{StaticResource FlightDarkBlue}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
@@ -560,7 +560,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="customControls:ResultsHeaderControl">
 
-                    <Grid Background="{StaticResource CarsDarkPurple}">
+                    <Grid Background="{StaticResource FlightDarkBlue}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />

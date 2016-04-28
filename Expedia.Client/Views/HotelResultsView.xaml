@@ -267,7 +267,7 @@
                     <VisualState.Setters>
                         <Setter Target="Map.Visibility" Value="Visible" />
 
-                        <Setter Target="ResultListView.Margin" Value="0 -50 0 0"/>
+                        <Setter Target="ResultListView.Margin" Value="0 -30 0 0"/>
                         <Setter Target="HotelsAvailableTextBlockPhone.Visibility" Value="Collapsed"/>
                         <Setter Target="SortByControlPhone.Visibility" Value="Collapsed"/>
                         <Setter Target="FilterByControlPhone.Visibility" Value="Collapsed"/>
@@ -280,7 +280,7 @@
         <Grid Background="{ThemeResource AppBarBackgroundThemeBrush}" Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="75"/>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="30"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -312,11 +312,12 @@
             </Grid>
 
             <Grid x:Name="SortByControlPhone" Grid.Column="1" Grid.Row="1" Background="{StaticResource FilterGrayBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="1 0 0 0">
-                <customControls:ExpandableContentControl x:Name="SortDropDownPhone" HorizontalAlignment="Stretch" VerticalAlignment="Center" Style="{StaticResource HotelFilterExpandablePhoneStyle}">
+                <customControls:ExpandableContentControl x:Name="SortDropDownPhone" Margin="15 -7 0 0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Style="{StaticResource HotelFilterExpandablePhoneStyle}">
                     <customControls:ExpandableContentControl.ContentTemplate>
                         <DataTemplate>
                             <TextBlock Text="Sort by"
 							   x:Uid="SortBy"
+                                       Margin="0 0 0 5"
 							    Style="{StaticResource FilterTextStylePhone}"/>
                         </DataTemplate>
                     </customControls:ExpandableContentControl.ContentTemplate>
@@ -324,11 +325,12 @@
             </Grid>
 
             <Grid Grid.Column="2" x:Name="FilterByControlPhone" Grid.Row="1" Background="{StaticResource FilterGrayBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="1 0 0 0">
-                <customControls:ExpandableContentControl x:Name="FilterDropDownPhone" HorizontalAlignment="Stretch" VerticalAlignment="Center" Style="{StaticResource HotelFilterExpandablePhoneStyle}">
+                <customControls:ExpandableContentControl x:Name="FilterDropDownPhone" Margin="15 -7 0 0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Style="{StaticResource HotelFilterExpandablePhoneStyle}">
                     <customControls:ExpandableContentControl.ContentTemplate>
                         <DataTemplate>
                             <TextBlock Text="Filter by"
 							   x:Uid="FilterBy"
+                                       Margin="0 0 0 5"
 							   Style="{StaticResource FilterTextStylePhone}" />
                         </DataTemplate>
                     </customControls:ExpandableContentControl.ContentTemplate>
@@ -516,17 +518,17 @@
 
         <Grid x:Name="SideGrid" Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="75" />
+                <RowDefinition Height="37.5" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
             <maps:MapControl Grid.Row="1" Grid.ColumnSpan="3" x:Name="Map" Visibility="Collapsed" MapTapped="Map_OnMapTapped" MapElementClick="Map_OnMapElementClick" Loading="Map_OnLoading" Margin="0 0 0 0" MapServiceToken="uTSDW7FxvBNrtGPD67ZQ~Cws5kVsbllSUip_fVoHCIQ~AiAsYMbHCnN32naqWWDEeulT3_C1XVy1yPU91wba8Knm9G1D31rZOIMDss4jJFtO" ZoomLevel="14">
-                <Grid Width="400" Height="100" x:Name="MapFlyout" BorderThickness="1" BorderBrush="{StaticResource AppLightGrayColorBrush}" maps:MapControl.Location="{Binding SelectedPinLocation}" Visibility="{Binding IsPinSelected, Converter={StaticResource BoolToVisibilityConverter}}"
+                <!--<Grid Width="400" Height="100" x:Name="MapFlyout" BorderThickness="1" BorderBrush="{StaticResource AppLightGrayColorBrush}" maps:MapControl.Location="{Binding SelectedPinLocation}" Visibility="{Binding IsPinSelected, Converter={StaticResource BoolToVisibilityConverter}}"
                        Background="White">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>
@@ -597,7 +599,7 @@
                         </Button.Content>
                     </Button>
 
-                </Grid>
+                </Grid>-->
             </maps:MapControl>
 
             <!--Tablet Filter/Sort bar-->
@@ -611,7 +613,7 @@
             </Grid>
 
             <Grid x:Name="SortByControl" Grid.Column="1" Grid.Row="0" Background="{StaticResource FilterGrayBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="1 0 1 0">
-                <customControls:ExpandableContentControl x:Name="SortDropDown" HorizontalAlignment="Stretch" VerticalAlignment="Center" Style="{StaticResource HotelFilterExpandableStyle}">
+                <customControls:ExpandableContentControl x:Name="SortDropDown" Margin="15 -5 0 0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Style="{StaticResource HotelFilterExpandableStyle}">
                     <customControls:ExpandableContentControl.ContentTemplate>
                         <DataTemplate>
                             <TextBlock Text="Sort by"
@@ -684,7 +686,7 @@
             </FlyoutPresenter>
 
             <Grid Grid.Column="2" x:Name="FilterByControl" Grid.Row="0" Background="{StaticResource FilterGrayBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="1 0 0 0">
-                <customControls:ExpandableContentControl x:Name="FilterDropDown" HorizontalAlignment="Stretch" VerticalAlignment="Center" Style="{StaticResource HotelFilterExpandableStyle}">
+                <customControls:ExpandableContentControl x:Name="FilterDropDown" Margin="15 -5 0 0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Style="{StaticResource HotelFilterExpandableStyle}">
                     <customControls:ExpandableContentControl.ContentTemplate>
                         <DataTemplate>
                             <TextBlock Text="Filter by"

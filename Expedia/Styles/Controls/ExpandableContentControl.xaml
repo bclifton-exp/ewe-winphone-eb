@@ -51,7 +51,7 @@
 
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
                         <Grid.ColumnDefinitions>
@@ -65,7 +65,7 @@
 									  HorizontalContentAlignment="Left"
 									  HorizontalAlignment="Stretch"
 									  BorderThickness="0"
-                                      Padding="25"
+                                      Padding="0"
                                       Style="{StaticResource FilterToggleButtonStyle}"
 									  Content="{TemplateBinding Content}"
 									  ContentTemplate="{TemplateBinding ContentTemplate}"
@@ -79,7 +79,6 @@
                                       Style="{StaticResource FilterToggleButtonStyle}"
 									  RenderTransformOrigin="0.5,0.5"
 									  BorderThickness="0"
-                                      Padding="25"
 									  MinWidth="50"
 									  MinHeight="50"
 									  Grid.Column="1">
