@@ -10,7 +10,6 @@
     mc:Ignorable="d">
 
     <Grid>
-
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState>
@@ -20,7 +19,14 @@
 
                     <VisualState.Setters>
                         <Setter Target="MenuFrame.Width" Value="320" />
-                        <Setter Target="FirstStackPanel.Margin" Value="20 5 0 5"/>
+                        <Setter Target="FirstStackPanel.Margin" Value="50 5 0 5"/>
+                        <Setter Target="SecondStackPanel.Margin" Value="20 15 0 15"/>
+                        <Setter Target="ThirdStackPanel.Margin" Value="20 15 0 15"/>
+                        <Setter Target="TripsAccountPanel.Visibility" Value="Collapsed"/>
+                        <Setter Target="HotelTitleText.Visibility" Value="Collapsed"/>
+                        <Setter Target="FlightTitleText.Visibility" Value="Collapsed"/>
+                        <Setter Target="CarTitleText.Visibility" Value="Collapsed"/>
+                        <Setter Target="SplitView.OpenPaneLength" Value="225"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>
@@ -31,6 +37,10 @@
                     <VisualState.Setters>
                         <Setter Target="MenuFrame.Width" Value="360" />
                         <Setter Target="FirstStackPanel.Margin" Value="20 5 0 5"/>
+                        <Setter Target="TripsAccountPanel.Visibility" Value="Collapsed"/>
+                        <Setter Target="HotelTitleText.Visibility" Value="Collapsed"/>
+                        <Setter Target="FlightTitleText.Visibility" Value="Collapsed"/>
+                        <Setter Target="CarTitleText.Visibility" Value="Collapsed"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>
@@ -41,6 +51,10 @@
                     <VisualState.Setters>
                         <Setter Target="MenuFrame.Width" Value="432" />
                         <Setter Target="FirstStackPanel.Margin" Value="20 5 0 5"/>
+                        <Setter Target="TripsAccountPanel.Visibility" Value="Collapsed"/>
+                        <Setter Target="HotelTitleText.Visibility" Value="Collapsed"/>
+                        <Setter Target="FlightTitleText.Visibility" Value="Collapsed"/>
+                        <Setter Target="CarTitleText.Visibility" Value="Collapsed"/>
                     </VisualState.Setters>
                 </VisualState>
 
@@ -51,76 +65,78 @@
 
                     <VisualState.Setters>
                         <Setter Target="MenuFrame.Width" Value="600" />
-                        <Setter Target="FirstStackPanel.Margin" Value="70 5 0 5"/>
+                        <Setter Target="FirstStackPanel.Margin" Value="120 5 0 5"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
-        <SplitView x:Name="SplitView" DisplayMode="CompactOverlay" IsPaneOpen="{Binding IsFlyoutMenuOpen}" CompactPaneLength="0" OpenPaneLength="150">
-
+        <SplitView x:Name="SplitView" DisplayMode="CompactOverlay" IsPaneOpen="{Binding IsFlyoutMenuOpen, Mode=TwoWay}" CompactPaneLength="0" OpenPaneLength="380" >
             <SplitView.Pane>
-                <StackPanel Background="Gray">
+                <Grid>
+                <StackPanel>
+                    <StackPanel.Background>
+                        <SolidColorBrush Color="{StaticResource DarkBlueBrush}"/>
+                    </StackPanel.Background>
 
-                    <Button x:Name="Settings" Margin="0 60 0 0" Background="Transparent" Command="{Binding GoToSettings}">
+                    <Button x:Name="BundleDeals" Background="Transparent" Margin="15 75 0 10" Style="{StaticResource MetroDefaultButton}" HorizontalAlignment="Left">
                         <StackPanel Orientation="Horizontal">
-                            <Viewbox Height="35" Width="35">
-                                <PathIcon Data="F1 M 37.6289,-0.000976563L 49.6289,-0.000976563L 52.8506,10.8311C 55.3838,11.5439 57.7979,12.542 60.0557,13.79L 70.0654,8.37012L 78.5518,16.8545L 73.1934,26.749C 74.4844,29.0117 75.5234,31.4365 76.2725,33.9863L 87.251,37.252L 87.251,49.252L 76.4746,52.457C 75.7588,55.1113 74.7295,57.6377 73.4297,59.9932L 78.8838,70.0645L 70.3994,78.5518L 60.4404,73.1582C 58.0811,74.5029 55.5439,75.5732 52.875,76.3252L 49.624,87.2549L 37.624,87.2549L 34.373,76.3232C 31.7061,75.5713 29.1729,74.501 26.8145,73.1572L 16.8574,78.5488L 8.37207,70.0635L 13.8262,59.9912C 12.5264,57.6357 11.498,55.1113 10.7822,52.458L 0,49.251L 0,37.251L 10.9854,33.9834C 11.7334,31.4365 12.7715,29.0137 14.0615,26.7529L 8.70313,16.8564L 17.1885,8.37012L 27.1982,13.791C 29.4561,12.542 31.8721,11.543 34.4072,10.8311L 37.6289,-0.000976563 Z M 43.9824,59.5264C 52.9834,59.5264 60.2803,52.2275 60.2803,43.2275C 60.2803,34.2266 52.9834,26.9277 43.9824,26.9277C 34.9824,26.9277 27.6826,34.2266 27.6826,43.2275C 27.6826,52.2275 34.9824,59.5264 43.9824,59.5264 Z "/>
-                            </Viewbox>
+                            <TextBlock Text="Bundle Deals" Margin="6 2 0 0" Style="{StaticResource MenuTextStyle}"/>
+                        </StackPanel>
+                    </Button>
+
+                        <Button x:Name="ThingsToDo" Background="Transparent" Margin="15 10 0 10" Style="{StaticResource MetroDefaultButton}" HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Things to Do" Margin="6 2 0 0" Style="{StaticResource MenuTextStyle}"/>
+                        </StackPanel>
+                    </Button>
+
+                        <Button x:Name="Settings" Margin="15 10 0 10" Background="Transparent" Command="{Binding GoToSettings}" Style="{StaticResource MetroDefaultButton}" HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Settings" Margin="5 5 0 0" Style="{StaticResource MenuTextStyle}"/>
                         </StackPanel>
                     </Button>
 
-                    <Button x:Name="Account" Background="Transparent" Margin="0 10 0 10" Command="{Binding GoToAccount}">
+                        <Button x:Name="About" Background="Transparent" Margin="15 10 0 10" Style="{StaticResource MetroDefaultButton}" HorizontalAlignment="Left">
                         <StackPanel Orientation="Horizontal">
-                            <Viewbox  Height="35" Width="35">
-                                <PathIcon Data="F1 M 131.432,90.6536C 128.611,76.0937 89.7838,77.6419 80.4271,66.2396C 78.4531,63.8334 78.4531,63.8334 79.776,54.8972C 82.0338,44.8945 84.0807,51.103 87.3098,31.1524C 90.0235,14.3972 84.2357,1.52588e-005 66.6667,1.52588e-005C 49.0976,1.52588e-005 43.3105,14.3972 46.0228,31.1524C 49.252,51.103 51.2975,44.8945 53.5573,54.8972C 54.8802,63.8334 54.8802,63.8334 52.907,66.2396C 43.5495,77.6419 4.72269,76.0937 1.90106,90.6536C 1.56641,92.3763 0,101.911 0,101.911L 133.333,101.911C 133.333,101.911 131.767,92.3763 131.432,90.6536 Z "/>
-                            </Viewbox>
-                            <TextBlock Text="{Binding IsSignedIn, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource SignInSignOutTextConverter}}" Margin="5 9 0 0" Style="{StaticResource MenuTextStyle}"/>
+                            <TextBlock Text="About" Margin="6 2 0 0" Style="{StaticResource MenuTextStyle}"/>
                         </StackPanel>
                     </Button>
 
-                    <Button x:Name="Itinerary" Background="Transparent" Margin="0 10 0 10">
-                        <StackPanel Orientation="Horizontal">
-                            <Viewbox Width="35" Height="35" Margin="0 -5 0 0">
-                                <PathIcon Data="F1 M 6.14438,3.05176e-005L 0,3.05176e-005L 0,6.18002L 6.14438,6.18002L 6.14438,3.05176e-005 Z M 6.14438,9.12003L 0,9.12003L 0,15.3L 6.14438,15.3L 6.14438,9.12003 Z M 6.14438,17.7778L 0,17.7778L 0,23.9222L 6.14438,23.9222L 6.14438,17.7778 Z M 30.7699,1.96503L 10.2726,1.96503L 10.2726,5.17502L 30.7699,5.17502L 30.7699,1.96503 Z M 30.7699,11.085L 10.2726,11.085L 10.2726,14.295L 30.7699,14.295L 30.7699,11.085 Z M 30.7699,19.245L 10.2726,19.245L 10.2726,22.455L 30.7699,22.455L 30.7699,19.245 Z "/>
-                            </Viewbox>
-                            <TextBlock Text="Itinerary" Margin="6 2 0 0" Style="{StaticResource MenuTextStyle}"/>
+                        <Button x:Name="Feedback" Background="Transparent" Margin="15 10 0 10" Style="{StaticResource MetroDefaultButton}" HorizontalAlignment="Left">
+                            <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Feedback" Margin="6 2 0 0" Style="{StaticResource MenuTextStyle}"/>
                         </StackPanel>
                     </Button>
 
-                </StackPanel>
+                        <Button x:Name="Website" Background="Transparent" Margin="15 10 0 10" Style="{StaticResource MetroDefaultButton}" HorizontalAlignment="Left">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Website" Margin="6 2 0 0" Style="{StaticResource MenuTextStyle}"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
 
+                    <Button x:Name="SignIn" Background="Transparent" Margin="15 10 0 15" VerticalAlignment="Bottom" Command="{Binding GoToAccount}" Style="{StaticResource MetroDefaultButton}" HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding IsSignedIn, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource SignInSignOutTextConverter}}" Margin="5 9 0 0" Style="{StaticResource MenuTextStyle}"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
             </SplitView.Pane>
 
             <SplitView.Content>
-                <!--<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-                    <Frame x:Name="ShellFrame">
-                        <Frame.ContentTransitions>
-                            <TransitionCollection>
-                                <NavigationThemeTransition>
-                                    <NavigationThemeTransition.DefaultNavigationTransitionInfo>
-                                        <EntranceNavigationTransitionInfo />
-                                    </NavigationThemeTransition.DefaultNavigationTransitionInfo>
-                                </NavigationThemeTransition>
-                            </TransitionCollection>
-                        </Frame.ContentTransitions>
-                    </Frame>
-
-            </Grid>-->
 
                 <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
                     <Pivot x:Name="PivotControl" Style="{StaticResource PivotStyleDynamicHeader}" Background="{Binding ElementName=PivotControl, Path=SelectedIndex, Converter={StaticResource IndexToPivotBackgroundColorConverter}}" SelectionChanged="PivotControl_OnSelectionChanged">
                         <PivotItem x:Name="HotelPivot" Margin="0 0 0 0">
                             <PivotItem.Header>
-                                <StackPanel x:Name="FirstStackPanel" Orientation="Vertical" Margin="70 5 0 5">
-                                    <Viewbox Width="55" Height="45">
-                                        <PathIcon Data="M11.7660012 13.2592703 C14.5899896 13.2531049 16.3892947 11.4920396 16.4023661 8.686778 C16.3892947 5.87927446 14.5899896 4.11876965 11.7660012 4.11428571 C8.92723639 4.11876965 7.12622628 5.87983495 7.1296362 8.686778 C7.12565796 11.4920396 8.92723639 13.2531049 11.7660012 13.2592703 M9.98693619 19.0937766 L20.032583 19.0937766 C21.5426127 19.0993815 23.1231141 18.1639207 23.1236824 16.8075304 L23.1236824 9.94879202 C23.1225458 6.28373599 18.493569 6.28373599 18.4873175 9.94879202 L18.4873175 14.5212843 L9.98693619 14.5212843 C6.17975198 14.5476274 6.17463709 19.0993815 9.98693619 19.0937766 M47.6268375 11.7725153 C47.6313841 9.19088998 46.0082585 7.19217614 42.9904726 7.20002303 L24.4444444 7.20002303 L24.4444444 19.3929621 L47.6268375 19.3929621 L47.6268375 11.7725153 M49.4553194 9.85891103 L49.4553194 20.5284334 L5.40928408 20.5284334 L5.40928408 3.0001726 C5.40303254 -1.00005753 -0.00397605472 -1.00005753 2.19419424e-06 3.0001726 L2.19419424e-06 35.0081791 L5.40928408 35.0081791 L5.40928408 26.6249029 L49.4553194 26.6249029 L49.4553194 35.0081791 L54.8646013 35.0081791 L54.8646013 9.85891103 C54.8788093 5.6389681 49.442248 5.6389681 49.4553194 9.85891103"/>
+                                <StackPanel x:Name="FirstStackPanel" Orientation="Horizontal" Margin="120 15 0 15">
+                                    <Viewbox Width="45" Height="35">
+                                        <PathIcon Data="M32.4821429,40 L15.1785714,40 L8.05357143,40 L5,40 L5,37.48 C5,36.3753333 5.91132143,35.48 7.03571429,35.48 L8.05357143,35.48 L8.05357143,4 C8.05357143,2.89533333 8.96489286,2 10.0892857,2 L30.4464286,2 C31.5708214,2 32.4821429,2.89533333 32.4821429,4 L32.4821429,12.1520408 L37.5714286,12.1520408 C38.6958214,12.1520408 39.6071429,13.0473741 39.6071429,14.1520408 L39.6071429,35.48 L40.625,35.48 C41.7493929,35.48 42.6607143,36.3753333 42.6607143,37.48 L42.6607143,40 L39.6071429,40 L32.4821429,40 Z M13.12,9.07980749 C13.12,8.52762906 13.5637166,8.08 14.1198075,8.08 L17.1201925,8.08 C17.6723709,8.08 18.12,8.52371665 18.12,9.07980749 L18.12,12.0801925 C18.12,12.6323709 17.6762834,13.08 17.1201925,13.08 L14.1198075,13.08 C13.5676291,13.08 13.12,12.6362834 13.12,12.0801925 L13.12,9.07980749 Z M21.2792334,9.07980749 C21.2792334,8.52762906 21.72295,8.08 22.2790409,8.08 L25.2794259,8.08 C25.8316043,8.08 26.2792334,8.52371665 26.2792334,9.07980749 L26.2792334,12.0801925 C26.2792334,12.6323709 25.8355168,13.08 25.2794259,13.08 L22.2790409,13.08 C21.7268625,13.08 21.2792334,12.6362834 21.2792334,12.0801925 L21.2792334,9.07980749 Z M13.12,18.1998075 C13.12,17.6476291 13.5637166,17.2 14.1198075,17.2 L17.1201925,17.2 C17.6723709,17.2 18.12,17.6437166 18.12,18.1998075 L18.12,21.2001925 C18.12,21.7523709 17.6762834,22.2 17.1201925,22.2 L14.1198075,22.2 C13.5676291,22.2 13.12,21.7562834 13.12,21.2001925 L13.12,18.1998075 Z M21.2792334,18.1998075 C21.2792334,17.6476291 21.72295,17.2 22.2790409,17.2 L25.2794259,17.2 C25.8316043,17.2 26.2792334,17.6437166 26.2792334,18.1998075 L26.2792334,21.2001925 C26.2792334,21.7523709 25.8355168,22.2 25.2794259,22.2 L22.2790409,22.2 C21.7268625,22.2 21.2792334,21.7562834 21.2792334,21.2001925 L21.2792334,18.1998075 Z M21.2792334,27.0075137 C21.2792334,26.4515282 21.72295,26.000813 22.2790409,26.000813 L25.2794259,26.000813 C25.8316043,26.000813 26.2792334,26.4498394 26.2792334,27.0075137 L26.2792334,34.5701126 C26.2792334,35.126098 25.8355168,35.5768133 25.2794259,35.5768133 L22.2790409,35.5768133 C21.7268625,35.5768133 21.2792334,35.1277869 21.2792334,34.5701126 L21.2792334,27.0075137 Z M29.56,18.1998075 C29.56,17.6476291 30.0037166,17.2 30.5598075,17.2 L33.5601925,17.2 C34.1123709,17.2 34.56,17.6437166 34.56,18.1998075 L34.56,21.2001925 C34.56,21.7523709 34.1162834,22.2 33.5601925,22.2 L30.5598075,22.2 C30.0076291,22.2 29.56,21.7562834 29.56,21.2001925 L29.56,18.1998075 Z M13.12,27.0006205 C13.12,26.448442 13.5637166,26.000813 14.1198075,26.000813 L17.1201925,26.000813 C17.6723709,26.000813 18.12,26.4445296 18.12,27.0006205 L18.12,30.0010055 C18.12,30.5531839 17.6762834,31.000813 17.1201925,31.000813 L14.1198075,31.000813 C13.5676291,31.000813 13.12,30.5570963 13.12,30.0010055 L13.12,27.0006205 Z M29.56,27.0006205 C29.56,26.448442 30.0037166,26.000813 30.5598075,26.000813 L33.5601925,26.000813 C34.1123709,26.000813 34.56,26.4445296 34.56,27.0006205 L34.56,30.0010055 C34.56,30.5531839 34.1162834,31.000813 33.5601925,31.000813 L30.5598075,31.000813 C30.0076291,31.000813 29.56,30.5570963 29.56,30.0010055 L29.56,27.0006205 Z"/>
                                     </Viewbox>
-                                    <Rectangle Fill="{Binding ElementName=PivotControl, Path=SelectedIndex, Converter={StaticResource IndexToPivotColorConverter}, ConverterParameter=0}" Margin="-30 0 -30 -6" Height="5" Width="110"/>
+                                    <TextBlock x:Name="HotelTitleText" Text="Hotels" x:Uid="HotelTitle" Style="{StaticResource TitleHeaderTextStyle}"/>
+                                    <!--<Rectangle Fill="{Binding ElementName=PivotControl, Path=SelectedIndex, Converter={StaticResource IndexToPivotColorConverter}, ConverterParameter=0}" Margin="-30 0 -30 -6" Height="5" Width="110"/>-->
                                 </StackPanel>
-                               
                             </PivotItem.Header>
                             <Frame x:Name="HotelFrame" SourcePageType="views:SearchHotelsView">
                                 <views:SearchHotelsView />
@@ -128,11 +144,12 @@
                         </PivotItem>
                         <PivotItem x:Name="FlightPivot" Margin="0 0 0 0" >
                             <PivotItem.Header>
-                                <StackPanel Orientation="Vertical" Margin="30 5 0 5">
-                                <Viewbox Width="55" Height="45">
-                                    <PathIcon Data="F1M23.716,0.284C23.476,0.044 23.18,-0.044 22.829,0.02 21.454,0.244 20.431,0.676 19.759,1.315 18.64,2.435 16.642,4.449 13.764,7.358L1.966,3.617C1.774,3.553,1.614,3.586,1.487,3.713L0,5.2 10.119,10.955 5.036,16.039 1.439,14.84 0,16.326 4.556,19.444 7.674,24 9.16,22.561 7.913,18.964 13.045,13.881 18.8,24 20.287,22.513C20.415,22.385,20.447,22.226,20.383,22.034L16.642,10.236 22.685,4.241C23.324,3.569 23.756,2.546 23.98,1.171 24.044,0.82 23.956,0.524 23.716,0.284"/>
+                                <StackPanel x:Name="SecondStackPanel" Orientation="Horizontal" Margin="30 15 0 15">
+                                <Viewbox Width="45" Height="35">
+                                        <PathIcon Data="M38.5713757,38.9452795 C38.8200572,38.696598 38.8983739,38.3576823 38.8356563,38.0490464 L33.206156,18.9976524 L41.8029375,10.4008708 C43.3250445,8.86833992 43.3966275,6.46830507 41.9600757,5.03175324 C40.5241754,3.5958529 38.1241405,3.66743594 36.5995847,5.19199174 L27.9941765,13.785673 L8.94574212,8.14669811 C8.63525318,8.10146945 8.2996736,8.18035905 8.05306444,8.42696821 L5.30237064,11.177662 C4.91207883,11.5679538 4.90061783,12.1657625 5.2621989,12.5273436 C5.34103009,12.6061748 5.4339912,12.6604521 5.53064192,12.7032218 L21.0996618,20.6971266 L15.5464656,26.2503229 L8.26438079,26.3190281 C7.96186696,26.2762483 7.63568333,26.3548629 7.39321886,26.5973274 L5.76824383,28.2223024 C5.37795202,28.6125942 5.36649101,29.2104029 5.72807209,29.571984 C5.82253921,29.6664511 5.93324789,29.7329497 6.05267807,29.7763939 L14.269452,32.7432249 L17.2247361,40.9650307 C17.2797271,41.079429 17.3468772,41.1907891 17.4406929,41.2846048 C17.8022739,41.6461858 18.4000826,41.6347248 18.775868,41.2589394 C18.7807035,41.254104 20.4153495,39.619458 20.4153495,39.619458 C20.657814,39.3769935 20.7370801,39.0514614 20.6842135,38.7499133 L20.7573155,31.4321599 L26.2960053,25.8934701 L34.2756394,41.4689428 C34.3339828,41.5604437 34.3902146,41.6553593 34.4710003,41.736145 C34.8325814,42.0977261 35.4303901,42.0862651 35.8061755,41.7104797 L38.5713757,38.9452795 Z"/>
                                 </Viewbox>
-                                    <Rectangle Fill="{Binding ElementName=PivotControl, Path=SelectedIndex, Converter={StaticResource IndexToPivotColorConverter}, ConverterParameter=1}" Margin="-30 0 -30 -6" Height="5" Width="110"/>
+                                    <TextBlock x:Name="FlightTitleText" Text="Flights" x:Uid="FlightTitle" Style="{StaticResource TitleHeaderTextStyle}"/>
+                                    <!--<Rectangle Fill="{Binding ElementName=PivotControl, Path=SelectedIndex, Converter={StaticResource IndexToPivotColorConverter}, ConverterParameter=1}" Margin="-30 0 -30 -6" Height="5" Width="110"/>-->
                                 </StackPanel>
                             </PivotItem.Header>
                             <Frame x:Name="FlightFrame" SourcePageType="views:SearchFlightsView">
@@ -141,11 +158,12 @@
                         </PivotItem>
                         <PivotItem x:Name="CarPivot" Margin="0 0 0 0">
                             <PivotItem.Header>
-                                <StackPanel Orientation="Vertical" Margin="30 5 0 5">
-                                <Viewbox Width="55" Height="45" >
-                                    <PathIcon Data="F1 M 121.233,38.2618L 110.305,10.0391C 108.26,4.63667 103.794,0.0390778 95.3399,1.52588e-005L 79.9271,1.52588e-005L 53.584,1.52588e-005L 37.9024,1.52588e-005C 29.4883,0.0390778 25.0215,4.63667 22.9402,10.0391L 12.0078,38.2618C 7.668,38.8216 -0.0130615,43.9219 0,53.5834L 0,89.5183L 10.6653,89.5183L 10.6653,100.988C 10.6387,115.13 30.6504,114.962 30.6452,100.988L 30.6452,89.5183L 66.6667,89.5183L 102.598,89.5183L 102.598,100.988C 102.641,114.962 122.654,115.13 122.667,100.988L 122.667,89.5183L 133.333,89.5183L 133.333,53.5834C 133.299,43.9219 125.613,38.8216 121.233,38.2618 Z M 20.9695,67.832C 15.8575,67.8463 11.7188,63.5834 11.7403,58.3385C 11.7188,53.0585 15.8575,48.7904 20.9695,48.8347C 26.0651,48.7904 30.2037,53.0585 30.1972,58.3385C 30.2037,63.5834 26.0639,67.8451 20.9695,67.832 Z M 66.6667,37.9962L 66.5775,37.9962L 23.388,37.9962L 31.6308,15.7722C 32.6256,12.6172 34.1693,10.3607 37.8157,10.306L 66.5775,10.306L 66.6667,10.306L 95.5208,10.306C 99.1107,10.3607 100.659,12.6159 101.701,15.7722L 109.945,37.9962L 66.6667,37.9962 Z M 112.365,67.832C 107.217,67.8463 103.075,63.5834 103.048,58.3385C 103.075,53.0585 107.217,48.7904 112.365,48.8347C 117.425,48.7904 121.563,53.0585 121.594,58.3385C 121.563,63.5834 117.425,67.8451 112.365,67.832 Z "/>
+                                <StackPanel x:Name="ThirdStackPanel" Orientation="Horizontal" Margin="30 15 0 15">
+                                <Viewbox Width="45" Height="35" >
+                                        <PathIcon Data="M37.8344438,28.9166667 C36.1096093,28.9166667 34.7125714,27.4995833 34.7125714,25.75 C34.7125714,24.002 36.1096093,22.5833333 37.8344438,22.5833333 C39.5577174,22.5833333 40.9563163,24.002 40.9563163,25.75 C40.9563163,27.4995833 39.5577174,28.9166667 37.8344438,28.9166667 M11.2493297,28.9166667 C9.52449523,28.9166667 8.12745732,27.4995833 8.12745732,25.75 C8.12745732,24.002 9.52449523,22.5833333 11.2493297,22.5833333 C12.9726033,22.5833333 14.3712022,24.002 14.3712022,25.75 C14.3712022,27.4995833 12.9726033,28.9166667 11.2493297,28.9166667 M31.590699,5.16666667 C36.1767296,5.16666667 38.1152026,11.6274878 38.8660129,16.2999044 L10.4772253,16.2999044 C11.2280357,11.6274878 12.9054831,5.16666667 17.4930746,5.16666667 L31.590699,5.16666667 Z M5.42797435,18.72 C5.15970426,19.5435455 5.00558491,20.4227428 5.00558491,21 L5.00558491,36.8333333 C5.00558491,38.5829167 6.40262281,40 8.12745732,40 C9.8507309,40 11.2493297,38.5829167 11.2493297,36.8333333 L11.2493297,35.25 L37.8344438,35.25 L37.8344438,36.8333333 C37.8344438,38.5829167 39.2314818,40 40.9563163,40 C42.6795898,40 44.0781887,38.5829167 44.0781887,36.8333333 L44.0781887,21 C44.0781887,20.4227428 43.9240693,19.5435455 43.6557992,18.72 L45.0821411,18.72 C46.1968048,18.72 47.0837736,17.8245326 47.0837736,16.7199176 L47.0837736,16.1600824 C47.0837736,15.0609093 46.1876122,14.16 45.0821411,14.16 L43.0742363,14.16 C42.6716966,14.16 42.2988519,14.276783 41.986752,14.4780252 C40.985024,9.78957231 38.2698671,2 31.590699,2 L17.4930746,2 C10.8122402,2 8.09739511,9.79345939 7.09627216,14.4815336 C6.78331393,14.2783263 6.41017109,14.16 6.0095373,14.16 L4.00163251,14.16 C2.88696881,14.16 2,15.0554674 2,16.1600824 L2,16.7199176 C2,17.8190907 2.8961614,18.72 4.00163251,18.72 L5.42797435,18.72 Z M17.0994861,25.4723742 C17.0994861,24.365391 17.9998743,23.4680038 19.1069569,23.4680038 L30.2093917,23.4680038 C31.3180872,23.4680038 32.2168625,24.3549853 32.2168625,25.4723742 L32.2168625,26.06392 C32.2168625,27.1709032 31.3164743,28.0682904 30.2093917,28.0682904 L19.1069569,28.0682904 C17.9982614,28.0682904 17.0994861,27.1813088 17.0994861,26.06392 L17.0994861,25.4723742 Z"/>
                                 </Viewbox>
-                                    <Rectangle Fill="{Binding ElementName=PivotControl, Path=SelectedIndex, Converter={StaticResource IndexToPivotColorConverter}, ConverterParameter=2}" Margin="-30 0 -30 -6" Height="5" Width="110"/>
+                                    <TextBlock x:Name="CarTitleText" Text="Cars" x:Uid="CarTitle" Style="{StaticResource TitleHeaderTextStyle}"/>
+                                    <!--<Rectangle Fill="{Binding ElementName=PivotControl, Path=SelectedIndex, Converter={StaticResource IndexToPivotColorConverter}, ConverterParameter=2}" Margin="-30 0 -30 -6" Height="5" Width="110"/>-->
                                 </StackPanel>
                             </PivotItem.Header>
                             <Frame x:Name="CarFrame" SourcePageType="views:SearchCarsView">
@@ -162,9 +180,31 @@
 
         </SplitView>
 
-        <Button FontFamily="Segoe MDL2 Assets" FontSize="32" Content="&#xE700;" Width="48" Height="45" Background="Transparent" VerticalAlignment="Top" Command="{Binding HamburgerClick}"/>
+        <Button Margin="10 10 0 0" Style="{StaticResource MetroDefaultButton}" HorizontalAlignment="Left" Background="Transparent" VerticalAlignment="Top" Command="{Binding HamburgerClick}">
+            <Viewbox Width="30" Height="30">
+                <Path Fill="White" Data="M 4 7 L 4 9 L 28 9 L 28 7 L 4 7 z M 4 15 L 4 17 L 28 17 L 28 15 L 4 15 z M 4 23 L 4 25 L 28 25 L 28 23 L 4 23 z"/>
+            </Viewbox>
+        </Button>
 
-       
+        <StackPanel x:Name="TripsAccountPanel" Margin="0 10 15 0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <Button Style="{StaticResource MetroDefaultButton}" Background="Transparent" Command="{Binding TripsCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <Viewbox Width="40" Height="30">
+                        <Path Fill="White" Data="M16,9.36969697 L6.00180999,9.36969697 C3.79309123,9.36969697 2,11.1625177 2,13.3740742 L2,35.9956228 C2,38.2095551 3.79167136,40 6.00180999,40 L41.99819,40 C44.2069088,40 46,38.2071793 46,35.9956228 L46,13.3740742 C46,11.1601418 44.2083286,9.36969697 41.99819,9.36969697 L32,9.36969697 L32,4.99449486 C32,3.34675705 30.652611,2 28.9905224,2 L19.0094776,2 C17.3366311,2 16,3.34068101 16,4.99449486 L16,9.36969697 Z M29.1843318,9.36969697 L18.8156682,9.36969697 L18.8156682,4.99393939 L29.1843318,4.99393939 L29.1843318,9.36969697 Z M10.8248848,9.36969697 L13.8248848,9.36969697 L13.8248848,40 L10.8248848,40 L10.8248848,9.36969697 Z M34.1751152,9.36969697 L37.1751152,9.36969697 L37.1751152,40 L34.1751152,40 L34.1751152,9.36969697 Z"/>
+                    </Viewbox>
+                    <TextBlock x:Name="MyTripsTitleText" Text="My Trips" x:Uid="MyTripsTitle" Margin="10 10 0 0" Style="{StaticResource TitleHeaderTextStyle}"/>
+                </StackPanel>
+            </Button>
+
+            <Button Style="{StaticResource MetroDefaultButton}" Background="Transparent" Command="{Binding AccountCommand}" Margin="15 0 0 0">
+                <StackPanel Orientation="Horizontal">
+                    <Viewbox Width="30" Height="30">
+                        <Path Fill="White" Data="M24,2 C29.2467051,2 33.5,6.25329488 33.5,11.5 C33.5,16.7467051 29.2467051,21 24,21 C18.7532949,21 14.5,16.7467051 14.5,11.5 C14.5,6.25329488 18.7532949,2 24,2 L24,2 Z M24,25.75 C34.4975,25.75 43,30.00125 43,35.25 L43,40 L5,40 L5,35.25 C5,30.00125 13.5025,25.75 24,25.75 L24,25.75 Z"/>
+                    </Viewbox>
+                    <TextBlock x:Name="AccountTitleText" Text="Account" x:Uid="AccountTitle" Margin="10 10 0 0" Style="{StaticResource TitleHeaderTextStyle}"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
 
     </Grid>
 </Page>

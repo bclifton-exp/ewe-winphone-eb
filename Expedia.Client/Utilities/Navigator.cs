@@ -82,6 +82,7 @@ namespace Expedia.Client.Utilities
             if (_currentFrame == _rootFrame && _rootFrame.CurrentSourcePageType == typeof(SignInView)) //sign in logic
             {
                 _signInViewModel.BackPressed();
+                e.Handled = true;
             }
             else
             {
@@ -107,6 +108,7 @@ namespace Expedia.Client.Utilities
             if (_currentFrame == _rootFrame && _rootFrame.CurrentSourcePageType == typeof(SignInView)) //sign in logic
             {
                 _signInViewModel.BackPressed();
+                e.Handled = true;
             }
             else
             {

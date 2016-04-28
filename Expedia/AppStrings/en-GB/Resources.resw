@@ -697,6 +697,22 @@
     <comment>Acknowledgement of prompt. E.g. "There was an error"</comment>
   </data>
 
+  <data name="HotelTitle.Text" xml:space="preserve">
+    <value>Hotels</value>
+  </data>
+  <data name="FlightTitle.Text" xml:space="preserve">
+    <value>Flights</value>
+  </data>
+  <data name="CarTitle.Text" xml:space="preserve">
+    <value>Cars</value>
+  </data>
+  <data name="MyTripsTitle.Text" xml:space="preserve">
+    <value>My Trips</value>
+  </data>
+  <data name="AccountTitle.Text" xml:space="preserve">
+    <value>Account</value>
+  </data>
+
   <!-- Homescreen pinned live tile -->
   <data name="TileHotelsLabel" xml:space="preserve">
     <value>Hotels</value>

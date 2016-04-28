@@ -10,16 +10,28 @@ namespace Expedia.Client.Converters
         {
             int selectedIndex = int.Parse(value.ToString());
 
+            //switch (selectedIndex)
+            //{
+            //    case 0:
+            //        return Application.Current.Resources["HotelGreen"];
+            //    case 1:
+            //        return Application.Current.Resources["FlightBlue"];
+            //    case 2:
+            //        return Application.Current.Resources["CarsPurple"];
+            //    default:
+            //        return Application.Current.Resources["HotelGreen"];
+            //}
+
             switch (selectedIndex)
             {
                 case 0:
-                    return Application.Current.Resources["HotelGreen"];
+                    return Application.Current.Resources["FlightBlue"];
                 case 1:
                     return Application.Current.Resources["FlightBlue"];
                 case 2:
-                    return Application.Current.Resources["CarsPurple"];
+                    return Application.Current.Resources["FlightBlue"];
                 default:
-                    return Application.Current.Resources["HotelGreen"];
+                    return Application.Current.Resources["FlightBlue"];
             }
         }
 

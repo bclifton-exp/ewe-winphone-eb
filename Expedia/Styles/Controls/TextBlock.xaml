@@ -353,6 +353,19 @@
 				Value="NoWrap" />
     </Style>
 
+    <Style x:Key="TitleHeaderTextStyle"
+		   TargetType="TextBlock"
+		   BasedOn="{StaticResource ResultsHeaderTextStyle}">
+        <Setter Property="TextTrimming"
+				Value="CharacterEllipsis" />
+        <Setter Property="TextWrapping"
+				Value="NoWrap" />
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Margin" Value="10 5 0 0"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
     <Style x:Key="FilterTextStyle"
 		   TargetType="TextBlock"
 		   BasedOn="{StaticResource TextStyle}">

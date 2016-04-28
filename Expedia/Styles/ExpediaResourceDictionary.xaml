@@ -42,7 +42,7 @@
     <Color x:Key="TertiaryColor9">#FF8D8D8D</Color>
 
     <Color x:Key="IconGrayColor">#888888</Color>
-
+    <Color x:Key="DarkBlueBrush">#FF14375F</Color>
 
 
 
