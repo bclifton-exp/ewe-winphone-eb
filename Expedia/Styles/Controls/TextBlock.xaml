@@ -372,13 +372,13 @@
         <Setter Property="FontFamily"
 				Value="{StaticResource AppSemiLightFontFamily}" />
         <Setter Property="FontWeight"
-				Value="SemiLight" />
+				Value="Bold" />
         <Setter Property="FontSize"
-				Value="18.33" />
+				Value="15.33" />
         <Setter Property="LineHeight"
 				Value="18.33" />
         <Setter Property="Foreground"
-				Value="{StaticResource AppWhiteColorBrush}" />
+				Value="{StaticResource LogoDarkBlueBrush}" />
     </Style>
 
     <Style x:Key="FilterTextStylePhone"
@@ -387,13 +387,13 @@
         <Setter Property="FontFamily"
 				Value="{StaticResource AppSemiLightFontFamily}" />
         <Setter Property="FontWeight"
-				Value="SemiLight" />
+				Value="Bold" />
         <Setter Property="FontSize"
 				Value="12" />
         <Setter Property="LineHeight"
 				Value="18.33" />
         <Setter Property="Foreground"
-				Value="{StaticResource AppWhiteColorBrush}" />
+				Value="{StaticResource LogoDarkBlueBrush}" />
     </Style>
 
     <Style x:Key="StrikeThroughTextStyle"

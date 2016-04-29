@@ -65,7 +65,7 @@
 									  HorizontalContentAlignment="Left"
 									  HorizontalAlignment="Stretch"
 									  BorderThickness="0"
-                                      Padding="0"
+                                      Foreground="{StaticResource LogoDarkBlueBrush}"
                                       Style="{StaticResource FilterToggleButtonStyle}"
 									  Content="{TemplateBinding Content}"
 									  ContentTemplate="{TemplateBinding ContentTemplate}"
@@ -77,6 +77,7 @@
 									  VerticalAlignment="Center"
 									  IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
                                       Style="{StaticResource FilterToggleButtonStyle}"
+                                      Foreground="{StaticResource LogoDarkBlueBrush}"
 									  RenderTransformOrigin="0.5,0.5"
 									  BorderThickness="0"
 									  MinWidth="50"
@@ -89,7 +90,7 @@
                                 
                                 <DataTemplate>
                                     <PathIcon Data="F1M5.999,4.844L1.155,0 0,1.158 5.999,7.155 11.999,1.158 10.843,0z"
-											  Foreground="{StaticResource AppWhiteColorBrush}"
+											  Foreground="{StaticResource LogoDarkBlueBrush}"
 											  Height="7.155"
 											  Width="11.999"
 											  VerticalAlignment="Center" />
@@ -393,7 +394,7 @@
 		   TargetType="customControls:ExpandableContentControl"
 		   BasedOn="{StaticResource ExpandableDownControlStyle}">
         <Setter Property="Margin"
-				Value="20,3,0,0" />
+				Value="5,3,0,0" />
     </Style>
 
     <Style x:Key="HotelFilterExpandablePhoneStyle"
@@ -487,7 +488,7 @@
 
                                 <DataTemplate>
                                     <PathIcon Data="F1M5.999,4.844L1.155,0 0,1.158 5.999,7.155 11.999,1.158 10.843,0z"
-											  Foreground="{StaticResource AppWhiteColorBrush}"
+											  Foreground="{StaticResource LogoDarkBlueBrush}"
 											  Height="7.155"
 											  Width="11.999"
 											  VerticalAlignment="Center" />

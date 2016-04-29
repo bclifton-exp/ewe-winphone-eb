@@ -62,13 +62,13 @@
 
                 <VisualState>
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="600" />
+                        <AdaptiveTrigger MinWindowWidth="720" />
                     </VisualState.StateTriggers>
 
                     <VisualState.Setters>
                         <Setter Target="MainPanel.Width" Value="400"/>
-                        <Setter Target="ExpediaLogo.Margin" Value="0 200 0 0"/>
-                        <Setter Target="CircleLogo.Margin" Value="0 190 0 0"/>
+                        <Setter Target="ExpediaLogo.Margin" Value="0 150 0 0"/>
+                        <Setter Target="CircleLogo.Margin" Value="0 120 0 0"/>
                         <Setter Target="UserWelcomeMessage.Margin" Value="0 70 0 30"/>
                     </VisualState.Setters>
                 </VisualState>

@@ -573,7 +573,7 @@
         <Setter Property="Background"
 				Value="{ThemeResource PhoneRadioCheckBoxBrush}" />
         <Setter Property="BorderBrush"
-				Value="{ThemeResource AppWhiteColorBrush}" />
+				Value="{ThemeResource LogoDarkBlueBrush}" />
         <Setter Property="FontSize"
 				Value="16.6" />
         <Setter Property="FontFamily"
@@ -634,12 +634,12 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Stroke"
 																	   Storyboard.TargetName="CheckBackground">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-																	Value="{StaticResource TertiaryColor6Brush}" />
+																	Value="{StaticResource LogoDarkBlueBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
 																	   Storyboard.TargetName="ContentPresenter">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-																	Value="{StaticResource TertiaryColor6Brush}" />
+																	Value="{StaticResource LogoDarkBlueBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -664,7 +664,7 @@
 										 VerticalAlignment="Center"
 										 Width="20.83" />
                                 <Ellipse x:Name="CheckMark"
-										 Fill="{ThemeResource AppWhiteColorBrush}"
+										 Fill="{ThemeResource LogoDarkBlueBrush}"
 										 HorizontalAlignment="Center"
 										 Height="17.5"
 										 IsHitTestVisible="False"
@@ -697,7 +697,7 @@
         <Setter Property="Background"
 				Value="{ThemeResource PhoneRadioCheckBoxBrush}" />
         <Setter Property="BorderBrush"
-				Value="{ThemeResource AppWhiteColorBrush}" />
+				Value="{ThemeResource LogoDarkBlueBrush}" />
         <Setter Property="FontSize"
 				Value="10" />
         <Setter Property="FontFamily"
@@ -758,12 +758,12 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Stroke"
 																	   Storyboard.TargetName="CheckBackground">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-																	Value="{StaticResource TertiaryColor6Brush}" />
+																	Value="{StaticResource LogoDarkBlueBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
 																	   Storyboard.TargetName="ContentPresenter">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-																	Value="{StaticResource TertiaryColor6Brush}" />
+																	Value="{StaticResource LogoDarkBlueBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -788,7 +788,7 @@
 										 VerticalAlignment="Center"
 										 Width="18.83" />
                                 <Ellipse x:Name="CheckMark"
-										 Fill="{ThemeResource AppWhiteColorBrush}"
+										 Fill="{ThemeResource LogoDarkBlueBrush}"
 										 HorizontalAlignment="Center"
 										 Height="15.5"
 										 IsHitTestVisible="False"

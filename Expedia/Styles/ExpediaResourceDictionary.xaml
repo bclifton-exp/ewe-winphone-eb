@@ -43,6 +43,7 @@
 
     <Color x:Key="IconGrayColor">#888888</Color>
     <Color x:Key="DarkBlueBrush">#FF14375F</Color>
+    <Color x:Key="WhiteBlue">#EDEEEE</Color>
 
 
 
@@ -51,6 +52,8 @@
 					 Color="#E6FFFFFF" />
     <SolidColorBrush x:Key="BandColorOpacity50"
 					 Color="#800065b8" />
+    <SolidColorBrush x:Key="WhiteBlueBrush"
+					 Color="#EDEEEE" />
     <SolidColorBrush x:Key="SystemTrayBrush"
 					 Color="#393434"/>
     <SolidColorBrush x:Key="FilterGrayBrush"
