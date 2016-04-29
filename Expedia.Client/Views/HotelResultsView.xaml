@@ -202,7 +202,7 @@
         </DataTemplate>
     </Page.Resources>
 
-    <Grid Background="{ThemeResource AppWhiteColorBrush}">
+    <Grid x:Name="MainGrid" Background="{ThemeResource AppWhiteColorBrush}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" x:Name="ResultColumn"/>
             <ColumnDefinition Width="2*" x:Name="MapColumn"/>
@@ -225,6 +225,7 @@
                         <Setter Target="SortByControlPhone.Visibility" Value="Visible"/>
                         <Setter Target="FilterByControlPhone.Visibility" Value="Visible"/>
                         <Setter Target="SideGrid.Visibility" Value="Collapsed"/>
+                        <Setter Target="MainGrid.Margin" Value="0 -65 0 0"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>
@@ -241,6 +242,7 @@
                         <Setter Target="SortByControlPhone.Visibility" Value="Visible"/>
                         <Setter Target="FilterByControlPhone.Visibility" Value="Visible"/>
                         <Setter Target="SideGrid.Visibility" Value="Collapsed"/>
+                        <Setter Target="MainGrid.Margin" Value="0 -65 0 0"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>
@@ -257,6 +259,7 @@
                         <Setter Target="SortByControlPhone.Visibility" Value="Visible"/>
                         <Setter Target="FilterByControlPhone.Visibility" Value="Visible"/>
                         <Setter Target="SideGrid.Visibility" Value="Collapsed"/>
+                        <Setter Target="MainGrid.Margin" Value="0 -65 0 0"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>

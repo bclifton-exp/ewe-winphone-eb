@@ -21,11 +21,11 @@
 
                     <VisualState.Setters>
                         <Setter Target="MainPanel.Width" Value="300"/>
-                        <Setter Target="ExpediaLogo.Margin" Value="0 50 0 0"/>
-                        <Setter Target="CircleLogo.Margin" Value="0 10 0 0"/>
+                        <!--<Setter Target="ExpediaLogo.Margin" Value="0 50 0 0"/>-->
+                        <!--<Setter Target="CircleLogo.Margin" Value="0 10 0 0"/>-->
                         <Setter Target="CircleLogo.Width" Value="100"/>
                         <Setter Target="CircleLogo.Height" Value="100"/>
-                        <Setter Target="UserWelcomeMessage.Margin" Value="0 40 0 30"/>
+                        <!--<Setter Target="UserWelcomeMessage.Margin" Value="0 40 0 30"/>-->
                         <Setter Target="InitialsText.Margin" Value="-5 0 0 -5"/>
                     </VisualState.Setters>
                 </VisualState>
@@ -36,11 +36,11 @@
 
                     <VisualState.Setters>
                         <Setter Target="MainPanel.Width" Value="315"/>
-                        <Setter Target="ExpediaLogo.Margin" Value="0 60 0 0"/>
-                        <Setter Target="CircleLogo.Margin" Value="0 50 0 0"/>
+                        <!--<Setter Target="ExpediaLogo.Margin" Value="0 60 0 0"/>-->
+                        <!--<Setter Target="CircleLogo.Margin" Value="0 50 0 0"/>-->
                         <Setter Target="CircleLogo.Width" Value="100"/>
                         <Setter Target="CircleLogo.Height" Value="100"/>
-                        <Setter Target="UserWelcomeMessage.Margin" Value="0 40 0 30"/>
+                        <!--<Setter Target="UserWelcomeMessage.Margin" Value="0 40 0 30"/>-->
                         <Setter Target="InitialsText.Margin" Value="-1 0 0 -5"/>
                     </VisualState.Setters>
                 </VisualState>
@@ -51,11 +51,11 @@
 
                     <VisualState.Setters>
                         <Setter Target="MainPanel.Width" Value="375"/>
-                        <Setter Target="ExpediaLogo.Margin" Value="0 60 0 0"/>
-                        <Setter Target="CircleLogo.Margin" Value="0 50 0 0"/>
+                        <!--<Setter Target="ExpediaLogo.Margin" Value="0 60 0 0"/>-->
+                        <!--<Setter Target="CircleLogo.Margin" Value="0 50 0 0"/>-->
                         <Setter Target="CircleLogo.Width" Value="125"/>
                         <Setter Target="CircleLogo.Height" Value="125"/>
-                        <Setter Target="UserWelcomeMessage.Margin" Value="0 40 0 30"/>
+                        <!--<Setter Target="UserWelcomeMessage.Margin" Value="0 40 0 30"/>-->
                         <Setter Target="InitialsText.Margin" Value="-2 0 0 -5"/>
                     </VisualState.Setters>
                 </VisualState>
@@ -67,9 +67,9 @@
 
                     <VisualState.Setters>
                         <Setter Target="MainPanel.Width" Value="400"/>
-                        <Setter Target="ExpediaLogo.Margin" Value="0 150 0 0"/>
-                        <Setter Target="CircleLogo.Margin" Value="0 120 0 0"/>
-                        <Setter Target="UserWelcomeMessage.Margin" Value="0 70 0 30"/>
+                        <!--<Setter Target="ExpediaLogo.Margin" Value="0 150 0 0"/>-->
+                        <!--<Setter Target="CircleLogo.Margin" Value="0 120 0 0"/>
+                        <Setter Target="UserWelcomeMessage.Margin" Value="0 70 0 30"/>-->
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -88,25 +88,27 @@
             </Button.Content>
         </Button>
 
-        <Image x:Name="ExpediaLogo" Source="ms-appx:///Assets/white_expedia.PNG" Width="200" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 200 0 0" Visibility="{Binding InPasswordCreationMode, Converter={StaticResource ReversedBoolToVisibilityConverter}}"/>
+        <!--<Image x:Name="ExpediaLogo" Source="ms-appx:///Assets/white_expedia.PNG" Width="200" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 200 0 0" Visibility="{Binding InPasswordCreationMode, Converter={StaticResource ReversedBoolToVisibilityConverter}}"/>-->
 
-        <Grid x:Name="CircleLogo" Width="150" Height="150" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 190 0 0" Visibility="{Binding InPasswordCreationMode, Converter={StaticResource BoolToVisibilityConverter}}">
+        <!--<Grid x:Name="CircleLogo" Width="150" Height="150" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 190 0 0" Visibility="{Binding InPasswordCreationMode, Converter={StaticResource BoolToVisibilityConverter}}">
             <Grid>
                 <TextBlock x:Name="InitialsText" Foreground="White" FontSize="50" Margin="-5 0 0 -5"  FontFamily="{StaticResource PhoneFontFamilySemiLight}" Text="{Binding Initials}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <Viewbox>
                     <Path Fill="White" Margin="-4 0 0 0" Data="M 25 3 C 12.86158 3 3 12.86158 3 25 C 3 37.13842 12.86158 47 25 47 C 37.13842 47 47 37.13842 47 25 C 47 12.86158 37.13842 3 25 3 z M 25 5 C 36.05754 5 45 13.94246 45 25 C 45 36.05754 36.05754 45 25 45 C 13.94246 45 5 36.05754 5 25 C 5 13.94246 13.94246 5 25 5 z"/>
                 </Viewbox>
             </Grid>
-               </Grid>
+               </Grid>-->
 
         <StackPanel x:Name="MainPanel" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Width="500">
 
             <StackPanel x:Name="MainFlow" Orientation="Vertical" Visibility="{Binding InSignInMode, Converter={StaticResource BoolToVisibilityConverter}}">
 
-                <TextBlock Text="Please confirm your Expedia identity"
+                <!--<TextBlock Text="Please confirm your Expedia identity"
 				   Style="{StaticResource PivotPageHeaderStyle}"
 				   x:Uid="ConfirmExpediaIdentity"
-                   Visibility="{Binding IsFacebookLinking, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Collapsed}"/>
+                   Visibility="{Binding IsFacebookLinking, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Collapsed}"/>-->
+
+                <Image x:Name="ExpediaLogo" Source="ms-appx:///Assets/white_expedia.PNG" Width="200" Margin="0 0 0 40" VerticalAlignment="Top" HorizontalAlignment="Center" Visibility="{Binding InPasswordCreationMode, Converter={StaticResource ReversedBoolToVisibilityConverter}}"/>
 
                 <TextBox PlaceholderText="Email or Username"
                  Height="50"
@@ -194,6 +196,9 @@
             </StackPanel>
 
             <StackPanel x:Name="CreationFlow" Orientation="Vertical" Visibility="{Binding InCreationMode, Converter={StaticResource BoolToVisibilityConverter}}">
+
+                <Image x:Name="ExpediaLogo2" Source="ms-appx:///Assets/white_expedia.PNG" Width="200" Margin="0 0 0 67" VerticalAlignment="Top" HorizontalAlignment="Center" Visibility="{Binding InPasswordCreationMode, Converter={StaticResource ReversedBoolToVisibilityConverter}}"/>
+
                 <TextBox PlaceholderText="Email"
                  Height="50"
                  FontSize="20"
@@ -260,7 +265,14 @@
 
             <StackPanel x:Name="PasswordFlow" Orientation="Vertical" Visibility="{Binding InPasswordCreationMode, Converter={StaticResource BoolToVisibilityConverter}}">
 
-                <StackPanel x:Name="UserWelcomeMessage" Orientation="Vertical" Margin="0 70 0 30">
+                <Grid x:Name="CircleLogo" Width="150" Height="150" HorizontalAlignment="Center" Margin="0 0 0 0" Visibility="{Binding InPasswordCreationMode, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <TextBlock x:Name="InitialsText" Foreground="White" FontSize="50" Margin="-5 0 0 -5"  FontFamily="{StaticResource PhoneFontFamilySemiLight}" Text="{Binding Initials}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Viewbox>
+                            <Path Fill="White" Margin="-4 0 0 0" Data="M 25 3 C 12.86158 3 3 12.86158 3 25 C 3 37.13842 12.86158 47 25 47 C 37.13842 47 47 37.13842 47 25 C 47 12.86158 37.13842 3 25 3 z M 25 5 C 36.05754 5 45 13.94246 45 25 C 45 36.05754 36.05754 45 25 45 C 13.94246 45 5 36.05754 5 25 C 5 13.94246 13.94246 5 25 5 z"/>
+                        </Viewbox>
+                    </Grid>
+
+                <StackPanel x:Name="UserWelcomeMessage" Orientation="Vertical" Margin="0 0 0 20">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <TextBlock Style="{StaticResource CaptionTextBlockStyle}" Foreground="{StaticResource AppWhiteColorBrush}" FontSize="35" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Run Text="Hello" x:Uid="Hello" />

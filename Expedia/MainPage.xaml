@@ -64,7 +64,7 @@
                     </VisualState.StateTriggers>
 
                     <VisualState.Setters>
-                        <Setter Target="MenuFrame.Width" Value="600" />
+                        <Setter Target="MenuFrame.Width" Value="400" />
                         <Setter Target="FirstStackPanel.Margin" Value="120 5 0 5"/>
                     </VisualState.Setters>
                 </VisualState>
@@ -172,7 +172,7 @@
                         </PivotItem>
                     </Pivot>
 
-                    <Frame x:Name="MenuFrame" Width="550" HorizontalAlignment="Left" Visibility="{Binding IsMenuFrameVisible, Converter={StaticResource BoolToVisibilityConverter}}" />
+                    <Frame x:Name="MenuFrame" Width="400" HorizontalAlignment="Left" Visibility="{Binding IsMenuFrameVisible, Converter={StaticResource BoolToVisibilityConverter}}" />
 
                 </Grid>
                
