@@ -19,6 +19,7 @@ namespace Expedia
             this.DataContext = ExpediaKernel.Instance().Get<IMainPageViewModel>();
             var context = DataContext as MainPageViewModel;
             Navigator.Instance().FirstTimeSetup(MenuFrame, HotelFrame, FlightFrame, CarFrame, context);
+            PhoneUIHelper.Instance().Initialize(BurgerMenuButton);
         }
 
 

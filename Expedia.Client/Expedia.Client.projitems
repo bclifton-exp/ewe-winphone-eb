@@ -69,6 +69,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\GeoLocationMemory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\MobileMapLauncher.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\Navigator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\PhoneUIHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\SearchParamsMemory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\TimeFormatter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseMenuViewModel.cs" />

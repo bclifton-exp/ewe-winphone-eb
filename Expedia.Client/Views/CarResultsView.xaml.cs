@@ -6,6 +6,7 @@ using Windows.UI.Xaml.Controls.Maps;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using Expedia.Client.Interfaces;
+using Expedia.Client.Utilities;
 using Expedia.Client.ViewModels;
 using Expedia.Entities.Cars;
 using Expedia.Injection;
@@ -22,6 +23,7 @@ namespace Expedia.Client.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            PhoneUIHelper.Instance().HideBurgerMenu();
             var carParams = e.Parameter as SearchCarsLocalParameters;
             var context = DataContext as CarResultsViewModel;
             if (carParams.SelectedMapCenter != null)

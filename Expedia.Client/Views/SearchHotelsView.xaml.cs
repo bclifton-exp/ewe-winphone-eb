@@ -34,6 +34,7 @@ namespace Expedia.Client.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            PhoneUIHelper.Instance().ShowBurgerMenu();
             var context = DataContext as SearchHotelsViewModel;
             context.SetExistingTripSearchDetails();
         }

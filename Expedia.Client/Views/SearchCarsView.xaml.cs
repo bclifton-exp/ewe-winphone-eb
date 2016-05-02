@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Expedia.Client.Interfaces;
+using Expedia.Client.Utilities;
 using Expedia.Client.ViewModels;
 using Expedia.Entities.Suggestions;
 using Expedia.Injection;
@@ -27,6 +28,13 @@ namespace Expedia.Client.Views
         {
             this.InitializeComponent();
             this.DataContext = ExpediaKernel.Instance().Get<ISearchCarsViewModel>();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            PhoneUIHelper.Instance().ShowBurgerMenu();
+            var context = DataContext as SearchCarsViewModel;
+            context.SetExistingTripSearchDetails();
         }
 
         private void AutoSuggestBox_OnSuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)

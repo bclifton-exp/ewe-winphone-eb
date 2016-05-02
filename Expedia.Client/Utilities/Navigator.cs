@@ -22,6 +22,7 @@ namespace Expedia.Client.Utilities
 
         private MainPageViewModel _mainViewModel;
         private SignInViewModel _signInViewModel;
+
         //private Frame _activitiesFrame;
         //private Frame _packagesFrame;
 
@@ -189,6 +190,11 @@ namespace Expedia.Client.Utilities
         public void SetSignInViewModel(SignInViewModel signInViewModel)
         {
             _signInViewModel = signInViewModel;
+        }
+
+        public void SetBurgerMenuVisibility()
+        {
+
         }
 
         public void CloseMenu(bool isSignedIn = false)

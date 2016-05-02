@@ -93,5 +93,24 @@ namespace Expedia.Client.ViewModels
         {
             return SelectedSearchSuggestion != null; //TODO valid date stuff too
         }
+
+        internal void SetExistingTripSearchDetails() //TODO Car params on back nav
+        {
+            var existingParams = SearchParamsMemory.Instance().CarParams;
+
+            if (existingParams != null)
+            {
+                //StartDate = existingParams.CheckInDate.DateTime;
+                //EndDate = existingParams.CheckOutDate.DateTime;
+                //AdultCount = existingParams.AdultsCount;
+                //var childAges = new ObservableCollection<ChildAgeItem>();
+                //for (int i = 0; i < existingParams.ChildrenAges.Length; i++)
+                //{
+                //    childAges.Add(new ChildAgeItem(i) { Age = existingParams.ChildrenAges[i] });
+                //}
+                //ChildCount = childAges.Count;
+                //ChildAges = childAges;
+            }
+        }
     }
 }

@@ -180,7 +180,7 @@
 
         </SplitView>
 
-        <Button Margin="10 10 0 0" Style="{StaticResource MetroDefaultButton}" HorizontalAlignment="Left" Background="Transparent" VerticalAlignment="Top" Command="{Binding HamburgerClick}">
+        <Button x:Name="BurgerMenuButton" Margin="10 10 0 0" Style="{StaticResource MetroDefaultButton}" HorizontalAlignment="Left" Background="Transparent" VerticalAlignment="Top" Command="{Binding HamburgerClick}">
             <Viewbox Width="30" Height="30">
                 <Path Fill="White" Data="M 4 7 L 4 9 L 28 9 L 28 7 L 4 7 z M 4 15 L 4 17 L 28 17 L 28 15 L 4 15 z M 4 23 L 4 25 L 28 25 L 28 23 L 4 23 z"/>
             </Viewbox>

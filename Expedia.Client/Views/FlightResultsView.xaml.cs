@@ -5,6 +5,7 @@ using Windows.UI.Xaml.Controls.Maps;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using Expedia.Client.Interfaces;
+using Expedia.Client.Utilities;
 using Expedia.Client.ViewModels;
 using Expedia.Entities.Flights;
 using Expedia.Entities.Hotels;
@@ -23,6 +24,7 @@ namespace Expedia.Client.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            PhoneUIHelper.Instance().HideBurgerMenu();
             var flightParams = e.Parameter as SearchFlightsLocalParameters;
             var context = DataContext as FlightResultsViewModel;
             if (flightParams.SelectedMapCenter != null)

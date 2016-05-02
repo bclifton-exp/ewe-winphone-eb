@@ -9,6 +9,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using Expedia.Client.Interfaces;
+using Expedia.Client.Utilities;
 using Expedia.Client.ViewModels;
 using Expedia.Entities.Hotels;
 using Expedia.Injection;
@@ -27,6 +28,8 @@ namespace Expedia.Client.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            PhoneUIHelper.Instance().HideBurgerMenu();
+
             var hotelParams = e.Parameter as SearchHotelsLocalParameters;
             var context = DataContext as HotelResultsViewModel;
             if (hotelParams.SelectedMapCenter != null)
