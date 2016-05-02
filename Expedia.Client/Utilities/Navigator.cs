@@ -158,12 +158,10 @@ namespace Expedia.Client.Utilities
         public void NavigateToMainPage()
         {
             _rootFrame.Navigate(typeof(MainPage));
-            SetCurrentFrame(LineOfBusiness.HOTELS);
         }
 
         public void NavigateToSignInView()
         {
-            //SetCurrentFrame(LineOfBusiness.NONE);
             _rootFrame.Navigate(typeof(SignInView));
         }
 

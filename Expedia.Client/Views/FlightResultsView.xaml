@@ -71,7 +71,7 @@
         </DataTemplate>
     </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
+    <Grid x:Name="MainGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" x:Name="ResultColumn"/>
             <ColumnDefinition Width="2*" x:Name="MapColumn"/>
@@ -96,6 +96,7 @@
                         <Setter Target="PinnedDeparture.Style" Value="{StaticResource PhoneFlightResultItemControlStyle}"/>
                         <Setter Target="FlightHeaderReturn.Style" Value="{StaticResource FlightsHeaderControlStylePhone}"/>
                         <Setter Target="FlightHeaderDeparture.Style" Value="{StaticResource FlightsHeaderControlStylePhone}"/>
+                        <Setter Target="MainGrid.Margin" Value="0 -65 0 0"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>
@@ -114,6 +115,7 @@
                         <Setter Target="PinnedDeparture.Style" Value="{StaticResource PhoneFlightResultItemControlStyle}"/>
                         <Setter Target="FlightHeaderReturn.Style" Value="{StaticResource FlightsHeaderControlStylePhone}"/>
                         <Setter Target="FlightHeaderDeparture.Style" Value="{StaticResource FlightsHeaderControlStylePhone}"/>
+                        <Setter Target="MainGrid.Margin" Value="0 -65 0 0"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>
@@ -132,6 +134,7 @@
                         <Setter Target="PinnedDeparture.Style" Value="{StaticResource PhoneFlightResultItemControlStyle}"/>
                         <Setter Target="FlightHeaderReturn.Style" Value="{StaticResource FlightsHeaderControlStylePhone}"/>
                         <Setter Target="FlightHeaderDeparture.Style" Value="{StaticResource FlightsHeaderControlStylePhone}"/>
+                        <Setter Target="MainGrid.Margin" Value="0 -65 0 0"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>

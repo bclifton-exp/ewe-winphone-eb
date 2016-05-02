@@ -536,7 +536,7 @@
         </DataTemplate>
     </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid x:Name="MainGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" x:Name="ResultColumn"/>
             <ColumnDefinition Width="2*" x:Name="MapColumn"/>
@@ -562,6 +562,7 @@
                         <Setter Target="ResultListView.ItemTemplate" Value="{StaticResource CarResultCategoryItemTemplatePhone}"/>
                         <Setter Target="ResultListViewDetail.ItemTemplate" Value="{StaticResource CarResultItemTemplatePhone}"/>
                         <Setter Target="CarHeader.Style" Value="{StaticResource CarsHeaderControlStylePhone}"/>
+                        <Setter Target="MainGrid.Margin" Value="0 -65 0 0"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>
@@ -581,6 +582,7 @@
                         <Setter Target="ResultListView.ItemTemplate" Value="{StaticResource CarResultCategoryItemTemplatePhone}"/>
                         <Setter Target="ResultListViewDetail.ItemTemplate" Value="{StaticResource CarResultItemTemplatePhone}"/>
                         <Setter Target="CarHeader.Style" Value="{StaticResource CarsHeaderControlStylePhone}"/>
+                        <Setter Target="MainGrid.Margin" Value="0 -65 0 0"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>
@@ -600,6 +602,7 @@
                         <Setter Target="ResultListView.ItemTemplate" Value="{StaticResource CarResultCategoryItemTemplatePhone}"/>
                         <Setter Target="ResultListViewDetail.ItemTemplate" Value="{StaticResource CarResultItemTemplatePhone}"/>
                         <Setter Target="CarHeader.Style" Value="{StaticResource CarsHeaderControlStylePhone}"/>
+                        <Setter Target="MainGrid.Margin" Value="0 -65 0 0"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>

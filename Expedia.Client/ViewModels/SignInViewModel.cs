@@ -109,8 +109,8 @@ namespace Expedia.Client.ViewModels
             }
         }
 
-        private RelayCommand _continueAsGuest;
-        public RelayCommand ContinueAsGuest
+        private DelegateCommand _continueAsGuest;
+        public DelegateCommand ContinueAsGuest
         {
             get { return _continueAsGuest; }
             set
@@ -153,8 +153,8 @@ namespace Expedia.Client.ViewModels
             }
         }
 
-        private RelayCommand _signInCommand;
-        public RelayCommand SignInCommand
+        private DelegateCommand _signInCommand;
+        public DelegateCommand SignInCommand
         {
             get { return _signInCommand; }
             set
@@ -253,9 +253,11 @@ namespace Expedia.Client.ViewModels
 
             ConnectFacebook = new DelegateCommand(GetUriAndLoginToFacebook);
 
-            SignInCommand = new RelayCommand(() =>
+            SignInCommand = new DelegateCommand(() =>
             {
+                IsBusy = true;
                 SignInUser(currentToken);
+                IsBusy = false;
             });
 
             ToCreateAccount = new RelayCommand(() =>
@@ -264,7 +266,7 @@ namespace Expedia.Client.ViewModels
                 InCreationMode = true;
             });
 
-            ContinueAsGuest = new RelayCommand(() =>
+            ContinueAsGuest = new DelegateCommand(() =>
             {
                 Navigator.Instance().NavigateToMainPage();
             });
@@ -281,6 +283,7 @@ namespace Expedia.Client.ViewModels
 
         private async void ExecuteCreateAccount()
         {
+            IsBusy = true;
             var ct = CancellationTokenManager.Instance().CreateAndSetCurrentToken();
             var accountParams = new AccountCreationParams(UserName, Password, FirstName, LastName, true);
 
@@ -292,6 +295,7 @@ namespace Expedia.Client.ViewModels
             {
                 Navigator.Instance().NavigateToMainPage();
             }
+            IsBusy = false;
             //TODO error catch
         }
 

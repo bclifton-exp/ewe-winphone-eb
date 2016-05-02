@@ -62,7 +62,7 @@ namespace Expedia.Services
 
             if (lob == SuggestionLob.HOTELS)
             {
-                regionTypes = "airport|city|hotel|poi";
+                regionTypes = "airport|city|hotel";
             }
 
             if (lob == SuggestionLob.FLIGHTS)
@@ -72,7 +72,7 @@ namespace Expedia.Services
 
             if (lob == SuggestionLob.CARS)
             {
-                regionTypes = "airport|city|multicity|metrocode|poi";
+                regionTypes = "airport|city|multicity|metrocode";
             }
 
             var request = new ApiRequest(Constants.Urls.BaseSuggestionUrl);
