@@ -340,14 +340,10 @@
                 </customControls:ExpandableContentControl>
             </Grid>
 
-            <ListView x:Name="ResultListView" Grid.Row="2" Tapped="ResultListView_OnTapped" Grid.Column="0" Grid.ColumnSpan="3" Margin="0 0 0 0" ItemTemplate="{StaticResource HotelResultItemTemplate}" ItemsSource="{Binding HotelResultItems}" SelectedItem="{Binding SelectedHotel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                        <Setter Property="Margin" Value="0 0 0 0"/>
-                    </Style>
-                </ListView.ItemContainerStyle>
-            </ListView>
+            <ListView x:Name="ResultListView" Grid.Row="2" ItemContainerStyle="{StaticResource DefaultListViewItemStyle}" Tapped="ResultListView_OnTapped" 
+                      Style="{StaticResource DefaultListViewStyle}" Grid.Column="0" Grid.ColumnSpan="3" Margin="0 0 0 0" 
+                      ItemTemplate="{StaticResource HotelResultItemTemplate}" ItemsSource="{Binding HotelResultItems}" 
+                      SelectedItem="{Binding SelectedHotel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
             <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Text="No Results" x:Uid="NoCarResults" Foreground="Red" Margin="10 150 0 0" HorizontalAlignment="Center" FontSize="20" FontWeight="SemiBold" Visibility="{Binding HasResults, Converter={StaticResource ReversedBoolToVisibilityConverter}, FallbackValue=True}"/>
 

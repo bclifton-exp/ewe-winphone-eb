@@ -21,6 +21,7 @@
         <ResourceDictionary Source="ListViewItem.xaml"/>
         <ResourceDictionary Source="TextBox.xaml"/>
         <ResourceDictionary Source="CalendarDatePicker.xaml"/>
+        <ResourceDictionary Source="ListView.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>
