@@ -154,7 +154,7 @@
                 TabIndex="3"
                 Visibility="{Binding ElementName=UserNameBox, Path=Text, Converter={StaticResource ReversedEmptyStringToVisibilityConverter}}">
                     <Button.Content>
-                        <TextBlock Text="Forgot your password?" x:Uid="ForgotPassword" Style="{StaticResource HotelDateHeaderStyle}" FontSize="18" Margin="0 5 0 0"/>
+                        <TextBlock Text="Forgot your password?" x:Uid="ForgotPassword" Style="{StaticResource HotelDateHeaderStyle}" FontSize="15" Margin="0 5 0 0"/>
                     </Button.Content>
                 </Button>
 

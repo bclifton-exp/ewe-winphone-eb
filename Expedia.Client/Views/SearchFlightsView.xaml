@@ -115,7 +115,7 @@
 
             <TextBlock Grid.Row="1" Grid.Column="0" x:Uid="FlyingFrom" Text="Flying from" Margin="0 0 0 5"/>
 
-            <AutoSuggestBox x:Name="DepartureSuggestBox" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 0 0 25"
+            <AutoSuggestBox x:Name="DepartureSuggestBox" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 0 0 15"
                         ItemsSource="{Binding SearchSuggestions}"
                         TextMemberPath="Display"
                         UpdateTextOnSelect="True"
@@ -128,7 +128,7 @@
 
             <TextBlock Grid.Row="3" Grid.Column="0" x:Uid="FlyingTo" Text="Flying to" Margin="0 0 0 5"/>
 
-            <AutoSuggestBox x:Name="ArrivalSuggestBox" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 0 0 25"
+            <AutoSuggestBox x:Name="ArrivalSuggestBox" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 0 0 15"
                         ItemsSource="{Binding SearchSuggestions2}"
                         TextMemberPath="Display"
                         UpdateTextOnSelect="True"
@@ -146,7 +146,7 @@
             <TextBlock Grid.Row="5" Grid.Column="1" Text="Returning" x:Uid="ReturningText" Margin="10 0 0 5" Visibility="{Binding IsOneWay, Converter={StaticResource ReversedBoolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}"/>
             <CalendarDatePicker x:Name="EndDatePicker" Grid.Row="6" Grid.Column="1" IsTodayHighlighted="False" Opened="EndDatePicker_OnOpened" Closed="EndDatePicker_OnClosed" HorizontalAlignment="Stretch" Visibility="{Binding IsOneWay, Converter={StaticResource ReversedBoolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}" DateChanged="CalendarDatePicker_OnEndDateChanged" Loaded="EndDateLoaded" Margin="10 0 0 0"/>
 
-            <ComboBox Grid.Row="7" Grid.Column="0" Header="Adults (18+)" ItemsSource="{Binding AdultCountSource}" SelectedItem="{Binding AdultCount, Mode=TwoWay}" Width="140" Margin="0 10 10 0" x:Uid="Adults"/>
+            <ComboBox Grid.Row="7" Grid.Column="0" Header="Adults (18+)" ItemsSource="{Binding AdultCountSource}" SelectedItem="{Binding AdultCount, Mode=TwoWay}" Width="160" Margin="0 15 10 0" x:Uid="Adults"/>
 
             <!--<ComboBox Grid.Row="7" Grid.Column="1" Header="Children (0-17)" ItemsSource="{Binding ChildCountSource}" SelectedItem="{Binding ChildCount, Mode=TwoWay}" Width="140" Margin="10 10 0 0" x:Uid="Children"/>-->
 

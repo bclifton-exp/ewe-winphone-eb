@@ -75,7 +75,7 @@
 
             <TextBlock Grid.Row="0" Grid.Column="0" x:Uid="Pickingup" Text="Picking up" Margin="0 0 0 5"/>
 
-            <AutoSuggestBox x:Name="SuggestionBox" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 0 0 25"
+            <AutoSuggestBox x:Name="SuggestionBox" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 0 0 15"
                         ItemsSource="{Binding SearchSuggestions}"
                         TextMemberPath="Display"
                         UpdateTextOnSelect="True"
@@ -88,7 +88,7 @@
 
             <TextBlock Grid.Row="2" Grid.Column="0" x:Uid="Dropping off" Text="Dropping off" Margin="0 0 0 5"/>
 
-            <AutoSuggestBox x:Name="SuggestionBox2" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 0 0 25"
+            <AutoSuggestBox x:Name="SuggestionBox2" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 0 0 15"
                         ItemsSource="{Binding SearchSuggestions}"
                         TextMemberPath="Display"
                         UpdateTextOnSelect="True"
@@ -100,10 +100,10 @@
 
             <TimePicker Grid.Row="4" Grid.RowSpan="2" Grid.Column="1" Time="{Binding PickupTime, Mode=TwoWay}" MinWidth="0" HorizontalAlignment="Stretch" MinuteIncrement="30" Header="Pick up Time" x:Uid="Pickuptime" Margin="10 0 0 6"/>
 
-            <TimePicker Grid.Row="6" Grid.RowSpan="2" Grid.Column="1" Time="{Binding DropOffTime, Mode=TwoWay}" MinWidth="0" HorizontalAlignment="Stretch" MinuteIncrement="30" Header="Drop off Time" x:Uid="Dropofftime" Margin="10 0 0 6"/>
+            <TimePicker Grid.Row="6" Grid.RowSpan="2" Grid.Column="1" Time="{Binding DropOffTime, Mode=TwoWay}" MinWidth="0" HorizontalAlignment="Stretch" MinuteIncrement="30" Header="Drop off Time" x:Uid="Dropofftime" Margin="10 9 0 6"/>
 
 
-            <TextBlock Grid.Row="6" Grid.Column="0" Text="Drop off Date" x:Uid="Dropoffdate" Margin="0 0 0 5"/>
+            <TextBlock Grid.Row="6" Grid.Column="0" Text="Drop off Date" x:Uid="Dropoffdate" Margin="0 9 0 5"/>
             <CalendarDatePicker x:Name="EndDatePicker" Opened="EndDatePicker_OnOpened" Closed="EndDatePicker_OnClosed" Margin="0 0 10 5" Grid.Row="7" Grid.Column="0" IsTodayHighlighted="False" HorizontalAlignment="Stretch" DateChanged="CalendarDatePicker_OnEndDateChanged" Loaded="EndDateLoaded"/>
 
         </Grid>

@@ -19,7 +19,7 @@
 		<Setter Property="Background"
 				Value="{ThemeResource TextBoxBackgroundThemeBrush}" />
 		<Setter Property="BorderBrush"
-				Value="{StaticResource PrimaryColor8Brush}" />
+				Value="{StaticResource DefaultBorderBrush}" />
 		<Setter Property="BorderThickness"
 				Value="1" />
 		<Setter Property="FontFamily"
