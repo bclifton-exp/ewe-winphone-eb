@@ -44,16 +44,21 @@
     <Color x:Key="IconGrayColor">#888888</Color>
     <Color x:Key="DarkBlueBrush">#FF14375F</Color>
     <Color x:Key="WhiteBlue">#EDEEEE</Color>
+    <Color x:Key="BrightLightBlue">#0078D7</Color>
 
 
 
     <!-- App color Brushes -->
     <SolidColorBrush x:Key="WhiteBrushOpacity90"
 					 Color="#E6FFFFFF" />
+    <SolidColorBrush x:Key="DefaultBorderBrush"
+					 Color="#66000000" />
     <SolidColorBrush x:Key="BandColorOpacity50"
 					 Color="#800065b8" />
     <SolidColorBrush x:Key="WhiteBlueBrush"
 					 Color="#EDEEEE" />
+    <SolidColorBrush x:Key="BrightLightBlueBrush"
+					 Color="#0078D7" />
     <SolidColorBrush x:Key="SystemTrayBrush"
 					 Color="#393434"/>
     <SolidColorBrush x:Key="FilterGrayBrush"
@@ -259,6 +264,8 @@
 
     <x:Double x:Key="AppFontSizeSmall">9</x:Double>-->
     <x:Double x:Key="AppFontSizeMedium">15</x:Double>
+    <x:Double x:Key="AppFontSizeMediumLarge">16</x:Double>
+    <x:Double x:Key="AppFontSizeLarge">18</x:Double>
     <!-- ControlContentThemeFontSize is a System resource, but can't be setted to {StaticResource AppFontSizeMedium}, so it must be sync manually here...--><!--
     <x:Double x:Key="ControlContentThemeFontSize">15</x:Double>
     <x:Double x:Key="AppFontSizeLarge">26</x:Double>

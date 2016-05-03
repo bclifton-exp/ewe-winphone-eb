@@ -128,5 +128,29 @@ namespace Expedia.Client.Views
             calendar.MinDate = context.MinimumDate;
             calendar.MaxDate = context.MaximumDate;
         }
+
+        private void PickUpDate_OnOpened(object sender, object e)
+        {
+            var calendar = sender as CalendarDatePicker;
+            calendar.BorderBrush = Application.Current.Resources["BrightLightBlueBrush"] as SolidColorBrush;
+        }
+
+        private void PickUpDate_OnClosed(object sender, object e)
+        {
+            var calendar = sender as CalendarDatePicker;
+            calendar.BorderBrush = Application.Current.Resources["DefaultBorderBrush"] as SolidColorBrush;
+        }
+
+        private void EndDatePicker_OnOpened(object sender, object e)
+        {
+            var calendar = sender as CalendarDatePicker;
+            calendar.BorderBrush = Application.Current.Resources["BrightLightBlueBrush"] as SolidColorBrush;
+        }
+
+        private void EndDatePicker_OnClosed(object sender, object e)
+        {
+            var calendar = sender as CalendarDatePicker;
+            calendar.BorderBrush = Application.Current.Resources["DefaultBorderBrush"] as SolidColorBrush;
+        }
     }
 }

@@ -96,7 +96,7 @@
             <!--Xuid for this AutoSuggest-->
 
             <TextBlock Grid.Row="4" Grid.Column="0" Text="Pick up Date" x:Uid="Pickupdate" Margin="0 0 10 5"/>
-            <CalendarDatePicker Grid.Row="5" Grid.Column="0" HorizontalAlignment="Stretch" DateChanged="CalendarDatePicker_OnStartDateChanged" Loaded="StartDateLoaded" Margin="0 0 10 5"/>
+            <CalendarDatePicker x:Name="PickUpDate" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Stretch" Opened="PickUpDate_OnOpened" Closed="PickUpDate_OnClosed" DateChanged="CalendarDatePicker_OnStartDateChanged" Loaded="StartDateLoaded" Margin="0 0 10 5"/>
 
             <TimePicker Grid.Row="4" Grid.RowSpan="2" Grid.Column="1" Time="{Binding PickupTime, Mode=TwoWay}" MinWidth="0" HorizontalAlignment="Stretch" MinuteIncrement="30" Header="Pick up Time" x:Uid="Pickuptime" Margin="10 0 0 6"/>
 
@@ -104,20 +104,18 @@
 
 
             <TextBlock Grid.Row="6" Grid.Column="0" Text="Drop off Date" x:Uid="Dropoffdate" Margin="0 0 0 5"/>
-            <CalendarDatePicker x:Name="EndDatePicker" Margin="0 0 10 5" Grid.Row="7" Grid.Column="0" IsTodayHighlighted="False" HorizontalAlignment="Stretch" DateChanged="CalendarDatePicker_OnEndDateChanged" Loaded="EndDateLoaded"/>
-
-            <Button Command="{Binding SearchCars}"
-                    Style="{StaticResource SearchButtonStyle}"
-					Content="Search"
-					x:Uid="SearchButton"
-					Grid.Row="8"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
-					Margin="10 0 10 15"
-                    HorizontalAlignment="Stretch"
-					VerticalAlignment="Bottom"/>
+            <CalendarDatePicker x:Name="EndDatePicker" Opened="EndDatePicker_OnOpened" Closed="EndDatePicker_OnClosed" Margin="0 0 10 5" Grid.Row="7" Grid.Column="0" IsTodayHighlighted="False" HorizontalAlignment="Stretch" DateChanged="CalendarDatePicker_OnEndDateChanged" Loaded="EndDateLoaded"/>
 
         </Grid>
+
+        <Button Command="{Binding SearchCars}"
+					Content="Search"
+                    Style="{StaticResource SearchButtonStyle}"
+					x:Uid="SearchButton"
+                    Grid.Column="0"
+                    Height="60"
+					VerticalAlignment="Bottom"/>
+
         <Grid Grid.Column="1" Visibility="{Binding IsMapVisible, Converter={StaticResource BoolToVisibilityConverter}}">
             <maps:MapControl x:Name="Map" Visibility="Collapsed" Loading="Map_OnLoading" MapServiceToken="uTSDW7FxvBNrtGPD67ZQ~Cws5kVsbllSUip_fVoHCIQ~AiAsYMbHCnN32naqWWDEeulT3_C1XVy1yPU91wba8Knm9G1D31rZOIMDss4jJFtO" ZoomLevel="13" />
         </Grid>

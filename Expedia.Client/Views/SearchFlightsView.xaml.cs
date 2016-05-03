@@ -3,6 +3,7 @@ using Windows.Devices.Geolocation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Maps;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Expedia.Client.Interfaces;
 using Expedia.Client.Utilities;
@@ -156,6 +157,30 @@ namespace Expedia.Client.Views
             calendar.Date = DateTime.Now.AddDays(1);
             calendar.MinDate = context.MinimumDate;
             calendar.MaxDate = context.MaximumDate;
+        }
+
+        private void StartDatePicker_OnOpened(object sender, object e)
+        {
+            var calendar = sender as CalendarDatePicker;
+            calendar.BorderBrush = Application.Current.Resources["BrightLightBlueBrush"] as SolidColorBrush;
+        }
+
+        private void StartDatePicker_OnClosed(object sender, object e)
+        {
+            var calendar = sender as CalendarDatePicker;
+            calendar.BorderBrush = Application.Current.Resources["DefaultBorderBrush"] as SolidColorBrush;
+        }
+
+        private void EndDatePicker_OnOpened(object sender, object e)
+        {
+            var calendar = sender as CalendarDatePicker;
+            calendar.BorderBrush = Application.Current.Resources["BrightLightBlueBrush"] as SolidColorBrush;
+        }
+
+        private void EndDatePicker_OnClosed(object sender, object e)
+        {
+            var calendar = sender as CalendarDatePicker;
+            calendar.BorderBrush = Application.Current.Resources["DefaultBorderBrush"] as SolidColorBrush;
         }
     }
 }

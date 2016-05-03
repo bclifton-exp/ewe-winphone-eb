@@ -186,7 +186,7 @@
             </Viewbox>
         </Button>
 
-        <StackPanel x:Name="TripsAccountPanel" Margin="0 10 15 0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+        <!--<StackPanel x:Name="TripsAccountPanel" Margin="0 10 15 0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
             <Button Style="{StaticResource MetroDefaultButton}" Background="Transparent" Command="{Binding TripsCommand}">
                 <StackPanel Orientation="Horizontal">
                     <Viewbox Width="40" Height="30">
@@ -204,7 +204,7 @@
                     <TextBlock x:Name="AccountTitleText" Text="Account" x:Uid="AccountTitle" Margin="10 10 0 0" Style="{StaticResource TitleHeaderTextStyle}"/>
                 </StackPanel>
             </Button>
-        </StackPanel>
+        </StackPanel>-->
 
     </Grid>
 </Page>

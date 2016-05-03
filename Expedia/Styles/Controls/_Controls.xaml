@@ -20,6 +20,7 @@
         <ResourceDictionary Source="ArrivalPointControl.xaml"/>
         <ResourceDictionary Source="ListViewItem.xaml"/>
         <ResourceDictionary Source="TextBox.xaml"/>
+        <ResourceDictionary Source="CalendarDatePicker.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>
