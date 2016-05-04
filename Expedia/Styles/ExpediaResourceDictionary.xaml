@@ -45,10 +45,24 @@
     <Color x:Key="DarkBlueBrush">#FF14375F</Color>
     <Color x:Key="WhiteBlue">#EDEEEE</Color>
     <Color x:Key="BrightLightBlue">#0078D7</Color>
+    <Color x:Key="StandardGray">#666666</Color>
+    <Color x:Key="DarkGray">#333333</Color>
+    <Color x:Key="NeonGreen">#16C60C</Color>
+    <Color x:Key="ResultListGray">#EEEEEE</Color>
 
 
 
     <!-- App color Brushes -->
+    <SolidColorBrush x:Key="SecondaryGrayBrush"
+					 Color="#CCCCCC" />
+    <SolidColorBrush x:Key="StandardGrayBrush"
+					 Color="#666666" />
+    <SolidColorBrush x:Key="DarkGrayBrush"
+					 Color="#333333" />
+    <SolidColorBrush x:Key="NeonGreenBrush"
+					 Color="#16C60C" />
+    <SolidColorBrush x:Key="ResultListGrayBrush"
+					 Color="#EEEEEE" />
     <SolidColorBrush x:Key="WhiteBrushOpacity90"
 					 Color="#E6FFFFFF" />
     <SolidColorBrush x:Key="DefaultBorderBrush"

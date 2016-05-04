@@ -160,7 +160,10 @@ namespace Expedia.Services
                         GuestRating = hotel.HotelGuestRating,
                         LocationId = hotel.LocationId,
                         Latitude = hotel.Latitude,
-                        Longitude = hotel.Longitude
+                        Longitude = hotel.Longitude,
+                        IsVipAccess = hotel.IsVipAccess,
+                        DiscountPercent = hotel.LowRateInfo?.DiscountPercent
+
                     }).ToArray()
                 };
             }, ct);

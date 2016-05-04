@@ -16,6 +16,8 @@ namespace Expedia.Entities.Hotels
         public double GuestRating { get; set; }
 		public bool IsSoldOut { get { return RoomsLeftAtThisRate == 0 ; } }
 		public string HotelId { get; set; }
+        public bool IsVipAccess { get; set; }
+        public string DiscountPercent { get; set; }
 
         public string LocationId { get; set; }
         public double Latitude { get; set; }

@@ -12,7 +12,15 @@
 
     <Page.Resources>
         <DataTemplate x:Key="HotelResultItemTemplate">
-            <Grid Height="270" Margin="15 10 15 5" Background="White" x:Name="MainHotelGrid">
+            <Grid Height="240" Margin="15 10 15 5" Background="White" x:Name="MainHotelGrid">
+                <Rectangle Height="240" Fill="LightGray" Margin="-1 0 -1 -2" RadiusX="2.5" RadiusY="2.5" Opacity="0.3"/>
+                <Rectangle Height="240" Fill="LightGray" Margin="-1 0 -1 -2" RadiusX="2" RadiusY="2" Opacity="0.25"/>
+                <Rectangle Height="240" Fill="Gray" Margin="-1 0 -1 -2.5" RadiusX="1.5" RadiusY="1.5" Opacity="0.2"/>
+                <Rectangle Height="240" Fill="Gray" Margin="-1 0 -1 -2.5" RadiusX="1" RadiusY="1" Opacity="0.15"/>
+                <Rectangle Height="240" Fill="Black" Margin="-1 0 -1 -3" RadiusX="0.5" RadiusY="0.5" Opacity="0.1"/>
+                <Rectangle Height="240" Fill="Black" Margin="-1 0 -1 -3" RadiusX="0" RadiusY="0" Opacity="0.05"/>
+
+                <Grid Height="240" Background="White">
                 <Grid x:Name="LayoverGrid" Height="190" VerticalAlignment="Top" Background="White">
                     <Border Visibility="Collapsed">
                         <Border.Triggers>
@@ -35,44 +43,66 @@
                     </Border>
 
                     <Grid Height="190" VerticalAlignment="Top">
-                        <Grid.Background>
-                            <ImageBrush ImageSource="{Binding ImageUrl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Stretch="UniformToFill" ImageFailed="ImageBrush_OnImageFailed"/>
-                        </Grid.Background>
-                        <Grid Height="190">
                             <Grid.Background>
-                                <LinearGradientBrush  EndPoint="0.5,1.15" MappingMode="RelativeToBoundingBox"  StartPoint="0.5,0.4">
-                                    <GradientStop Color="Transparent"/>
-                                    <GradientStop Color="Black" Offset="1"/>
-                                </LinearGradientBrush>
+                                <ImageBrush ImageSource="{Binding ImageUrl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Stretch="UniformToFill" ImageFailed="ImageBrush_OnImageFailed"/>
                             </Grid.Background>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="110"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
+                            <Grid Height="190">
+                                <Grid.Background>
+                                    <LinearGradientBrush  EndPoint="0.5,1.15" MappingMode="RelativeToBoundingBox"  StartPoint="0.5,0.4">
+                                        <GradientStop Color="Transparent"/>
+                                        <GradientStop Color="Black" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Grid.Background>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="110"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
 
-                            <TextBlock Margin="15 0 0 0" FontWeight="SemiBold" VerticalAlignment="Bottom" Foreground="White" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" FontSize="22" Text="{Binding HotelName}" Style="{StaticResource SubheaderTextBlockStyle}" HorizontalAlignment="Left"/>
+                                <Grid Background="{StaticResource AppWhiteColorBrush}" Margin="15 20 0 0" Opacity=".80" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="55">
+                                    <TextBlock Text="+VIP" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource DarkGrayBrush}" FontSize="13" Style="{StaticResource AboutTextStyle}"/>
+                                </Grid>
 
-                            <customControls:RatingControl Margin="15 0 0 5" Grid.Column="0" Grid.Row="2" RatingValue="{Binding Rating}" MaxRatingValue="5" FlowDirection="LeftToRight" FullIconUri="/Assets/StarRatingFull.png" HalfIconUri="/Assets/StarRatingHalf.png" EmptyIconUri="/Assets/StarRatingEmpty.png"/>
+                                <TextBlock Margin="15 0 0 0" FontWeight="SemiBold" VerticalAlignment="Bottom" Foreground="White" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" FontSize="20" Text="{Binding HotelName}" Style="{StaticResource SubheaderTextBlockStyle}" HorizontalAlignment="Left"/>
+
+                                <customControls:RatingControl Margin="15 0 0 10" Grid.Column="0" Grid.Row="2" RatingValue="{Binding Rating}" MaxRatingValue="5" FlowDirection="LeftToRight" FullIconUri="/Assets/StarRatingFull.png" HalfIconUri="/Assets/StarRatingHalf.png" EmptyIconUri="/Assets/StarRatingEmpty.png"/>
+
+                                <Grid Grid.Column="1" Grid.Row="2" Background="{StaticResource NeonGreenBrush}" HorizontalAlignment="Right" Padding="7 3 7 3" Margin="0 0 15 15" Height="25">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontSize="15" Text="{Binding DiscountPercent}" Style="{StaticResource SubheaderTextBlockStyle}" FontWeight="SemiBold" Foreground="{StaticResource AppWhiteColorBrush}"/>
+                                        <TextBlock Text="%" Margin="1 0 0 0" FontSize="15" Style="{StaticResource SubheaderTextBlockStyle}" FontWeight="SemiBold" Foreground="{StaticResource AppWhiteColorBrush}"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Grid>
                         </Grid>
                     </Grid>
-                </Grid>
 
-                <StackPanel VerticalAlignment="Bottom" Margin="5 0 0 50" Orientation="Horizontal">
-                    <TextBlock Text="{Binding GuestRating}" Foreground="{StaticResource LogoYellowBrush}" FontWeight="SemiBold"/>
-                    <TextBlock Text=" of 5 - Guest Rating" x:Uid="OfGuestRatingTextBlock"/>
-                </StackPanel>
+                    <StackPanel VerticalAlignment="Bottom" Margin="15 0 0 15" Orientation="Horizontal">
+                        <Grid Background="{StaticResource StandardGrayBrush}" Height="20" Width="30">
+                            <TextBlock Text="{Binding GuestRating}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource AppWhiteColorBrush}" FontWeight="SemiBold"/>
+                        </Grid>
+                        <TextBlock Text=" of 5 - Guest Rating" x:Uid="OfGuestRatingTextBlock" Foreground="{StaticResource StandardGrayBrush}" FontSize="13"/>
+                    </StackPanel>
 
-                <StackPanel VerticalAlignment="Bottom" Margin="0 0 5 40" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <TextBlock Text="{Binding Price, Converter={StaticResource CurrencyConverter}}" Style="{StaticResource SubheaderTextBlockStyle}" FontWeight="SemiBold" Foreground="{StaticResource IconGrayBrush}"  />
-                </StackPanel>
+                    <StackPanel VerticalAlignment="Bottom" Margin="0 0 15 15" Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Grid VerticalAlignment="Center" Margin="0 0 5 0">
+                            <TextBlock Visibility="{Binding StrikeThroughPriceIsHigher, Converter={StaticResource BoolToVisibilityConverter}}" Foreground="{StaticResource SecondaryGrayBrush}" FontSize="13" Text="{Binding StrikeThroughPrice, Converter={StaticResource CurrencyConverter}}" Style="{StaticResource StrikeThroughTextStyle}"/>
+                            <Rectangle Fill="{StaticResource SecondaryGrayBrush}"
+							   Height="1"
+                                       Margin="0 2 0 0"
+							   HorizontalAlignment="Stretch"
+							   VerticalAlignment="Center" />
+                        </Grid>
+                        <TextBlock Text="{Binding Price, Converter={StaticResource CurrencyConverter}}" VerticalAlignment="Center" Style="{StaticResource SubheaderTextBlockStyle}" FontSize="20" FontWeight="SemiBold" Foreground="{StaticResource StandardGrayBrush}"  />
+                    </StackPanel>
 
-                <Button VerticalAlignment="Bottom" Command="{Binding DataContext.BookHotel, ElementName=ResultListView}" CommandParameter="{Binding}" Content="View Details" x:Uid="ViewDetailsButton" Style="{StaticResource SearchButtonStyle}" Foreground="White" Background="{StaticResource LogoDarkBlueBrush}"/>
+                    <!--<Button VerticalAlignment="Bottom" Command="{Binding DataContext.BookHotel, ElementName=ResultListView}" CommandParameter="{Binding}" Content="View Details" x:Uid="ViewDetailsButton" Style="{StaticResource SearchButtonStyle}" Foreground="White" Background="{StaticResource LogoDarkBlueBrush}"/>-->
+            </Grid>
             </Grid>
         </DataTemplate>
 
@@ -177,7 +207,7 @@
 						  IsEnabled="{Binding IsFilterEnabled, Mode=OneWay}"
                     Click="ToggleButton_OnChecked">
                 <StackPanel Orientation="Horizontal">
-                    <customControls:RatingControl Style="{StaticResource RatingControlDefaultStylePhone}" RatingValue="{Binding StarRating}" FullIconUri="/Assets/StarRatingFull.png" HalfIconUri="/Assets/StarRatingHalf.png" EmptyIconUri="/Assets/StarRatingEmpty.png"/>
+                    <customControls:RatingControl Style="{StaticResource RatingControlDefaultStylePhone}" RatingValue="{Binding StarRating}" FullIconUri="/Assets/StarRatingFull.png" HalfIconUri="/Assets/StarRatingHalf.png"/>
                 </StackPanel>
             </CheckBox>
         </DataTemplate>
@@ -202,7 +232,7 @@
         </DataTemplate>
     </Page.Resources>
 
-    <Grid x:Name="MainGrid" Background="{ThemeResource AppWhiteColorBrush}">
+    <Grid x:Name="MainGrid" Background="#EEEEEE">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" x:Name="ResultColumn"/>
             <ColumnDefinition Width="2*" x:Name="MapColumn"/>
@@ -343,7 +373,8 @@
             <ListView x:Name="ResultListView" Grid.Row="2" ItemContainerStyle="{StaticResource DefaultListViewItemStyle}" Tapped="ResultListView_OnTapped" 
                       Style="{StaticResource DefaultListViewStyle}" Grid.Column="0" Grid.ColumnSpan="3" Margin="0 0 0 0" 
                       ItemTemplate="{StaticResource HotelResultItemTemplate}" ItemsSource="{Binding HotelResultItems}" 
-                      SelectedItem="{Binding SelectedHotel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                      SelectedItem="{Binding SelectedHotel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            </ListView>
 
             <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Text="No Results" x:Uid="NoCarResults" Foreground="Red" Margin="10 150 0 0" HorizontalAlignment="Center" FontSize="20" FontWeight="SemiBold" Visibility="{Binding HasResults, Converter={StaticResource ReversedBoolToVisibilityConverter}, FallbackValue=True}"/>
 
@@ -564,10 +595,12 @@
                     <StackPanel Margin="10 0 0 0" Orientation="Vertical" Grid.Column="1">
                         <TextBlock Margin="0 0 0 0" FontWeight="SemiBold" VerticalAlignment="Bottom" Foreground="{StaticResource FilterGrayBrush}" FontSize="15" Text="{Binding SelectedHotel.HotelName}" Style="{StaticResource SubheaderTextBlockStyle}" HorizontalAlignment="Left"/>
 
-                        <customControls:RatingControl Margin="0 10 0 0" RatingValue="{Binding SelectedHotel.Rating}" MaxRatingValue="5" FlowDirection="LeftToRight" FullIconUri="/Assets/StarRatingFull.png" HalfIconUri="/Assets/StarRatingHalf.png" EmptyIconUri="/Assets/StarRatingEmpty.png"/>
+                        <customControls:RatingControl Margin="0 10 0 0" RatingValue="{Binding SelectedHotel.Rating}" MaxRatingValue="5" FlowDirection="LeftToRight" FullIconUri="/Assets/StarRatingFull.png" HalfIconUri="/Assets/StarRatingHalf.png" />
 
                         <StackPanel VerticalAlignment="Bottom" Margin="0 10 0 0" Orientation="Horizontal">
-                            <TextBlock Text="{Binding SelectedHotel.GuestRating}" Foreground="{StaticResource LogoYellowBrush}" FontWeight="SemiBold"/>
+                            <Grid Background="Gray" Height="20" Width="30">
+                                <TextBlock Text="{Binding SelectedHotel.GuestRating}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource AppWhiteColorBrush}" FontWeight="SemiBold"/>
+                            </Grid>
                             <TextBlock Text=" of 5 - Guest Rating" x:Uid="OfGuestRatingTextBlock"/>
                         </StackPanel>
 
@@ -575,7 +608,7 @@
 
                     <StackPanel Grid.Column="1" VerticalAlignment="Bottom" Margin="0 0 5 0" Orientation="Horizontal" HorizontalAlignment="Right">
                         <Grid Margin="0 0 10 5" VerticalAlignment="Bottom">
-                            <TextBlock Visibility="{Binding SelectedHotel.StrikeThroughPriceIsHigher, Converter={StaticResource BoolToVisibilityConverter}}" Text="{Binding SelectedHotel.StrikeThroughPrice, Converter={StaticResource CurrencyConverter}}" Style="{StaticResource StrikeThroughTextStyle}"/>
+                            <TextBlock Visibility="{Binding SelectedHotel.StrikeThroughPriceIsHigher, Converter={StaticResource BoolToVisibilityConverter}}" Margin="1 0 0 0" Text="{Binding SelectedHotel.StrikeThroughPrice, Converter={StaticResource CurrencyConverter}}" Style="{StaticResource StrikeThroughTextStyle}"/>
                             <Rectangle Fill="{StaticResource IconPathBrush}"
 							   Height="1"
 							   HorizontalAlignment="Stretch"

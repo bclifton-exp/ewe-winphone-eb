@@ -999,7 +999,7 @@
                                 </VisualState>
                                 <VisualState x:Name="PressedSelected">
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="MultiSelectCheck"
+                                        <!--<DoubleAnimation Storyboard.TargetName="MultiSelectCheck"
                                  Storyboard.TargetProperty="Opacity"
                                  Duration="0:0:0"
                                  To="1"/>
@@ -1012,7 +1012,7 @@
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
+                                        </ObjectAnimationUsingKeyFrames>-->
                                         <PointerDownThemeAnimation TargetName="ContentPresenter" />
                                     </Storyboard>
                                 </VisualState>
